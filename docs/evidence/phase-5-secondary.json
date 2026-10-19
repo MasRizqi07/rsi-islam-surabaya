@@ -1,0 +1,109 @@
+{
+  "phase": "Phase 5: Secondary Routes, Service Details & Security Polishing",
+  "timestamp": "2026-10-19T23:55:00+07:00",
+  "status": "COMPLETED",
+  "builder": "Antigravity (AI coding agent)",
+  "auditor": "Claude (Architect / Auditor)",
+  "owner": "Pacoel",
+  "routesImplemented": [
+    {
+      "route": "/tentang",
+      "component": "src/app/tentang/page.tsx",
+      "features": [
+        "Narasi sejarah berdirinya RSI Surabaya A. Yani (sejak 1975 diresmikan Presiden Soeharto)",
+        "Garis waktu interaktif 15 tonggak sejarah 1975–2026 bersumber dari Lampiran C",
+        "Rekam jejak kepatuhan akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022-2026)",
+        "Transparansi nilai organisasi YARSIS (Yayasan Rumah Sakit Islam Surabaya)"
+      ]
+    },
+    {
+      "route": "/kontak",
+      "component": "src/app/kontak/page.tsx",
+      "features": [
+        "Kontak darurat ganda K1 (Call Center 1500718 & WhatsApp Darurat 0811233999)",
+        "Peta diagram arsitektural SVG ramah privasi (tanpa tracking cookies)",
+        "Tombol aksi langsung Google Maps terverifikasi (https://maps.app.goo.gl/u2JxcgMixBtpgmUj9)",
+        "Daftar fasilitas siaga 24 jam (IGD, Farmasi, Laboratorium, Radiologi, Ambulans)"
+      ]
+    },
+    {
+      "route": "/layanan/[slug]",
+      "component": "src/app/layanan/[slug]/page.tsx",
+      "ssgPaths": 8,
+      "features": [
+        "Pre-rendering statis 8 layanan unggulan melalui generateStaticParams()",
+        "Integrasi silang dengan Gedung & Lantai pada Tower Directory (/tower?gedung=...&lantai=...)",
+        "Integrasi dokter spesialis terkait dari dataset doctors.ts",
+        "Pencantuman kutipan sumber data publik resmi pada setiap layanan"
+      ]
+    },
+    {
+      "route": "/not-found",
+      "component": "src/app/not-found.tsx",
+      "features": [
+        "Halaman 404 berkarakter Hijau Tower",
+        "Akses cepat ke IGD Darurat, Cari Dokter, dan Kembali ke Beranda"
+      ]
+    }
+  ],
+  "securityHardening": {
+    "configFile": "next.config.mjs",
+    "headers": [
+      "Content-Security-Policy (default-src 'self', script-src 'self' 'unsafe-inline', style-src 'self' 'unsafe-inline' fonts.googleapis.com, font-src 'self' fonts.gstatic.com, img-src 'self' data: https:)",
+      "X-DNS-Prefetch-Control: on",
+      "Strict-Transport-Security: max-age=63072000; includeSubDomains; preload",
+      "X-Content-Type-Options: nosniff",
+      "X-Frame-Options: DENY",
+      "Referrer-Policy: strict-origin-when-cross-origin",
+      "Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    ],
+    "robots": "noindex, nofollow (portfolio study mode)"
+  },
+  "verification": {
+    "nextBuild": {
+      "status": "PASS",
+      "totalPages": 43,
+      "turbopack": true,
+      "errors": 0,
+      "compileTimeMs": 783
+    },
+    "typecheck": {
+      "status": "PASS",
+      "errors": 0
+    },
+    "eslint": {
+      "status": "PASS",
+      "errors": 0,
+      "warnings": 0
+    },
+    "factsLeakageCheck": {
+      "status": "PASS",
+      "violations": 0,
+      "scanner": "scripts/check-facts.mjs"
+    },
+    "wcagContrast": {
+      "status": "PASS",
+      "pairsAudited": 14,
+      "allPassAA": true,
+      "minimumRatio": "4.77:1"
+    },
+    "unitTests": {
+      "status": "PASS",
+      "tests": 19,
+      "pass": 19,
+      "fail": 0
+    },
+    "playwrightE2E": {
+      "status": "PASS",
+      "suite": "tests/phase5.spec.ts & all prior phases",
+      "totalTests": 36,
+      "pass": 36,
+      "fail": 0,
+      "axeCoreSeriousOrCriticalViolations": 0,
+      "viewportsTested": [
+        "Chromium Desktop (1280x720)",
+        "Mobile Chromium Pixel 5 (393x851)"
+      ]
+    }
+  }
+}
