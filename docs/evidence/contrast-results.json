@@ -1,0 +1,119 @@
+{
+  "timestamp": "2026-10-19T16:22:23.170Z",
+  "totalChecked": 14,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Ink on Ivory (Body text)",
+      "foreground": "#10201E",
+      "background": "#FBF8F1",
+      "ratio": 15.87,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Ink-Soft on Ivory (Secondary text)",
+      "foreground": "#4B5F5C",
+      "background": "#FBF8F1",
+      "ratio": 6.41,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Tower-800 on Ivory (Headings / Primary)",
+      "foreground": "#0A4F48",
+      "background": "#FBF8F1",
+      "ratio": 8.9,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Tower-700 on Ivory (Active icons)",
+      "foreground": "#0F6B61",
+      "background": "#FBF8F1",
+      "ratio": 6.01,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Tower-600 on Ivory (Links)",
+      "foreground": "#13786D",
+      "background": "#FBF8F1",
+      "ratio": 5.03,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Gold-700 on Ivory (Accent text)",
+      "foreground": "#8A6A14",
+      "background": "#FBF8F1",
+      "ratio": 4.77,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Ivory on Tower-800 (Primary button text)",
+      "foreground": "#FBF8F1",
+      "background": "#0A4F48",
+      "ratio": 8.9,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Ivory on Tower-900 (Header text)",
+      "foreground": "#FBF8F1",
+      "background": "#063B36",
+      "ratio": 11.74,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Ivory on Tower-950 (Footer text)",
+      "foreground": "#FBF8F1",
+      "background": "#04231F",
+      "ratio": 15.65,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Gold-300 on Tower-900 (Dark hero accent)",
+      "foreground": "#E3CB8A",
+      "background": "#063B36",
+      "ratio": 7.81,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Gold-300 on Tower-950 (Footer gold accent)",
+      "foreground": "#E3CB8A",
+      "background": "#04231F",
+      "ratio": 10.41,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Ivory on Alert-600 (Emergency button text)",
+      "foreground": "#FBF8F1",
+      "background": "#C62F2F",
+      "ratio": 5.14,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Alert-600 on Alert-50 (Alert box message)",
+      "foreground": "#C62F2F",
+      "background": "#FDECEC",
+      "ratio": 4.78,
+      "minRequired": 4.5,
+      "passed": true
+    },
+    {
+      "name": "Tower-950 on Gold-100 (Highlight badge text)",
+      "foreground": "#04231F",
+      "background": "#F4EBD0",
+      "ratio": 13.94,
+      "minRequired": 4.5,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-10-19T16:22:22.415Z",
+  "targetDirectories": [
+    "./src/app",
+    "./src/components"
+  ],
+  "totalViolations": 0,
+  "violations": [],
+  "status": "ALL_PASSED"
+}

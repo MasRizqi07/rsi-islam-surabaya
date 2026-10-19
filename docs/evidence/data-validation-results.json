@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-19T16:05:09.765Z",
+  "totalErrors": 0,
+  "errors": [],
+  "stats": {
+    "specialties": 20,
+    "doctors": 24,
+    "specialtiesCoveredByDoctors": 17,
+    "services": 8,
+    "towerFloors": 13,
+    "grahaFloors": 6,
+    "bedStatusUnits": 6
+  },
+  "status": "ALL_PASSED"
+}

@@ -1,0 +1,120 @@
+{
+  "phase": "Phase 3: Core Medical Routes (Beranda, IGD, Dokter, Layanan)",
+  "timestamp": "2026-10-19T23:09:00+07:00",
+  "status": "COMPLETED",
+  "builder": "Antigravity (AI coding agent)",
+  "auditor": "Claude (Architect / Auditor)",
+  "routesImplemented": [
+    {
+      "route": "/",
+      "type": "Static Page",
+      "sections": 9,
+      "features": [
+        "Hero dengan teks headline LCP & siluet Tower 13 Lantai SVG",
+        "Quick Actions (IGD Darurat, Cari Dokter, Denah Tower, Rawat Jalan)",
+        "BedStatus ringkas kualitatif dengan lencana simulasi",
+        "Layanan Unggulan 6 kartu ringkas",
+        "Strip Fakta (1975, Kelas B, 100+ Tenaga Medis, 238 Tempat Tidur)",
+        "Teaser Interaktif Tower 13 Lantai",
+        "Cari Dokter Cepat (Poliklinik & Hari Praktik)",
+        "Social Proof (Google Review 4.7 / 7.034 ulasan per Okt 2026)",
+        "Kontak & Akses Cepat Lokasi"
+      ]
+    },
+    {
+      "route": "/igd",
+      "type": "Static Page",
+      "features": [
+        "Dual nomor darurat netral (1500718 & 08 112 33 999) above-the-fold (< 640px)",
+        "Tombol aksi langsung Google Maps terverifikasi",
+        "Panduan triase 4 kategori (Merah, Kuning, Hijau, Hitam) dengan rasio kontras WCAG 2.2 AA",
+        "Alur rujukan IGD satu pintu di Gedung Tower Lantai 2",
+        "Zero animasi berat (prioritas keterbacaan & kecepatan kognitif)"
+      ]
+    },
+    {
+      "route": "/dokter",
+      "type": "Static Page with Client Island (DoctorListClient)",
+      "features": [
+        "Filter terpadu 4 dimensi (nama/spesialis, poli, hari, penjamin)",
+        "Sinkronisasi dua arah dengan URL searchParams",
+        "24 kartu dokter fiktif dengan lencana wajib 'Ilustrasi'",
+        "Avatar inisial tipografis gradasi tema tower",
+        "Penanganan kondisi nihil (empty state) ramah pengguna"
+      ]
+    },
+    {
+      "route": "/dokter/[slug]",
+      "type": "SSG (generateStaticParams)",
+      "totalDoctorPages": 24,
+      "features": [
+        "Profil klinis dan subspesialisasi",
+        "Matriks jadwal praktik mingguan",
+        "Dukungan penjamin BPJS / Mandiri / Asuransi",
+        "Lencana tokoh fiktif simulasi (Lampiran D)",
+        "Tombol CTA 'Daftar ke Dokter Ini' mengarahkan ke /daftar?dokter=[slug]"
+      ]
+    },
+    {
+      "route": "/layanan",
+      "type": "Static Page",
+      "features": [
+        "Katalog lengkap 8 layanan unggulan terverifikasi Lampiran A",
+        "Indeks interaktif 20 poliklinik rawat jalan",
+        "Tautan silang ke Tower Directory (/tower?gedung=...&lantai=...)",
+        "Lencana 24 Jam dan catatan sumber publik transparan"
+      ]
+    }
+  ],
+  "verification": {
+    "nextBuild": {
+      "status": "PASS",
+      "totalPages": 31,
+      "turbopack": true,
+      "errors": 0
+    },
+    "typecheck": {
+      "status": "PASS",
+      "errors": 0
+    },
+    "eslint": {
+      "status": "PASS",
+      "errors": 0,
+      "warnings": 0
+    },
+    "factsLeakageCheck": {
+      "status": "PASS",
+      "violations": 0,
+      "note": "100% fakta rumah sakit mengimpor dari src/data/facts.ts"
+    },
+    "contrastCheck": {
+      "status": "PASS",
+      "totalTokensChecked": 14,
+      "minRatio": "4.77:1",
+      "wcagThreshold": "4.5:1"
+    },
+    "unitTests": {
+      "status": "PASS",
+      "framework": "Vitest",
+      "passed": 19,
+      "failed": 0
+    },
+    "playwrightE2E": {
+      "status": "PASS",
+      "framework": "@playwright/test + @axe-core/playwright",
+      "totalTests": 14,
+      "passed": 14,
+      "failed": 0,
+      "browsers": ["Chromium Desktop", "Mobile Pixel 5 (360x640)"],
+      "scenarios": [
+        "Filter dokter menyinkronkan query string ke URL dan memulihkan state",
+        "Halaman IGD menampilkan tombol tel darurat dan Google Maps above-the-fold",
+        "Beranda mobile memiliki floating bottom emergency dock",
+        "Axe-core A11y Audit pada rute / (0 serious/critical violations)",
+        "Axe-core A11y Audit pada rute /igd (0 serious/critical violations)",
+        "Axe-core A11y Audit pada rute /dokter (0 serious/critical violations)",
+        "Axe-core A11y Audit pada rute /layanan (0 serious/critical violations)"
+      ]
+    }
+  }
+}
