@@ -766,6 +766,32 @@ export function RegistrationWizardClient() {
               </div>
             </div>
 
+            {/* 1D VECTOR BARCODE SIMULATOR (STITCH DESIGN SPEC) */}
+            <div className="pt-2 flex flex-col items-center justify-center p-3 rounded-2xl bg-tower-50 border border-tower-100">
+              <div className="flex items-center gap-0.5 h-10 py-1 px-3 bg-white rounded border border-tower-200">
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+              </div>
+              <span className="font-mono text-[10px] text-ink-soft tracking-widest mt-1 uppercase font-semibold">
+                SCAN BARCODE PADA KIOSK ANJUNGAN MANDIRI
+              </span>
+            </div>
+
             {/* PANDUAN KEDATANGAN */}
             <div className="p-4 rounded-xl bg-ivory border border-tower-100 text-xs space-y-1.5 text-ink">
               <strong className="block text-tower-900 font-bold">
@@ -788,9 +814,10 @@ export function RegistrationWizardClient() {
           {/* AKSI CETAK & DAFTAR BARU */}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
+              id="print-ticket-btn"
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Tiket Antrean (Print)</span>

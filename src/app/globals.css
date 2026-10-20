@@ -79,3 +79,34 @@ body {
 .gold-hairline-b {
   border-bottom: 1px solid rgba(201, 162, 74, 0.35);
 }
+
+/* Print Stylesheet (@media print) */
+@media print {
+  header,
+  footer,
+  aside,
+  nav,
+  #mobile-emergency-dock,
+  #top-emergency-bar,
+  .no-print,
+  button:not(#print-ticket-btn) {
+    display: none !important;
+  }
+
+  body,
+  main {
+    background-color: #ffffff !important;
+    color: #10201e !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+  }
+
+  #printable-ticket {
+    box-shadow: none !important;
+    border: 2px solid #063b36 !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid !important;
+  }
+}
+
