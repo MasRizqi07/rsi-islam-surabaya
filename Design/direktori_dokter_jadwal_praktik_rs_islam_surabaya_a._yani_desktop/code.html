@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>Direktori Dokter &amp; Jadwal Praktik · RS Islam Surabaya A. Yani</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tower-950": "#04231F",
+            "tower-900": "#063B36",
+            "tower-800": "#0A4F48",
+            "tower-700": "#0F6B61",
+            "tower-600": "#19877B",
+            "tower-100": "#D8F3EE",
+            "tower-50": "#EEF8F6",
+            "gold-accent": "#C9A24A",
+            "gold-light": "#E3CB8A",
+            "gold-soft": "#FBF5E6",
+            "primary": "#003731",
+            "primary-container": "#0A4F48",
+            "on-primary": "#ffffff",
+            "secondary": "#795900",
+            "secondary-fixed": "#ffdf9e",
+            "secondary-container": "#fdd274",
+            "surface": "#ebfdf9",
+            "background": "#F4FAF8",
+            "outline-variant": "#bfc9c6",
+            "on-surface": "#0e1e1c",
+            "on-surface-variant": "#3f4947"
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"],
+            display: ["'Playfair Display'", "serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #F4FAF8;
+        color: #0e1e1c;
+      }
+    }
+    .khatam-pattern {
+      background-image: radial-gradient(#C9A24A 0.75px, transparent 0.75px), radial-gradient(#C9A24A 0.75px, #063B36 0.75px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      opacity: 0.05;
+    }
+  </style>
+</head>
+<body class="bg-[#F4FAF8] text-slate-800 antialiased min-h-screen flex flex-col">
+<!-- 1. TOP UTILITY BAR & HEADER -->
+<header class="w-full sticky top-0 z-50 shadow-sm bg-white">
+<!-- Top Emergency Utility Bar -->
+<div class="bg-[#04231F] text-white/90 py-2 px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center text-xs gap-2">
+<div class="flex items-center gap-1.5 text-center md:text-left text-slate-200">
+<span class="text-amber-400">⚠️</span>
+<span>Studi Kasus Portofolio Independen · Bukan Website Resmi RS Islam Surabaya</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="inline-flex items-center gap-1.5 hover:text-amber-300 transition-colors" href="tel:1500718">
+<span>🚨</span>
+<span class="text-slate-300">IGD 24 Jam:</span>
+<strong class="text-white font-semibold">1500718</strong>
+</a>
+<a class="inline-flex items-center gap-1.5 hover:text-amber-300 transition-colors" href="tel:0811233999">
+<span>🚑</span>
+<span class="text-slate-300">Ambulans:</span>
+<strong class="text-white font-semibold">08 112 33 999</strong>
+</a>
+</div>
+</div>
+<!-- Main Navigation Bar -->
+<div class="bg-white border-b border-gray-100 px-4 lg:px-8 py-3.5 flex items-center justify-between">
+<!-- Left: Logo & Hospital Identity -->
+<a class="flex items-center gap-3 shrink-0 group" href="#">
+<img alt="RS Islam Surabaya - A. Yani" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrXXb9Nr-Fw_NdivR3If2uxc5VB3pd4JcKhS_2H4JmaVQSUcGfOaGRz_TX2JBc0FfhFtAiyQy8xLp7IED1QZUuaXvtcJO71XVk7-jlgI24zpajzG8VXQJZVX_EvqaR3tfdTSbQCmMnnvi8IkpLjsk7hRofmZrmp0OayIvgZGAJIdFKlXfl-SE4bowLn3LgK7l5B471MSDtZ1l1yPQrMvOHC2t2RrfKA_epVHFGCeUBqpdnqh6OGcYzoP9U9inE8c9MHBg"/>
+<div class="hidden sm:flex flex-col border-l border-gray-200 pl-3">
+<span class="font-bold text-sm tracking-tight text-[#04231F] leading-tight group-hover:text-emerald-800 transition-colors">RS ISLAM SURABAYA A. YANI</span>
+<span class="text-[11px] font-medium text-emerald-700 tracking-wider">Gedung Graha &amp; Tower 13 Lantai</span>
+</div>
+</a>
+<!-- Center: Nav links -->
+<nav class="hidden xl:flex items-center gap-7 text-sm">
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">Beranda</a>
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">IGD 24 Jam</a>
+<a class="font-bold text-emerald-800 border-b-2 border-emerald-800 pb-1" href="#">Cari Dokter</a>
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">Layanan Medis</a>
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">Tower Directory</a>
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">Tentang Kami</a>
+<a class="text-slate-600 hover:text-emerald-800 font-medium transition-colors" href="#">Kontak</a>
+</nav>
+<!-- Right: Button group -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex px-4 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors" href="#">
+          Portal Dokter
+        </a>
+<a class="inline-flex items-center justify-center bg-[#0A4F48] text-white rounded-lg px-5 py-2.5 text-xs sm:text-sm font-medium hover:bg-[#0F6B61] transition shadow-sm" href="#">
+          Daftar Online
+        </a>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- 2. HERO / PAGE BANNER -->
+<section class="relative bg-[#063B36] text-white py-12 px-4 sm:px-8 overflow-hidden">
+<!-- Khatam Geometric Pattern Background -->
+<div class="absolute inset-0 khatam-pattern pointer-events-none"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-xs sm:text-sm text-[#E3CB8A] mb-3 font-medium">
+<a class="hover:underline" href="#">Beranda</a>
+<span class="text-white/40">/</span>
+<span class="text-white font-semibold">Direktori Dokter Spesialis</span>
+</div>
+<!-- Heading & Description -->
+<h1 class="font-display text-3xl sm:text-4xl lg:text-[38px] font-bold text-white tracking-tight leading-tight">
+          Direktori Dokter &amp; Jadwal Praktik
+        </h1>
+<p class="text-emerald-100/85 text-sm sm:text-base max-w-2xl mt-2 leading-relaxed">
+          Menampilkan 24 profil dokter spesialis simulasi di 20 poliklinik rawat jalan Gedung Tower &amp; Graha RSI Surabaya A. Yani.
+        </p>
+<!-- Transparency Pill Badge -->
+<div class="mt-5 inline-flex items-center gap-2 bg-[#04231F]/80 border border-[#C9A24A]/40 text-[#E3CB8A] text-xs px-3.5 py-1.5 rounded-full shadow-sm">
+<span>ℹ️</span>
+<span>Data Fiktif Simulasi Berlabel 'Ilustrasi' — Dibuat untuk demonstrasi sistem filter portofolio independen</span>
+</div>
+</div>
+</section>
+<!-- 3. MULTI-DIMENSIONAL FILTER SECTION -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 relative z-20 -mt-7">
+<div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+<!-- Top Row: 4 Key Filters (12 Cols) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+<!-- Col 1-4: Search Input -->
+<div class="md:col-span-5 lg:col-span-4">
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Pencarian Dokter</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3.5 text-gray-400 text-xl pointer-events-none">search</span>
+<input class="w-full bg-slate-50 hover:bg-slate-100/80 focus:bg-white pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0A4F48] focus:border-transparent transition" id="filter-search" placeholder="Cari nama atau spesialisasi dokter..." type="text" value="dr. Ahmad Fauzi"/>
+</div>
+</div>
+<!-- Col 5-7: Dropdown Poliklinik -->
+<div class="md:col-span-4 lg:col-span-4">
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Poliklinik Spesialis</label>
+<div class="relative flex items-center">
+<select class="w-full bg-slate-50 hover:bg-slate-100/80 focus:bg-white pl-4 pr-10 py-2.5 rounded-xl border border-gray-200 text-sm text-slate-800 appearance-none focus:outline-none focus:ring-2 focus:ring-[#0A4F48] focus:border-transparent cursor-pointer transition" id="filter-poli">
+<option selected="" value="jantung">Poli Jantung &amp; Pembuluh Darah (Tower Lt. 3)</option>
+<option value="anak">Poli Spesialis Anak / Pediatri (Graha Lt. 2)</option>
+<option value="penyakit-dalam">Poli Penyakit Dalam (Tower Lt. 3)</option>
+<option value="ortopedi">Poli Bedah Ortopedi &amp; Traumatologi (Lt. Dasar)</option>
+<option value="obgyn">Poli Obstetri &amp; Ginekologi (Tower Lt. 7)</option>
+<option value="mata">Poli Kesehatan Mata (Graha Lt. 1)</option>
+<option value="semua">Semua Poliklinik (20 Layanan Spesialis)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 pointer-events-none text-gray-400 text-lg">expand_more</span>
+</div>
+</div>
+<!-- Col 8-12: Penjamin Segmented Tabs -->
+<div class="md:col-span-3 lg:col-span-4">
+<label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">Jenis Penjamin Pasien</label>
+<div class="grid grid-cols-3 bg-slate-100 p-1 rounded-xl gap-1">
+<button class="penjamin-pill py-2 px-2 text-center text-xs font-medium text-slate-600 rounded-lg hover:text-slate-900 transition" type="button">Semua</button>
+<button class="penjamin-pill py-2 px-2 text-center text-xs font-semibold bg-[#0A4F48] text-white rounded-lg shadow-sm transition" type="button">BPJS Kesehatan</button>
+<button class="penjamin-pill py-2 px-2 text-center text-xs font-medium text-slate-600 rounded-lg hover:text-slate-900 transition" type="button">Umum / Asuransi</button>
+</div>
+</div>
+</div>
+<!-- Middle Row: Hari Praktik Pills -->
+<div class="mt-5 pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center gap-3">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider shrink-0">Pilih Hari Praktik:</span>
+<div class="flex flex-wrap items-center gap-2">
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Semua Hari</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#0A4F48] text-white shadow-sm transition" type="button">Senin</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Selasa</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Rabu</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Kamis</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Jumat</button>
+<button class="day-filter-btn px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition" type="button">Sabtu</button>
+</div>
+</div>
+<!-- Bottom Row: Filter Summary & Action Bar -->
+<div class="mt-5 pt-4 border-t border-gray-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<!-- Active Filter Chips -->
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-xs text-slate-400 font-medium">Filter Aktif:</span>
+<span class="inline-flex items-center gap-1.5 bg-[#EEF8F6] text-[#0A4F48] border border-emerald-200 px-3 py-1 rounded-full text-xs font-medium">
+              Poli: Jantung &amp; Pembuluh Darah
+              <button class="hover:text-red-600 transition-colors ml-0.5" title="Hapus filter">✕</button>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-[#EEF8F6] text-[#0A4F48] border border-emerald-200 px-3 py-1 rounded-full text-xs font-medium">
+              Hari: Senin
+              <button class="hover:text-red-600 transition-colors ml-0.5" title="Hapus filter">✕</button>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-[#EEF8F6] text-[#0A4F48] border border-emerald-200 px-3 py-1 rounded-full text-xs font-medium">
+              Penjamin: BPJS Kesehatan
+              <button class="hover:text-red-600 transition-colors ml-0.5" title="Hapus filter">✕</button>
+</span>
+</div>
+<!-- Counter & Reset Button -->
+<div class="flex items-center justify-between lg:justify-end gap-5 shrink-0">
+<span class="text-xs font-medium text-slate-700 flex items-center gap-1.5">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+<span><strong>3 Dokter Ditemukan</strong> dari 24 Dokter Spesialis</span>
+</span>
+<button class="inline-flex items-center gap-1 text-xs font-semibold text-rose-700 hover:text-rose-900 transition-colors" id="btn-reset" type="button">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+<span>Reset Semua Filter</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. DOCTOR CARDS GRID -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 py-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- DOCTOR CARD 1: dr. Ahmad Fauzi -->
+<article class="bg-white rounded-2xl border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between group">
+<div>
+<!-- Top status pills -->
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-xs px-2.5 py-1 rounded-full font-semibold">
+                ✓ Menerima BPJS
+              </span>
+<span class="bg-[#FBF5E6] text-[#795900] border border-[#C9A24A]/30 text-xs px-2.5 py-1 rounded-full font-semibold">
+                Ilustrasi
+              </span>
+</div>
+<!-- Avatar & Identity -->
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A4F48] to-[#04231F] text-white font-bold text-xl flex items-center justify-center border border-[#C9A24A]/30 shrink-0 shadow-sm">
+                AF
+              </div>
+<div class="flex flex-col">
+<h2 class="font-bold text-base text-gray-900 group-hover:text-[#0A4F48] transition-colors leading-snug">
+                  dr. Ahmad Fauzi, Sp.JP (K)
+                </h2>
+<span class="text-emerald-700 font-semibold text-xs mt-0.5">
+                  Spesialis Jantung &amp; Pembuluh Darah
+                </span>
+<span class="text-xs text-slate-500 mt-1 leading-tight">
+                  📍 Gedung Tower Lt. 3 — Subspesialis Kardiologi Intervensi
+                </span>
+</div>
+</div>
+<!-- Schedule Box -->
+<div class="bg-[#EEF8F6] p-4 rounded-xl border border-emerald-100 my-4 text-xs space-y-2">
+<div class="flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>📅</span>
+<span class="font-semibold text-[#0A4F48]">Senin &amp; Rabu</span>
+<span class="text-slate-500">· 08:00 – 12:00 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-white/90 border border-emerald-200/80 px-2 py-0.5 rounded text-emerald-900 font-medium">Poli Reguler BPJS &amp; Umum</span>
+<span class="text-emerald-700 font-semibold">Kuota: 4</span>
+</div>
+<div class="border-t border-emerald-200/60 my-1 pt-1.5 flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>🕒</span>
+<span class="font-semibold text-amber-900">Jumat</span>
+<span class="text-slate-500">· 16:00 – 19:30 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded text-amber-900 font-medium">Poli Eksekutif Graha</span>
+<span class="text-amber-800 font-semibold">Kuota: 6</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-2 flex flex-col gap-2">
+<button class="text-center text-xs font-semibold text-[#0A4F48] hover:text-[#0F6B61] py-1.5 hover:underline" type="button">
+              Detail Profil &amp; Jadwal
+            </button>
+<a class="bg-[#0A4F48] text-white rounded-lg py-2.5 w-full text-center text-xs font-medium hover:bg-[#0F6B61] transition shadow-sm flex items-center justify-center gap-1.5" href="#">
+<span>Daftar ke Dokter Ini</span>
+<span>→</span>
+</a>
+</div>
+</article>
+<!-- DOCTOR CARD 2: dr. Nurul Mutmainnah -->
+<article class="bg-white rounded-2xl border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between group">
+<div>
+<!-- Top status pills -->
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-xs px-2.5 py-1 rounded-full font-semibold">
+                ✓ Menerima BPJS
+              </span>
+<span class="bg-[#FBF5E6] text-[#795900] border border-[#C9A24A]/30 text-xs px-2.5 py-1 rounded-full font-semibold">
+                Ilustrasi
+              </span>
+</div>
+<!-- Avatar & Identity -->
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0F6B61] to-[#063B36] text-white font-bold text-xl flex items-center justify-center border border-[#C9A24A]/30 shrink-0 shadow-sm">
+                NM
+              </div>
+<div class="flex flex-col">
+<h2 class="font-bold text-base text-gray-900 group-hover:text-[#0A4F48] transition-colors leading-snug">
+                  dr. Nurul Mutmainnah, Sp.A, M.Kes
+                </h2>
+<span class="text-emerald-700 font-semibold text-xs mt-0.5">
+                  Spesialis Kesehatan Anak (Pediatri)
+                </span>
+<span class="text-xs text-slate-500 mt-1 leading-tight">
+                  📍 Gedung Graha RSI Lt. 2 — Pediatri Sosial &amp; Tumbuh Kembang
+                </span>
+</div>
+</div>
+<!-- Schedule Box -->
+<div class="bg-[#EEF8F6] p-4 rounded-xl border border-emerald-100 my-4 text-xs space-y-2">
+<div class="flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>📅</span>
+<span class="font-semibold text-[#0A4F48]">Selasa, Kamis, Sabtu</span>
+<span class="text-slate-500">· 13:00 – 16:00 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-white/90 border border-emerald-200/80 px-2 py-0.5 rounded text-emerald-900 font-medium">Poli Reguler BPJS &amp; Umum</span>
+<span class="text-emerald-700 font-semibold">Kuota: 8</span>
+</div>
+<div class="border-t border-emerald-200/60 my-1 pt-1.5 flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>🕒</span>
+<span class="font-semibold text-[#0A4F48]">Senin</span>
+<span class="text-slate-500">· 09:00 – 12:00 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-emerald-100/70 border border-emerald-200 px-2 py-0.5 rounded text-emerald-900 font-medium">Klinik Vaksinasi &amp; Imunisasi</span>
+<span class="text-emerald-700 font-semibold">Kuota: 12</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-2 flex flex-col gap-2">
+<button class="text-center text-xs font-semibold text-[#0A4F48] hover:text-[#0F6B61] py-1.5 hover:underline" type="button">
+              Detail Profil &amp; Jadwal
+            </button>
+<a class="bg-[#0A4F48] text-white rounded-lg py-2.5 w-full text-center text-xs font-medium hover:bg-[#0F6B61] transition shadow-sm flex items-center justify-center gap-1.5" href="#">
+<span>Daftar ke Dokter Ini</span>
+<span>→</span>
+</a>
+</div>
+</article>
+<!-- DOCTOR CARD 3: dr. H. Syarif Hidayat -->
+<article class="bg-white rounded-2xl border border-gray-200/90 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between group">
+<div>
+<!-- Top status pills -->
+<div class="flex items-center justify-between mb-4">
+<span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-xs px-2.5 py-1 rounded-full font-semibold">
+                ✓ Menerima BPJS
+              </span>
+<span class="bg-[#FBF5E6] text-[#795900] border border-[#C9A24A]/30 text-xs px-2.5 py-1 rounded-full font-semibold">
+                Ilustrasi
+              </span>
+</div>
+<!-- Avatar & Identity -->
+<div class="flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A4F48] to-[#19877B] text-white font-bold text-xl flex items-center justify-center border border-[#C9A24A]/30 shrink-0 shadow-sm">
+                SH
+              </div>
+<div class="flex flex-col">
+<h2 class="font-bold text-base text-gray-900 group-hover:text-[#0A4F48] transition-colors leading-snug">
+                  dr. H. Syarif Hidayat, Sp.PD-KGEH
+                </h2>
+<span class="text-emerald-700 font-semibold text-xs mt-0.5">
+                  Spesialis Penyakit Dalam (Gastroenterologi)
+                </span>
+<span class="text-xs text-slate-500 mt-1 leading-tight">
+                  📍 Gedung Tower Lt. 3 — Konsultan Gastroentero-Hepatologi
+                </span>
+</div>
+</div>
+<!-- Schedule Box -->
+<div class="bg-[#EEF8F6] p-4 rounded-xl border border-emerald-100 my-4 text-xs space-y-2">
+<div class="flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>📅</span>
+<span class="font-semibold text-[#0A4F48]">Senin s/d Kamis</span>
+<span class="text-slate-500">· 09:00 – 13:00 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-white/90 border border-emerald-200/80 px-2 py-0.5 rounded text-emerald-900 font-medium">Poli Terpadu Menara</span>
+<span class="text-emerald-700 font-semibold">Kuota: 2</span>
+</div>
+<div class="border-t border-emerald-200/60 my-1 pt-1.5 flex items-center justify-between">
+<div class="font-medium text-slate-800 flex items-center gap-1">
+<span>🕒</span>
+<span class="font-semibold text-amber-900">Rabu &amp; Jumat</span>
+<span class="text-slate-500">· 17:00 – 20:00 WIB</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600">
+<span class="bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded text-amber-900 font-medium">Poli Eksekutif An-Nisa</span>
+<span class="text-amber-800 font-semibold">Kuota: 5</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-2 flex flex-col gap-2">
+<button class="text-center text-xs font-semibold text-[#0A4F48] hover:text-[#0F6B61] py-1.5 hover:underline" type="button">
+              Detail Profil &amp; Jadwal
+            </button>
+<a class="bg-[#0A4F48] text-white rounded-lg py-2.5 w-full text-center text-xs font-medium hover:bg-[#0F6B61] transition shadow-sm flex items-center justify-center gap-1.5" href="#">
+<span>Daftar ke Dokter Ini</span>
+<span>→</span>
+</a>
+</div>
+</article>
+</div>
+</section>
+<!-- 5. EMPTY STATE SECTION (DEMO & EDUCATIONAL CARD) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 mb-10">
+<div class="bg-white rounded-2xl border-2 border-dashed border-gray-200 p-8 sm:p-10 flex flex-col items-center text-center relative overflow-hidden">
+<span class="bg-slate-100 text-slate-600 font-semibold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full mb-5">
+          SIMULASI BILA HASIL FILTER NIHIL (EMPTY STATE)
+        </span>
+<div class="w-16 h-16 rounded-2xl bg-emerald-50 text-[#0A4F48] flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl">travel_explore</span>
+</div>
+<h3 class="text-lg sm:text-xl font-bold text-slate-800 mb-2">
+          Tidak Ditemukan Jadwal Dokter yang Sesuai
+        </h3>
+<p class="text-slate-500 text-sm max-w-lg mb-6 leading-relaxed">
+          Tidak ada jadwal dokter praktik pada kombinasi filter terpilih. Anda dapat mereset filter atau berkonsultasi via WhatsApp Customer Care untuk info jadwal dokter pengganti.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-3">
+<button class="w-full sm:w-auto px-5 py-2.5 bg-[#0A4F48] text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-[#0F6B61] transition shadow-sm flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">filter_alt_off</span>
+<span>Reset Semua Filter</span>
+</button>
+<button class="w-full sm:w-auto px-5 py-2.5 bg-slate-100 text-slate-700 rounded-xl text-xs sm:text-sm font-semibold hover:bg-slate-200 transition flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-base">groups</span>
+<span>Tampilkan Seluruh 24 Dokter</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 6. BPJS & ADMISSION INFORMATION BANNER -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 mb-12">
+<div class="bg-gradient-to-r from-[#063B36] to-[#0A4F48] text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col lg:flex-row items-center justify-between gap-6">
+<div class="flex items-start sm:items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 text-[#E3CB8A]">
+<span class="material-symbols-outlined text-2xl">verified_user</span>
+</div>
+<div>
+<h4 class="font-bold text-base sm:text-lg text-white">Pendaftaran Mandiri &amp; Rujukan BPJS</h4>
+<p class="text-emerald-100/80 text-xs sm:text-sm leading-relaxed mt-1 max-w-2xl">
+              Pasien BPJS dapat memanfaatkan antrean online via aplikasi <strong>Mobile JKN</strong>. Pasien penjamin umum/asuransi dapat mendaftar H-1 di portal RSI Online.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-4 shrink-0 w-full lg:w-auto justify-end">
+<div class="hidden md:flex flex-col text-right">
+<span class="text-[11px] text-[#E3CB8A]">Bantuan Admission:</span>
+<span class="text-white font-bold text-sm">(031) 8284505 ext. 102</span>
+</div>
+<a class="bg-[#C9A24A] hover:bg-[#d8b056] text-[#04231F] font-bold text-xs sm:text-sm px-5 py-3 rounded-xl transition-all shadow flex items-center justify-center gap-2 w-full lg:w-auto" href="https://wa.me/62811233999" rel="noopener noreferrer" target="_blank">
+<span>💬</span>
+<span>WhatsApp Care</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- 7. COMPREHENSIVE FOOTER -->
+<footer class="bg-[#04231F] text-gray-300 py-12 px-4 sm:px-8 text-sm border-t border-emerald-950">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-white/10">
+<!-- Col 1: Logo & Foundation History -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<img alt="RS Islam Surabaya" class="h-8 w-auto brightness-200 invert-[0.1] object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrXXb9Nr-Fw_NdivR3If2uxc5VB3pd4JcKhS_2H4JmaVQSUcGfOaGRz_TX2JBc0FfhFtAiyQy8xLp7IED1QZUuaXvtcJO71XVk7-jlgI24zpajzG8VXQJZVX_EvqaR3tfdTSbQCmMnnvi8IkpLjsk7hRofmZrmp0OayIvgZGAJIdFKlXfl-SE4bowLn3LgK7l5B471MSDtZ1l1yPQrMvOHC2t2RrfKA_epVHFGCeUBqpdnqh6OGcYzoP9U9inE8c9MHBg"/>
+</div>
+<p class="text-xs text-gray-400 leading-relaxed mt-2">
+            Yayasan Rumah Sakit Islam Surabaya (YARSIS) mengabdi dengan amanah sejak 1975. Melayani umat dengan komitmen Rumah Sakit Syariah Terakreditasi Paripurna Kelas B.
+          </p>
+<div class="flex items-center gap-2 mt-2">
+<span class="bg-[#0A4F48] text-white text-[11px] font-semibold px-2.5 py-1 rounded">Kelas B Syariah</span>
+<span class="bg-[#795900] text-[#ffdf9e] text-[11px] font-semibold px-2.5 py-1 rounded">Graha 13 Lantai</span>
+</div>
+</div>
+<!-- Col 2: Layanan Unggulan 24 Jam -->
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-sm text-[#E3CB8A] uppercase tracking-wider">Layanan Unggulan 24 Jam</h4>
+<ul class="text-xs text-gray-400 space-y-2">
+<li class="hover:text-white transition-colors">• Instalasi Gawat Darurat (IGD 24 Jam)</li>
+<li class="hover:text-white transition-colors">• Ambulans Gawat Darurat &amp; Medevac</li>
+<li class="hover:text-white transition-colors">• Laboratorium Klinik &amp; Patologi</li>
+<li class="hover:text-white transition-colors">• Radiologi &amp; CT-Scan 128 Slice</li>
+<li class="hover:text-white transition-colors">• Farmasi Rawat Jalan &amp; Rawat Inap</li>
+<li class="hover:text-white transition-colors">• Unit Hemodialisa Terpadu</li>
+</ul>
+</div>
+<!-- Col 3: Alamat & Kontak -->
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-sm text-[#E3CB8A] uppercase tracking-wider">Alamat Lengkap &amp; Kontak</h4>
+<p class="text-xs text-gray-400 leading-relaxed">
+            Jl. Achmad Yani No. 2-4, Wonokromo, Kota Surabaya, Jawa Timur 60243
+          </p>
+<div class="text-xs text-gray-300 space-y-1.5 mt-1">
+<p><span class="text-gray-400">Call Center:</span> <strong class="text-white">1500718</strong></p>
+<p><span class="text-gray-400">Emergency IGD:</span> <strong class="text-white">(031) 8284505</strong></p>
+<p><span class="text-gray-400">Ambulans:</span> <strong class="text-white">08 112 33 999</strong></p>
+<p><span class="text-gray-400">Email:</span> sekretariat@rsisurabaya.com</p>
+</div>
+</div>
+<!-- Col 4: Akreditasi & Legalitas -->
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-sm text-[#E3CB8A] uppercase tracking-wider">Akreditasi &amp; Legalitas</h4>
+<p class="text-xs text-gray-400 leading-relaxed">
+            Terakreditasi Paripurna LAM-KPRS Bintang Lima. Tersertifikasi Rumah Sakit Syariah resmi MUKISI (Majelis Upaya Kesehatan Islam Seluruh Indonesia).
+          </p>
+<div class="mt-2 text-xs">
+<span class="text-gray-400">Instagram Resmi: </span>
+<a class="text-[#E3CB8A] font-semibold hover:underline" href="https://instagram.com/rsisurabaya" rel="noopener noreferrer" target="_blank">@rsisurabaya</a>
+</div>
+<div class="mt-1 text-xs text-emerald-300/80">
+            Kementerian Kesehatan RI Reg. 3578016
+          </div>
+</div>
+</div>
+<!-- Bottom Copyright Line -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-2">
+<p>© 2026 RS Islam Surabaya A. Yani. Hak Cipta Dilindungi Undang-Undang.</p>
+<p class="text-gray-400">Studi Kasus Desain Portofolio Independen · Arsitektur Informasi Graha RSI</p>
+</div>
+</div>
+</footer>
+<!-- Interactive Demo Filter Handling -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Penjamin Tab Selection
+      const penjaminBtns = document.querySelectorAll('.penjamin-pill');
+      penjaminBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          penjaminBtns.forEach(b => {
+            b.classList.remove('bg-[#0A4F48]', 'text-white', 'shadow-sm', 'font-semibold');
+            b.classList.add('text-slate-600', 'font-medium');
+          });
+          btn.classList.add('bg-[#0A4F48]', 'text-white', 'shadow-sm', 'font-semibold');
+          btn.classList.remove('text-slate-600', 'font-medium');
+        });
+      });
+
+      // Day Filter Pills Selection
+      const dayBtns = document.querySelectorAll('.day-filter-btn');
+      dayBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          dayBtns.forEach(b => {
+            b.classList.remove('bg-[#0A4F48]', 'text-white', 'shadow-sm', 'font-semibold');
+            b.classList.add('bg-slate-100', 'text-slate-600', 'font-medium');
+          });
+          btn.classList.add('bg-[#0A4F48]', 'text-white', 'shadow-sm', 'font-semibold');
+          btn.classList.remove('bg-slate-100', 'text-slate-600', 'font-medium');
+        });
+      });
+
+      // Reset Button Trigger
+      const resetBtn = document.getElementById('btn-reset');
+      const searchInput = document.getElementById('filter-search');
+      const poliSelect = document.getElementById('filter-poli');
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          if (poliSelect) poliSelect.value = 'semua';
+          if (dayBtns.length > 0) dayBtns[0].click();
+          if (penjaminBtns.length > 0) penjaminBtns[0].click();
+        });
+      }
+    });
+  </script>
+</body></html>

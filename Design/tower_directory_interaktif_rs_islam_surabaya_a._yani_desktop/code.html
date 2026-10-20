@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"outline":"#707977","outline-variant":"#bfc9c6","on-secondary-fixed":"#261a00","on-tertiary":"#ffffff","primary":"#003731","surface-container-highest":"#d4e6e3","error":"#ba1a1a","on-primary-fixed":"#00201d","secondary-fixed":"#ffdf9e","on-primary":"#ffffff","on-tertiary-container":"#8ebdb6","primary-fixed":"#b1eee4","on-primary-fixed-variant":"#0b5049","surface-container-lowest":"#ffffff","primary-container":"#0a4f48","on-primary-container":"#84bfb6","background":"#ebfdf9","inverse-primary":"#96d2c8","error-container":"#ffdad6","surface-container":"#dff2ee","on-tertiary-fixed-variant":"#1f4e49","tertiary":"#003631","on-background":"#0e1e1c","on-error-container":"#93000a","surface-variant":"#d4e6e3","on-secondary-fixed-variant":"#5b4300","secondary":"#795900","secondary-fixed-dim":"#ebc165","surface-bright":"#ebfdf9","on-secondary-container":"#775800","on-error":"#ffffff","surface":"#ebfdf9","on-surface":"#0e1e1c","tertiary-container":"#1e4d48","on-tertiary-fixed":"#00201d","on-secondary":"#ffffff","inverse-surface":"#233331","tertiary-fixed-dim":"#a0d0c8","primary-fixed-dim":"#96d2c8","surface-container-low":"#e5f8f4","on-surface-variant":"#3f4947","tertiary-fixed":"#bcece4","surface-container-high":"#daece8","inverse-on-surface":"#e2f5f1","secondary-container":"#fdd274","surface-dim":"#ccdeda","surface-tint":"#2c6860"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-xl":"2.5rem","space-xs":"0.25rem","gutter-mobile":"1rem","margin-mobile":"1.25rem","margin":"3rem","space-sm":"0.5rem","space-lg":"1.5rem","gutter":"1.5rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"headline-md":["Playfair Display"],"body-lg":["Plus Jakarta Sans"],"display-lg":["Playfair Display"],"body-md":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"display-md":["Playfair Display"],"title-lg":["Plus Jakarta Sans"],"headline-lg-mobile":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"headline-lg":["Playfair Display"],"title-md":["Plus Jakarta Sans"],"display-md-mobile":["Playfair Display"]},"fontSize":{"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"700"}],"display-md":["44px",{"lineHeight":"52px","letterSpacing":"-0.015em","fontWeight":"600"}],"title-lg":["18px",{"lineHeight":"26px","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","fontWeight":"600"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"display-md-mobile":["30px",{"lineHeight":"38px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full bg-primary text-on-primary py-space-xs px-gutter-mobile lg:px-margin"><div class="max-w-[1320px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px] text-secondary-fixed">verified_user</span><span class="font-label-sm text-label-sm tracking-wider uppercase text-on-primary/90">Studi Kasus Portofolio Independen · Bukan Website Resmi RS Islam Surabaya</span></div><div class="flex items-center gap-space-md font-label-sm text-label-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px] text-error-container">emergency</span><span class="text-on-primary/80">IGD 24 Jam:</span><a class="font-bold text-on-primary hover:text-secondary-fixed transition-colors" href="tel:1500718">1500718</a></div><span class="text-on-primary/40 hidden sm:inline">|</span><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[14px] text-secondary-fixed">ambulance</span><span class="text-on-primary/80">Ambulans:</span><a class="font-bold text-on-primary hover:text-secondary-fixed transition-colors" href="tel:0811233999">08 112 33 999</a></div></div></div></div><div class="h-20 max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="logo-web-rsi.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XPJOzVWj6dRnG4vNVVTn9jBLs_yHVzvTZPlYAD6fmVnwutoPd9BNKZ8AeRNkGjhmLMKYKQw28tPl-pUxWmHbJPeg6XHBpzFnwoiIwVA6cHMVC_h0R2s3_Ry2GzIx67A_CKP4-c3e9h-Xl7ikaZDVGpQPUX2wKZXkXY4goVK7ti0t-Npm8Lea41k9sAwu1VAhSS4-uWn7V8Z1_t-ixPkp21txWgZcfszpwzWQ3uZ4sWnudGJcIF7GnQ_D4NsqZCWgRI5-i01gqYZZM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight font-bold">RS Islam Surabaya</span><span class="font-label-sm text-label-sm tracking-widest text-secondary uppercase">A. Yani · Hijau Tower</span></div></div><nav class="hidden xl:flex items-center gap-space-sm" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg"><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="beranda" href="#">Beranda</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="igd-24-jam" href="#">IGD 24 Jam</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="cari-dokter" href="#">Cari Dokter</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="layanan-medis" href="#">Layanan Medis</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="tower-directory" href="#">Tower Directory</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="tentang-kami" href="#">Tentang Kami</a><a class="px-space-sm py-space-xs font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" data-path="kontak" href="#">Kontak</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm bg-primary-container text-on-primary font-title-md text-title-md rounded-lg shadow-sm hover:bg-primary transition-colors" data-path="daftar-online" href="#">Daftar Online</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-28 bg-background"><div class="flex flex-col w-full">
+<!-- Architectural Hero & Page Identification -->
+<section class="relative w-full bg-primary text-on-primary overflow-hidden">
+<!-- Subtle Khatam Geometric Watermark Pattern (SVG) -->
+<div aria-hidden="true" class="absolute inset-0 opacity-[0.04] pointer-events-none">
+<svg class="w-full h-full" fill="none" height="120" stroke="currentColor" stroke-width="1.2" viewbox="0 0 120 120" width="120" xmlns="http://www.w3.org/2000/svg">
+<pattern height="60" id="khatam-pattern" patternunits="userSpaceOnUse" width="60">
+<rect fill="none" height="30" width="30" x="15" y="15"></rect>
+<rect fill="none" height="30" transform="rotate(45 30 30)" width="30" x="15" y="15"></rect>
+<circle cx="30" cy="30" fill="none" r="8"></circle>
+<path d="M 0 30 L 60 30 M 30 0 L 30 60" stroke-dasharray="2 2"></path>
+</pattern>
+<rect fill="url(#khatam-pattern)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="relative max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin pt-space-lg pb-space-xl">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-on-primary-container font-label-sm text-label-sm uppercase tracking-wider mb-space-md">
+<a class="hover:text-secondary-fixed transition-colors" href="#">Beranda</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-primary/70">Navigasi Arsitektur Gedung</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-secondary-fixed font-bold">Tower Directory Interaktif</span>
+</nav>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary-container text-secondary-fixed font-label-sm text-label-sm uppercase tracking-widest mb-space-sm">
+<span class="material-symbols-outlined text-[14px]">apartment</span>
+<span>Sistem Pemetaan Fasilitas Graha &amp; Tower RSI Surabaya A. Yani</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg lg:text-display-md text-on-primary tracking-tight font-serif">
+            Tower Directory &amp; Peta Lantai Interaktif
+          </h1>
+<p class="font-body-lg text-body-lg text-on-primary-container mt-space-xs max-w-2xl leading-relaxed">
+            Menjelajahi denah peruntukan fasilitas medis dan poliklinik di Gedung Tower 13 Lantai &amp; Gedung Graha 6 Level dengan transparansi penataan ruang klinis.
+          </p>
+</div>
+<!-- Metadata & Protocol Pills -->
+<div class="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-space-xs shrink-0">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs bg-tertiary-container/80 text-on-tertiary-container rounded-lg font-label-sm text-label-sm font-mono tracking-normal">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span id="url-sync-status">URL Status: /tower?gedung=tower&amp;lantai=4</span>
+</div>
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs bg-secondary-fixed-dim/20 text-secondary-fixed rounded-lg font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px] text-secondary-fixed">verified</span>
+<span>Integritas Data K4: Transparansi Status Publikasi</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Building Switcher & Control Band -->
+<section class="w-full bg-surface-container-low shadow-sm">
+<div class="max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin py-space-md">
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<!-- Building Tabs -->
+<div aria-label="Pilihan Gedung Rumah Sakit" class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm w-full xl:w-auto" role="tablist">
+<!-- Tab 1: Tower (Active) -->
+<button aria-selected="true" class="flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-primary text-on-primary shadow-sm text-left transition-all" id="tab-btn-tower" onclick="switchBuilding('tower')" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-[26px]">domain</span>
+<div>
+<p class="font-title-md text-title-md font-bold text-on-primary">Gedung Tower</p>
+<p class="font-body-sm text-body-sm text-on-primary-container">13 Lantai · Ikon Modernisasi 2023</p>
+</div>
+</div>
+<span class="shrink-0 px-space-xs py-0.5 rounded bg-secondary text-on-secondary font-label-sm text-label-sm">
+              4 Verifikasi · 9 K4
+            </span>
+</button>
+<!-- Tab 2: Graha -->
+<button aria-selected="false" class="flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-dim transition-all text-left" id="tab-btn-graha" onclick="switchBuilding('graha')" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[26px]">account_balance</span>
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">Gedung Graha</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">6 Level: Ground + 5 Lantai (2018)</p>
+</div>
+</div>
+<span class="shrink-0 px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+              6 Level Lengkap
+            </span>
+</button>
+</div>
+<!-- Filtering & Keyboard Indicators -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<div aria-label="Filter Tampilan Lantai" class="inline-flex p-1 rounded-xl bg-surface-container-highest" role="group">
+<button class="px-space-sm py-1 font-label-md text-label-md rounded-lg bg-surface-container-lowest text-primary shadow-sm font-bold transition-all" id="filter-all" onclick="setFloorFilter('all')">
+              Semua 13 Lantai
+            </button>
+<button class="px-space-sm py-1 font-label-md text-label-md rounded-lg text-on-surface-variant hover:text-primary transition-all" id="filter-verified" onclick="setFloorFilter('verified')">
+              Hanya Lantai Terverifikasi
+            </button>
+</div>
+<div class="hidden md:inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-lg bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">keyboard</span>
+<span>Navigasi: Tombol <kbd class="px-1 py-0.5 bg-surface-container-lowest rounded shadow-sm text-on-surface font-mono font-bold">↑</kbd> <kbd class="px-1 py-0.5 bg-surface-container-lowest rounded shadow-sm text-on-surface font-mono font-bold">↓</kbd></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Floor Explorer Canvas (Split 5-col / 7-col) -->
+<main class="w-full max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Vertical Cross-Section Elevator Stack (5 cols) -->
+<aside class="lg:col-span-5 flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm bg-surface-container-low px-space-md py-space-sm rounded-lg">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">elevator</span>
+<span class="font-title-md text-title-md text-primary font-bold">Struktur Vertikal Tower</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Top to Ground</span>
+</div>
+<!-- Floor Stack List -->
+<div aria-orientation="vertical" class="flex flex-col gap-1.5 max-h-[820px] overflow-y-auto pr-1" id="floor-list-container" role="tablist">
+<!-- LT. 13 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="13" data-verified="false" id="floor-btn-13" onclick="selectFloor(13)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">13</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 13</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 12 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="12" data-verified="false" id="floor-btn-12" onclick="selectFloor(12)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">12</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 12</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 11 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="11" data-verified="false" id="floor-btn-11" onclick="selectFloor(11)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">11</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 11</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 10 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="10" data-verified="false" id="floor-btn-10" onclick="selectFloor(10)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">10</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 10</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Alokasi Belum Dipublikasikan</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">help_outline</span> Status K4
+            </span>
+</button>
+<!-- LT. 09 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="9" data-verified="false" id="floor-btn-9" onclick="selectFloor(9)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">09</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 09</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 08 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="8" data-verified="false" id="floor-btn-8" onclick="selectFloor(8)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">08</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 08</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 07 (VERIFIED: An-Nisa) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-all" data-floor="7" data-verified="true" id="floor-btn-7" onclick="selectFloor(7)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-primary bg-primary-container text-[14px]">07</span>
+<div>
+<p class="font-title-md text-title-md text-primary font-bold">Lantai 07</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ruang Bersalin An-Nisa &amp; VIP</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> Terverifikasi
+            </span>
+</button>
+<!-- LT. 06 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="6" data-verified="false" id="floor-btn-6" onclick="selectFloor(6)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">06</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 06</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 05 (K4) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="5" data-verified="false" id="floor-btn-5" onclick="selectFloor(5)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">05</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 05</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Struktur Fisik Terpasang</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+<!-- LT. 04 (ACTIVE STATE: Critical Care ICU/ICCU/HCU) -->
+<button aria-selected="true" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-primary text-on-primary shadow-md text-left transition-all" data-floor="4" data-verified="true" id="floor-btn-4" onclick="selectFloor(4)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-secondary-fixed bg-tertiary-container text-[16px]">04</span>
+<div>
+<p class="font-title-md text-title-md text-on-primary font-bold">Lantai 04</p>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim">Unit Perawatan Intensif (ICU/ICCU)</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1">
+              ★ Terpilih
+            </span>
+</button>
+<!-- LT. 03 (VERIFIED: Laboratorium & Radiologi) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-all" data-floor="3" data-verified="true" id="floor-btn-3" onclick="selectFloor(3)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-primary bg-primary-container text-[14px]">03</span>
+<div>
+<p class="font-title-md text-title-md text-primary font-bold">Lantai 03</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Lab 24 Jam, Radiologi &amp; MCU</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> Terverifikasi
+            </span>
+</button>
+<!-- LT. 02 (VERIFIED: IGD 24 Jam) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-all" data-floor="2" data-verified="true" id="floor-btn-2" onclick="selectFloor(2)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-primary bg-primary-container text-[14px]">02</span>
+<div>
+<p class="font-title-md text-title-md text-primary font-bold">Lantai 02</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instalasi Gawat Darurat &amp; Admisi</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> Terverifikasi
+            </span>
+</button>
+<!-- LT. 01 (K4 / Akses Dasar) -->
+<button aria-selected="false" class="floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all" data-floor="1" data-verified="false" id="floor-btn-1" onclick="selectFloor(1)" role="tab">
+<div class="flex items-center gap-space-sm">
+<span class="w-10 h-10 rounded-lg flex items-center justify-center font-serif font-bold text-on-surface-variant bg-surface-container-high text-[14px]">01</span>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Lantai 01</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80">Lobi Utama &amp; Drop-off</p>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span> Status K4
+            </span>
+</button>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Inspection View Panel (7 cols) -->
+<section class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- PRIMARY ACTIVE CARD: Lt. 04 Critical Care Unit -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md transition-all" id="active-floor-card">
+<!-- Card Header & Badges -->
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-space-md pb-space-md">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="font-display-md text-display-md font-serif text-secondary font-bold leading-none">LT. 04</span>
+<span class="px-space-xs py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm tracking-wider uppercase">Gedung Tower</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary font-serif">Pusat Perawatan Intensif Terpadu</h2>
+<p class="font-label-md text-label-md text-on-surface-variant font-medium">Critical Care Unit (CCU Complex) — Fasilitas Sentral RSIS</p>
+</div>
+<div class="shrink-0 flex sm:flex-col items-end gap-1">
+<span class="inline-flex items-center gap-1 px-space-sm py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+                Data Faktual: S1 Pelayanan RSIS
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Update: Desentralisasi Medik 2024</span>
+</div>
+</div>
+<!-- Description Block -->
+<div class="py-space-md">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Lantai 4 Gedung Tower didesain khusus sebagai <strong class="text-on-surface">zona steril terintegrasi satu atap</strong> untuk seluruh tindakan perawatan intensif rumah sakit. Menggabungkan penanganan komprehensif kardiovaskular, pasca-bedah mayor, serta resusitasi neonatal dalam perimeter monitoring 24 jam dengan tekanan udara negatif dan filtrasi HEPA terkontrol.
+            </p>
+<!-- 5 Unit Badges (Chips) -->
+<div class="flex flex-wrap gap-space-xs mt-space-md">
+<span class="px-space-sm py-space-xs rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                ICU (Intensive Care Unit)
+              </span>
+<span class="px-space-sm py-space-xs rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                ICCU (Intensive Coronary Care Unit)
+              </span>
+<span class="px-space-sm py-space-xs rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                HCU (High Care Unit)
+              </span>
+<span class="px-space-sm py-space-xs rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                NICU (Neonatal Intensive Care)
+              </span>
+<span class="px-space-sm py-space-xs rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                PICU (Pediatric Intensive Care)
+              </span>
+</div>
+</div>
+<!-- Embedded Real-time Bed Status Simulation Widget -->
+<div class="bg-surface-container-low rounded-xl p-space-md my-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">single_bed</span>
+<h3 class="font-title-md text-title-md text-primary font-bold">Ketersediaan Bed Intensif Terkini</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span> Live Simulasi
+              </span>
+</div>
+<!-- Grid of 4 Bed Types -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Bed 1: ICU -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">ICU (Dewasa)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kapasitas: 8 Bed</p>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-bold">
+                    Sisa 2 Bed
+                  </span>
+<p class="font-label-sm text-label-sm text-secondary font-semibold mt-0.5">Status: Terbatas</p>
+</div>
+</div>
+<!-- Bed 2: ICCU -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">ICCU (Jantung)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kapasitas: 6 Bed</p>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                    Sisa 3 Bed
+                  </span>
+<p class="font-label-sm text-label-sm text-primary font-semibold mt-0.5">Status: Tersedia</p>
+</div>
+</div>
+<!-- Bed 3: HCU -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">HCU (High Care)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kapasitas: 10 Bed</p>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                    Sisa 4 Bed
+                  </span>
+<p class="font-label-sm text-label-sm text-primary font-semibold mt-0.5">Status: Tersedia</p>
+</div>
+</div>
+<!-- Bed 4: NICU/PICU -->
+<div class="p-space-sm rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-title-md text-title-md font-bold text-on-surface">NICU / PICU</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kapasitas: 8 Inkubator/Bed</p>
+</div>
+<div class="text-right">
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-label-sm text-label-sm font-bold">
+                    Sisa 2 Bed
+                  </span>
+<p class="font-label-sm text-label-sm text-primary font-semibold mt-0.5">Status: Tersedia</p>
+</div>
+</div>
+</div>
+<!-- Simulation Disclaimer -->
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mt-space-sm text-center">
+              *Data simulasi edukatif sistem informasi manajemen tempat tidur rawat intensif RSIS A. Yani.
+            </p>
+</div>
+<!-- Floor Visual Cross Section / Room Layout Illustration (Inline Architectural SVG) -->
+<div class="bg-surface-container-high/40 rounded-xl p-space-md mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Denah Zonasi Steril Lantai 4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tekanan Udara Negatif • HEPA Filter</span>
+</div>
+<div class="w-full h-32 rounded-lg bg-surface-container-lowest p-2 flex items-center justify-center">
+<svg class="w-full h-full max-w-xl text-primary" fill="none" viewbox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+<!-- Outer Building Perimeter -->
+<rect fill="#ebfdf9" height="100" rx="6" stroke="currentColor" stroke-dasharray="4 2" stroke-width="1.5" width="580" x="10" y="10"></rect>
+<!-- Room Blocks -->
+<rect fill="#dff2ee" height="70" rx="4" width="90" x="25" y="25"></rect>
+<text fill="#003731" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="70" y="62">ICU Central</text>
+<rect fill="#dff2ee" height="70" rx="4" width="90" x="125" y="25"></rect>
+<text fill="#003731" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="170" y="62">ICCU Koroner</text>
+<rect fill="#003731" height="70" rx="4" width="130" x="225" y="25"></rect>
+<text fill="#ebfdf9" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="290" y="58">NURSE STATION</text>
+<text fill="#fdd274" font-family="Plus Jakarta Sans" font-size="9" text-anchor="middle" x="290" y="74">Monitoring Terpusat</text>
+<rect fill="#dff2ee" height="70" rx="4" width="90" x="365" y="25"></rect>
+<text fill="#003731" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="410" y="62">HCU Dewasa</text>
+<rect fill="#dff2ee" height="70" rx="4" width="110" x="465" y="25"></rect>
+<text fill="#003731" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="520" y="62">NICU &amp; PICU</text>
+<!-- Elevator Core Indicator -->
+<line stroke="#795900" stroke-width="2" x1="290" x2="290" y1="10" y2="25"></line>
+<circle cx="290" cy="18" fill="#795900" r="3"></circle>
+</svg>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container text-primary font-title-md text-title-md hover:bg-surface-dim transition-colors" onclick="copyFloorLink(4)">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span id="copy-btn-text">Salin Tautan Lantai (/tower?gedung=tower&amp;lantai=4)</span>
+</button>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-title-md text-title-md shadow-sm hover:bg-primary-container transition-all" href="#">
+<span>Detail Prosedur Intensif</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- SECONDARY DEMONSTRATION CARD: Transparent K4 Case (Lt. 10 Simulation) -->
+<article class="bg-surface-container-low rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+<h3 class="font-title-lg text-title-lg font-bold">Simulasi Tampilan Lantai Status K4 (Contoh: Lantai 10)</h3>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+              Protokol Integritas
+            </span>
+</div>
+<!-- Transparent Honesty Panel -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm mb-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">visibility_off</span>
+</div>
+<div class="space-y-space-xs">
+<h4 class="font-title-md text-title-md text-on-surface font-bold">
+                  Informasi Alokasi Ruangan Belum Tersedia pada Publikasi Resmi
+                </h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  Sesuai protokol integritas data proyek (<strong class="text-on-surface">Register Konflik K4</strong>), lantai ini merupakan bagian dari struktur fisik Gedung Tower 13 Lantai, namun rincian unit/ruangan belum dipublikasikan pada sumber resmi RSIS. Kami menolak mengarang isi ruangan secara spekulatif demi menjaga keakuratan informasi navigasi pasien.
+                </p>
+</div>
+</div>
+</div>
+<!-- Quick Jump Buttons to Verified Floors -->
+<div class="space-y-space-xs">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">
+              Pilihan Navigasi Cepat Lantai Terverifikasi Faktual:
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<button class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-colors" onclick="selectFloor(7)">
+<span class="font-body-md text-body-md font-semibold text-primary">Lompat ke Lt. 7: An-Nisa (Bersalin)</span>
+<span class="material-symbols-outlined text-[18px] text-primary">chevron_right</span>
+</button>
+<button class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-colors" onclick="selectFloor(4)">
+<span class="font-body-md text-body-md font-semibold text-primary">Lompat ke Lt. 4: ICU / ICCU</span>
+<span class="material-symbols-outlined text-[18px] text-primary">chevron_right</span>
+</button>
+<button class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-colors" onclick="selectFloor(3)">
+<span class="font-body-md text-body-md font-semibold text-primary">Lompat ke Lt. 3: Lab &amp; Radiologi</span>
+<span class="material-symbols-outlined text-[18px] text-primary">chevron_right</span>
+</button>
+<button class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-colors" onclick="selectFloor(2)">
+<span class="font-body-md text-body-md font-semibold text-primary">Lompat ke Lt. 2: IGD 24 Jam</span>
+<span class="material-symbols-outlined text-[18px] text-primary">chevron_right</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+</div>
+</main>
+<!-- Graha Floor Reference Quick Peek Strip -->
+<section class="w-full bg-surface-container-low shadow-inner py-space-lg">
+<div class="max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[22px]">account_balance</span>
+<h3 class="font-headline-md text-headline-md text-primary font-serif">Direktori Ringkas Gedung Graha (6 Level)</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Pusat pelayanan rawat jalan spesialis terpadu dan hemodialisis di sisi barat kompleks rumah sakit.
+          </p>
+</div>
+<button class="inline-flex items-center gap-space-xs font-title-md text-title-md text-secondary hover:text-primary transition-colors" onclick="switchBuilding('graha')">
+<span>Buka Direktori Lengkap Graha</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- 6 Columns Floor Peek Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-sm">
+<!-- Ground Floor -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Ground</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Poliklinik Dasar</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Poli Ortopedi, Bedah, THT, Gigi &amp; BPJS Centre.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Akses Terbuka</span>
+</div>
+</div>
+<!-- Lt. 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Lantai 1</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Hemodialisis</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Pusat Cuci Darah Terpadu 30 Mesin Berstandar Internasional.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">30 Unit Bed</span>
+</div>
+</div>
+<!-- Lt. 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Lantai 2</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Ruang Thaif</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Ruang Bersalin Thaif &amp; Layanan Bina Rohani Pasien.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">VK &amp; Spiritual</span>
+</div>
+</div>
+<!-- Lt. 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Lantai 3</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Inap Anak &amp; Estetika</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Rawat Inap Pediatri Ramah Anak &amp; Poliklinik Estetika.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Kamar Bermain</span>
+</div>
+</div>
+<!-- Lt. 4 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Lantai 4</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Inap Dewasa</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Rawat Inap Penyakit Dalam Dewasa &amp; Poli Kesehatan Jiwa.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-semibold">VIP &amp; Kelas 1</span>
+</div>
+</div>
+<!-- Lt. 5 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between hover:shadow-md transition-all">
+<div>
+<span class="font-serif font-bold text-secondary text-[18px]">Lantai 5</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-1">Manajemen RS</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-snug">
+              Direksi, Yayasan Rumah Sakit Islam Surabaya (YARSIS) &amp; Komite Medik.
+            </p>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Kantor Pusat</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Client-side Interactive Elevator Controller Script -->
+<script>
+    const floorData = {
+      13: { verified: false, name: "Lantai 13", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      12: { verified: false, name: "Lantai 12", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      11: { verified: false, name: "Lantai 11", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      10: { verified: false, name: "Lantai 10", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      9:  { verified: false, name: "Lantai 09", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      8:  { verified: false, name: "Lantai 08", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      7:  { verified: true, name: "Ruang Bersalin An-Nisa (VIP & Rawat Gabung)", desc: "Layanan persalinan syariah terpadu, kamar bersalin VIP keluarga, ruang laktasi, dan rawat gabung ibu dan bayi.", units: ["Kamar Bersalin VIP", "Ruang Observasi Kala II", "Klinik Laktasi Konsultatif", "Ruang Rawat Gabung Ibu-Anak"] },
+      6:  { verified: false, name: "Lantai 06", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      5:  { verified: false, name: "Lantai 05", desc: "Informasi alokasi ruangan belum dipublikasikan pada sumber resmi RSIS.", units: [] },
+      4:  { verified: true, name: "Pusat Perawatan Intensif Terpadu", desc: "Zona steril ICU, ICCU, HCU, NICU, dan PICU terintegrasi dalam pemantauan 24 jam sentral.", units: ["ICU", "ICCU", "HCU", "NICU", "PICU"] },
+      3:  { verified: true, name: "Laboratorium 24 Jam, Radiologi & MCU", desc: "Pusat diagnostik penunjang medis komprehensif dilengkapi CT-Scan 128 Slices, MRI, serta Automasi Laboratorium Klinik.", units: ["Laboratorium Patologi Klinik", "Radiologi Digital", "CT-Scan Multislice", "Medical Check-Up Center"] },
+      2:  { verified: true, name: "Instalasi Gawat Darurat (IGD 24 Jam) & Admisi", desc: "Akses triase darurat terpadu, kamar bedah cito emergency, farmasi darurat, dan loket admisi rawat inap terpadu.", units: ["IGD Trauma & Non-Trauma", "Kamar Resusitasi", "Kamar Tindakan Bedah Minor", "Admisi Pasien 24 Jam"] },
+      1:  { verified: false, name: "Lantai 01 (Lobi Utama)", desc: "Informasi alokasi unit fungsional detail belum dipublikasikan resmi.", units: [] }
+    };
+
+    let currentFloor = 4;
+    let currentBuilding = 'tower';
+    let currentFilter = 'all';
+
+    function selectFloor(floorNum) {
+      currentFloor = floorNum;
+      
+      // Update URL display
+      const urlStatus = document.getElementById('url-sync-status');
+      if (urlStatus) {
+        urlStatus.textContent = `URL Status: /tower?gedung=${currentBuilding}&lantai=${floorNum}`;
+      }
+
+      // Update button styles in left panel
+      document.querySelectorAll('.floor-nav-item').forEach(btn => {
+        const f = parseInt(btn.getAttribute('data-floor'), 10);
+        const isVer = btn.getAttribute('data-verified') === 'true';
+        
+        if (f === floorNum) {
+          btn.className = 'floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-primary text-on-primary shadow-md text-left transition-all';
+          btn.setAttribute('aria-selected', 'true');
+          const badge = btn.querySelector('span:last-child');
+          if (badge) {
+            badge.className = 'px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm font-bold flex items-center gap-1';
+            badge.innerHTML = '★ Terpilih';
+          }
+        } else {
+          btn.setAttribute('aria-selected', 'false');
+          if (isVer) {
+            btn.className = 'floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container hover:bg-surface-dim text-left transition-all';
+            const badge = btn.querySelector('span:last-child');
+            if (badge) {
+              badge.className = 'px-space-xs py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold flex items-center gap-1';
+              badge.innerHTML = '<span class="material-symbols-outlined text-[14px] text-primary">verified</span> Terverifikasi';
+            }
+          } else {
+            btn.className = 'floor-nav-item flex items-center justify-between p-space-sm rounded-lg bg-surface-container-low/50 hover:bg-surface-container text-left transition-all';
+            const badge = btn.querySelector('span:last-child');
+            if (badge) {
+              badge.className = 'px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1';
+              badge.innerHTML = '<span class="material-symbols-outlined text-[13px]">lock</span> Status K4';
+            }
+          }
+        }
+      });
+    }
+
+    function setFloorFilter(type) {
+      currentFilter = type;
+      const allBtn = document.getElementById('filter-all');
+      const verBtn = document.getElementById('filter-verified');
+      const items = document.querySelectorAll('.floor-nav-item');
+
+      if (type === 'verified') {
+        allBtn.className = 'px-space-sm py-1 font-label-md text-label-md rounded-lg text-on-surface-variant hover:text-primary transition-all';
+        verBtn.className = 'px-space-sm py-1 font-label-md text-label-md rounded-lg bg-surface-container-lowest text-primary shadow-sm font-bold transition-all';
+        
+        items.forEach(item => {
+          if (item.getAttribute('data-verified') !== 'true') {
+            item.classList.add('hidden');
+          } else {
+            item.classList.remove('hidden');
+          }
+        });
+      } else {
+        allBtn.className = 'px-space-sm py-1 font-label-md text-label-md rounded-lg bg-surface-container-lowest text-primary shadow-sm font-bold transition-all';
+        verBtn.className = 'px-space-sm py-1 font-label-md text-label-md rounded-lg text-on-surface-variant hover:text-primary transition-all';
+        
+        items.forEach(item => item.classList.remove('hidden'));
+      }
+    }
+
+    function switchBuilding(bldg) {
+      currentBuilding = bldg;
+      const towerBtn = document.getElementById('tab-btn-tower');
+      const grahaBtn = document.getElementById('tab-btn-graha');
+      const urlStatus = document.getElementById('url-sync-status');
+
+      if (bldg === 'graha') {
+        grahaBtn.className = 'flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-primary text-on-primary shadow-sm text-left transition-all';
+        towerBtn.className = 'flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-dim transition-all text-left';
+        if (urlStatus) urlStatus.textContent = 'URL Status: /tower?gedung=graha&lantai=ground';
+      } else {
+        towerBtn.className = 'flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-primary text-on-primary shadow-sm text-left transition-all';
+        grahaBtn.className = 'flex items-center justify-between gap-space-md px-space-lg py-space-sm rounded-xl bg-surface-container-highest text-on-surface hover:bg-surface-dim transition-all text-left';
+        if (urlStatus) urlStatus.textContent = `URL Status: /tower?gedung=tower&lantai=${currentFloor}`;
+      }
+    }
+
+    function copyFloorLink(flr) {
+      const link = window.location.origin + `/tower?gedung=${currentBuilding}&lantai=${flr}`;
+      navigator.clipboard?.writeText(link);
+      const btnText = document.getElementById('copy-btn-text');
+      if (btnText) {
+        btnText.textContent = 'Tautan Berhasil Disalin! ✓';
+        setTimeout(() => {
+          btnText.textContent = `Salin Tautan Lantai (/tower?gedung=${currentBuilding}&lantai=${flr})`;
+        }, 2200);
+      }
+    }
+
+    // Keyboard Arrow navigation between floors
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (currentFloor < 13) selectFloor(currentFloor + 1);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (currentFloor > 1) selectFloor(currentFloor - 1);
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface"><div class="max-w-[1320px] mx-auto px-gutter-mobile lg:px-margin pt-space-xl pb-space-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md text-primary font-bold">Graha RSI</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Gedung Layanan Medik Terpadu 13 Lantai di bawah naungan Yayasan Rumah Sakit Islam Surabaya (YARSIS). Berkhidmat melayani umat dengan kesempurnaan mutu medis bernafaskan nilai-nilai Islami sejak 1975.</p><div class="pt-space-xs"><span class="inline-block px-space-sm py-space-xs bg-surface-container-high text-primary font-label-sm text-label-sm rounded-lg">Terakreditasi Paripurna KARS</span></div></div><div class="space-y-space-sm"><h3 class="font-title-lg text-title-lg text-primary">Layanan Siaga 24 Jam</h3><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li>Instalasi Gawat Darurat (IGD) Terpadu</li><li>Ambulans Emergency &amp; Transportasi Medis</li><li>Laboratorium Klinik Otomasi</li><li>Radiologi Digital, CT-Scan &amp; MRI</li><li>Instalasi Farmasi 24 Jam</li><li>Pelayanan Hemodialisis Darurat</li></ul></div><div class="space-y-space-sm"><h3 class="font-title-lg text-title-lg text-primary">Lokasi &amp; Aksesibilitas</h3><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Jl. Achmad Yani No. 2-4, Wonokromo, Kel. Wonokromo, Kec. Wonokromo, Kota Surabaya, Jawa Timur 60243</p><div class="font-body-sm text-body-sm text-on-surface-variant space-y-space-xs pt-space-xs"><p><span class="font-bold text-on-surface">Call Center:</span> (031) 8284505</p><p><span class="font-bold text-on-surface">WhatsApp Center:</span> 0811-3221-177</p><p><span class="font-bold text-on-surface">Email:</span> info@rsisurabaya.com</p></div></div><div class="space-y-space-sm"><h3 class="font-title-lg text-title-lg text-primary">Kanal Resmi &amp; Direktori</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Ikuti warta kesehatan islami, jadwal praktek spesialis harian, serta agenda edukasi dokter terpadu:</p><div class="pt-space-xs"><a class="inline-flex items-center gap-space-xs text-primary font-title-md text-title-md hover:text-secondary transition-colors" href="https://instagram.com/rsisurabaya" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">alternate_email</span><span>@rsisurabaya</span></a></div><div class="pt-space-sm"><p class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Sertifikasi Syariah DSN-MUI</p></div></div></div><div class="pt-space-md border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant"><p>© 2025 RS Islam Surabaya A. Yani (YARSIS). Portofolio Desain Konseptual Arsitektur Sistem Informasi Kesehatan.</p><div class="flex items-center gap-space-md font-label-sm text-label-sm"><a class="hover:text-primary transition-colors" data-path="kebijakan-privasi" href="#">Kebijakan Privasi</a><a class="hover:text-primary transition-colors" data-path="syarat-ketentuan" href="#">Syarat &amp; Ketentuan</a><a class="hover:text-primary transition-colors" data-path="standar-pelayanan" href="#">Standar Pelayanan</a></div></div></div></footer></body></html>
