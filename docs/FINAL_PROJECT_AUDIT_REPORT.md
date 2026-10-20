@@ -47,8 +47,8 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
          |                                                               |
          v                                                               v
  +------------------+                                          +------------------+
- | Radix Primitives |                                          | Vitest Unit Tests|
- | + Motion Engine  |                                          | & Playwright E2E |
+ | Tailwind CSS v4  |                                          | Vitest Unit Tests|
+ | + CSS Animations |                                          | & Playwright E2E |
  +------------------+                                          +------------------+
 ```
 
@@ -58,6 +58,7 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
 - **Bahasa**: TypeScript 5.7.2 dalam konfigurasi `strict: true`. Bebas dari tipe `any`.
 - **Desain Sistem & Styling**: Tailwind CSS v4 dengan konfigurasi CSS-first `@theme` pada `globals.css` (warna `tower-*`, `gold-*`, `ivory`, `ink`, `alert-*`).
 - **Aset Grafis**: 100% Vektor SVG Matematikal murni (Khatam geometris bintang 8 dan siluet vertikal Tower 13 Lantai). Nol ketergantungan pada gambar eksternal yang rentan putus.
+- **Tipografi**: `next/font/local` mandiri (Playfair Display & Plus Jakarta Sans di `src/app/fonts/`), hermetic tanpa koneksi eksternal.
 - **State Management**:
   - Filter dokter & navigasi denah: URL Query String terstandardisasi.
   - Form Wizard Pendaftaran Demo: Zustand in-memory store (*Zero localStorage / Zero sessionStorage persistence*).
@@ -69,7 +70,7 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
 | **Zero Backend / Zero DB** | Tidak ada API route dinamis, serverless function, Prisma, Payload CMS, maupun PostgreSQL. | File tracing build membuktikan 100% halaman berstatus `○ (Static)` atau `● (SSG)`. |
 | **Zero Third-Party Tracking** | Tidak ada Google Analytics, Facebook Pixel, hotjar, atau cookie banner. | HTTP header `Permissions-Policy` dan CSP ketat memblokir pelacakan eksternal. |
 | **Zero Network Requests saat Submit** | Formulir pendaftaran rawat jalan mandiri hanya memproses data simulasi di RAM peramban. | Pengujian Playwright `page.on('request')` mencatat **tepat 0 outgoing network requests**. |
-| **Proteksi Phishing / Anti-Indeksasi** | `<meta name="robots" content="noindex, nofollow">` dan `robots.txt` Disallow seluruh mesin pencari. | Terverifikasi pada `next.config.mjs` dan metadata root layout. |
+| **Proteksi Phishing / Anti-Indeksasi** | `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header `X-Robots-Tag`. | Terverifikasi pada berkas fisik `public/robots.txt`, `next.config.mjs`, dan metadata root layout. |
 | **Karakter Fiktif Transparan** | 24 profil dokter berstatus `isFictional: true` dengan lencana visual tegas *"Ilustrasi"*. | Validasi Zod dan skrip pengujian Playwright E2E. |
 
 ---
@@ -133,20 +134,26 @@ Setiap pertentangan data dari sumber publik resmi RSIS diselesaikan secara metod
 
 ## 5. Matriks Hasil Pengujian & Bukti Kualitas Komprehensif
 
-### 5.1 Hasil Audit Lighthouse Mobile Lab (Next.js Production Build)
-Audit dilakukan dengan emulasi CPU seluler (2x slowdown) dan jaringan standar pada server produksi port 3000:
+### 5.1 Hasil Audit Lighthouse Mobile Lab v3 (3 Run / Rute, Default Mobile Throttling)
+Audit lab Lighthouse resmi dijalankan dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Metrik berikut adalah **nilai median dari 3 iterasi pengujian per rute**:
 
 ```
-┌─────────┬──────────────────────┬───────────┬────────────┬────────────┬──────────┬─────────────┬────────────┬──────────────┐
-│ (index) │ Rute                 │ Path      │ Perf (≥90) │ A11y (≥95) │ BP (≥95) │ LCP (≤2.5s) │ CLS (≤0.1) │ TBT (≤200ms) │
-├─────────┼──────────────────────┼───────────┼────────────┼────────────┼──────────┼─────────────┼────────────┼──────────────┤
-│ 0       │ 'Beranda'            │ '/'       │ 95         │ 100        │ 96       │ '2.88s'     │ 0          │ '36ms'       │
-│ 1       │ 'IGD Darurat'        │ '/igd'    │ 93         │ 98         │ 96       │ '1.84s'     │ 0.001      │ '294ms'      │
-│ 2       │ 'Direktori Dokter'   │ '/dokter' │ 93         │ 100        │ 96       │ '2.99s'     │ 0          │ '56ms'       │
-│ 3       │ 'Tower Directory'    │ '/tower'  │ 96         │ 98         │ 96       │ '2.81s'     │ 0          │ '51ms'       │
-│ 4       │ 'Wizard Pendaftaran' │ '/daftar' │ 97         │ 100        │ 96       │ '2.69s'     │ 0          │ '37ms'       │
-└─────────┴──────────────────────┴───────────┴────────────┴────────────┴──────────┴─────────────┴────────────┴──────────────┘
+┌─────────┬──────────────────────┬───────────┬────────────┬────────────┬──────────┬─────────────┬────────────┬──────────────┬────────────┐
+│ (index) │ Rute                 │ Path      │ Perf (≥90) │ A11y (≥95) │ BP (≥95) │ LCP (≤2.5s) │ CLS (≤0.1) │ TBT (≤200ms) │ All Target │
+├─────────┼──────────────────────┼───────────┼────────────┼────────────┼──────────┼─────────────┼────────────┼──────────────┼────────────┤
+│ 0       │ 'Beranda'            │ '/'       │ 89 (MISSED)│ 100 (PASS) │ 96 (PASS)│ 3.29s (FAIL)│ 0 (PASS)   │ 184ms (PASS) │ FAIL (LCP) │
+│ 1       │ 'IGD Darurat'        │ '/igd'    │ 92 (PASS)  │ 98 (PASS)  │ 96 (PASS)│ 2.88s (FAIL)│ 0 (PASS)   │ 206ms (FAIL) │ FAIL (TBT) │
+│ 2       │ 'Direktori Dokter'   │ '/dokter' │ 93 (PASS)  │ 100 (PASS) │ 96 (PASS)│ 3.01s (FAIL)│ 0 (PASS)   │ 125ms (PASS) │ FAIL (LCP) │
+│ 3       │ 'Tower Directory'    │ '/tower'  │ 95 (PASS)  │ 98 (PASS)  │ 96 (PASS)│ 2.78s (FAIL)│ 0 (PASS)   │ 93ms (PASS)  │ FAIL (LCP) │
+│ 4       │ 'Wizard Pendaftaran' │ '/daftar' │ 96 (PASS)  │ 100 (PASS) │ 96 (PASS)│ 2.77s (FAIL)│ 0 (PASS)   │ 90ms (PASS)  │ FAIL (LCP) │
+└─────────┴──────────────────────┴───────────┴────────────┴────────────┴──────────┴─────────────┴────────────┴──────────────┴────────────┘
 ```
+
+> [!NOTE]
+> **Analisis Kegagalan Target CWV (D6 / Batasan yang Diketahui):**
+> 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf headline (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan tidak ada keterlambatan jaringan aset. Durasi LCP didominasi oleh *Element Render Delay* (~2.1s) akibat waktu eksekusi hidrasi JavaScript Next.js pada CPU seluler terkompresi 4x.
+> 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Selisih 6ms di atas ambang batas 200ms pada run 2, disebabkan oleh komputasi awal ikon triase SVG saat hidrasi peramban dengan throttling 4x.
+> 3. **Pencapaian Mutlak**: CLS tercatat **0.000 (Sempurna)** pada seluruh rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
 
 ### 5.2 Matriks Responsivitas Visual (Playwright)
 Diverifikasi melalui pengujian terprogram pada [tests/phase6-viewports.spec.ts](tests/phase6-viewports.spec.ts):

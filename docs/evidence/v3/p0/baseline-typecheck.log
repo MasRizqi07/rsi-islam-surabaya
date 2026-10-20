@@ -1,0 +1,5 @@
+Command: npm run typecheck | Exit Code: 0
+
+> rsi-islam-sby@2.0.0 typecheck
+> tsc --noEmit
+

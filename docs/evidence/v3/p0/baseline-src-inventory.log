@@ -1,0 +1,63 @@
+Command: Get-ChildItem -Recurse src | Select-Object -Property Mode, Length, FullName | Exit Code: 0
+
+Mode  Length FullName
+----  ------ --------
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\lib
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\stores
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\daftar
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\dokter
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\igd
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\kontak
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\layanan
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\styleguide
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\tentang
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\tower
+-a--- 1862   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\globals.css
+-a--- 1691   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\layout.tsx
+-a--- 4033   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\not-found.tsx
+-a--- 20152  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\page.tsx
+-a--- 1547   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\daftar\page.tsx
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\dokter\[slug]
+-a--- 16553  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\dokter\DoctorListClient.tsx
+-a--- 1997   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\dokter\page.tsx
+-a--- 10193  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\dokter\[slug]\page.tsx
+-a--- 12034  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\igd\page.tsx
+-a--- 14678  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\kontak\page.tsx
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\layanan\[slug]
+-a--- 6965   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\layanan\page.tsx
+-a--- 7881   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\layanan\[slug]\page.tsx
+-a--- 8336   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\styleguide\page.tsx
+-a--- 13872  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\tentang\page.tsx
+-a--- 1513   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\app\tower\page.tsx
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\daftar
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\home
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\tower
+-a--- 35885  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\daftar\RegistrationWizardClient.tsx
+-a--- 3512   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\home\BedStatusWidget.tsx
+-a--- 4275   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\home\QuickDoctorSearch.tsx
+-a--- 7156   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\home\TowerTeaser.tsx
+-a--- 576    D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell\DisclaimerBanner.tsx
+-a--- 3860   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell\EmergencyBar.tsx
+-a--- 7435   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell\Footer.tsx
+-a--- 5907   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell\Header.tsx
+-a--- 390    D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\shell\SkipLink.tsx
+-a--- 18633  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\components\tower\TowerDirectoryClient.tsx
+d----        D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\__tests__
+-a--- 1084   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\bed-status.ts
+-a--- 5006   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\buildings.ts
+-a--- 16655  D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\doctors.ts
+-a--- 3168   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\facts.ts
+-a--- 4183   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\history.ts
+-a--- 2879   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\schema.ts
+-a--- 5934   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\services.ts
+-a--- 4922   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\specialties.ts
+-a--- 1953   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\types.ts
+-a--- 5992   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\data\__tests__\data.test.ts
+-a--- 3195   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\lib\data-utils.ts
+-a--- 4963   D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\src\stores\registration-store.ts
+
+

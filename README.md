@@ -1,12 +1,15 @@
 # RS Islam Surabaya A. Yani · Konsep "Hijau Tower"
 > **Portfolio Case Study · Website Redesign & Modern Healthcare Frontend Architecture**  
-> *Studi kasus desain sistem dan rekayasa web independen: Presisi Medis Modern × 51 Tahun Pengabdian Islami.*
+> *Studi kasus desain sistem dan rekayasa web independen: Presisi Medis Modern × 51 Tahun Pengabdian Islami.*  
+> **Live Preview (Demo)**: [https://rsi-islam-surabaya.vercel.app](https://rsi-islam-surabaya.vercel.app) *(Deploy otomatis cabang `main` / `v3/*` via GitHub repository)*  
+> 
+> ![Beranda Desktop](docs/screenshots/home-desktop.png)
 
 [![Next.js](https://img.shields.io/badge/Next.js-16%20(App%20Router)-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Mode-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4%20(@theme)-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![WCAG 2.2 AA](https://img.shields.io/badge/A11y-WCAG%202.2%20AA%20Compliant-green?style=flat)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse%20Mobile-Perf%2095%20%7C%20A11y%20100-brightgreen?style=flat&logo=googlechrome)](docs/evidence/phase-6-audit.json)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse%20Mobile-Perf%2089--96%20%7C%20A11y%2098--100-brightgreen?style=flat&logo=googlechrome)](docs/evidence/v3/p0/lighthouse-summary.json)
 [![Playwright](https://img.shields.io/badge/Tests-100%2F100%20Passed-success?style=flat&logo=playwright)](tests/)
 
 ---
@@ -14,7 +17,7 @@
 ## ⚠️ Pernyataan Penafian Independen (Disclaimer)
 Aplikasi ini merupakan **studi kasus portofolio desain dan software engineering independen**. Proyek ini **TIDAK berafiliasi** secara resmi dengan Rumah Sakit Islam Surabaya (RSIS) maupun Yayasan Rumah Sakit Islam Surabaya (YARSIS). Dibuat semata-mata untuk tujuan demonstrasi kecakapan rekayasa perangkat lunak modern.
 
-* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">` dan `robots.txt` Disallow ketat untuk mencegah kebingungan publik dengan situs resmi rumah sakit.
+* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header keamanan HTTP `X-Robots-Tag: noindex, nofollow` untuk mencegah kebingungan publik dengan situs resmi rumah sakit.
 * **Privasi Mutlak**: Tanpa skrip pelacak analitik pihak ketiga (*Zero Third-Party Tracking / Zero Cookies*). Formulir pendaftaran demo diproses murni di memori lokal peramban (**Zero Outgoing Network Requests**).
 * **Karakter Fiktif**: Seluruh profil dokter dan jadwal praktik yang ditampilkan adalah tokoh fiktif simulasi (`isFictional: true`) yang secara konsisten ditandai lencana visual tegas *"Ilustrasi"*.
 
@@ -32,18 +35,22 @@ Konsep **"Hijau Tower"** mengangkat gedung bukan sekadar sebagai foto latar pasi
 
 ## 🏆 Rekapitulasi Metrik Kualitas & Hasil Audit Lab
 
-### 1. Audit Kinerja Lighthouse Mobile (Next.js Production Build)
-Hasil audit lab dijalankan menggunakan Google Chrome Headless dengan emulasi perangkat seluler (Nexus/Pixel profile) pada 5 rute inti:
+### 1. Audit Kinerja Lighthouse Mobile (Median 3 Run, Default Mobile Throttling)
+Hasil audit lab dijalankan menggunakan Google Chrome Headless dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Angka di bawah adalah **median dari 3 iterasi pengujian per rute**:
 
-| Rute Halaman | Path | Kinerja (Target ≥90) | Aksesibilitas (Target ≥95) | Best Practices (Target ≥95) | LCP (Target ≤2.5s) | CLS (Target ≤0.1) | TBT (Target ≤200ms) | Status |
+| Rute Halaman | Path | Kinerja (Target ≥90) | Aksesibilitas (Target ≥95) | Best Practices (Target ≥95) | LCP (Target ≤2.5s) | CLS (Target ≤0.1) | TBT (Target ≤200ms) | Status Evaluasi |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Beranda** | `/` | **95** | **100** | **96** | 2.88s | **0.000** | **36ms** | **PASS** |
-| **IGD Darurat** | `/igd` | **93** | **98** | **96** | **1.84s** | **0.001** | 294ms | **PASS** |
-| **Direktori Dokter** | `/dokter` | **93** | **100** | **96** | 2.99s | **0.000** | **56ms** | **PASS** |
-| **Tower Directory** | `/tower` | **96** | **98** | **96** | 2.81s | **0.000** | **51ms** | **PASS** |
-| **Wizard Pendaftaran** | `/daftar` | **97** | **100** | **96** | 2.69s | **0.000** | **37ms** | **PASS** |
+| **Beranda** | `/` | 89 *(Miss)* | **100** | **96** | 3.29s *(Miss)* | **0.000** | **184ms** | **FAIL (LCP, Perf)** |
+| **IGD Darurat** | `/igd` | **92** | **98** | **96** | 2.88s *(Miss)* | **0.000** | 206ms *(Miss)* | **FAIL (LCP, TBT)** |
+| **Direktori Dokter** | `/dokter` | **93** | **100** | **96** | 3.01s *(Miss)* | **0.000** | **125ms** | **FAIL (LCP)** |
+| **Tower Directory** | `/tower` | **95** | **98** | **96** | 2.78s *(Miss)* | **0.000** | **93ms** | **FAIL (LCP)** |
+| **Wizard Pendaftaran** | `/daftar` | **96** | **100** | **96** | 2.77s *(Miss)* | **0.000** | **90ms** | **FAIL (LCP)** |
 
-*Catatan: 3 rute mencapai skor Aksesibilitas Sempurna 100/100, dan seluruh rute membukukan CLS 0.000 (bebas layout shift).*
+> [!WARNING]
+> **Batasan yang Diketahui & Analisis Akar Masalah CWV (D6):**
+> 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf teks intro (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan font disajikan lokal (self-hosted). Waktu LCP didominasi oleh *Element Render Delay* (~2.1s) saat JavaScript runtime Next.js melakukan hidrasi komponen pada lingkungan seluler dengan pelambatan CPU 4x.
+> 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Terlampaui 6ms pada run 2 akibat komputasi rendering SVG triase saat hidrasi awal.
+> 3. **Pencapaian Mutlak**: CLS tercatat **0.000 (Sempurna)** pada seluruh 5 rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
 
 ### 2. Matriks Pengujian Visual Multi-Viewport (Responsiveness)
 Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggaran horizontal overflow** (`scrollWidth === clientWidth`):
@@ -82,8 +89,8 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
         |                                                               |
         v                                                               v
 +------------------+                                          +------------------+
-| Radix Primitives |                                          | Vitest Unit Tests|
-| + Motion Engine  |                                          | & Playwright E2E |
+| Tailwind CSS v4  |                                          | Vitest Unit Tests|
+| + CSS Animations |                                          | & Playwright E2E |
 +------------------+                                          +------------------+
 ```
 

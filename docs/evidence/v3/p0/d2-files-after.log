@@ -1,0 +1,8 @@
+Command: ls vitest.config.* | Exit Code: 0
+
+    Directory: D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          19/10/2026    23:56            327 vitest.config.mts
+

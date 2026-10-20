@@ -1,0 +1,1 @@
+Command: diff -u vitest.config.mjs vitest.config.mts | Exit Code: 0

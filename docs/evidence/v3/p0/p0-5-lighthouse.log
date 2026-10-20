@@ -1,0 +1,87 @@
+Command: npm run audit:lighthouse | Exit Code: 0
+
+=== Memulai Audit Lighthouse Mobile Lab v3 (3 Run / Rute, Default Mobile Throttling) ===
+
+Chromium executable: C:\Users\rrgtet47\AppData\Local\ms-playwright\chromium-1155\chrome-win\chrome.exe
+Throttling profile: Default Mobile (emulated 4x CPU slowdown, standard mobile network)
+
+--------------------------------------------------------------------------------
+Mengaudit rute Beranda (/) [3 Runs, Default Mobile Throttling]
+--------------------------------------------------------------------------------
+[Run 1/3] Command: npx lighthouse "http://localhost:3000/" --output=json --output-path="docs/evidence/v3/p0/lighthouse-home-run1.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 1: Perf=89 | A11y=100 | BP=96 | LCP=3.29s | TBT=184ms | CLS=0 | FCP=1054ms
+[Run 2/3] Command: npx lighthouse "http://localhost:3000/" --output=json --output-path="docs/evidence/v3/p0/lighthouse-home-run2.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 2: Perf=94 | A11y=100 | BP=96 | LCP=3.01s | TBT=109ms | CLS=0 | FCP=921ms
+[Run 3/3] Command: npx lighthouse "http://localhost:3000/" --output=json --output-path="docs/evidence/v3/p0/lighthouse-home-run3.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 3: Perf=86 | A11y=100 | BP=96 | LCP=3.33s | TBT=250ms | CLS=0 | FCP=1122ms
+
+  [MEDIAN Beranda]:
+  Perf: 89 | A11y: 100 | BP: 96
+  LCP: 3.29s | TBT: 184ms | CLS: 0 | FCP: 1054ms
+
+--------------------------------------------------------------------------------
+Mengaudit rute IGD Darurat (/igd) [3 Runs, Default Mobile Throttling]
+--------------------------------------------------------------------------------
+[Run 1/3] Command: npx lighthouse "http://localhost:3000/igd" --output=json --output-path="docs/evidence/v3/p0/lighthouse-igd-run1.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 1: Perf=72 | A11y=98 | BP=96 | LCP=3.29s | TBT=804ms | CLS=0 | FCP=874ms
+[Run 2/3] Command: npx lighthouse "http://localhost:3000/igd" --output=json --output-path="docs/evidence/v3/p0/lighthouse-igd-run2.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 2: Perf=92 | A11y=98 | BP=96 | LCP=2.88s | TBT=206ms | CLS=0 | FCP=755ms
+[Run 3/3] Command: npx lighthouse "http://localhost:3000/igd" --output=json --output-path="docs/evidence/v3/p0/lighthouse-igd-run3.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 3: Perf=94 | A11y=98 | BP=96 | LCP=2.81s | TBT=146ms | CLS=0 | FCP=756ms
+
+  [MEDIAN IGD Darurat]:
+  Perf: 92 | A11y: 98 | BP: 96
+  LCP: 2.88s | TBT: 206ms | CLS: 0 | FCP: 756ms
+
+--------------------------------------------------------------------------------
+Mengaudit rute Direktori Dokter (/dokter) [3 Runs, Default Mobile Throttling]
+--------------------------------------------------------------------------------
+[Run 1/3] Command: npx lighthouse "http://localhost:3000/dokter" --output=json --output-path="docs/evidence/v3/p0/lighthouse-dokter-run1.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 1: Perf=94 | A11y=100 | BP=96 | LCP=2.96s | TBT=84ms | CLS=0 | FCP=928ms
+[Run 2/3] Command: npx lighthouse "http://localhost:3000/dokter" --output=json --output-path="docs/evidence/v3/p0/lighthouse-dokter-run2.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 2: Perf=90 | A11y=100 | BP=96 | LCP=3.12s | TBT=170ms | CLS=0 | FCP=997ms
+[Run 3/3] Command: npx lighthouse "http://localhost:3000/dokter" --output=json --output-path="docs/evidence/v3/p0/lighthouse-dokter-run3.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 3: Perf=93 | A11y=100 | BP=96 | LCP=3.01s | TBT=125ms | CLS=0 | FCP=1048ms
+
+  [MEDIAN Direktori Dokter]:
+  Perf: 93 | A11y: 100 | BP: 96
+  LCP: 3.01s | TBT: 125ms | CLS: 0 | FCP: 997ms
+
+--------------------------------------------------------------------------------
+Mengaudit rute Tower Directory (/tower) [3 Runs, Default Mobile Throttling]
+--------------------------------------------------------------------------------
+[Run 1/3] Command: npx lighthouse "http://localhost:3000/tower" --output=json --output-path="docs/evidence/v3/p0/lighthouse-tower-run1.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 1: Perf=92 | A11y=98 | BP=96 | LCP=2.87s | TBT=191ms | CLS=0 | FCP=768ms
+[Run 2/3] Command: npx lighthouse "http://localhost:3000/tower" --output=json --output-path="docs/evidence/v3/p0/lighthouse-tower-run2.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 2: Perf=96 | A11y=98 | BP=96 | LCP=2.77s | TBT=84ms | CLS=0 | FCP=756ms
+[Run 3/3] Command: npx lighthouse "http://localhost:3000/tower" --output=json --output-path="docs/evidence/v3/p0/lighthouse-tower-run3.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 3: Perf=95 | A11y=98 | BP=96 | LCP=2.78s | TBT=93ms | CLS=0 | FCP=756ms
+
+  [MEDIAN Tower Directory]:
+  Perf: 95 | A11y: 98 | BP: 96
+  LCP: 2.78s | TBT: 93ms | CLS: 0 | FCP: 756ms
+
+--------------------------------------------------------------------------------
+Mengaudit rute Wizard Pendaftaran (/daftar) [3 Runs, Default Mobile Throttling]
+--------------------------------------------------------------------------------
+[Run 1/3] Command: npx lighthouse "http://localhost:3000/daftar" --output=json --output-path="docs/evidence/v3/p0/lighthouse-daftar-run1.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 1: Perf=96 | A11y=100 | BP=96 | LCP=2.77s | TBT=90ms | CLS=0 | FCP=756ms
+[Run 2/3] Command: npx lighthouse "http://localhost:3000/daftar" --output=json --output-path="docs/evidence/v3/p0/lighthouse-daftar-run2.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 2: Perf=93 | A11y=100 | BP=96 | LCP=2.91s | TBT=151ms | CLS=0 | FCP=757ms
+[Run 3/3] Command: npx lighthouse "http://localhost:3000/daftar" --output=json --output-path="docs/evidence/v3/p0/lighthouse-daftar-run3.json" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet
+  -> Run 3: Perf=96 | A11y=100 | BP=96 | LCP=2.76s | TBT=78ms | CLS=0 | FCP=755ms
+
+  [MEDIAN Wizard Pendaftaran]:
+  Perf: 96 | A11y: 100 | BP: 96
+  LCP: 2.77s | TBT: 90ms | CLS: 0 | FCP: 756ms
+
+=== REKAP HASIL AUDIT LIGHTHOUSE MOBILE LAB (MEDIAN 3 RUNS) ===
+┌─────────┬──────────────────────┬───────────┬────────────┬────────────┬──────────┬─────────────┬────────────┬──────────────┬────────────┐
+│ (index) │ Rute                 │ Path      │ Perf (≥90) │ A11y (≥95) │ BP (≥95) │ LCP (≤2.5s) │ CLS (≤0.1) │ TBT (≤200ms) │ All Target │
+├─────────┼──────────────────────┼───────────┼────────────┼────────────┼──────────┼─────────────┼────────────┼──────────────┼────────────┤
+│ 0       │ Beranda              │ /         │ 89 (MISSED) │ 100 (PASS) │ 96 (PASS) │ 3.29s (FAIL) │ 0 (PASS)   │ 184ms (PASS) │ FAIL       │
+│ 1       │ IGD Darurat          │ /igd      │ 92 (PASS)  │ 98 (PASS)  │ 96 (PASS) │ 2.88s (FAIL) │ 0 (PASS)   │ 206ms (FAIL) │ FAIL       │
+│ 2       │ Direktori Dokter     │ /dokter   │ 93 (PASS)  │ 100 (PASS) │ 96 (PASS) │ 3.01s (FAIL) │ 0 (PASS)   │ 125ms (PASS) │ FAIL       │
+│ 3       │ Tower Directory      │ /tower    │ 95 (PASS)  │ 98 (PASS)  │ 96 (PASS) │ 2.78s (FAIL) │ 0 (PASS)   │ 93ms (PASS)  │ FAIL       │
+│ 4       │ Wizard Pendaftaran   │ /daftar   │ 96 (PASS)  │ 100 (PASS) │ 96 (PASS) │ 2.77s (FAIL) │ 0 (PASS)   │ 90ms (PASS)  │ FAIL       │
+└─────────┴──────────────────────┴───────────┴────────────┴────────────┴──────────┴─────────────┴────────────┴──────────────┴────────────┘
