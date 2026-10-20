@@ -16,7 +16,16 @@ const ROUTES = [
 ];
 
 const evidenceDir = join(process.cwd(), 'docs', 'evidence');
+const v3EvidenceDir = join(evidenceDir, 'v3', 'p0');
 mkdirSync(evidenceDir, { recursive: true });
+mkdirSync(v3EvidenceDir, { recursive: true });
+
+function median(values) {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
 
 async function waitForServer(url, timeoutMs = 20000) {
   const start = Date.now();
@@ -33,10 +42,10 @@ async function waitForServer(url, timeoutMs = 20000) {
 }
 
 async function run() {
-  console.log('=== Memulai Audit Lighthouse Mobile Lab (Next.js Production) ===\n');
-  console.log('Menggunakan Chromium:', chromePath);
+  console.log('=== Memulai Audit Lighthouse Mobile Lab v3 (3 Run / Rute, Default Mobile Throttling) ===\n');
+  console.log('Chromium executable:', chromePath);
+  console.log('Throttling profile: Default Mobile (emulated 4x CPU slowdown, standard mobile network)\n');
 
-  // 1. Jalankan next start pada port 3000
   console.log('Memulai server produksi Next.js pada port 3000...');
   const server = spawn('npm', ['run', 'start'], {
     shell: true,
@@ -51,89 +60,133 @@ async function run() {
     await waitForServer('http://localhost:3000/');
     console.log('[OK] Server siap di http://localhost:3000/\n');
 
-    const auditResults = [];
+    const summaryResults = [];
 
     for (const route of ROUTES) {
-      console.log(`Mengaudit rute ${route.name} (${route.path}) [Mobile Profile]...`);
+      console.log(`--------------------------------------------------------------------------------`);
+      console.log(`Mengaudit rute ${route.name} (${route.path}) [3 Runs, Default Mobile Throttling]`);
+      console.log(`--------------------------------------------------------------------------------`);
+
       const targetUrl = `http://localhost:3000${route.path}`;
-      const reportFile = join(evidenceDir, `lighthouse-${route.slug}.json`);
+      const runs = [];
 
-      const cmd = `npx lighthouse "${targetUrl}" --output=json --output-path="${reportFile}" --form-factor=mobile --screenEmulation.mobile --throttling.cpuSlowdownMultiplier=2 --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet`;
+      for (let runIdx = 1; runIdx <= 3; runIdx++) {
+        const reportFile = join(v3EvidenceDir, `lighthouse-${route.slug}-run${runIdx}.json`);
+        const cmd = `npx lighthouse "${targetUrl}" --output=json --output-path="${reportFile}" --form-factor=mobile --screenEmulation.mobile --only-categories=performance,accessibility,best-practices --chrome-flags="--headless --no-sandbox --disable-gpu" --quiet`;
 
-      execSync(cmd, {
-        env: {
-          ...process.env,
-          CHROME_PATH: chromePath,
-        },
-        stdio: 'inherit',
-      });
+        console.log(`[Run ${runIdx}/3] Command: ${cmd}`);
+        execSync(cmd, {
+          env: {
+            ...process.env,
+            CHROME_PATH: chromePath,
+          },
+          stdio: 'inherit',
+        });
 
-      const report = JSON.parse(readFileSync(reportFile, 'utf8'));
-      const categories = report.categories;
-      const audits = report.audits;
+        const report = JSON.parse(readFileSync(reportFile, 'utf8'));
+        const categories = report.categories;
+        const audits = report.audits;
 
-      const perfScore = Math.round((categories.performance?.score || 0) * 100);
-      const a11yScore = Math.round((categories.accessibility?.score || 0) * 100);
-      const bpScore = Math.round((categories['best-practices']?.score || 0) * 100);
+        const perfScore = Math.round((categories.performance?.score || 0) * 100);
+        const a11yScore = Math.round((categories.accessibility?.score || 0) * 100);
+        const bpScore = Math.round((categories['best-practices']?.score || 0) * 100);
 
-      const lcp = audits['largest-contentful-paint']?.numericValue || 0;
-      const cls = audits['cumulative-layout-shift']?.numericValue || 0;
-      const tbt = audits['total-blocking-time']?.numericValue || 0;
-      const fcp = audits['first-contentful-paint']?.numericValue || 0;
+        const lcp = audits['largest-contentful-paint']?.numericValue || 0;
+        const cls = audits['cumulative-layout-shift']?.numericValue || 0;
+        const tbt = audits['total-blocking-time']?.numericValue || 0;
+        const fcp = audits['first-contentful-paint']?.numericValue || 0;
 
-      auditResults.push({
+        runs.push({
+          run: runIdx,
+          scores: {
+            performance: perfScore,
+            accessibility: a11yScore,
+            bestPractices: bpScore,
+          },
+          cwv: {
+            lcpMs: Math.round(lcp),
+            lcpSec: (lcp / 1000).toFixed(2),
+            cls: parseFloat(cls.toFixed(3)),
+            tbtMs: Math.round(tbt),
+            fcpMs: Math.round(fcp),
+          },
+        });
+
+        console.log(`  -> Run ${runIdx}: Perf=${perfScore} | A11y=${a11yScore} | BP=${bpScore} | LCP=${(lcp / 1000).toFixed(2)}s | TBT=${Math.round(tbt)}ms | CLS=${cls.toFixed(3)} | FCP=${Math.round(fcp)}ms`);
+      }
+
+      // Hitung median dari 3 run
+      const medianPerf = Math.round(median(runs.map((r) => r.scores.performance)));
+      const medianA11y = Math.round(median(runs.map((r) => r.scores.accessibility)));
+      const medianBp = Math.round(median(runs.map((r) => r.scores.bestPractices)));
+      const medianLcpMs = Math.round(median(runs.map((r) => r.cwv.lcpMs)));
+      const medianTbtMs = Math.round(median(runs.map((r) => r.cwv.tbtMs)));
+      const medianCls = parseFloat(median(runs.map((r) => r.cwv.cls)).toFixed(3));
+      const medianFcpMs = Math.round(median(runs.map((r) => r.cwv.fcpMs)));
+
+      console.log(`\n  [MEDIAN ${route.name}]:`);
+      console.log(`  Perf: ${medianPerf} | A11y: ${medianA11y} | BP: ${medianBp}`);
+      console.log(`  LCP: ${(medianLcpMs / 1000).toFixed(2)}s | TBT: ${medianTbtMs}ms | CLS: ${medianCls} | FCP: ${medianFcpMs}ms\n`);
+
+      summaryResults.push({
         name: route.name,
         path: route.path,
         slug: route.slug,
-        scores: {
-          performance: perfScore,
-          accessibility: a11yScore,
-          bestPractices: bpScore,
+        median: {
+          scores: {
+            performance: medianPerf,
+            accessibility: medianA11y,
+            bestPractices: medianBp,
+          },
+          cwv: {
+            lcpMs: medianLcpMs,
+            lcpSec: (medianLcpMs / 1000).toFixed(2),
+            cls: medianCls,
+            tbtMs: medianTbtMs,
+            fcpMs: medianFcpMs,
+          },
+          passTargets: {
+            performance: medianPerf >= 90,
+            accessibility: medianA11y >= 95,
+            bestPractices: medianBp >= 95,
+            lcp: medianLcpMs <= 2500,
+            cls: medianCls <= 0.1,
+            tbt: medianTbtMs <= 200,
+          },
         },
-        cwv: {
-          lcpMs: Math.round(lcp),
-          lcpSec: (lcp / 1000).toFixed(2),
-          cls: parseFloat(cls.toFixed(3)),
-          tbtMs: Math.round(tbt),
-          fcpMs: Math.round(fcp),
-        },
-        passTargets: {
-          performance: perfScore >= 90,
-          accessibility: a11yScore >= 95,
-          bestPractices: bpScore >= 95,
-          lcp: lcp <= 2500,
-          cls: cls <= 0.1,
-          tbt: tbt <= 200,
-        },
+        runs,
       });
-
-      console.log(`  -> Performance: ${perfScore} | A11y: ${a11yScore} | Best Practices: ${bpScore}`);
-      console.log(`  -> LCP: ${(lcp / 1000).toFixed(2)}s | CLS: ${cls.toFixed(3)} | TBT: ${Math.round(tbt)}ms\n`);
     }
 
-    // Tulis ringkasan hasil audit ke lighthouse-summary.json
+    // Tulis ringkasan hasil audit ke v3 evidence
+    const v3SummaryPath = join(v3EvidenceDir, 'lighthouse-summary.json');
+    writeFileSync(v3SummaryPath, JSON.stringify(summaryResults, null, 2), 'utf8');
+
+    // Backward compat path
     const summaryPath = join(evidenceDir, 'lighthouse-summary.json');
-    writeFileSync(summaryPath, JSON.stringify(auditResults, null, 2), 'utf8');
-    console.log(`[SUCCESS] Seluruh audit selesai! Ringkasan disimpan di ${summaryPath}`);
+    writeFileSync(summaryPath, JSON.stringify(summaryResults, null, 2), 'utf8');
+
+    console.log(`[SUCCESS] Seluruh audit selesai! Ringkasan disimpan di ${v3SummaryPath}`);
 
     // Tampilkan tabel rekap
-    console.log('\n=== REKAP HASIL AUDIT LIGHTHOUSE MOBILE LAB ===');
+    console.log('\n=== REKAP HASIL AUDIT LIGHTHOUSE MOBILE LAB (MEDIAN 3 RUNS) ===');
     console.table(
-      auditResults.map((r) => ({
+      summaryResults.map((r) => ({
         Rute: r.name,
         Path: r.path,
-        'Perf (≥90)': r.scores.performance,
-        'A11y (≥95)': r.scores.accessibility,
-        'BP (≥95)': r.scores.bestPractices,
-        'LCP (≤2.5s)': `${r.cwv.lcpSec}s`,
-        'CLS (≤0.1)': r.cwv.cls,
-        'TBT (≤200ms)': `${r.cwv.tbtMs}ms`,
+        'Perf (≥90)': r.median.scores.performance,
+        'A11y (≥95)': r.median.scores.accessibility,
+        'BP (≥95)': r.median.scores.bestPractices,
+        'LCP (≤2.5s)': `${r.median.cwv.lcpSec}s (${r.median.cwv.lcpMs}ms)`,
+        'TBT (≤200ms)': `${r.median.cwv.tbtMs}ms`,
+        'CLS (≤0.1)': r.median.cwv.cls,
+        'FCP (ms)': `${r.median.cwv.fcpMs}ms`,
+        'All Targets': Object.values(r.median.passTargets).every(Boolean) ? 'PASS' : 'FAIL',
       }))
     );
   } finally {
     console.log('\nMenghentikan server produksi Next.js...');
     server.kill();
-    // Pada Windows, kill spawn kadang butuh taskkill
     try {
       execSync('taskkill /F /IM node.exe /FI "WINDOWTITLE eq npm*"', { stdio: 'ignore' });
     } catch {

@@ -14,24 +14,24 @@ export default function IgdPage() {
     <div className="space-y-12 pb-16">
       
       {/* 1. ABOVE-THE-FOLD HERO KHUSUS DARURAT (TERLIHAT JELAS PADA 360x640 TANPA SCROLL) */}
-      <section className="bg-alert-600 text-ivory py-8 sm:py-12 border-b-4 border-gold-500 shadow-md">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-5">
+      <section className="bg-alert-600 text-ivory py-5 sm:py-12 border-b-4 border-gold-500 shadow-md">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-3 sm:space-y-5">
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory text-alert-600 text-xs font-extrabold uppercase tracking-wider shadow-sm">
-            <ShieldAlert className="w-4 h-4 text-alert-600" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-ivory text-alert-600 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider shadow-sm">
+            <ShieldAlert className="w-3.5 h-3.5 text-alert-600" aria-hidden="true" />
             <span>INSTALASI GAWAT DARURAT · BUKA 24 JAM NONSTOP</span>
           </div>
 
-          <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+          <h1 className="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
             Gawat Darurat & Ambulans Siaga
           </h1>
 
-          <p className="text-sm sm:text-base text-ivory/95 max-w-xl mx-auto font-medium">
+          <p className="text-xs sm:text-base text-ivory/95 max-w-xl mx-auto font-medium">
             Segera hubungi tim medis gawat darurat kami atau langsung menuju instalasi IGD di Gedung Tower Lantai 2.
           </p>
 
           {/* DUA TOMBOL TEL UTAMA DENGAN LABEL NETRAL (K1) - MIN TARGET 44PX */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto pt-1">
             <a
               href={emergency.callCenterTel}
               className="flex items-center justify-center gap-3 min-h-[56px] px-6 py-3 rounded-2xl bg-ivory text-alert-600 font-extrabold text-base shadow-xl hover:bg-gold-100 active:scale-95 transition-all focus:ring-4 focus:ring-ivory focus:outline-none"

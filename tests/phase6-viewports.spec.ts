@@ -31,7 +31,7 @@ test.describe('Phase 6: Multi-Viewport Responsiveness & Visual Audit', () => {
   for (const vp of VIEWPORTS) {
     test.describe(`Viewport ${vp.name} (${vp.width}x${vp.height})`, () => {
       for (const route of ROUTES) {
-        test(`Rute ${route.path} tidak memiliki horizontal overflow dan screenshot berhasil disimpan`, async ({ page }) => {
+        test(`Rute ${route.path} tidak memiliki horizontal overflow dan screenshot berhasil disimpan`, async ({ page }, testInfo) => {
           await page.setViewportSize({ width: vp.width, height: vp.height });
           await page.goto(route.path, { waitUntil: 'domcontentloaded' });
           await page.waitForTimeout(300); // Tunggu rendering font dan animasi transisi selesai
@@ -56,9 +56,11 @@ test.describe('Phase 6: Multi-Viewport Responsiveness & Visual Audit', () => {
 
           expect(overflowInfo.hasOverflow).toBe(false);
 
-          // Simpan screenshot visual untuk bukti dokumentasi
-          const screenshotPath = join(screenshotsDir, `${route.slug}-${vp.name}.png`);
-          await page.screenshot({ path: screenshotPath, fullPage: false });
+          // Simpan screenshot visual untuk bukti dokumentasi (satu project agar tidak race lock di Windows)
+          if (testInfo.project.name === 'chromium') {
+            const screenshotPath = join(screenshotsDir, `${route.slug}-${vp.name}.png`);
+            await page.screenshot({ path: screenshotPath, fullPage: false });
+          }
         });
       }
     });

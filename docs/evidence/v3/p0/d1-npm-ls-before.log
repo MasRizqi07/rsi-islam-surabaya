@@ -1,0 +1,6 @@
+Command: npm ls motion clsx tailwind-merge | Exit Code: 0
+rsi-islam-sby@2.0.0 D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby
++-- clsx@2.1.1
++-- motion@14.4.0
+`-- tailwind-merge@3.7.0
+

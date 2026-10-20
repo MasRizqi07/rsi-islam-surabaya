@@ -1,0 +1,49 @@
+Command: npm run build | Exit Code: 0
+
+> rsi-islam-sby@2.0.0 build
+> next build
+
+Ôû▓ Next.js 16.4.2 (Turbopack)
+ÔÜá Warning: Next.js ignored pnpm-workspace.yaml in D:\MY CODE\ANTIGRAVITY because it is outside the current Git repository (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+Ô£ô Running next.config.mjs took 23ms
+
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 621ms
+  Running TypeScript ...
+  Finished TypeScript in 2.2s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/43) ...
+  Generating static pages using 11 workers (10/43) 
+  Generating static pages using 11 workers (21/43) 
+  Generating static pages using 11 workers (32/43) 
+Ô£ô Generating static pages using 11 workers (43/43) in 769ms
+  Finalizing page optimization ...
+
+Route (app)
+Ôöî Ôùï /
+Ôö£ Ôùï /_not-found
+Ôö£ Ôùï /daftar
+Ôö£ Ôùï /dokter
+Ôö£   /dokter/[slug]
+Ôöé Ôö£ ÔùÅ /dokter/dr-fauzi-rachman-sppd
+Ôöé Ôö£ ÔùÅ /dokter/dr-anisa-kusuma-sppd
+Ôöé Ôö£ ÔùÅ /dokter/dr-bambang-suharto-sppd
+Ôöé Ôöö ÔùÅ [+21 more paths]
+Ôö£ Ôùï /igd
+Ôö£ Ôùï /kontak
+Ôö£ Ôùï /layanan
+Ôö£   /layanan/[slug]
+Ôöé Ôö£ ÔùÅ /layanan/igd
+Ôöé Ôö£ ÔùÅ /layanan/hemodialisis
+Ôöé Ôö£ ÔùÅ /layanan/perawatan-intensif
+Ôöé Ôöö ÔùÅ [+5 more paths]
+Ôö£ Ôùï /styleguide
+Ôö£ Ôùï /tentang
+Ôöö Ôùï /tower
+
+
+Ôùï  (Static)  prerendered as static content
+ÔùÅ  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

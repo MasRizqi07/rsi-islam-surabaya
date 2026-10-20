@@ -17,13 +17,10 @@
     "audit:lighthouse": "node scripts/audit-lighthouse.mjs"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
     "lucide-react": "^1.59.0",
-    "motion": "^14.4.0",
     "next": "^16.4.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "tailwind-merge": "^3.7.0",
     "zod": "^4.6.7",
     "zustand": "^5.0.15"
   },

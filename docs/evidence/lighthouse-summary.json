@@ -3,125 +3,370 @@
     "name": "Beranda",
     "path": "/",
     "slug": "home",
-    "scores": {
-      "performance": 95,
-      "accessibility": 100,
-      "bestPractices": 96
+    "median": {
+      "scores": {
+        "performance": 89,
+        "accessibility": 100,
+        "bestPractices": 96
+      },
+      "cwv": {
+        "lcpMs": 3288,
+        "lcpSec": "3.29",
+        "cls": 0,
+        "tbtMs": 184,
+        "fcpMs": 1054
+      },
+      "passTargets": {
+        "performance": false,
+        "accessibility": true,
+        "bestPractices": true,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
     },
-    "cwv": {
-      "lcpMs": 2883,
-      "lcpSec": "2.88",
-      "cls": 0,
-      "tbtMs": 36,
-      "fcpMs": 923
-    },
-    "passTargets": {
-      "performance": true,
-      "accessibility": true,
-      "bestPractices": true,
-      "lcp": false,
-      "cls": true,
-      "tbt": true
-    }
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 89,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3288,
+          "lcpSec": "3.29",
+          "cls": 0,
+          "tbtMs": 184,
+          "fcpMs": 1054
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3008,
+          "lcpSec": "3.01",
+          "cls": 0,
+          "tbtMs": 109,
+          "fcpMs": 921
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 86,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3330,
+          "lcpSec": "3.33",
+          "cls": 0,
+          "tbtMs": 250,
+          "fcpMs": 1122
+        }
+      }
+    ]
   },
   {
     "name": "IGD Darurat",
     "path": "/igd",
     "slug": "igd",
-    "scores": {
-      "performance": 93,
-      "accessibility": 98,
-      "bestPractices": 96
+    "median": {
+      "scores": {
+        "performance": 92,
+        "accessibility": 98,
+        "bestPractices": 96
+      },
+      "cwv": {
+        "lcpMs": 2877,
+        "lcpSec": "2.88",
+        "cls": 0,
+        "tbtMs": 206,
+        "fcpMs": 756
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "lcp": false,
+        "cls": true,
+        "tbt": false
+      }
     },
-    "cwv": {
-      "lcpMs": 1837,
-      "lcpSec": "1.84",
-      "cls": 0.001,
-      "tbtMs": 294,
-      "fcpMs": 829
-    },
-    "passTargets": {
-      "performance": true,
-      "accessibility": true,
-      "bestPractices": true,
-      "lcp": true,
-      "cls": true,
-      "tbt": false
-    }
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 72,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3295,
+          "lcpSec": "3.29",
+          "cls": 0,
+          "tbtMs": 804,
+          "fcpMs": 874
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 92,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2877,
+          "lcpSec": "2.88",
+          "cls": 0,
+          "tbtMs": 206,
+          "fcpMs": 755
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 94,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2811,
+          "lcpSec": "2.81",
+          "cls": 0,
+          "tbtMs": 146,
+          "fcpMs": 756
+        }
+      }
+    ]
   },
   {
     "name": "Direktori Dokter",
     "path": "/dokter",
     "slug": "dokter",
-    "scores": {
-      "performance": 93,
-      "accessibility": 100,
-      "bestPractices": 96
+    "median": {
+      "scores": {
+        "performance": 93,
+        "accessibility": 100,
+        "bestPractices": 96
+      },
+      "cwv": {
+        "lcpMs": 3009,
+        "lcpSec": "3.01",
+        "cls": 0,
+        "tbtMs": 125,
+        "fcpMs": 997
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
     },
-    "cwv": {
-      "lcpMs": 2993,
-      "lcpSec": "2.99",
-      "cls": 0,
-      "tbtMs": 56,
-      "fcpMs": 911
-    },
-    "passTargets": {
-      "performance": true,
-      "accessibility": true,
-      "bestPractices": true,
-      "lcp": false,
-      "cls": true,
-      "tbt": true
-    }
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2961,
+          "lcpSec": "2.96",
+          "cls": 0,
+          "tbtMs": 84,
+          "fcpMs": 928
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 90,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3116,
+          "lcpSec": "3.12",
+          "cls": 0,
+          "tbtMs": 170,
+          "fcpMs": 997
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 93,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 3009,
+          "lcpSec": "3.01",
+          "cls": 0,
+          "tbtMs": 125,
+          "fcpMs": 1048
+        }
+      }
+    ]
   },
   {
     "name": "Tower Directory",
     "path": "/tower",
     "slug": "tower",
-    "scores": {
-      "performance": 96,
-      "accessibility": 98,
-      "bestPractices": 96
+    "median": {
+      "scores": {
+        "performance": 95,
+        "accessibility": 98,
+        "bestPractices": 96
+      },
+      "cwv": {
+        "lcpMs": 2777,
+        "lcpSec": "2.78",
+        "cls": 0,
+        "tbtMs": 93,
+        "fcpMs": 756
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
     },
-    "cwv": {
-      "lcpMs": 2810,
-      "lcpSec": "2.81",
-      "cls": 0,
-      "tbtMs": 51,
-      "fcpMs": 756
-    },
-    "passTargets": {
-      "performance": true,
-      "accessibility": true,
-      "bestPractices": true,
-      "lcp": false,
-      "cls": true,
-      "tbt": true
-    }
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 92,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2874,
+          "lcpSec": "2.87",
+          "cls": 0,
+          "tbtMs": 191,
+          "fcpMs": 768
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 96,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2767,
+          "lcpSec": "2.77",
+          "cls": 0,
+          "tbtMs": 84,
+          "fcpMs": 756
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 95,
+          "accessibility": 98,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2777,
+          "lcpSec": "2.78",
+          "cls": 0,
+          "tbtMs": 93,
+          "fcpMs": 756
+        }
+      }
+    ]
   },
   {
     "name": "Wizard Pendaftaran",
     "path": "/daftar",
     "slug": "daftar",
-    "scores": {
-      "performance": 97,
-      "accessibility": 100,
-      "bestPractices": 96
+    "median": {
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "bestPractices": 96
+      },
+      "cwv": {
+        "lcpMs": 2774,
+        "lcpSec": "2.77",
+        "cls": 0,
+        "tbtMs": 90,
+        "fcpMs": 756
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
     },
-    "cwv": {
-      "lcpMs": 2687,
-      "lcpSec": "2.69",
-      "cls": 0,
-      "tbtMs": 37,
-      "fcpMs": 759
-    },
-    "passTargets": {
-      "performance": true,
-      "accessibility": true,
-      "bestPractices": true,
-      "lcp": false,
-      "cls": true,
-      "tbt": true
-    }
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2774,
+          "lcpSec": "2.77",
+          "cls": 0,
+          "tbtMs": 90,
+          "fcpMs": 756
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 93,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2911,
+          "lcpSec": "2.91",
+          "cls": 0,
+          "tbtMs": 151,
+          "fcpMs": 757
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "bestPractices": 96
+        },
+        "cwv": {
+          "lcpMs": 2761,
+          "lcpSec": "2.76",
+          "cls": 0,
+          "tbtMs": 78,
+          "fcpMs": 755
+        }
+      }
+    ]
   }
 ]

@@ -1,0 +1,8 @@
+Command: npm run check:facts | Exit Code: 0
+
+> rsi-islam-sby@2.0.0 check:facts
+> tsx scripts/check-facts.mjs
+
+=== HOSPITAL FACTS LEAKAGE SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta terdeteksi! Seluruh komponen mengimpor dari src/data/facts.ts.
