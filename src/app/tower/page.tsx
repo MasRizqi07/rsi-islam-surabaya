@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { TowerDirectoryClient } from '@/components/tower/TowerDirectoryClient';
 import { Building2 } from 'lucide-react';
 
@@ -28,19 +27,8 @@ export default function TowerPage() {
         </p>
       </div>
 
-      {/* SUSPENSE BOUNDARY UNTUK URL SEARCHPARAMS */}
-      <Suspense
-        fallback={
-          <div className="bg-white rounded-3xl p-16 text-center border border-tower-100 shadow-sm space-y-4">
-            <div className="w-10 h-10 border-4 border-tower-800 border-t-transparent rounded-full animate-spin mx-auto" />
-            <span className="text-sm font-medium text-ink-soft">
-              Memuat data denah gedung...
-            </span>
-          </div>
-        }
-      >
-        <TowerDirectoryClient />
-      </Suspense>
+      {/* DIREKTORI TOWER & GRAHA (STATIC PRE-RENDERED) */}
+      <TowerDirectoryClient />
 
     </div>
   );

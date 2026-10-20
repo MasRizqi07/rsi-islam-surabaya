@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { useRegistrationStore } from '@/stores/registration-store';
 import { SPECIALTIES } from '@/data/specialties';
 import { DOCTORS } from '@/data/doctors';
@@ -20,7 +19,6 @@ import {
 } from 'lucide-react';
 
 export function RegistrationWizardClient() {
-  const searchParams = useSearchParams();
 
   const {
     step,
@@ -49,6 +47,8 @@ export function RegistrationWizardClient() {
 
   // Prefill dari URL query parameter (?dokter=... atau ?spesialis=...)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
     const paramDoctor = searchParams.get('dokter');
     const paramSpecialty = searchParams.get('spesialis');
 
@@ -68,7 +68,7 @@ export function RegistrationWizardClient() {
         setStep(3);
       }
     }
-  }, [searchParams, setDoctor, setSpecialtyId, setStep]);
+  }, [setDoctor, setSpecialtyId, setStep]);
 
   // Daftar poliklinik terfilter pencarian
   const filteredSpecialties = useMemo(() => {

@@ -14,9 +14,9 @@ export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
             <Bed className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
-            <h3 className="font-display font-bold text-lg text-tower-900 leading-tight">
+            <h2 className="font-display font-bold text-lg text-tower-900 leading-tight">
               Status Ketersediaan Kamar
-            </h3>
+            </h2>
             <span className="text-xs text-ink-soft">
               Pusat Perawatan Kritis Terpadu (Tower Lt. 4)
             </span>

@@ -23,7 +23,7 @@ export function EmergencyBar() {
             <a
               href={emergency.callCenterTel}
               className="inline-flex items-center gap-2 px-3 py-1 bg-ivory text-alert-600 rounded-md font-bold hover:bg-gold-100 transition-colors focus:ring-2 focus:ring-ivory"
-              aria-label={`Hubungi ${emergency.callCenterLabel} di nomor ${emergency.callCenterNumber}`}
+              aria-label={`${emergency.callCenterLabel}: ${emergency.callCenterNumber}`}
             >
               <PhoneCall className="w-4 h-4" aria-hidden="true" />
               <span>{emergency.callCenterLabel}: {emergency.callCenterNumber}</span>
@@ -32,7 +32,7 @@ export function EmergencyBar() {
             <a
               href={emergency.ambulanceTel}
               className="inline-flex items-center gap-2 px-3 py-1 bg-ivory text-alert-600 rounded-md font-bold hover:bg-gold-100 transition-colors focus:ring-2 focus:ring-ivory"
-              aria-label={`Panggil ${emergency.ambulanceLabel} di nomor ${emergency.ambulanceNumber}`}
+              aria-label={`${emergency.ambulanceLabel}: ${emergency.ambulanceNumber}`}
             >
               <Ambulance className="w-4 h-4" aria-hidden="true" />
               <span>{emergency.ambulanceLabel}: {emergency.ambulanceNumber}</span>

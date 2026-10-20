@@ -13,7 +13,8 @@
     "check:facts": "tsx scripts/check-facts.mjs",
     "validate:data": "tsx scripts/validate-data.mjs",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audit:lighthouse": "node scripts/audit-lighthouse.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

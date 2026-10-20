@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useTransition, useEffect } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { DOCTORS } from '@/data/doctors';
 import { SPECIALTIES } from '@/data/specialties';
@@ -27,34 +27,26 @@ const DAYS_OPTIONS = [
 ];
 
 export function DoctorListClient() {
-  const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [, startTransition] = useTransition();
 
-  // Ambil state awal dari URL SearchParams
-  const initialQ = searchParams.get('q') || '';
-  const initialSpecialty = searchParams.get('spesialis') || 'all';
-  const initialHari = searchParams.get('hari') || 'all';
-  const initialPenjamin = searchParams.get('penjamin') || 'all';
-  const initialPoli = searchParams.get('poli') || 'all';
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSpecialty, setSelectedSpecialty] = useState('all');
+  const [selectedHari, setSelectedHari] = useState('all');
+  const [selectedPenjamin, setSelectedPenjamin] = useState('all');
+  const [selectedPoli, setSelectedPoli] = useState('all');
 
-  const [searchQuery, setSearchQuery] = useState(initialQ);
-  const [selectedSpecialty, setSelectedSpecialty] = useState(initialSpecialty);
-  const [selectedHari, setSelectedHari] = useState(initialHari);
-  const [selectedPenjamin, setSelectedPenjamin] = useState(initialPenjamin);
-  const [selectedPoli, setSelectedPoli] = useState(initialPoli);
-
-  // Sinkronisasi saat URL berubah eksternal
+  // Sinkronisasi saat URL searchParams dibaca di browser (client-only)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const searchParams = new URLSearchParams(window.location.search);
     setSearchQuery(searchParams.get('q') || '');
     setSelectedSpecialty(searchParams.get('spesialis') || 'all');
     setSelectedHari(searchParams.get('hari') || 'all');
     setSelectedPenjamin(searchParams.get('penjamin') || 'all');
     setSelectedPoli(searchParams.get('poli') || 'all');
-  }, [searchParams]);
+  }, []);
 
-  // Fungsi pembaruan URL yang konsisten tanpa race condition
+  // Fungsi pembaruan URL yang konsisten tanpa race condition & tanpa suspense bailout
   const updateUrl = (newParams: {
     q?: string;
     spesialis?: string;
@@ -75,10 +67,10 @@ export function DoctorListClient() {
     if (pVal && pVal !== 'all') current.set('penjamin', pVal);
     if (poVal && poVal !== 'all') current.set('poli', poVal);
 
-    startTransition(() => {
+    if (typeof window !== 'undefined') {
       const qs = current.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-    });
+      window.history.replaceState(null, '', qs ? `${pathname}?${qs}` : pathname);
+    }
   };
 
   const handleReset = () => {
@@ -87,9 +79,9 @@ export function DoctorListClient() {
     setSelectedHari('all');
     setSelectedPenjamin('all');
     setSelectedPoli('all');
-    startTransition(() => {
-      router.replace(pathname, { scroll: false });
-    });
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', pathname);
+    }
   };
 
   // Filter dokter

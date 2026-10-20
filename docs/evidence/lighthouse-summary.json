@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Beranda",
+    "path": "/",
+    "slug": "home",
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "bestPractices": 96
+    },
+    "cwv": {
+      "lcpMs": 2883,
+      "lcpSec": "2.88",
+      "cls": 0,
+      "tbtMs": 36,
+      "fcpMs": 923
+    },
+    "passTargets": {
+      "performance": true,
+      "accessibility": true,
+      "bestPractices": true,
+      "lcp": false,
+      "cls": true,
+      "tbt": true
+    }
+  },
+  {
+    "name": "IGD Darurat",
+    "path": "/igd",
+    "slug": "igd",
+    "scores": {
+      "performance": 93,
+      "accessibility": 98,
+      "bestPractices": 96
+    },
+    "cwv": {
+      "lcpMs": 1837,
+      "lcpSec": "1.84",
+      "cls": 0.001,
+      "tbtMs": 294,
+      "fcpMs": 829
+    },
+    "passTargets": {
+      "performance": true,
+      "accessibility": true,
+      "bestPractices": true,
+      "lcp": true,
+      "cls": true,
+      "tbt": false
+    }
+  },
+  {
+    "name": "Direktori Dokter",
+    "path": "/dokter",
+    "slug": "dokter",
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "bestPractices": 96
+    },
+    "cwv": {
+      "lcpMs": 2993,
+      "lcpSec": "2.99",
+      "cls": 0,
+      "tbtMs": 56,
+      "fcpMs": 911
+    },
+    "passTargets": {
+      "performance": true,
+      "accessibility": true,
+      "bestPractices": true,
+      "lcp": false,
+      "cls": true,
+      "tbt": true
+    }
+  },
+  {
+    "name": "Tower Directory",
+    "path": "/tower",
+    "slug": "tower",
+    "scores": {
+      "performance": 96,
+      "accessibility": 98,
+      "bestPractices": 96
+    },
+    "cwv": {
+      "lcpMs": 2810,
+      "lcpSec": "2.81",
+      "cls": 0,
+      "tbtMs": 51,
+      "fcpMs": 756
+    },
+    "passTargets": {
+      "performance": true,
+      "accessibility": true,
+      "bestPractices": true,
+      "lcp": false,
+      "cls": true,
+      "tbt": true
+    }
+  },
+  {
+    "name": "Wizard Pendaftaran",
+    "path": "/daftar",
+    "slug": "daftar",
+    "scores": {
+      "performance": 97,
+      "accessibility": 100,
+      "bestPractices": 96
+    },
+    "cwv": {
+      "lcpMs": 2687,
+      "lcpSec": "2.69",
+      "cls": 0,
+      "tbtMs": 37,
+      "fcpMs": 759
+    },
+    "passTargets": {
+      "performance": true,
+      "accessibility": true,
+      "bestPractices": true,
+      "lcp": false,
+      "cls": true,
+      "tbt": true
+    }
+  }
+]

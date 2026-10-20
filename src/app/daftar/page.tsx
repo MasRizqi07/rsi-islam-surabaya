@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { RegistrationWizardClient } from '@/components/daftar/RegistrationWizardClient';
 import { CalendarCheck } from 'lucide-react';
 
@@ -28,19 +27,8 @@ export default function DaftarPage() {
         </p>
       </div>
 
-      {/* SUSPENSE BOUNDARY UNTUK CLIENT SEARCHPARAMS */}
-      <Suspense
-        fallback={
-          <div className="bg-white rounded-3xl p-16 text-center border border-tower-100 shadow-sm space-y-4">
-            <div className="w-10 h-10 border-4 border-tower-800 border-t-transparent rounded-full animate-spin mx-auto" />
-            <span className="text-sm font-medium text-ink-soft">
-              Memuat formulir pendaftaran...
-            </span>
-          </div>
-        }
-      >
-        <RegistrationWizardClient />
-      </Suspense>
+      {/* FORMULIR PENDAFTARAN WIZARD (STATIC PRE-RENDERED) */}
+      <RegistrationWizardClient />
 
     </div>
   );

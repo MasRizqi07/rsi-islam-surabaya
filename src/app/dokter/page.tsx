@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { DoctorListClient } from './DoctorListClient';
 import { Stethoscope, AlertCircle } from 'lucide-react';
 
@@ -36,17 +35,8 @@ export default function DokterPage() {
         </div>
       </div>
 
-      {/* SUSPENSE BOUNDARY UNTUK CLIENT SEARCHPARAMS */}
-      <Suspense
-        fallback={
-          <div className="bg-white rounded-2xl p-12 text-center border border-tower-100 space-y-3">
-            <div className="w-8 h-8 border-4 border-tower-800 border-t-transparent rounded-full animate-spin mx-auto" />
-            <span className="text-sm text-ink-soft font-medium">Memuat direktori dokter...</span>
-          </div>
-        }
-      >
-        <DoctorListClient />
-      </Suspense>
+      {/* DIREKTORI DOKTER & FILTER (STATIC PRE-RENDERED) */}
+      <DoctorListClient />
 
     </div>
   );

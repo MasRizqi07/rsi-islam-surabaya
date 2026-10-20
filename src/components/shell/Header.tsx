@@ -27,7 +27,7 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center gap-3 group focus:outline-none"
-            aria-label="Kembali ke Beranda RS Islam Surabaya A. Yani"
+            aria-label={`${HOSPITAL_FACTS.name} - Beranda`}
           >
             {/* Monogram / Icon Geometris Hijau Tower */}
             <div className="w-11 h-11 rounded-lg bg-tower-900 border border-gold-500/40 flex items-center justify-center text-gold-300 font-display font-bold text-xl shadow-md group-hover:scale-105 transition-transform">

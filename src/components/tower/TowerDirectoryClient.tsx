@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { TOWER_FLOORS, GRAHA_FLOORS } from '@/data/buildings';
 import { SERVICES } from '@/data/services';
@@ -18,28 +17,17 @@ import {
 } from 'lucide-react';
 
 export function TowerDirectoryClient() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const urlBuilding = (searchParams.get('gedung') as BuildingId) || 'tower';
-  const rawFloor = searchParams.get('lantai');
-  const urlFloor = rawFloor !== null ? parseInt(rawFloor, 10) : 4;
-
-  const [activeBuilding, setActiveBuilding] = useState<BuildingId>(
-    urlBuilding === 'graha' ? 'graha' : 'tower'
-  );
-
+  const [activeBuilding, setActiveBuilding] = useState<BuildingId>('tower');
   const currentFloors = activeBuilding === 'tower' ? TOWER_FLOORS : GRAHA_FLOORS;
+  const [selectedFloor, setSelectedFloor] = useState<number>(4);
 
-  const [selectedFloor, setSelectedFloor] = useState<number>(() => {
-    const exists = currentFloors.some((f) => f.floor === urlFloor);
-    return exists ? urlFloor : currentFloors[0].floor;
-  });
-
-  // Sinkronisasi saat URL berubah eksternal
+  // Sinkronisasi saat URL searchParams dibaca di browser (client-only)
   useEffect(() => {
-    const b = searchParams.get('gedung') as BuildingId;
-    const fStr = searchParams.get('lantai');
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const b = params.get('gedung') as BuildingId;
+    const fStr = params.get('lantai');
     if (b === 'tower' || b === 'graha') {
       setActiveBuilding(b);
       const floors = b === 'tower' ? TOWER_FLOORS : GRAHA_FLOORS;
@@ -50,17 +38,19 @@ export function TowerDirectoryClient() {
         }
       }
     }
-  }, [searchParams]);
+  }, []);
 
-  // Update URL searchParams
+  // Update URL searchParams via window.history.replaceState agar tanpa overhead
   const updateParams = useCallback(
     (b: BuildingId, f: number) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set('gedung', b);
-      params.set('lantai', f.toString());
-      router.replace(`/tower?${params.toString()}`, { scroll: false });
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        params.set('gedung', b);
+        params.set('lantai', f.toString());
+        window.history.replaceState(null, '', `/tower?${params.toString()}`);
+      }
     },
-    [router, searchParams]
+    []
   );
 
   const handleSelectBuilding = (b: BuildingId) => {

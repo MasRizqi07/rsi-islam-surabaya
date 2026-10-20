@@ -37,29 +37,29 @@ export function Footer() {
             <h3 className="font-display font-bold text-gold-300 text-base mb-4 tracking-wide">
               Navigasi Layanan
             </h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-1 text-sm">
               <li>
-                <Link href="/igd" className="hover:text-gold-300 transition-colors">
+                <Link href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Instalasi Gawat Darurat (IGD 24 Jam)
                 </Link>
               </li>
               <li>
-                <Link href="/dokter" className="hover:text-gold-300 transition-colors">
+                <Link href="/dokter" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Direktori & Jadwal Dokter
                 </Link>
               </li>
               <li>
-                <Link href="/tower" className="hover:text-gold-300 transition-colors">
+                <Link href="/tower" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Tower Directory (Denah Gedung)
                 </Link>
               </li>
               <li>
-                <Link href="/layanan" className="hover:text-gold-300 transition-colors">
+                <Link href="/layanan" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Katalog Layanan & Penunjang
                 </Link>
               </li>
               <li>
-                <Link href="/daftar" className="hover:text-gold-300 transition-colors">
+                <Link href="/daftar" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Pendaftaran Pasien Online (Demo)
                 </Link>
               </li>
@@ -121,7 +121,7 @@ export function Footer() {
             <div className="pt-2">
               <Link
                 href="/styleguide"
-                className="text-xs text-gold-300/80 hover:text-gold-300 underline block"
+                className="text-xs text-gold-300/80 hover:text-gold-300 underline block py-2"
               >
                 Katalog Desain & Token (/styleguide)
               </Link>
