@@ -208,7 +208,7 @@ export function TowerDirectoryClient() {
                   aria-controls="floor-detail-panel"
                   type="button"
                   onClick={() => handleSelectFloor(f.floor)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all border min-h-[48px] ${
+                  className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all duration-200 border min-h-[48px] overflow-hidden cursor-pointer ${
                     isSelected
                       ? 'bg-tower-800 text-ivory border-tower-800 shadow-md ring-2 ring-gold-500/50 scale-[1.01]'
                       : hasData
@@ -216,18 +216,30 @@ export function TowerDirectoryClient() {
                       : 'bg-ivory text-ink-soft border-tower-100/60 hover:bg-tower-50'
                   }`}
                 >
+                  {/* ELEVATOR ACTIVE FLOOR ACCENT BAR */}
+                  {isSelected && (
+                    <span className="absolute left-0 top-0 bottom-0 w-1.5 bg-gold-400 rounded-l-xl shadow-xs" />
+                  )}
+
                   <div className="flex items-center gap-3 min-w-0">
-                    <span
-                      className={`w-8 font-display font-bold text-base shrink-0 ${
-                        isSelected ? 'text-gold-300' : 'text-tower-800'
-                      }`}
-                    >
-                      {f.floor === 0
-                        ? '00'
-                        : f.floor < 10
-                        ? `0${f.floor}`
-                        : f.floor}
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {isSelected ? (
+                        <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse shrink-0" />
+                      ) : (
+                        <span className="w-2 h-2 rounded-full bg-transparent shrink-0" />
+                      )}
+                      <span
+                        className={`w-7 font-display font-bold text-base shrink-0 ${
+                          isSelected ? 'text-gold-300' : 'text-tower-800'
+                        }`}
+                      >
+                        {f.floor === 0
+                          ? '00'
+                          : f.floor < 10
+                          ? `0${f.floor}`
+                          : f.floor}
+                      </span>
+                    </div>
                     <span className="truncate font-semibold text-xs sm:text-sm">
                       {f.label}
                     </span>
@@ -254,14 +266,96 @@ export function TowerDirectoryClient() {
               );
             })}
           </div>
+
+          {/* 4. COMPARATIVE ARCHITECTURAL SILHOUETTE WIDGET */}
+          <div className="bg-tower-950 text-ivory rounded-2xl p-4 border border-gold-500/20 shadow-sm space-y-3 pt-4 mt-2">
+            <div className="flex items-center justify-between text-xs border-b border-tower-800 pb-2">
+              <span className="font-bold uppercase tracking-wider text-gold-300 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-gold-400" />
+                <span>Siluet Arsitektur Gedung</span>
+              </span>
+              <span className="text-[10px] font-mono text-tower-300">13 vs 6 Lantai</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 items-end pt-1">
+              {/* GEDUNG TOWER */}
+              <button
+                type="button"
+                onClick={() => handleSelectBuilding('tower')}
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                  activeBuilding === 'tower'
+                    ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
+                    : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
+                }`}
+              >
+                <div className="flex flex-col items-center justify-end h-28 gap-0.5 px-3">
+                  {Array.from({ length: 13 }).map((_, idx) => {
+                    const flNum = 13 - idx;
+                    const isCurrent = activeBuilding === 'tower' && selectedFloor === flNum;
+                    return (
+                      <div
+                        key={flNum}
+                        className={`w-full h-1.5 rounded-xs transition-all ${
+                          isCurrent
+                            ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
+                            : activeBuilding === 'tower'
+                            ? 'bg-tower-700/80'
+                            : 'bg-tower-800/50'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div>
+                  <span className="font-display font-bold text-xs block text-ivory">Gedung Tower</span>
+                  <span className="text-[10px] text-gold-300 font-mono">13 Lantai Utama</span>
+                </div>
+              </button>
+
+              {/* GEDUNG GRAHA */}
+              <button
+                type="button"
+                onClick={() => handleSelectBuilding('graha')}
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                  activeBuilding === 'graha'
+                    ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
+                    : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
+                }`}
+              >
+                <div className="flex flex-col items-center justify-end h-28 gap-1 px-2">
+                  {Array.from({ length: 6 }).map((_, idx) => {
+                    const flNum = 5 - idx;
+                    const isCurrent = activeBuilding === 'graha' && selectedFloor === flNum;
+                    return (
+                      <div
+                        key={flNum}
+                        className={`w-full h-2.5 rounded-xs transition-all ${
+                          isCurrent
+                            ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
+                            : activeBuilding === 'graha'
+                            ? 'bg-tower-700/80'
+                            : 'bg-tower-800/50'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div>
+                  <span className="font-display font-bold text-xs block text-ivory">Gedung Graha</span>
+                  <span className="text-[10px] text-gold-300 font-mono">6 Level Fasilitas</span>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* KOLOM KANAN: PANEL DETAIL LANTAI */}
         <div
           id="floor-detail-panel"
+          key={`${activeBuilding}-${selectedFloor}`}
           role="region"
           aria-live="polite"
-          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[560px] flex flex-col justify-between"
+          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[560px] flex flex-col justify-between transition-all duration-200"
         >
           <div className="space-y-6">
             

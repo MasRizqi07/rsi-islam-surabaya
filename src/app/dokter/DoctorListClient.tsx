@@ -14,6 +14,7 @@ import {
   RotateCcw,
   ArrowRight,
   Filter,
+  X,
 } from 'lucide-react';
 
 const DAYS_OPTIONS = [
@@ -232,6 +233,108 @@ export function DoctorListClient() {
             </select>
           </div>
         </div>
+
+        {/* ACTIVE FILTER CHIPS (DAPAT DIHAPUS PER ITEM) */}
+        {(searchQuery.trim() || selectedSpecialty !== 'all' || selectedHari !== 'all' || selectedPenjamin !== 'all' || selectedPoli !== 'all') && (
+          <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-tower-100 text-xs">
+            <span className="text-ink-soft text-[11px] font-bold uppercase tracking-wider mr-1">
+              Filter Aktif:
+            </span>
+
+            {searchQuery.trim() && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-100 text-tower-900 font-semibold border border-tower-600/20 text-xs">
+                <span>Nama: &ldquo;{searchQuery}&rdquo;</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    updateUrl({ q: '' });
+                  }}
+                  className="w-3.5 h-3.5 rounded-full hover:bg-tower-200 flex items-center justify-center cursor-pointer"
+                  aria-label="Hapus filter nama"
+                >
+                  <X className="w-3 h-3 text-tower-800" />
+                </button>
+              </span>
+            )}
+
+            {selectedSpecialty !== 'all' && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-100 text-tower-900 font-semibold border border-tower-600/20 text-xs">
+                <span>Poli: {SPECIALTIES.find((s) => s.id === selectedSpecialty)?.name || selectedSpecialty}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedSpecialty('all');
+                    updateUrl({ spesialis: 'all' });
+                  }}
+                  className="w-3.5 h-3.5 rounded-full hover:bg-tower-200 flex items-center justify-center cursor-pointer"
+                  aria-label="Hapus filter poliklinik"
+                >
+                  <X className="w-3 h-3 text-tower-800" />
+                </button>
+              </span>
+            )}
+
+            {selectedHari !== 'all' && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-100 text-tower-900 font-semibold border border-tower-600/20 text-xs">
+                <span>Hari: {DAYS_OPTIONS.find((d) => d.value === selectedHari)?.label || selectedHari}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedHari('all');
+                    updateUrl({ hari: 'all' });
+                  }}
+                  className="w-3.5 h-3.5 rounded-full hover:bg-tower-200 flex items-center justify-center cursor-pointer"
+                  aria-label="Hapus filter hari"
+                >
+                  <X className="w-3 h-3 text-tower-800" />
+                </button>
+              </span>
+            )}
+
+            {selectedPenjamin !== 'all' && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-100 text-tower-900 font-semibold border border-tower-600/20 text-xs">
+                <span>Penjamin: {selectedPenjamin.toUpperCase()}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedPenjamin('all');
+                    updateUrl({ penjamin: 'all' });
+                  }}
+                  className="w-3.5 h-3.5 rounded-full hover:bg-tower-200 flex items-center justify-center cursor-pointer"
+                  aria-label="Hapus filter penjamin"
+                >
+                  <X className="w-3 h-3 text-tower-800" />
+                </button>
+              </span>
+            )}
+
+            {selectedPoli !== 'all' && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-100 text-tower-900 font-semibold border border-tower-600/20 text-xs">
+                <span>Layanan: Poli {selectedPoli}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedPoli('all');
+                    updateUrl({ poli: 'all' });
+                  }}
+                  className="w-3.5 h-3.5 rounded-full hover:bg-tower-200 flex items-center justify-center cursor-pointer"
+                  aria-label="Hapus filter jenis layanan"
+                >
+                  <X className="w-3 h-3 text-tower-800" />
+                </button>
+              </span>
+            )}
+
+            <button
+              type="button"
+              onClick={handleReset}
+              className="text-tower-800 hover:text-tower-950 font-bold text-xs underline cursor-pointer ml-1"
+            >
+              Hapus Semua
+            </button>
+          </div>
+        )}
       </div>
 
       {/* HASIL DIREKTORI DOKTER */}
@@ -251,7 +354,7 @@ export function DoctorListClient() {
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Reset Semua Filter</span>
@@ -273,13 +376,13 @@ export function DoctorListClient() {
               return (
                 <div
                   key={doc.slug}
-                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-md hover:border-tower-700/40 transition-all flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-tower-700/50 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     {/* AVATAR INISIAL & LENCANA ILUSTRASI */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
                           {initials}
                         </div>
                         <div>
@@ -322,22 +425,22 @@ export function DoctorListClient() {
                       </span>
                     </div>
 
-                    {/* JADWAL PRAKTIK RINGKAS */}
+                    {/* JADWAL PRAKTIK MATRIKS */}
                     <div className="pt-2 border-t border-tower-50 space-y-1.5">
                       <span className="text-[11px] font-bold text-ink-soft uppercase tracking-wider block">
-                        Jadwal Praktik:
+                        Jadwal Praktik Matriks:
                       </span>
-                      <div className="space-y-1">
+                      <div className="space-y-1.5">
                         {doc.schedule.slice(0, 3).map((sch, idx) => (
                           <div
                             key={idx}
-                            className="flex items-center justify-between text-xs text-ink"
+                            className="flex items-center justify-between text-xs px-2.5 py-1 rounded-lg bg-ivory border border-tower-100/70"
                           >
-                            <span className="font-semibold capitalize flex items-center gap-1.5">
+                            <span className="font-bold text-tower-950 capitalize flex items-center gap-1.5">
                               <Calendar className="w-3.5 h-3.5 text-tower-700" />
                               {sch.hari}
                             </span>
-                            <span className="text-ink-soft font-mono">
+                            <span className="text-tower-800 font-mono text-[11px] font-semibold bg-tower-100/80 px-2 py-0.5 rounded">
                               {sch.mulai} - {sch.selesai} ({sch.poli})
                             </span>
                           </div>
@@ -350,7 +453,7 @@ export function DoctorListClient() {
                   <div className="pt-5 mt-4 border-t border-tower-50 flex items-center justify-between gap-2">
                     <Link
                       href={`/dokter/${doc.slug}`}
-                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1"
+                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
                     >
                       <span>Lihat Profil Lengkap</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -358,7 +461,7 @@ export function DoctorListClient() {
 
                     <Link
                       href={`/daftar?dokter=${doc.slug}`}
-                      className="px-3.5 py-1.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory text-xs font-bold shadow-sm transition-colors"
+                      className="px-3.5 py-1.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory text-xs font-bold shadow-sm transition-colors cursor-pointer"
                     >
                       Daftar
                     </Link>

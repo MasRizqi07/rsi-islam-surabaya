@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${playfair.variable} ${plusJakarta.variable}`}>
+    <html lang="id" data-scroll-behavior="smooth" className={`${playfair.variable} ${plusJakarta.variable}`}>
       <body className="antialiased bg-ivory text-ink selection:bg-tower-800 selection:text-gold-100">
         <SkipLink />
         <DisclaimerBanner />

@@ -4,6 +4,7 @@ import { SERVICES } from '@/data/services';
 import { BedStatusWidget } from '@/components/home/BedStatusWidget';
 import { QuickDoctorSearch } from '@/components/home/QuickDoctorSearch';
 import { TowerTeaser } from '@/components/home/TowerTeaser';
+import { HeroBlueprintCard } from '@/components/home/HeroBlueprintCard';
 import {
   PhoneCall,
   Calendar,
@@ -25,16 +26,30 @@ export default function HomePage() {
     <div className="space-y-16 sm:space-y-24">
       
       {/* 1. SECTION HERO DENGAN SILUET & RITME TOWER (LCP ELEMENT = TEKS HEADLINE) */}
-      <section className="relative bg-gradient-to-b from-tower-900 to-tower-950 text-ivory py-20 lg:py-28 overflow-hidden bg-khatam-pattern">
+      <section
+        id="hero-section"
+        style={{ backgroundColor: '#063B36' }}
+        className="relative bg-tower-900 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
+      >
+        {/* Latar Belakang Gradien Halus & Pola Geometris Terisolasi */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-tower-900 via-tower-900 to-tower-950 opacity-95 pointer-events-none"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-khatam-pattern opacity-30 pointer-events-none"
+          style={{ backgroundColor: 'transparent' }}
+        />
         
         {/* Glow Lembut Emas */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-96 h-96 bg-tower-700/20 rounded-full blur-3xl pointer-events-none" />
+        <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div aria-hidden="true" className="absolute bottom-0 left-10 w-96 h-96 bg-tower-700/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* KOLOM TEKS HERO */}
+            {/* KOLOM TEKS HERO (RSC MURNI, LCP LANGSUNG TERSEDIA SAAT INITIAL HTML LOAD) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-800/80 border border-gold-500/30 text-gold-300 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-gold-500" aria-hidden="true" />
@@ -47,7 +62,7 @@ export default function HomePage() {
                 <span className="text-gold-300 italic font-semibold">Berakar Nilai Islam.</span>
               </h1>
 
-              <p className="text-ivory/80 text-base sm:text-lg leading-relaxed max-w-xl">
+              <p className="text-ivory text-base sm:text-lg leading-relaxed max-w-xl">
                 Rumah Sakit Islam Surabaya A. Yani memadukan keahlian klinis terpercaya sejak {HOSPITAL_FACTS.foundedYear} dengan arsitektur vertikal Tower 13 Lantai untuk keselamatan dan kenyamanan pasien.
               </p>
 
@@ -73,67 +88,22 @@ export default function HomePage() {
               <div className="pt-6 grid grid-cols-3 gap-4 border-t border-gold-500/20 text-xs sm:text-sm">
                 <div>
                   <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.foundedYear}</span>
-                  <span className="text-ivory/70 text-xs">51 Tahun Mengabdi</span>
+                  <span className="text-tower-100 text-xs">51 Tahun Mengabdi</span>
                 </div>
                 <div>
                   <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.hospitalClass}</span>
-                  <span className="text-ivory/70 text-xs">Rumah Sakit Terakreditasi</span>
+                  <span className="text-tower-100 text-xs">Rumah Sakit Terakreditasi</span>
                 </div>
                 <div>
                   <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.medicalStaffLabel}</span>
-                  <span className="text-ivory/70 text-xs">Dokter & Paramedis</span>
+                  <span className="text-tower-100 text-xs">Dokter & Paramedis</span>
                 </div>
               </div>
             </div>
 
-            {/* KOLOM SILUET TOWER (SVG / CSS TANPA RASTER HERO) */}
+            {/* KOLOM BLUEPRINT ARSITEKTUR TOWER INTERAKTIF */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="w-full max-w-sm bg-tower-900/95 border-2 border-gold-500/40 rounded-3xl p-6 shadow-2xl relative">
-                <div className="text-center pb-4 border-b border-gold-500/30">
-                  <span className="text-[10px] font-mono text-gold-300 uppercase tracking-widest block font-bold">
-                    Ikon Arsitektur Baru
-                  </span>
-                  <span className="font-display font-bold text-xl text-ivory">
-                    Gedung Tower 13 Lantai
-                  </span>
-                </div>
-
-                {/* Grid Lantai Visual Mini */}
-                <div className="py-4 space-y-1.5 font-mono text-xs max-h-[340px] overflow-hidden">
-                  {[13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((floor) => {
-                    const isHighlight = [2, 3, 4, 7].includes(floor);
-                    return (
-                      <div
-                        key={floor}
-                        className={`flex items-center justify-between px-3 py-1 rounded transition-colors ${
-                          isHighlight
-                            ? 'bg-tower-800 border border-gold-500/60 text-gold-300 font-bold'
-                            : 'bg-tower-950/60 border border-tower-800/40 text-ivory/30'
-                        }`}
-                      >
-                        <span className="w-10">Lt. {floor < 10 ? `0${floor}` : floor}</span>
-                        <span className="text-[10px] truncate">
-                          {floor === 2 && 'IGD 24 Jam & Pendaftaran'}
-                          {floor === 3 && 'Laboratorium & Radiologi'}
-                          {floor === 4 && 'ICU, ICCU, HCU, NICU, PICU'}
-                          {floor === 7 && 'Ruang Bersalin An-Nisa'}
-                          {!isHighlight && 'Informasi belum tersedia'}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="pt-3 text-center border-t border-gold-500/20">
-                  <Link
-                    href="/tower"
-                    className="inline-flex items-center gap-1.5 text-xs text-gold-300 hover:text-gold-100 font-bold tracking-wide"
-                  >
-                    <span>Jelajahi Denah Interaktif</span>
-                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                  </Link>
-                </div>
-              </div>
+              <HeroBlueprintCard />
             </div>
 
           </div>

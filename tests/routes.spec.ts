@@ -95,4 +95,131 @@ test.describe('Phase 3 Core Routes & Workflows', () => {
     });
   }
 
+  // SKENARIO 5: VERIFIKASI KONTRAS HERO BERANDA & WARNA LATAR TOWER-900
+  test('Hero section Beranda menggunakan latar solid rgb(6, 59, 54) dengan rasio kontras >= 7:1', async ({ page }) => {
+    await page.goto('/');
+
+    const heroSection = page.locator('#hero-section');
+    await expect(heroSection).toBeVisible();
+
+    const heroStyle = await heroSection.evaluate((el) => {
+      return window.getComputedStyle(el).backgroundColor;
+    });
+
+    // Latar belakang hero harus merupakan warna gelap solid tower-900
+    expect(heroStyle).toBe('rgb(6, 59, 54)');
+
+    // Hitung kontras teks h1 dan paragraf terhadap latar hero
+    const contrastData = await page.evaluate(() => {
+      function parseRgb(colorStr: string): [number, number, number] {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1;
+        canvas.height = 1;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return [0, 0, 0];
+        ctx.fillStyle = colorStr;
+        ctx.fillRect(0, 0, 1, 1);
+        const data = ctx.getImageData(0, 0, 1, 1).data;
+        return [data[0], data[1], data[2]];
+      }
+
+      function getLuminance(r: number, g: number, b: number): number {
+        const [rs, gs, bs] = [r / 255, g / 255, b / 255].map((c) =>
+          c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+        );
+        return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+      }
+
+      function calcContrast(c1: string, c2: string): number {
+        const rgb1 = parseRgb(c1);
+        const rgb2 = parseRgb(c2);
+        const l1 = getLuminance(...rgb1);
+        const l2 = getLuminance(...rgb2);
+        const lighter = Math.max(l1, l2);
+        const darker = Math.min(l1, l2);
+        return (lighter + 0.05) / (darker + 0.05);
+      }
+
+      const hero = document.getElementById('hero-section');
+      if (!hero) return null;
+
+      const heroBg = window.getComputedStyle(hero).backgroundColor;
+      const h1 = hero.querySelector('h1');
+      const p = hero.querySelector('p');
+
+      const h1Color = h1 ? window.getComputedStyle(h1).color : '';
+      const pColor = p ? window.getComputedStyle(p).color : '';
+
+      return {
+        heroBg,
+        h1Color,
+        pColor,
+        h1Contrast: calcContrast(h1Color, heroBg),
+        pContrast: calcContrast(pColor, heroBg),
+      };
+    });
+
+    expect(contrastData).not.toBeNull();
+    if (contrastData) {
+      expect(contrastData.h1Contrast).toBeGreaterThanOrEqual(7.0);
+      expect(contrastData.pContrast).toBeGreaterThanOrEqual(7.0);
+    }
+  });
+
+  // SKENARIO 6: 0 CONSOLE ERROR & 0 PAGE ERROR PADA RUTE UTAMA
+  test('Rute utama bebas dari console error, hydration warning, dan pageerror', async ({ page }) => {
+    const errorLogs: string[] = [];
+
+    page.on('pageerror', (err) => {
+      errorLogs.push(`[PageError] ${err.message}`);
+    });
+
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') {
+        errorLogs.push(`[ConsoleError] ${msg.text()}`);
+      }
+    });
+
+    await page.goto('/');
+    await page.goto('/daftar');
+    await page.goto('/tower');
+    await page.goto('/dokter');
+
+    // Filter out external network failures if any (e.g. font CDNs / favicons)
+    const criticalErrors = errorLogs.filter(
+      (msg) => !msg.includes('favicon') && !msg.includes('chrome-extension')
+    );
+
+    expect(criticalErrors).toEqual([]);
+  });
+
+  // SKENARIO 7: PEMADATAN TATA LETAK ABOVE-THE-FOLD DI /daftar (1280x800)
+  test('Langkah 1 pendaftaran tampil utuh above-the-fold di resolusi desktop 1280x800', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/daftar');
+
+    const cardBpjs = page.locator('button:has-text("BPJS Kesehatan")').first();
+    const cardUmum = page.locator('button:has-text("Pasien Umum (Mandiri)")').first();
+    const cardAsuransi = page.locator('button:has-text("Asuransi Swasta")').first();
+
+    await expect(cardBpjs).toBeVisible();
+    await expect(cardUmum).toBeVisible();
+    await expect(cardAsuransi).toBeVisible();
+
+    const boxBpjs = await cardBpjs.boundingBox();
+    const boxUmum = await cardUmum.boundingBox();
+    const boxAsuransi = await cardAsuransi.boundingBox();
+
+    expect(boxBpjs).not.toBeNull();
+    expect(boxUmum).not.toBeNull();
+    expect(boxAsuransi).not.toBeNull();
+
+    if (boxBpjs && boxUmum && boxAsuransi) {
+      // Seluruh 3 kartu opsi penjamin harus selesai dirender sebelum batas lipatan 800px
+      expect(boxBpjs.y + boxBpjs.height).toBeLessThan(800);
+      expect(boxUmum.y + boxUmum.height).toBeLessThan(800);
+      expect(boxAsuransi.y + boxAsuransi.height).toBeLessThan(800);
+    }
+  });
+
 });
