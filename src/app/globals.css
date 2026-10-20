@@ -30,10 +30,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: var(--color-ivory);
   color: var(--color-ink);
   font-family: var(--font-body);
+}
+
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -63,7 +66,8 @@ body {
 
 /* Pola Geometris Khatam Islam Kontemporer (Bintang 8) */
 .bg-khatam-pattern {
-  background-image: radial-gradient(circle at center, rgba(201, 162, 74, 0.12) 1px, transparent 1px);
+  background-color: var(--color-tower-900);
+  background-image: radial-gradient(circle at center, rgba(201, 162, 74, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -75,3 +79,34 @@ body {
 .gold-hairline-b {
   border-bottom: 1px solid rgba(201, 162, 74, 0.35);
 }
+
+/* Print Stylesheet (@media print) */
+@media print {
+  header,
+  footer,
+  aside,
+  nav,
+  #mobile-emergency-dock,
+  #top-emergency-bar,
+  .no-print,
+  button:not(#print-ticket-btn) {
+    display: none !important;
+  }
+
+  body,
+  main {
+    background-color: #ffffff !important;
+    color: #10201e !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
+  }
+
+  #printable-ticket {
+    box-shadow: none !important;
+    border: 2px solid #063b36 !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid !important;
+  }
+}
+

@@ -175,11 +175,11 @@ export function RegistrationWizardClient() {
   };
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-4 sm:space-y-6">
       
-      {/* 1. PROGRESS BAR / STEP INDICATOR */}
-      <div aria-label="Langkah Pendaftaran" className="bg-white rounded-2xl p-5 border border-tower-100 shadow-sm">
-        <ol className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+      {/* 1. PROGRESS BAR / STEP INDICATOR (KOMPAK) */}
+      <div aria-label="Langkah Pendaftaran" className="bg-white rounded-xl p-2.5 sm:p-3.5 border border-tower-100 shadow-xs">
+        <ol className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
           {[
             { num: 1, title: 'Jalur Pelayanan' },
             { num: 2, title: 'Pilih Poliklinik' },
@@ -192,16 +192,16 @@ export function RegistrationWizardClient() {
             return (
               <li
                 key={s.num}
-                className={`flex items-center gap-2.5 p-2.5 rounded-xl border transition-all ${
+                className={`flex items-center gap-2 p-2 rounded-lg border transition-all duration-200 ${
                   isActive
-                    ? 'bg-tower-800 text-ivory border-tower-800 font-bold shadow-sm'
+                    ? 'bg-tower-800 text-ivory border-tower-800 font-bold shadow-xs'
                     : isCompleted
                     ? 'bg-tower-50 text-tower-900 border-tower-100 font-semibold'
                     : 'bg-ivory text-ink-soft border-tower-100/60'
                 }`}
               >
                 <span
-                  className={`w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
+                  className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 ${
                     isActive
                       ? 'bg-gold-500 text-tower-950'
                       : isCompleted
@@ -211,44 +211,44 @@ export function RegistrationWizardClient() {
                 >
                   {isCompleted ? <CheckCircle2 className="w-3.5 h-3.5" /> : s.num}
                 </span>
-                <span className="truncate">{s.title}</span>
+                <span className="truncate text-xs">{s.title}</span>
               </li>
             );
           })}
         </ol>
       </div>
 
-      {/* 2. BANNER PERINGATAN PRIVASI (FR-08) */}
-      <div className="p-4 rounded-2xl bg-gold-100 text-tower-950 font-medium border border-gold-500/40 text-xs sm:text-sm flex items-start gap-3 shadow-sm">
-        <AlertTriangle className="w-5 h-5 text-tower-800 shrink-0 mt-0.5" />
-        <div className="space-y-1">
-          <strong className="block font-bold">
-            Sistem Pendaftaran Demo / Simulasi (Bukan Website Resmi)
-          </strong>
-          <p className="text-xs leading-relaxed text-tower-950">
-            Formulir ini dirancang untuk demonstrasi portofolio rekayasa antarmuka. <strong>DILARANG memasukkan data pribadi riil, NIK asli, atau informasi rekam medis sensitif.</strong> Seluruh formulir diproses 100% di memori peramban Anda (tanpa komunikasi server).
-          </p>
+      {/* 2. COMPACT PRIVACY BANNER (FR-08) */}
+      <div className="px-3.5 py-2.5 rounded-xl bg-gold-100 text-tower-950 font-medium border border-gold-500/40 text-xs flex items-center justify-between gap-3 shadow-xs">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <AlertTriangle className="w-4 h-4 text-tower-800 shrink-0" />
+          <span className="text-xs leading-normal">
+            <strong className="font-bold text-tower-900">Simulasi Demo:</strong> Dilarang memasukkan NIK atau data medis riil. Seluruh form diproses 100% lokal di browser.
+          </span>
         </div>
+        <span className="hidden sm:inline text-[11px] font-semibold text-tower-800 shrink-0 bg-gold-200/70 px-2 py-0.5 rounded-md">
+          100% Client-Side
+        </span>
       </div>
 
       {/* 3. KONTEN WIZARD SESUAI LANGKAH */}
 
       {/* ==================== LANGKAH 1: JALUR PELAYANAN ==================== */}
       {step === 1 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-md space-y-8">
-          <div className="space-y-2">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
+        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-tower-100 shadow-sm space-y-5 transition-all duration-200">
+          <div className="space-y-1">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-gold-700">
               Langkah 1 dari 4
             </span>
-            <h2 className="font-display font-bold text-2xl sm:text-3xl text-tower-950">
+            <h2 className="font-display font-bold text-xl sm:text-2xl text-tower-950">
               Pilih Jalur Pasien & Mitra Penjamin
             </h2>
-            <p className="text-sm text-ink-soft">
+            <p className="text-xs sm:text-sm text-ink-soft">
               Tentukan jenis penjaminan pembiayaan yang akan digunakan untuk konsultasi rawat jalan.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
             {[
               {
                 id: 'bpjs' as Penjamin,
@@ -279,29 +279,29 @@ export function RegistrationWizardClient() {
                   key={opt.id}
                   type="button"
                   onClick={() => setPenjamin(opt.id)}
-                  className={`p-6 rounded-2xl text-left border-2 transition-all flex flex-col justify-between space-y-4 min-h-[180px] ${
+                  className={`p-4 sm:p-5 rounded-xl text-left border-2 transition-all flex flex-col justify-between space-y-3 min-h-[140px] cursor-pointer ${
                     isSelected
-                      ? 'border-tower-800 bg-tower-50/80 shadow-md ring-2 ring-tower-800/20'
+                      ? 'border-tower-800 bg-tower-50/90 shadow-md ring-2 ring-tower-800/20'
                       : 'border-tower-100 bg-ivory hover:border-tower-300 hover:bg-white'
                   }`}
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded bg-tower-100 text-tower-900">
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-tower-100 text-tower-900">
                         {opt.badge}
                       </span>
                       {isSelected && (
-                        <CheckCircle2 className="w-5 h-5 text-tower-800" />
+                        <CheckCircle2 className="w-4 h-4 text-tower-800" />
                       )}
                     </div>
-                    <h3 className="font-display font-bold text-lg text-tower-950">
+                    <h3 className="font-display font-bold text-base sm:text-lg text-tower-950">
                       {opt.title}
                     </h3>
                     <p className="text-xs text-ink-soft leading-relaxed">
                       {opt.desc}
                     </p>
                   </div>
-                  <span className="text-xs font-bold text-tower-700">
+                  <span className="text-[11px] font-bold text-tower-700">
                     {opt.subtitle}
                   </span>
                 </button>
@@ -309,11 +309,11 @@ export function RegistrationWizardClient() {
             })}
           </div>
 
-          <div className="pt-6 border-t border-tower-100 flex justify-end">
+          <div className="pt-4 border-t border-tower-100 flex justify-end">
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 min-h-[44px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm shadow-sm hover:shadow-md transition-all cursor-pointer"
             >
               <span>Lanjut ke Pilih Poliklinik</span>
               <ArrowRight className="w-4 h-4" />
@@ -324,7 +324,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 2: POLIKLINIK ==================== */}
       {step === 2 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-md space-y-8">
+        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
@@ -419,7 +419,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 3: DOKTER & JADWAL ==================== */}
       {step === 3 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-md space-y-8">
+        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
               Langkah 3 dari 4
@@ -565,7 +565,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 4: DATA PASIEN & KONFIRMASI ==================== */}
       {step === 4 && (
-        <form onSubmit={handleValidateAndSubmit} className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-md space-y-8">
+        <form onSubmit={handleValidateAndSubmit} className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
@@ -766,6 +766,32 @@ export function RegistrationWizardClient() {
               </div>
             </div>
 
+            {/* 1D VECTOR BARCODE SIMULATOR (STITCH DESIGN SPEC) */}
+            <div className="pt-2 flex flex-col items-center justify-center p-3 rounded-2xl bg-tower-50 border border-tower-100">
+              <div className="flex items-center gap-0.5 h-10 py-1 px-3 bg-white rounded border border-tower-200">
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+                <div className="w-1 h-8 bg-tower-950" />
+                <div className="w-0.5 h-8 bg-tower-950" />
+                <div className="w-1.5 h-8 bg-tower-950" />
+                <div className="w-2 h-8 bg-tower-950" />
+              </div>
+              <span className="font-mono text-[10px] text-ink-soft tracking-widest mt-1 uppercase font-semibold">
+                SCAN BARCODE PADA KIOSK ANJUNGAN MANDIRI
+              </span>
+            </div>
+
             {/* PANDUAN KEDATANGAN */}
             <div className="p-4 rounded-xl bg-ivory border border-tower-100 text-xs space-y-1.5 text-ink">
               <strong className="block text-tower-900 font-bold">
@@ -788,9 +814,10 @@ export function RegistrationWizardClient() {
           {/* AKSI CETAK & DAFTAR BARU */}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
+              id="print-ticket-btn"
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Tiket Antrean (Print)</span>

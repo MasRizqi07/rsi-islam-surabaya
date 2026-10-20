@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { TOWER_FLOORS, GRAHA_FLOORS } from '@/data/buildings';
 import { SERVICES } from '@/data/services';
@@ -14,13 +14,24 @@ import {
   Stethoscope,
   Info,
   Layers,
+  Share2,
+  Check,
+  CornerDownRight,
 } from 'lucide-react';
 
 export function TowerDirectoryClient() {
-
   const [activeBuilding, setActiveBuilding] = useState<BuildingId>('tower');
-  const currentFloors = activeBuilding === 'tower' ? TOWER_FLOORS : GRAHA_FLOORS;
   const [selectedFloor, setSelectedFloor] = useState<number>(4);
+  const [onlyVerified, setOnlyVerified] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const currentFloors = activeBuilding === 'tower' ? TOWER_FLOORS : GRAHA_FLOORS;
+
+  // Filtered floors based on verified toggle
+  const visibleFloors = useMemo(() => {
+    if (!onlyVerified) return currentFloors;
+    return currentFloors.filter((f) => f.known);
+  }, [currentFloors, onlyVerified]);
 
   // Sinkronisasi saat URL searchParams dibaca di browser (client-only)
   useEffect(() => {
@@ -67,22 +78,31 @@ export function TowerDirectoryClient() {
 
   // Navigasi Keyboard (ArrowUp / ArrowDown)
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    const currentIndex = currentFloors.findIndex((f) => f.floor === selectedFloor);
+    const currentIndex = visibleFloors.findIndex((f) => f.floor === selectedFloor);
     if (currentIndex === -1) return;
 
     if (e.key === 'ArrowUp') {
       e.preventDefault();
-      // In our array, index 0 is top floor (13 or 5), index N is bottom (1 or 0)
       if (currentIndex > 0) {
-        const nextFloor = currentFloors[currentIndex - 1].floor;
+        const nextFloor = visibleFloors[currentIndex - 1].floor;
         handleSelectFloor(nextFloor);
       }
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      if (currentIndex < currentFloors.length - 1) {
-        const nextFloor = currentFloors[currentIndex + 1].floor;
+      if (currentIndex < visibleFloors.length - 1) {
+        const nextFloor = visibleFloors[currentIndex + 1].floor;
         handleSelectFloor(nextFloor);
       }
+    }
+  };
+
+  const handleCopyLink = () => {
+    if (typeof window !== 'undefined') {
+      const url = `${window.location.origin}/tower?gedung=${activeBuilding}&lantai=${selectedFloor}`;
+      navigator.clipboard.writeText(url).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
     }
   };
 
@@ -93,11 +113,18 @@ export function TowerDirectoryClient() {
     activeFloorData.serviceSlugs.includes(s.slug)
   );
 
+  const floorNumberStr =
+    activeFloorData.floor === 0
+      ? '00'
+      : activeFloorData.floor < 10
+      ? `0${activeFloorData.floor}`
+      : `${activeFloorData.floor}`;
+
   return (
     <div className="space-y-10" onKeyDown={handleKeyDown}>
       
-      {/* 1. PEMILIH GEDUNG (TAB GANDA) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-tower-100 pb-6">
+      {/* 1. PEMILIH GEDUNG & FILTER LANTAI TERVERIFIKASI */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-tower-100 pb-6">
         <div className="space-y-1">
           <span className="text-xs font-mono uppercase tracking-widest text-gold-700 font-bold block">
             Pusat Informasi Fasilitas Fisik
@@ -107,54 +134,82 @@ export function TowerDirectoryClient() {
           </h2>
         </div>
 
-        {/* TAB SWITCHER */}
-        <div
-          role="tablist"
-          aria-label="Pilih Gedung Rumah Sakit"
-          className="inline-flex p-1.5 rounded-2xl bg-tower-50 border border-tower-100 shadow-inner"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeBuilding === 'tower'}
-            aria-controls="building-panel"
-            id="tab-tower"
-            onClick={() => handleSelectBuilding('tower')}
-            className={`min-h-[44px] px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
-              activeBuilding === 'tower'
-                ? 'bg-tower-800 text-ivory shadow-md'
-                : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
-            }`}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* TAB SWITCHER DUA GEDUNG */}
+          <div
+            role="tablist"
+            aria-label="Pilih Gedung Rumah Sakit"
+            className="inline-flex p-1.5 rounded-2xl bg-tower-50 border border-tower-100 shadow-inner"
           >
-            <Building2 className="w-4 h-4" />
-            <span>Gedung Tower (13 Lantai)</span>
-          </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeBuilding === 'tower'}
+              aria-controls="building-panel"
+              id="tab-tower"
+              onClick={() => handleSelectBuilding('tower')}
+              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+                activeBuilding === 'tower'
+                  ? 'bg-tower-800 text-ivory shadow-md'
+                  : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
+              }`}
+            >
+              <Building2 className="w-4 h-4" />
+              <span>Gedung Tower (13 Lantai)</span>
+            </button>
 
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeBuilding === 'graha'}
-            aria-controls="building-panel"
-            id="tab-graha"
-            onClick={() => handleSelectBuilding('graha')}
-            className={`min-h-[44px] px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
-              activeBuilding === 'graha'
-                ? 'bg-tower-800 text-ivory shadow-md'
-                : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
-            }`}
-          >
-            <Layers className="w-4 h-4" />
-            <span>Gedung Graha (6 Level)</span>
-          </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeBuilding === 'graha'}
+              aria-controls="building-panel"
+              id="tab-graha"
+              onClick={() => handleSelectBuilding('graha')}
+              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+                activeBuilding === 'graha'
+                  ? 'bg-tower-800 text-ivory shadow-md'
+                  : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
+              }`}
+            >
+              <Layers className="w-4 h-4" />
+              <span>Gedung Graha (6 Level)</span>
+            </button>
+          </div>
+
+          {/* TOGGLE FILTER: SEMUA vs HANYA TERVERIFIKASI */}
+          <div className="inline-flex p-1 rounded-xl bg-tower-100/70 border border-tower-200 text-xs font-bold">
+            <button
+              type="button"
+              onClick={() => setOnlyVerified(false)}
+              className={`px-3 py-1.5 rounded-lg transition-all ${
+                !onlyVerified
+                  ? 'bg-white text-tower-950 shadow-xs'
+                  : 'text-ink-soft hover:text-tower-900'
+              }`}
+            >
+              Semua Lantai
+            </button>
+            <button
+              type="button"
+              onClick={() => setOnlyVerified(true)}
+              className={`px-3 py-1.5 rounded-lg transition-all ${
+                onlyVerified
+                  ? 'bg-white text-tower-950 shadow-xs'
+                  : 'text-ink-soft hover:text-tower-900'
+              }`}
+            >
+              Hanya Terverifikasi
+            </button>
+          </div>
         </div>
       </div>
 
       {/* 2. PETUNJUK AKSESIBILITAS KEYBOARD */}
-      <div className="flex items-center justify-between text-xs text-ink-soft bg-ivory px-4 py-2.5 rounded-xl border border-tower-100">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-ink-soft bg-ivory px-4 py-2.5 rounded-xl border border-tower-100">
         <div className="flex items-center gap-2">
           <Info className="w-4 h-4 text-tower-700 shrink-0" />
           <span>
-            <strong>Navigasi Cepat:</strong> Klik lantai atau gunakan tombol panah{' '}
+            <strong>Navigasi Keyboard:</strong> Gunakan tombol panah{' '}
             <kbd className="px-1.5 py-0.5 rounded bg-white border border-tower-100 font-mono text-[11px] shadow-sm">
               &uarr; Up
             </kbd>{' '}
@@ -162,10 +217,10 @@ export function TowerDirectoryClient() {
             <kbd className="px-1.5 py-0.5 rounded bg-white border border-tower-100 font-mono text-[11px] shadow-sm">
               &darr; Down
             </kbd>{' '}
-            pada keyboard untuk berpindah antar-lantai.
+            pada keyboard untuk menelusuri elevator lantai gedung.
           </span>
         </div>
-        <span className="hidden md:inline font-mono text-[11px] text-tower-700 font-bold">
+        <span className="font-mono text-[11px] text-tower-700 font-bold">
           {activeBuilding === 'tower' ? 'Tower 13 Lantai' : 'Graha Ground + 5'}
         </span>
       </div>
@@ -177,14 +232,14 @@ export function TowerDirectoryClient() {
         aria-labelledby={`tab-${activeBuilding}`}
         className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
       >
-        {/* KOLOM KIRI: STACK PEMILIH LANTAI (VERTISIKAL DARI ATAS KE BAWAH) */}
+        {/* KOLOM KIRI: STACK ELEVATOR LANTAI (5 COLS) */}
         <div className="lg:col-span-5 bg-white rounded-3xl p-5 border border-tower-100 shadow-md space-y-3">
           <div className="flex items-center justify-between px-2 pb-2 border-b border-tower-100">
             <span className="text-xs font-bold text-tower-900 uppercase tracking-wider">
-              Daftar Lantai {activeBuilding === 'tower' ? 'Tower' : 'Graha'}
+              Elevator {activeBuilding === 'tower' ? 'Tower 13 Lantai' : 'Graha 6 Level'}
             </span>
             <span className="text-[11px] font-mono text-ink-soft">
-              Pilih Lantai
+              {visibleFloors.length} Lantai Tampil
             </span>
           </div>
 
@@ -192,10 +247,10 @@ export function TowerDirectoryClient() {
             role="tablist"
             aria-label={`Daftar lantai ${activeBuilding}`}
             aria-orientation="vertical"
-            className="space-y-1.5 max-h-[560px] overflow-y-auto pr-1 focus:outline-none"
+            className="space-y-1.5 max-h-[580px] overflow-y-auto pr-1 focus:outline-none"
             tabIndex={0}
           >
-            {currentFloors.map((f: FloorInfo) => {
+            {visibleFloors.map((f: FloorInfo) => {
               const isSelected = selectedFloor === f.floor;
               const hasData = f.known;
 
@@ -208,7 +263,7 @@ export function TowerDirectoryClient() {
                   aria-controls="floor-detail-panel"
                   type="button"
                   onClick={() => handleSelectFloor(f.floor)}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all border min-h-[48px] ${
+                  className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all duration-200 border min-h-[48px] overflow-hidden cursor-pointer ${
                     isSelected
                       ? 'bg-tower-800 text-ivory border-tower-800 shadow-md ring-2 ring-gold-500/50 scale-[1.01]'
                       : hasData
@@ -216,18 +271,30 @@ export function TowerDirectoryClient() {
                       : 'bg-ivory text-ink-soft border-tower-100/60 hover:bg-tower-50'
                   }`}
                 >
+                  {/* ELEVATOR ACTIVE FLOOR ACCENT BAR */}
+                  {isSelected && (
+                    <span className="absolute left-0 top-0 bottom-0 w-1.5 bg-gold-400 rounded-l-xl shadow-xs" />
+                  )}
+
                   <div className="flex items-center gap-3 min-w-0">
-                    <span
-                      className={`w-8 font-display font-bold text-base shrink-0 ${
-                        isSelected ? 'text-gold-300' : 'text-tower-800'
-                      }`}
-                    >
-                      {f.floor === 0
-                        ? '00'
-                        : f.floor < 10
-                        ? `0${f.floor}`
-                        : f.floor}
-                    </span>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {isSelected ? (
+                        <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse shrink-0" />
+                      ) : (
+                        <span className="w-2 h-2 rounded-full bg-transparent shrink-0" />
+                      )}
+                      <span
+                        className={`w-7 font-display font-bold text-base shrink-0 ${
+                          isSelected ? 'text-gold-300' : 'text-tower-800'
+                        }`}
+                      >
+                        {f.floor === 0
+                          ? '00'
+                          : f.floor < 10
+                          ? `0${f.floor}`
+                          : f.floor}
+                      </span>
+                    </div>
                     <span className="truncate font-semibold text-xs sm:text-sm">
                       {f.label}
                     </span>
@@ -242,11 +309,11 @@ export function TowerDirectoryClient() {
                             : 'bg-tower-100 text-tower-900 border border-tower-600/20'
                         }`}
                       >
-                        {f.serviceSlugs.length > 0 ? `${f.serviceSlugs.length} Layanan` : 'Fasilitas'}
+                        {f.serviceSlugs.length > 0 ? `${f.serviceSlugs.length} Layanan` : 'Terverifikasi'}
                       </span>
                     ) : (
                       <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gold-100 text-tower-950 border border-gold-500/30">
-                        K4 (Tertutup)
+                        Status K4
                       </span>
                     )}
                   </div>
@@ -254,30 +321,111 @@ export function TowerDirectoryClient() {
               );
             })}
           </div>
+
+          {/* 4. COMPARATIVE ARCHITECTURAL SILHOUETTE WIDGET */}
+          <div className="bg-tower-950 text-ivory rounded-2xl p-4 border border-gold-500/20 shadow-sm space-y-3 pt-4 mt-2">
+            <div className="flex items-center justify-between text-xs border-b border-tower-800 pb-2">
+              <span className="font-bold uppercase tracking-wider text-gold-300 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-gold-400" />
+                <span>Siluet Arsitektur Gedung</span>
+              </span>
+              <span className="text-[10px] font-mono text-tower-300">13 vs 6 Lantai</span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 items-end pt-1">
+              {/* GEDUNG TOWER */}
+              <button
+                type="button"
+                onClick={() => handleSelectBuilding('tower')}
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                  activeBuilding === 'tower'
+                    ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
+                    : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
+                }`}
+              >
+                <div className="flex flex-col items-center justify-end h-28 gap-0.5 px-3">
+                  {Array.from({ length: 13 }).map((_, idx) => {
+                    const flNum = 13 - idx;
+                    const isCurrent = activeBuilding === 'tower' && selectedFloor === flNum;
+                    return (
+                      <div
+                        key={flNum}
+                        className={`w-full h-1.5 rounded-xs transition-all ${
+                          isCurrent
+                            ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
+                            : activeBuilding === 'tower'
+                            ? 'bg-tower-700/80'
+                            : 'bg-tower-800/50'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div>
+                  <span className="font-display font-bold text-xs block text-ivory">Gedung Tower</span>
+                  <span className="text-[10px] text-gold-300 font-mono">13 Lantai Utama</span>
+                </div>
+              </button>
+
+              {/* GEDUNG GRAHA */}
+              <button
+                type="button"
+                onClick={() => handleSelectBuilding('graha')}
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                  activeBuilding === 'graha'
+                    ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
+                    : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
+                }`}
+              >
+                <div className="flex flex-col items-center justify-end h-28 gap-1 px-2">
+                  {Array.from({ length: 6 }).map((_, idx) => {
+                    const flNum = 5 - idx;
+                    const isCurrent = activeBuilding === 'graha' && selectedFloor === flNum;
+                    return (
+                      <div
+                        key={flNum}
+                        className={`w-full h-2.5 rounded-xs transition-all ${
+                          isCurrent
+                            ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
+                            : activeBuilding === 'graha'
+                            ? 'bg-tower-700/80'
+                            : 'bg-tower-800/50'
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
+                <div>
+                  <span className="font-display font-bold text-xs block text-ivory">Gedung Graha</span>
+                  <span className="text-[10px] text-gold-300 font-mono">6 Level Fasilitas</span>
+                </div>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* KOLOM KANAN: PANEL DETAIL LANTAI */}
+        {/* KOLOM KANAN: PANEL DETAIL LANTAI (7 COLS) */}
         <div
           id="floor-detail-panel"
+          key={`${activeBuilding}-${selectedFloor}`}
           role="region"
           aria-live="polite"
-          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[560px] flex flex-col justify-between"
+          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[580px] flex flex-col justify-between transition-all duration-200"
         >
           <div className="space-y-6">
             
-            {/* HEADER DETAIL LANTAI */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-tower-100 pb-5">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
-                    {activeBuilding === 'tower' ? 'Gedung Tower RSIS' : 'Gedung Graha RSIS'}
+            {/* HEADER DETAIL LANTAI DENGAN SERIF BADGE BESAR */}
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 border-b border-tower-100 pb-5">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <span className="font-display font-black text-3xl sm:text-4xl text-tower-900 leading-none">
+                    LT. {floorNumberStr}
                   </span>
-                  <span className="text-tower-900 font-bold">&bull;</span>
-                  <span className="text-xs font-bold text-tower-800">
-                    {activeFloorData.label}
+                  <span className="px-2.5 py-0.5 rounded bg-tower-800 text-ivory font-bold text-xs uppercase tracking-wider">
+                    {activeBuilding === 'tower' ? 'Gedung Tower' : 'Gedung Graha'}
                   </span>
                 </div>
-                <h3 className="font-display font-bold text-2xl sm:text-3xl text-tower-950">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-tower-950">
                   {activeFloorData.known
                     ? activeFloorData.label
                     : `${activeFloorData.label} · Informasi Belum Tersedia`}
@@ -285,7 +433,7 @@ export function TowerDirectoryClient() {
               </div>
 
               {/* LENCANA STATUS VERIFIKASI / K4 */}
-              <div className="shrink-0">
+              <div className="shrink-0 flex items-center gap-2">
                 {activeFloorData.known ? (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20 shadow-sm">
                     <ShieldCheck className="w-4 h-4 text-tower-700" />
@@ -294,7 +442,7 @@ export function TowerDirectoryClient() {
                 ) : (
                   <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-gold-100 text-tower-950 border border-gold-500/40 shadow-sm">
                     <AlertCircle className="w-4 h-4 text-tower-800" />
-                    <span>Transparansi K4</span>
+                    <span>Status Transparansi K4</span>
                   </span>
                 )}
               </div>
@@ -306,16 +454,67 @@ export function TowerDirectoryClient() {
                 {activeFloorData.description}
               </p>
 
-              {/* PERINGATAN K4 TRANSPARANSI JIKA DATA TIDAK TERSEDIA */}
+              {/* JIKA STATUS K4: KARTU TRANSPARANSI DENGAN TOMBOL QUICK JUMP */}
               {!activeFloorData.known && (
-                <div className="p-4 rounded-2xl bg-gold-100 text-tower-950 font-medium border border-gold-500/40 text-xs sm:text-sm space-y-2">
+                <div className="p-5 rounded-2xl bg-gold-100/80 text-tower-950 font-medium border border-gold-400/50 space-y-4">
                   <div className="flex items-center gap-2 font-bold text-tower-950">
                     <Info className="w-4 h-4 text-tower-800 shrink-0" />
                     <span>Register Konflik K4 (Pencegahan Halusinasi):</span>
                   </div>
                   <p className="text-xs leading-relaxed">
-                    Berdasarkan sumber publikasi resmi rumah sakit yang dapat diverifikasi per Oktober 2026, peruntukan lantai ini tidak dirinci secara publik. Demi menjaga integritas data portofolio, isi ruangan tidak dikarang atau dispekulasikan.
+                    Berdasarkan sumber publikasi resmi rumah sakit yang dapat diverifikasi per Oktober 2026, peruntukan lantai ini belum dirinci secara publik. Demi menjaga integritas data portofolio, fasilitas tidak dikarang. Anda dapat langsung melompat ke lantai layanan publik terverifikasi berikut:
                   </p>
+                  
+                  {/* Quick Jump Buttons */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveBuilding('tower');
+                        handleSelectFloor(7);
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-tower-800 text-ivory text-xs font-bold hover:bg-tower-700 transition-colors flex items-center gap-1"
+                    >
+                      <CornerDownRight className="w-3.5 h-3.5 text-gold-300" />
+                      <span>Lompat ke Lt. 7 (An-Nisa)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveBuilding('tower');
+                        handleSelectFloor(4);
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-tower-800 text-ivory text-xs font-bold hover:bg-tower-700 transition-colors flex items-center gap-1"
+                    >
+                      <CornerDownRight className="w-3.5 h-3.5 text-gold-300" />
+                      <span>Lompat ke Lt. 4 (ICU Terpadu)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveBuilding('tower');
+                        handleSelectFloor(3);
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-tower-800 text-ivory text-xs font-bold hover:bg-tower-700 transition-colors flex items-center gap-1"
+                    >
+                      <CornerDownRight className="w-3.5 h-3.5 text-gold-300" />
+                      <span>Lompat ke Lt. 3 (Lab & Radiologi)</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveBuilding('tower');
+                        handleSelectFloor(2);
+                      }}
+                      className="px-3 py-1.5 rounded-lg bg-tower-800 text-ivory text-xs font-bold hover:bg-tower-700 transition-colors flex items-center gap-1"
+                    >
+                      <CornerDownRight className="w-3.5 h-3.5 text-gold-300" />
+                      <span>Lompat ke Lt. 2 (IGD 24 Jam)</span>
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -397,11 +596,25 @@ export function TowerDirectoryClient() {
 
           </div>
 
-          {/* FOOTER DETAIL PANEL */}
+          {/* FOOTER DETAIL PANEL DENGAN TOMBOL SALIN TAUTAN */}
           <div className="pt-6 border-t border-tower-100 mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-ink-soft">
-            <span>
-              * Dihimpun dari publikasi resmi RS Islam Surabaya A. Yani (diakses Oktober 2026).
-            </span>
+            <button
+              type="button"
+              onClick={handleCopyLink}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-tower-50 text-tower-900 hover:bg-tower-100 font-bold border border-tower-200 transition-all cursor-pointer"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-emerald-600" />
+                  <span className="text-emerald-700">Tautan Disalin! ✓</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="w-4 h-4 text-tower-700" />
+                  <span>Salin Tautan Lantai Ini</span>
+                </>
+              )}
+            </button>
 
             <div className="flex items-center gap-2">
               <Link

@@ -9,21 +9,21 @@ export const metadata = {
 
 export default function DaftarPage() {
   return (
-    <div className="py-10 sm:py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="py-4 sm:py-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
       
-      {/* HEADER HALAMAN */}
-      <div className="space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900">
+      {/* HEADER HALAMAN KOMPAK */}
+      <div className="space-y-1.5">
+        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-tower-100 text-tower-900">
           <CalendarCheck className="w-3.5 h-3.5 text-tower-700" />
           <span>Simulasi Pendaftaran Rawat Jalan</span>
         </div>
 
-        <h1 className="font-display font-bold text-3xl sm:text-4xl text-tower-950 tracking-tight">
+        <h1 className="font-display font-bold text-2xl sm:text-3xl text-tower-950 tracking-tight">
           Pendaftaran Mandiri Poliklinik
         </h1>
 
-        <p className="text-ink-soft text-sm sm:text-base max-w-2xl leading-relaxed">
-          Uji coba antarmuka pendaftaran online poliklinik spesialis dengan 4 langkah mudah. Form ini sepenuhnya diproses secara lokal tanpa transmisi data ke server eksternal.
+        <p className="text-ink-soft text-xs sm:text-sm max-w-2xl leading-relaxed">
+          Simulasi alur pendaftaran rawat jalan online 4 langkah. Form ini diproses 100% secara lokal di peramban tanpa transmisi data ke server eksternal.
         </p>
       </div>
 

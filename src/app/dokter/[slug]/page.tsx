@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { DOCTORS } from '@/data/doctors';
 import { SPECIALTIES } from '@/data/specialties';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { getDoctorBySlug } from '@/lib/data-utils';
 import {
   Clock,
@@ -9,6 +10,12 @@ import {
   CalendarCheck,
   AlertCircle,
   CheckCircle2,
+  MapPin,
+  Stethoscope,
+  ShieldCheck,
+  Phone,
+  Info,
+  ArrowRight,
 } from 'lucide-react';
 
 export function generateStaticParams() {
@@ -46,193 +53,296 @@ export default async function DoctorDetailPage({ params }: { params: Promise<{ s
     .join('')
     .toUpperCase();
 
+  const firstSchedule = doctor.schedule[0];
+
   return (
-    <div className="py-10 sm:py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
       {/* TOMBOL KEMBALI */}
       <Link
         href="/dokter"
-        className="inline-flex items-center gap-2 text-sm font-bold text-tower-800 hover:text-tower-600 transition-colors"
+        className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-tower-800 hover:text-tower-600 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Kembali ke Direktori Dokter</span>
       </Link>
 
-      {/* KARTU PROFIL UTAMA */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-lg space-y-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-b border-tower-100 pb-8">
-          
-          <div className="flex items-center gap-5">
+      {/* HEADER BANNER PROFIL DOKTER */}
+      <section className="bg-tower-950 text-ivory rounded-3xl p-6 sm:p-10 border border-tower-900 shadow-xl relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 90% 10%, rgba(201, 162, 74, 0.4) 0%, transparent 60%)',
+          }}
+        />
+
+        <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            
             {/* AVATAR INISIAL */}
-            <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-3xl flex items-center justify-center border-2 border-gold-500/40 shadow-md shrink-0">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-tower-800 via-tower-900 to-tower-950 text-gold-300 font-display font-bold text-3xl sm:text-4xl flex items-center justify-center border-2 border-gold-400/40 shadow-lg shrink-0">
               {initials}
             </div>
 
-            <div className="space-y-1">
-              <span className="text-xs font-bold text-tower-700 uppercase tracking-widest block">
-                {specialty?.name}
-              </span>
-              <h1 className="font-display font-bold text-2xl sm:text-3xl text-tower-950 tracking-tight">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-gold-100 text-tower-950 border border-gold-500/40">
+                  <AlertCircle className="w-3 h-3 text-tower-800" />
+                  <span>Tokoh Fiktif Simulasi · Berlabel Ilustrasi</span>
+                </span>
+                <span className="text-xs font-bold text-gold-300 uppercase tracking-widest">
+                  {specialty?.name}
+                </span>
+              </div>
+
+              <h1 className="font-display font-bold text-2xl sm:text-4xl text-ivory tracking-tight">
                 {doctor.title}
               </h1>
-              {doctor.subSpecialty && (
-                <span className="text-sm text-ink-soft block font-medium">
+
+              {doctor.subSpecialty ? (
+                <p className="text-xs sm:text-sm text-tower-100 font-medium">
                   Subspesialisasi: {doctor.subSpecialty}
+                </p>
+              ) : (
+                <p className="text-xs sm:text-sm text-tower-100 font-medium">
+                  Spesialisasi Klinis: {specialty?.name}
+                </p>
+              )}
+
+              {/* BADGES ROW */}
+              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-tower-900 text-tower-100 border border-tower-800">
+                  <MapPin className="w-3.5 h-3.5 text-gold-400" />
+                  <span>Gedung Graha & Tower RSIS</span>
                 </span>
+                {doctor.penjamin.includes('bpjs') && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-950 text-emerald-200 border border-emerald-800">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Menerima BPJS Kesehatan</span>
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-tower-900 text-tower-100 border border-tower-800">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-gold-400" />
+                  <span>Pasien Umum & Asuransi</span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* TWO-COLUMN CONTENT LAYOUT */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* LEFT COLUMN: Profil Klinis & Matriks Jadwal (8 Cols) */}
+        <div className="lg:col-span-8 space-y-8">
+          
+          {/* Card 1: Profil Klinis & Keahlian Medis */}
+          <article className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm space-y-6">
+            <div className="flex items-center justify-between pb-3 border-b border-tower-100">
+              <div className="flex items-center gap-2.5">
+                <Stethoscope className="w-6 h-6 text-tower-800" />
+                <h2 className="font-display font-bold text-xl sm:text-2xl text-tower-950">
+                  Profil Klinis & Keahlian Medis
+                </h2>
+              </div>
+              <span className="text-xs uppercase tracking-widest text-gold-700 font-bold hidden sm:inline">
+                Spesialisasi Terverifikasi
+              </span>
+            </div>
+
+            <p className="text-sm sm:text-base text-ink leading-relaxed">
+              {doctor.bio}
+            </p>
+
+            <div className="space-y-3 pt-2">
+              <h3 className="font-display font-bold text-base text-tower-900 flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-gold-700" />
+                <span>Standar Asuhan Klinis & Tindakan</span>
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-tower-50/70 p-4 rounded-2xl border border-tower-100 space-y-1">
+                  <span className="text-[10px] font-bold text-gold-700 uppercase tracking-wider block">
+                    01 / KONSULTASI
+                  </span>
+                  <h4 className="font-bold text-xs text-tower-950">Anamnesis Komprehensif</h4>
+                  <p className="text-[11px] text-ink-soft">Evaluasi menyeluruh tanda vital dan keluhan klinis berkala.</p>
+                </div>
+
+                <div className="bg-tower-50/70 p-4 rounded-2xl border border-tower-100 space-y-1">
+                  <span className="text-[10px] font-bold text-gold-700 uppercase tracking-wider block">
+                    02 / DIAGNOSTIK
+                  </span>
+                  <h4 className="font-bold text-xs text-tower-950">Penunjang Terpadu</h4>
+                  <p className="text-[11px] text-ink-soft">Integrasi instan dengan CT-Scan, Lab, dan EKG satu atap.</p>
+                </div>
+
+                <div className="bg-tower-50/70 p-4 rounded-2xl border border-tower-100 space-y-1">
+                  <span className="text-[10px] font-bold text-gold-700 uppercase tracking-wider block">
+                    03 / TATA LAKSANA
+                  </span>
+                  <h4 className="font-bold text-xs text-tower-950">Asuhan Syariah</h4>
+                  <p className="text-[11px] text-ink-soft">Terapi farmakologis rasional dengan komunikasi empatik.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* Card 2: Matriks Jadwal Praktik Mingguan Lengkap */}
+          <article className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-tower-100">
+              <div className="flex items-center gap-2.5">
+                <Clock className="w-6 h-6 text-tower-800" />
+                <h2 className="font-display font-bold text-xl sm:text-2xl text-tower-950">
+                  Matriks Jadwal Praktik Mingguan
+                </h2>
+              </div>
+              <span className="text-xs text-ink-soft font-mono">
+                Waktu Indonesia Barat (WIB)
+              </span>
+            </div>
+
+            {/* Responsive Table */}
+            <div className="overflow-x-auto rounded-2xl border border-tower-100">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead className="bg-tower-900 text-ivory font-display text-xs uppercase tracking-wider">
+                  <tr>
+                    <th scope="col" className="py-3.5 px-4 font-bold">Hari</th>
+                    <th scope="col" className="py-3.5 px-4 font-bold">Jam Praktik</th>
+                    <th scope="col" className="py-3.5 px-4 font-bold">Kategori Poli</th>
+                    <th scope="col" className="py-3.5 px-4 font-bold">Penjamin</th>
+                    <th scope="col" className="py-3.5 px-4 text-right font-bold">Tindakan</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-tower-100 bg-white">
+                  {doctor.schedule.map((sch, idx) => (
+                    <tr key={idx} className="hover:bg-tower-50/50 transition-colors">
+                      <td className="py-4 px-4 font-bold text-tower-950 capitalize">
+                        {sch.hari}
+                      </td>
+                      <td className="py-4 px-4 font-mono font-medium text-ink">
+                        {sch.mulai} – {sch.selesai} WIB
+                      </td>
+                      <td className="py-4 px-4">
+                        <span
+                          className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                            sch.poli === 'eksekutif'
+                              ? 'bg-gold-100 text-tower-950 border border-gold-400/40'
+                              : 'bg-tower-50 text-tower-900 border border-tower-200'
+                          }`}
+                        >
+                          Poli {sch.poli === 'eksekutif' ? 'Eksekutif' : 'Reguler'}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-ink-soft text-xs">
+                        {sch.poli === 'eksekutif'
+                          ? 'Umum & Asuransi Swasta'
+                          : doctor.penjamin.includes('bpjs')
+                          ? 'BPJS Kesehatan & Umum'
+                          : 'Umum & Mandiri'}
+                      </td>
+                      <td className="py-4 px-4 text-right">
+                        <Link
+                          href={`/daftar?dokter=${doctor.slug}&hari=${sch.hari}`}
+                          className="inline-flex items-center gap-1 font-bold text-xs text-tower-800 hover:text-tower-600 hover:underline"
+                        >
+                          <span>Pilih Sesi</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Important Notes Box */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-ivory border border-tower-100 flex items-start gap-3">
+              <Info className="w-5 h-5 text-tower-800 shrink-0 mt-0.5" />
+              <div className="space-y-1 text-xs text-ink-soft leading-relaxed">
+                <p className="font-bold text-tower-950">Catatan Penting Calon Pasien:</p>
+                <p>1. Pasien BPJS Kesehatan wajib membawa surat rujukan faskes primer aktif dan tiba 30 menit sebelum jadwal untuk pencocokan sidik jari.</p>
+                <p>2. Jadwal praktik dokter dapat mengalami penyesuaian darurat apabila dokter sedang menangani operasi cito atau tindakan gawat darurat.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        {/* RIGHT COLUMN: Sticky Booking Action Card (4 Cols) */}
+        <aside className="lg:col-span-4 w-full">
+          <div className="sticky top-24 bg-white rounded-3xl p-6 shadow-xl border border-tower-100 space-y-6">
+            
+            {/* Top Hairline Emas */}
+            <div className="h-1 -mx-6 -mt-6 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500 rounded-t-3xl" />
+
+            <div className="space-y-1">
+              <span className="inline-block px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-gold-100 text-tower-950 border border-gold-300">
+                Pendaftaran Rawat Jalan (Demo)
+              </span>
+              <h3 className="font-display font-bold text-xl text-tower-950">
+                Buat Janji Temu Dokter
+              </h3>
+            </div>
+
+            {/* Summary Box */}
+            <div className="p-4 rounded-2xl bg-tower-50/70 border border-tower-100 space-y-2.5 text-xs">
+              <div className="flex justify-between items-start gap-2">
+                <span className="text-ink-soft">Dokter Terpilih:</span>
+                <span className="font-bold text-tower-950 text-right">{doctor.title}</span>
+              </div>
+              <div className="flex justify-between items-center gap-2">
+                <span className="text-ink-soft">Poliklinik:</span>
+                <span className="font-semibold text-tower-900 text-right">{specialty?.name}</span>
+              </div>
+              {firstSchedule && (
+                <div className="pt-2 border-t border-tower-200/60 flex justify-between items-center gap-2">
+                  <span className="text-ink-soft">Sesi Terdekat:</span>
+                  <span className="font-bold text-gold-700 capitalize text-right">
+                    {firstSchedule.hari} ({firstSchedule.mulai} WIB)
+                  </span>
+                </div>
               )}
             </div>
-          </div>
 
-          {/* LENCANA ILUSTRASI & CTA DAFTAR */}
-          <div className="flex flex-col sm:items-end gap-3 w-full sm:w-auto">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-gold-100 text-tower-950 border border-gold-500/40">
-              <AlertCircle className="w-3.5 h-3.5 text-tower-800" />
-              <span>Tokoh Fiktif Simulasi</span>
-            </span>
-
+            {/* CTA Button */}
             <Link
               href={`/daftar?dokter=${doctor.slug}`}
-              className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm shadow-md transition-all w-full sm:w-auto text-center"
+              className="w-full py-3.5 px-4 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm text-center shadow-md transition-all flex items-center justify-center gap-2"
             >
               <CalendarCheck className="w-4 h-4" />
               <span>Daftar ke Dokter Ini</span>
             </Link>
-          </div>
-        </div>
 
-        {/* TENTANG & PENJAMIN */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          
-          {/* KOLOM KIRI: BIO */}
-          <div className="md:col-span-8 space-y-4">
-            <h2 className="font-display font-bold text-xl text-tower-900">
-              Profil Klinis & Pengalaman
-            </h2>
-            <p className="text-sm text-ink leading-relaxed">
-              {doctor.bio}
-            </p>
-            <p className="text-xs text-ink-soft leading-relaxed italic">
-              * Pelayanan mengedepankan etika kedokteran islami dengan komunikasi terapeutik yang ramah dan menenangkan.
-            </p>
-          </div>
-
-          {/* KOLOM KANAN: PENJAMIN & LAYANAN POLI */}
-          <div className="md:col-span-4 bg-ivory rounded-2xl p-5 border border-tower-100 space-y-4">
-            <h3 className="font-bold text-sm text-tower-950 uppercase tracking-wider">
-              Mitra Penjamin Diterima:
-            </h3>
-            
-            <ul className="space-y-2 text-xs">
-              {doctor.penjamin.includes('bpjs') ? (
-                <li className="flex items-center gap-2 font-bold text-emerald-800">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                  <span>Menerima Rujukan BPJS Kesehatan</span>
-                </li>
-              ) : (
-                <li className="flex items-center gap-2 text-ink-soft opacity-60">
-                  <AlertCircle className="w-4 h-4" />
-                  <span>Tidak Menerima BPJS (Khusus Eksekutif)</span>
-                </li>
-              )}
-              <li className="flex items-center gap-2 font-semibold text-ink">
-                <CheckCircle2 className="w-4 h-4 text-tower-700" />
-                <span>Pasien Umum (Mandiri)</span>
-              </li>
-              <li className="flex items-center gap-2 font-semibold text-ink">
-                <CheckCircle2 className="w-4 h-4 text-tower-700" />
-                <span>Asuransi Kesehatan Swasta</span>
-              </li>
-            </ul>
-
-            <div className="pt-3 border-t border-tower-100 text-xs text-ink-soft">
-              <strong>Kategori Poli:</strong> {doctor.poli.map((p) => p.toUpperCase()).join(' & ')}
-            </div>
-          </div>
-        </div>
-
-        {/* TABEL JADWAL PRAKTIK MINGGUAN */}
-        <div className="space-y-4 pt-4 border-t border-tower-100">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-tower-700" />
-              <h2 className="font-display font-bold text-xl text-tower-900">
-                Jadwal Praktik Mingguan
-              </h2>
-            </div>
-            <span className="text-xs text-ink-soft">
-              Waktu Indonesia Barat (WIB)
-            </span>
-          </div>
-
-          {/* DESKTOP TABLE */}
-          <div className="hidden sm:block overflow-hidden rounded-xl border border-tower-100">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-tower-900 text-ivory font-display text-xs uppercase tracking-wider">
-                <tr>
-                  <th scope="col" className="px-5 py-3">Hari</th>
-                  <th scope="col" className="px-5 py-3">Jam Praktik</th>
-                  <th scope="col" className="px-5 py-3">Layanan Poliklinik</th>
-                  <th scope="col" className="px-5 py-3 text-right">Aksi</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-tower-100 bg-white">
-                {doctor.schedule.map((sch, idx) => (
-                  <tr key={idx} className="hover:bg-tower-50/50 transition-colors">
-                    <td className="px-5 py-3.5 font-bold text-tower-950 capitalize">
-                      {sch.hari}
-                    </td>
-                    <td className="px-5 py-3.5 font-mono text-ink">
-                      {sch.mulai} - {sch.selesai} WIB
-                    </td>
-                    <td className="px-5 py-3.5">
-                      <span className={`px-2.5 py-1 rounded-md text-xs font-bold ${
-                        sch.poli === 'eksekutif'
-                          ? 'bg-tower-100 text-tower-900 border border-tower-600/30'
-                          : 'bg-ivory text-ink border border-tower-100'
-                      }`}>
-                        Poli {sch.poli === 'eksekutif' ? 'Eksekutif' : 'Reguler'}
-                      </span>
-                    </td>
-                    <td className="px-5 py-3.5 text-right">
-                      <Link
-                        href={`/daftar?dokter=${doctor.slug}&hari=${sch.hari}`}
-                        className="text-xs font-bold text-tower-800 hover:text-tower-600 hover:underline"
-                      >
-                        Pilih Hari Ini &rarr;
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* MOBILE LIST */}
-          <div className="sm:hidden space-y-2">
-            {doctor.schedule.map((sch, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-ivory border border-tower-100 flex items-center justify-between"
+            {/* Secondary Link to Tower Directory */}
+            <div className="text-center pt-1">
+              <Link
+                href="/tower"
+                className="inline-flex items-center gap-1 text-xs text-tower-800 hover:text-tower-600 font-semibold"
               >
-                <div>
-                  <span className="font-bold text-sm text-tower-950 capitalize block">
-                    {sch.hari}
-                  </span>
-                  <span className="text-xs text-ink-soft font-mono">
-                    {sch.mulai} - {sch.selesai} WIB ({sch.poli})
-                  </span>
-                </div>
+                <span>Lihat Lokasi Poli di Denah Gedung</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
 
-                <Link
-                  href={`/daftar?dokter=${doctor.slug}&hari=${sch.hari}`}
-                  className="px-3 py-1.5 rounded-lg bg-tower-800 text-ivory text-xs font-bold"
-                >
-                  Pilih
-                </Link>
+            {/* Hospital Assistance Box */}
+            <div className="pt-4 border-t border-tower-100 space-y-2">
+              <div className="flex items-center gap-2 text-xs text-ink-soft">
+                <Phone className="w-3.5 h-3.5 text-tower-700 shrink-0" />
+                <span>
+                  Sentral Informasi: <strong>{HOSPITAL_FACTS.contact.centralPhone}</strong>
+                </span>
               </div>
-            ))}
+              <p className="text-[11px] text-ink-soft leading-tight">
+                Konsultasi jadwal dan bantuan pendaftaran dapat dipandu oleh petugas admisi rumah sakit.
+              </p>
+            </div>
+
           </div>
-        </div>
+        </aside>
 
       </div>
 

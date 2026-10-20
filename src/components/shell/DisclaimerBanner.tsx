@@ -5,11 +5,11 @@ export function DisclaimerBanner() {
   return (
     <aside
       aria-label="Penafian Proyek"
-      className="bg-tower-950 text-gold-300 px-4 py-1.5 text-xs text-center border-b border-gold-500/20"
+      className="md:hidden bg-tower-950 text-gold-300 px-3 py-1 text-[11px] text-center border-b border-gold-500/20"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-center gap-2">
-        <AlertTriangle className="w-3.5 h-3.5 text-gold-500 shrink-0" aria-hidden="true" />
-        <span>{HOSPITAL_FACTS.disclaimer.short}</span>
+      <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5">
+        <AlertTriangle className="w-3 h-3 text-gold-400 shrink-0" aria-hidden="true" />
+        <span className="truncate">{HOSPITAL_FACTS.disclaimer.short}</span>
       </div>
     </aside>
   );

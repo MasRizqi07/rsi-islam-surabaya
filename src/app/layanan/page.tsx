@@ -1,47 +1,55 @@
 import Link from 'next/link';
 import { SERVICES } from '@/data/services';
 import { SPECIALTIES } from '@/data/specialties';
+import { ClinicIndexClient } from '@/components/layanan/ClinicIndexClient';
 import {
   Building2,
   ArrowRight,
-  Stethoscope,
+  ShieldCheck,
+  Clock,
+  Sparkles,
 } from 'lucide-react';
 
 export const metadata = {
   title: 'Katalog Layanan & 20 Poliklinik · RS Islam Surabaya A. Yani',
-  description: 'Informasi lengkap 8 layanan unggulan, penunjang diagnostik 24 jam, dan indeks 20 poliklinik spesialis rawat jalan di RS Islam Surabaya A. Yani.',
+  description: 'Informasi lengkap 8 layanan unggulan terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di RS Islam Surabaya A. Yani.',
   robots: { index: false, follow: false },
 };
 
 export default function LayananPage() {
   return (
-    <div className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       {/* HEADER KATALOG */}
-      <div className="space-y-3 border-b border-tower-100 pb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900">
+      <div className="space-y-4 border-b border-tower-100 pb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
           <Building2 className="w-3.5 h-3.5 text-tower-700" />
-          <span>Fasilitas & Penunjang Medis</span>
+          <span>Fasilitas & Penunjang Medis Modern</span>
         </div>
 
-        <h1 className="font-display font-bold text-3xl sm:text-4xl text-tower-900 tracking-tight">
+        <h1 className="font-display font-bold text-3xl sm:text-5xl text-tower-950 tracking-tight">
           Katalog Layanan Medis Terpadu
         </h1>
 
-        <p className="text-ink-soft text-sm sm:text-base max-w-2xl leading-relaxed">
-          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik spesialis yang terintegrasi di Gedung Tower 13 Lantai dan Gedung Graha.
+        <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
+          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di Gedung Tower 13 Lantai dan Gedung Graha RS Islam Surabaya A. Yani dengan standar syariah paripurna.
         </p>
       </div>
 
-      {/* 1. SECTION 8 LAYANAN UNGGULAN */}
+      {/* 1. SECTION 8 LAYANAN UNGGULAN (BENTO & GRID HYBRID) */}
       <section aria-labelledby="featured-services-heading" className="space-y-8">
-        <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-gold-700 block font-bold mb-1">
-            Fasilitas Prioritas
-          </span>
-          <h2 id="featured-services-heading" className="font-display font-bold text-2xl sm:text-3xl text-tower-900">
-            8 Layanan Unggulan Rumah Sakit
-          </h2>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-gold-700 block font-bold mb-1">
+              Fasilitas Prioritas
+            </span>
+            <h2 id="featured-services-heading" className="font-display font-bold text-2xl sm:text-3xl text-tower-900">
+              8 Layanan Unggulan Rumah Sakit
+            </h2>
+          </div>
+          <p className="text-xs sm:text-sm text-ink-soft max-w-md">
+            Dilengkapi teknologi diagnostik mutakhir dan terhubung langsung dalam sirkulasi gedung.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -49,30 +57,41 @@ export default function LayananPage() {
             <div
               key={svc.slug}
               id={svc.slug}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm hover:shadow-md hover:border-tower-700/40 transition-all flex flex-col justify-between space-y-4"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 transition-all flex flex-col justify-between space-y-6 group"
             >
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="px-3 py-1 rounded-lg text-xs font-bold bg-tower-100 text-tower-900">
+                  <span className="px-3 py-1 rounded-lg text-xs font-bold bg-tower-50 text-tower-900 border border-tower-200">
                     {svc.buildingId === 'tower' ? `Tower Lantai ${svc.floor}` : `Graha Lantai ${svc.floor === 0 ? 'Dasar' : svc.floor}`}
                   </span>
-                  {svc.open24h && (
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-alert-50 text-alert-600 border border-alert-600/20">
-                      Buka 24 Jam
+                  {svc.open24h ? (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-bold bg-alert-50 text-alert-600 border border-alert-600/30">
+                      <Clock className="w-3 h-3 text-alert-600" />
+                      <span>Buka 24 Jam Nonstop</span>
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-[11px] font-semibold bg-tower-50 text-tower-800">
+                      <Sparkles className="w-3 h-3 text-gold-700" />
+                      <span>Pelayanan Terjadwal</span>
                     </span>
                   )}
                 </div>
 
-                <h3 className="font-display font-bold text-2xl text-tower-950">
-                  {svc.name}
-                </h3>
+                <div className="space-y-2">
+                  <h3 className="font-display font-bold text-2xl text-tower-950 group-hover:text-tower-700 transition-colors">
+                    {svc.name}
+                  </h3>
+                  <p className="text-sm text-ink-soft leading-relaxed">
+                    {svc.description}
+                  </p>
+                </div>
 
-                <p className="text-sm text-ink-soft leading-relaxed">
-                  {svc.description}
-                </p>
-
-                <div className="p-3 rounded-xl bg-ivory text-xs text-ink-soft border border-tower-50">
-                  <span className="font-semibold text-tower-900">Sumber Publik:</span> {svc.sourceNote}
+                <div className="p-3.5 rounded-xl bg-ivory text-xs text-ink-soft border border-tower-100/70 space-y-1">
+                  <div className="flex items-center gap-1.5 font-bold text-tower-900">
+                    <ShieldCheck className="w-3.5 h-3.5 text-gold-700" />
+                    <span>Verifikasi Data Publik</span>
+                  </div>
+                  <p>{svc.sourceNote}</p>
                 </div>
               </div>
 
@@ -82,15 +101,15 @@ export default function LayananPage() {
                   className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1.5"
                 >
                   <Building2 className="w-3.5 h-3.5" />
-                  <span>Lihat di Tower Directory</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Lihat di Denah Tower</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
 
                 <Link
-                  href="/dokter"
-                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-100 text-tower-900 text-xs font-bold transition-colors"
+                  href={`/layanan/${svc.slug}`}
+                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold transition-all shadow-2xs"
                 >
-                  Cari Dokter Terkait
+                  Detail Fasilitas
                 </Link>
               </div>
             </div>
@@ -98,8 +117,8 @@ export default function LayananPage() {
         </div>
       </section>
 
-      {/* 2. SECTION INDEKS 20 POLIKLINIK SPESIALIS */}
-      <section aria-labelledby="polyclinics-index-heading" className="space-y-8 pt-8 border-t border-tower-100">
+      {/* 2. SECTION INDEKS 20 POLIKLINIK SPESIALIS DENGAN FILTER KATEGORI & PENCARIAN */}
+      <section aria-labelledby="polyclinics-index-heading" className="space-y-6 pt-10 border-t border-tower-100">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-gold-700 block font-bold mb-1">
             Rawat Jalan Mandiri & BPJS
@@ -107,44 +126,13 @@ export default function LayananPage() {
           <h2 id="polyclinics-index-heading" className="font-display font-bold text-2xl sm:text-3xl text-tower-900">
             Indeks 20 Poliklinik Rawat Jalan
           </h2>
-          <p className="text-ink-soft text-sm mt-1 max-w-xl">
-            Klik pada poliklinik untuk langsung menyaring jadwal dokter spesialis yang berpraktek di klinik terkait.
+          <p className="text-ink-soft text-sm mt-1 max-w-2xl">
+            Saring berdasarkan kategori klinik atau gunakan kotak pencarian untuk menemukan poliklinik dan jadwal dokter terkait.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {SPECIALTIES.map((spec) => (
-            <Link
-              key={spec.id}
-              href={`/dokter?spesialis=${spec.id}`}
-              className="bg-white rounded-2xl p-5 border border-tower-100 shadow-sm hover:shadow-md hover:border-tower-700 hover:bg-tower-50/40 transition-all flex flex-col justify-between group"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="w-8 h-8 rounded-lg bg-tower-100 flex items-center justify-center text-tower-800 group-hover:scale-110 transition-transform">
-                    <Stethoscope className="w-4 h-4" />
-                  </div>
-                  <span className="text-[10px] uppercase font-bold text-tower-950 px-2 py-0.5 rounded bg-gold-100 border border-gold-500/30">
-                    {spec.group}
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-base text-tower-950 group-hover:text-tower-700 transition-colors">
-                  {spec.name}
-                </h3>
-
-                <p className="text-xs text-ink-soft leading-relaxed line-clamp-2">
-                  {spec.summary}
-                </p>
-              </div>
-
-              <div className="pt-3 mt-3 border-t border-tower-50 flex items-center justify-between text-xs font-bold text-tower-800">
-                <span>Cari Dokter</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-          ))}
-        </div>
+        {/* Client Interactive Component */}
+        <ClinicIndexClient specialties={SPECIALTIES} />
       </section>
 
     </div>

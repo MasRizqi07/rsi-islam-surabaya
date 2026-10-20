@@ -30,6 +30,6 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'docs/**'],
+    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'docs/**', 'Design/**'],
   }
 );
