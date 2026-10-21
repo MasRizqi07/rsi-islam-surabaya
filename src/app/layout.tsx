@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { SkipLink } from '@/components/shell/SkipLink';
 import { DisclaimerBanner } from '@/components/shell/DisclaimerBanner';
 import { EmergencyBar } from '@/components/shell/EmergencyBar';
@@ -29,8 +30,8 @@ const plusJakarta = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'RS Islam Surabaya A. Yani · Konsep "Hijau Tower"',
-  description: 'Studi kasus portofolio independen redesign website RS Islam Surabaya A. Yani. Presisi medis berpadu warisan arsitektur islami modern.',
+  title: `${HOSPITAL_FACTS.name} · Konsep "Hijau Tower"`,
+  description: `Studi kasus portofolio independen redesign website ${HOSPITAL_FACTS.name}. Presisi medis berpadu warisan arsitektur islami modern.`,
   robots: {
     index: false,
     follow: false,

@@ -3,6 +3,8 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Specialty } from '@/data/types';
+import { HOSPITAL_FACTS } from '@/data/facts';
+import { CLINIC_GROUPS } from '@/data/specialties';
 import {
   Stethoscope,
   ArrowRight,
@@ -26,31 +28,11 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
     return specialties.filter((spec) => {
       // 1. Filter Category
       if (selectedCategory === 'dasar') {
-        const dasarIds = ['penyakit-dalam', 'jantung', 'paru', 'saraf', 'jiwa'];
-        if (!dasarIds.includes(spec.id)) return false;
+        if (spec.group !== CLINIC_GROUPS.DASAR) return false;
       } else if (selectedCategory === 'bedah') {
-        const bedahIds = [
-          'bedah-umum',
-          'ortopedi',
-          'urologi',
-          'mata',
-          'tht',
-          'bedah-saraf',
-          'bedah-anak',
-          'bedah-plastik',
-          'btkv',
-        ];
-        if (!bedahIds.includes(spec.id)) return false;
+        if (spec.group !== CLINIC_GROUPS.SPESIALISTIK) return false;
       } else if (selectedCategory === 'ibu-anak') {
-        const ibuAnakIds = [
-          'anak',
-          'obgyn',
-          'kulit-kelamin',
-          'anestesi',
-          'rehabilitasi-medik',
-          'estetika',
-        ];
-        if (!ibuAnakIds.includes(spec.id)) return false;
+        if (spec.group !== CLINIC_GROUPS.PENUNJANG) return false;
       }
 
       // 2. Search Query
@@ -186,7 +168,7 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
                   {spec.name}
                 </h3>
                 <span className="text-[11px] font-semibold text-gold-700 uppercase tracking-wide block mt-0.5">
-                  Gedung Graha & Tower
+                  {HOSPITAL_FACTS.buildings.graha.name} & {HOSPITAL_FACTS.buildings.tower.name}
                 </span>
               </div>
 

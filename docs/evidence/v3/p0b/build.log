@@ -1,0 +1,69 @@
+# Command: npm run build
+# Exit Code: 0
+# Git Commit: cd13566ddce31aaa634bf1aa52f26dcf91b4b553
+# Git Status: M docs/evidence/duplication-results.json
+ M docs/evidence/facts-check-results.json
+ M docs/screenshots/daftar-desktop.png
+ M docs/screenshots/daftar-tablet.png
+ M docs/screenshots/dokter-tablet.png
+ M docs/screenshots/home-desktop.png
+ M docs/screenshots/home-mobile-small.png
+ M docs/screenshots/home-mobile-standard.png
+ M docs/screenshots/home-tablet.png
+ M docs/screenshots/igd-desktop.png
+ M docs/screenshots/igd-mobile-small.png
+ M docs/screenshots/igd-mobile-standard.png
+ M docs/screenshots/igd-tablet.png
+ M docs/screenshots/kontak-desktop.png
+ M docs/screenshots/kontak-mobile-small.png
+ M docs/screenshots/kontak-mobile-standard.png
+ M docs/screenshots/kontak-tablet.png
+ M docs/screenshots/layanan-desktop.png
+ M docs/screenshots/layanan-tablet.png
+ M docs/screenshots/tentang-desktop.png
+ M docs/screenshots/tentang-tablet.png
+?? docs/evidence/v3/p0b/
+
+> rsi-islam-sby@2.0.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.mjs took 19ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 812ms
+  Running TypeScript ...
+  Finished TypeScript in 1828ms ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/43) ...
+  Generating static pages using 11 workers (10/43) 
+  Generating static pages using 11 workers (21/43) 
+  Generating static pages using 11 workers (32/43) 
+✓ Generating static pages using 11 workers (43/43) in 804ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /daftar
+├ ○ /dokter
+├   /dokter/[slug]
+│ ├ ● /dokter/dr-fauzi-rachman-sppd
+│ ├ ● /dokter/dr-anisa-kusuma-sppd
+│ ├ ● /dokter/dr-bambang-suharto-sppd
+│ └ ● [+21 more paths]
+├ ○ /igd
+├ ○ /kontak
+├ ○ /layanan
+├   /layanan/[slug]
+│ ├ ● /layanan/igd
+│ ├ ● /layanan/hemodialisis
+│ ├ ● /layanan/perawatan-intensif
+│ └ ● [+5 more paths]
+├ ○ /styleguide
+├ ○ /tentang
+└ ○ /tower
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)

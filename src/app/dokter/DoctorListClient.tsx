@@ -40,11 +40,19 @@ export function DoctorListClient() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const searchParams = new URLSearchParams(window.location.search);
-    setSearchQuery(searchParams.get('q') || '');
-    setSelectedSpecialty(searchParams.get('spesialis') || 'all');
-    setSelectedHari(searchParams.get('hari') || 'all');
-    setSelectedPenjamin(searchParams.get('penjamin') || 'all');
-    setSelectedPoli(searchParams.get('poli') || 'all');
+    const q = searchParams.get('q');
+    const s = searchParams.get('spesialis');
+    const h = searchParams.get('hari');
+    const p = searchParams.get('penjamin');
+    const po = searchParams.get('poli');
+
+    if (q || s || h || p || po) {
+      if (q) setSearchQuery(q);
+      if (s) setSelectedSpecialty(s);
+      if (h) setSelectedHari(h);
+      if (p) setSelectedPenjamin(p);
+      if (po) setSelectedPoli(po);
+    }
   }, []);
 
   // Fungsi pembaruan URL yang konsisten tanpa race condition & tanpa suspense bailout

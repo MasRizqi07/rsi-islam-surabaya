@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!doctor) return { title: 'Dokter Tidak Ditemukan' };
 
   return {
-    title: `${doctor.title} · Profil & Jadwal Praktik · RS Islam Surabaya A. Yani`,
-    description: `Jadwal praktik ${doctor.title}, spesialisasi ${doctor.specialtyId}, penerimaan BPJS Kesehatan dan rawat jalan di RS Islam Surabaya A. Yani.`,
+    title: `${doctor.title} · Profil & Jadwal Praktik · ${HOSPITAL_FACTS.name}`,
+    description: `Jadwal praktik ${doctor.title}, spesialisasi ${doctor.specialtyId}, penerimaan BPJS Kesehatan dan rawat jalan di ${HOSPITAL_FACTS.name}.`,
     robots: { index: false, follow: false },
   };
 }
@@ -114,7 +114,7 @@ export default async function DoctorDetailPage({ params }: { params: Promise<{ s
               <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
                 <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-tower-900 text-tower-100 border border-tower-800">
                   <MapPin className="w-3.5 h-3.5 text-gold-400" />
-                  <span>Gedung Graha & Tower RSIS</span>
+                  <span>{HOSPITAL_FACTS.buildings.graha.name} & Tower RSIS</span>
                 </span>
                 {doctor.penjamin.includes('bpjs') && (
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-950 text-emerald-200 border border-emerald-800">

@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Kontak & Akses Menuju Rumah Sakit · RS Islam Surabaya A. Yani',
+  title: `Kontak & Akses Menuju Rumah Sakit · ${HOSPITAL_FACTS.name}`,
   description: `Alamat lengkap, nomor darurat resmi, armada ambulans, sentral telepon, matriks fasilitas 24 jam, dan peta arsitektural kompleks ${HOSPITAL_FACTS.name}.`,
   robots: { index: false, follow: false },
 };
@@ -36,7 +36,7 @@ export default function KontakPage() {
         </h1>
 
         <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
-          Pusat komando komunikasi medis, rujukan gawat darurat, dan panduan sirkulasi gerbang kompleks Gedung Tower & Graha RS Islam Surabaya A. Yani.
+          Pusat komando komunikasi medis, rujukan gawat darurat, dan panduan sirkulasi gerbang kompleks {HOSPITAL_FACTS.buildings.tower.name} & Graha {HOSPITAL_FACTS.name}.
         </p>
       </div>
 
@@ -224,7 +224,7 @@ export default function KontakPage() {
               </div>
 
               <div className="flex items-center justify-between p-2.5 rounded-xl bg-ivory">
-                <span className="font-bold text-tower-950">Radiologi & CT-Scan 128 Slice</span>
+                <span className="font-bold text-tower-950">Radiologi & {HOSPITAL_FACTS.equipment.ctScan}</span>
                 <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
                   Tower Lt. 3 · Buka 24 Jam
                 </span>
@@ -290,7 +290,7 @@ export default function KontakPage() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 role="img"
-                aria-label="Peta diagram skematis akses Jl. Achmad Yani & sirkulasi kompleks RS Islam Surabaya A. Yani"
+                aria-label={`Peta diagram skematis akses Jl. Achmad Yani & sirkulasi kompleks ${HOSPITAL_FACTS.name}`}
               >
                 <defs>
                   <pattern id="archGrid" width="40" height="40" patternUnits="userSpaceOnUse">

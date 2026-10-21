@@ -3,7 +3,7 @@ import { HOSPITAL_FACTS } from '@/data/facts';
 import { ShieldCheck, PhoneCall, CheckCircle2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Styleguide & Sistem Desain · RS Islam Surabaya A. Yani',
+  title: `Styleguide & Sistem Desain · ${HOSPITAL_FACTS.name}`,
   robots: { index: false, follow: false },
 };
 
@@ -96,7 +96,7 @@ export default function StyleguidePage() {
           <div>
             <span className="text-xs font-mono text-ink-soft">Display XL · font-display</span>
             <div className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-tower-900">
-              Gedung Tower 13 Lantai
+              {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai
             </div>
           </div>
 

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SERVICES } from '@/data/services';
 import { DOCTORS } from '@/data/doctors';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import {
   Building2,
   Clock,
@@ -23,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!service) return { title: 'Layanan Tidak Ditemukan' };
 
   return {
-    title: `${service.name} · Layanan Medis · RS Islam Surabaya A. Yani`,
-    description: `${service.summary} Lokasi di ${service.buildingId === 'tower' ? 'Gedung Tower' : 'Gedung Graha'} Lantai ${service.floor}.`,
+    title: `${service.name} · Layanan Medis · ${HOSPITAL_FACTS.name}`,
+    description: `${service.summary} Lokasi di ${service.buildingId === 'tower' ? HOSPITAL_FACTS.buildings.tower.name : HOSPITAL_FACTS.buildings.graha.name} Lantai ${service.floor}.`,
     robots: { index: false, follow: false },
   };
 }
@@ -42,8 +43,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const floorLabel =
     service.buildingId === 'tower'
-      ? `Gedung Tower Lantai ${service.floor}`
-      : `Gedung Graha ${service.floor === 0 ? 'Lantai Dasar' : `Lantai ${service.floor}`}`;
+      ? `${HOSPITAL_FACTS.buildings.tower.name} Lantai ${service.floor}`
+      : `${HOSPITAL_FACTS.buildings.graha.name} ${service.floor === 0 ? 'Lantai Dasar' : `Lantai ${service.floor}`}`;
 
   return (
     <div className="py-10 sm:py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">

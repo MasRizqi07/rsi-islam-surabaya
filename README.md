@@ -1,7 +1,7 @@
 # RS Islam Surabaya A. Yani · Konsep "Hijau Tower"
 > **Portfolio Case Study · Website Redesign & Modern Healthcare Frontend Architecture**  
 > *Studi kasus desain sistem dan rekayasa web independen: Presisi Medis Modern × 51 Tahun Pengabdian Islami.*  
-> **Live Preview (Demo)**: [https://rsi-islam-surabaya.vercel.app](https://rsi-islam-surabaya.vercel.app) *(Deploy otomatis cabang `main` / `v3/*` via GitHub repository)*  
+> **Live Preview (Demo)**: *LIVE URL: BELUM ADA (deployment manual user belum dikonfigurasi)*  
 > 
 > ![Beranda Desktop](docs/screenshots/home-desktop.png)
 
@@ -9,8 +9,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Mode-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4%20(@theme)-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![WCAG 2.2 AA](https://img.shields.io/badge/A11y-WCAG%202.2%20AA%20Compliant-green?style=flat)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse%20Mobile-Perf%2089--96%20%7C%20A11y%2098--100-brightgreen?style=flat&logo=googlechrome)](docs/evidence/v3/p0/lighthouse-summary.json)
-[![Playwright](https://img.shields.io/badge/Tests-100%2F100%20Passed-success?style=flat&logo=playwright)](tests/)
+[![Unit Tests](https://img.shields.io/badge/Vitest-21%2F21%20Passed-brightgreen?style=flat)](tests/)
+[![E2E Tests](https://img.shields.io/badge/Playwright-106%2F106%20Passed-brightgreen?style=flat)](tests/)
 
 ---
 
@@ -50,7 +50,7 @@ Hasil audit lab dijalankan menggunakan Google Chrome Headless dengan profil **De
 > **Batasan yang Diketahui & Analisis Akar Masalah CWV (D6):**
 > 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf teks intro (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan font disajikan lokal (self-hosted). Waktu LCP didominasi oleh *Element Render Delay* (~2.1s) saat JavaScript runtime Next.js melakukan hidrasi komponen pada lingkungan seluler dengan pelambatan CPU 4x.
 > 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Terlampaui 6ms pada run 2 akibat komputasi rendering SVG triase saat hidrasi awal.
-> 3. **Pencapaian Mutlak**: CLS tercatat **0.000 (Sempurna)** pada seluruh 5 rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
+> 3. **Pencapaian**: CLS tercatat **0.000** pada seluruh 5 rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
 
 ### 2. Matriks Pengujian Visual Multi-Viewport (Responsiveness)
 Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggaran horizontal overflow** (`scrollWidth === clientWidth`):
@@ -63,11 +63,18 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
 | **Desktop** | 1280 × 800 px | 8 Rute Kunci | **0 px (Nol)** | [docs/screenshots/*-desktop.png](docs/screenshots/) |
 
 ### 3. Matriks Pengujian Fungsional & Integritas
-- **Unit Tests (Vitest)**: **19/19 lulus** (100% integritas relasi skema data dokter, poliklinik, layanan, dan gedung).
-- **Playwright E2E Suite**: **100/100 pengujian lulus** (mencakup alur pendaftaran demo, sinkronisasi filter searchParams, dan isolasi jaringan).
+- **Unit Tests (Vitest)**: **21/21 lulus** (integritas relasi skema data dokter, poliklinik, layanan, dan gedung).
+- **Playwright E2E Suite**: **106/106 pengujian lulus** (mencakup alur pendaftaran demo, sinkronisasi filter searchParams, dan isolasi jaringan).
 - **Axe-core Accessibility Audit**: **0 pelanggaran kategori Serious atau Critical** pada seluruh rute.
 - **Audit Kontras Warna WCAG 2.2 AA**: **14/14 pasangan warna token lolos** (rasio 4.77:1 hingga 15.87:1 terhadap ambang minimum 4.5:1).
-- **Scanner Kebocoran Fakta RS (`check:facts`)**: **0 kebocoran literal** (100% fakta diimpor dari berkas tunggal `src/data/facts.ts`).
+- **Scanner Kebocoran Fakta RS (`check:facts`)**: **0 kebocoran literal** (seluruh fakta diimpor dari berkas tunggal `src/data/facts.ts`).
+- **Scanner Duplikasi Data (`check:duplication`)**: **0 duplikasi string literal data** (seluruh string data diimpor dari `src/data/*`).
+
+### 4. Batasan yang Diketahui (Known Limitations)
+1. **Database Belum Terpasang**: Aplikasi saat ini beroperasi murni dengan mock data in-memory (Zustand & TypeScript fixtures) dan Static Site Generation (SSG). Belum ada database relasional (PostgreSQL / Prisma).
+2. **Autentikasi & RBAC Belum Terpasang**: Sistem otentikasi pengguna, session manajemen, dan role-based access control belum diimplementasikan.
+3. **Live URL**: `LIVE URL: BELUM ADA` (deployment manual hosting user belum dikonfigurasi).
+4. **Pendaftaran Pasien Online**: Berupa simulasi interaktif frontend murni (client-side) tanpa transmisi data ke API backend nyata.
 
 ---
 
@@ -172,7 +179,7 @@ Proyek ini menerapkan protokol integritas fakta ketat berdasarkan audit sumber d
 ### Prasyarat Sistem
 - **Node.js**: versi ≥ 20.0.0
 - **npm**: versi ≥ 10.0.0
-- **Sistem Operasi**: Kompatibel 100% pada Windows (PowerShell), macOS, dan Linux.
+- **Sistem Operasi**: Kompatibel pada Windows (PowerShell), macOS, dan Linux.
 
 ### 1. Kloning & Pemasangan Dependensi
 ```powershell

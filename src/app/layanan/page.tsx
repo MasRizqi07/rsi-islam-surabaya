@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SERVICES } from '@/data/services';
 import { SPECIALTIES } from '@/data/specialties';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { ClinicIndexClient } from '@/components/layanan/ClinicIndexClient';
 import {
   Building2,
@@ -11,8 +12,8 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Katalog Layanan & 20 Poliklinik · RS Islam Surabaya A. Yani',
-  description: 'Informasi lengkap 8 layanan unggulan terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di RS Islam Surabaya A. Yani.',
+  title: `Katalog Layanan & 20 Poliklinik · ${HOSPITAL_FACTS.name}`,
+  description: `Informasi lengkap 8 layanan unggulan terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di ${HOSPITAL_FACTS.name}.`,
   robots: { index: false, follow: false },
 };
 
@@ -32,7 +33,7 @@ export default function LayananPage() {
         </h1>
 
         <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
-          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di Gedung Tower 13 Lantai dan Gedung Graha RS Islam Surabaya A. Yani dengan standar syariah paripurna.
+          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
         </p>
       </div>
 

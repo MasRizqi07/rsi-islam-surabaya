@@ -39,6 +39,9 @@ jobs:
       - name: Check Hospital Facts
         run: npm run check:facts
 
+      - name: Check Data Duplication
+        run: npm run check:duplication
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps chromium
 

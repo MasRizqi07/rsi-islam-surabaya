@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { TOWER_FLOORS, GRAHA_FLOORS } from '@/data/buildings';
 import { SERVICES } from '@/data/services';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { BedStatusWidget } from '@/components/home/BedStatusWidget';
 import { BuildingId, FloorInfo } from '@/data/types';
 import {
@@ -155,7 +156,7 @@ export function TowerDirectoryClient() {
               }`}
             >
               <Building2 className="w-4 h-4" />
-              <span>Gedung Tower (13 Lantai)</span>
+              <span>{HOSPITAL_FACTS.buildings.tower.name} (13 Lantai)</span>
             </button>
 
             <button
@@ -172,7 +173,7 @@ export function TowerDirectoryClient() {
               }`}
             >
               <Layers className="w-4 h-4" />
-              <span>Gedung Graha (6 Level)</span>
+              <span>{HOSPITAL_FACTS.buildings.graha.name} (6 Level)</span>
             </button>
           </div>
 
@@ -362,7 +363,7 @@ export function TowerDirectoryClient() {
                   })}
                 </div>
                 <div>
-                  <span className="font-display font-bold text-xs block text-ivory">Gedung Tower</span>
+                  <span className="font-display font-bold text-xs block text-ivory">{HOSPITAL_FACTS.buildings.tower.name}</span>
                   <span className="text-[10px] text-gold-300 font-mono">13 Lantai Utama</span>
                 </div>
               </button>
@@ -396,7 +397,7 @@ export function TowerDirectoryClient() {
                   })}
                 </div>
                 <div>
-                  <span className="font-display font-bold text-xs block text-ivory">Gedung Graha</span>
+                  <span className="font-display font-bold text-xs block text-ivory">{HOSPITAL_FACTS.buildings.graha.name}</span>
                   <span className="text-[10px] text-gold-300 font-mono">6 Level Fasilitas</span>
                 </div>
               </button>
@@ -422,7 +423,7 @@ export function TowerDirectoryClient() {
                     LT. {floorNumberStr}
                   </span>
                   <span className="px-2.5 py-0.5 rounded bg-tower-800 text-ivory font-bold text-xs uppercase tracking-wider">
-                    {activeBuilding === 'tower' ? 'Gedung Tower' : 'Gedung Graha'}
+                    {activeBuilding === 'tower' ? HOSPITAL_FACTS.buildings.tower.name : HOSPITAL_FACTS.buildings.graha.name}
                   </span>
                 </div>
                 <h3 className="font-display font-bold text-xl sm:text-2xl text-tower-950">
@@ -580,7 +581,7 @@ export function TowerDirectoryClient() {
                   </span>
                 </div>
                 <p className="text-xs text-ink leading-relaxed">
-                  Loket pendaftaran rawat jalan, loket BPJS Centre, serta poliklinik spesialis bedah, ortopedi, THT, gigi, dan rehabilitasi medik dipusatkan di Lantai Dasar Gedung Graha.
+                  Loket pendaftaran rawat jalan, loket BPJS Centre, serta poliklinik spesialis bedah, ortopedi, THT, gigi, dan rehabilitasi medik dipusatkan di Lantai Dasar {HOSPITAL_FACTS.buildings.graha.name}.
                 </p>
                 <div className="pt-1">
                   <Link

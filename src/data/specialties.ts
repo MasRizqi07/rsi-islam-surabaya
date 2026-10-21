@@ -1,5 +1,11 @@
 import { Specialty } from './types';
 
+export const CLINIC_GROUPS = {
+  DASAR: 'dasar',
+  SPESIALISTIK: 'spesialistik',
+  PENUNJANG: 'penunjang',
+} as const;
+
 /**
  * 20 POLIKLINIK RAWAT JALAN TERVERIFIKASI
  * Berdasarkan Lampiran A PRD v2.0 (Sumber publik S1 rsisurabaya.com)

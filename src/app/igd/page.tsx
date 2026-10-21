@@ -14,8 +14,8 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Instalasi Gawat Darurat (IGD 24 Jam) · RS Islam Surabaya A. Yani',
-  description: 'Layanan kegawatdaruratan medis 24 jam dengan sertifikasi ATLS/ACLS, armada ambulans emergency, dan depo farmasi terpadu satu lantai di Gedung Tower Lantai 2.',
+  title: `${HOSPITAL_FACTS.emergency.title} · ${HOSPITAL_FACTS.name}`,
+  description: `Layanan kegawatdaruratan medis 24 jam dengan sertifikasi ATLS/ACLS, armada ambulans emergency, dan depo farmasi terpadu satu lantai di ${HOSPITAL_FACTS.buildings.tower.name} Lantai 2.`,
   robots: { index: false, follow: false },
 };
 
@@ -45,8 +45,7 @@ export default function IgdPage() {
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alert-600/20 border border-alert-600/40 text-ivory text-[10px] sm:text-xs font-bold uppercase tracking-wider">
             <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert-600 opacity-75" />
-              <span className="relative inline-flex rounded-full h-full w-full bg-alert-600" />
+              <span className="relative inline-flex rounded-full h-full w-full bg-alert-600 shadow-[0_0_6px_rgba(198,47,47,0.9)]" />
             </span>
             <span className="text-ivory font-extrabold tracking-wide">
               INSTALASI GAWAT DARURAT (IGD) SIAGA 24 JAM · BUKA HARI LIBUR & TANGGAL MERAH
@@ -61,7 +60,7 @@ export default function IgdPage() {
             <p className="text-xs sm:text-sm text-gold-300 font-medium flex items-center gap-1.5">
               <MapPin className="w-4 h-4 text-gold-400 shrink-0" />
               <span>
-                Lokasi Fisik: <strong>Gedung Tower Lantai 2</strong> · {contact.address} (Akses Khusus Drop-Off Ambulans & Ramp Mandiri)
+                Lokasi Fisik: <strong>{HOSPITAL_FACTS.buildings.tower.name} Lantai 2</strong> · {contact.address} (Akses Khusus Drop-Off Ambulans & Ramp Mandiri)
               </span>
             </p>
           </div>
@@ -166,7 +165,7 @@ export default function IgdPage() {
             Sistem Triase Prioritas Medis Gawat Darurat
           </h2>
           <p className="text-ink-soft text-sm sm:text-base leading-relaxed">
-            Urutan penanganan pasien di IGD RS Islam Surabaya A. Yani ditentukan secara ketat berdasarkan <strong>tingkat keparahan ancaman jiwa dan kestabilan tanda vital</strong>, bukan berdasarkan urutan kedatangan di loket pendaftaran.
+            Urutan penanganan pasien di IGD {HOSPITAL_FACTS.name} ditentukan secara ketat berdasarkan <strong>tingkat keparahan ancaman jiwa dan kestabilan tanda vital</strong>, bukan berdasarkan urutan kedatangan di loket pendaftaran.
           </p>
         </div>
 
@@ -326,10 +325,10 @@ export default function IgdPage() {
                 Arsitektur Medis Satu Lantai
               </span>
               <h2 className="font-display font-bold text-2xl sm:text-3xl text-tower-950">
-                Alur Penanganan Terpadu Gedung Tower Lantai 2
+                Alur Penanganan Terpadu {HOSPITAL_FACTS.buildings.tower.name} Lantai 2
               </h2>
               <p className="text-ink-soft text-sm leading-relaxed">
-                Keunggulan utama Gedung Tower RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
+                Keunggulan utama {HOSPITAL_FACTS.buildings.tower.name} RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
               </p>
             </div>
 

@@ -1,0 +1,37 @@
+# Command: curl -I -s https://rsi-islam-surabaya.vercel.app
+# Exit Code: 0
+# Git Commit: cd13566ddce31aaa634bf1aa52f26dcf91b4b553
+# Git Status: M docs/evidence/duplication-results.json
+ M docs/evidence/facts-check-results.json
+ M docs/screenshots/daftar-desktop.png
+ M docs/screenshots/daftar-tablet.png
+ M docs/screenshots/dokter-tablet.png
+ M docs/screenshots/home-desktop.png
+ M docs/screenshots/home-mobile-small.png
+ M docs/screenshots/home-mobile-standard.png
+ M docs/screenshots/home-tablet.png
+ M docs/screenshots/igd-desktop.png
+ M docs/screenshots/igd-mobile-small.png
+ M docs/screenshots/igd-mobile-standard.png
+ M docs/screenshots/igd-tablet.png
+ M docs/screenshots/kontak-desktop.png
+ M docs/screenshots/kontak-mobile-small.png
+ M docs/screenshots/kontak-mobile-standard.png
+ M docs/screenshots/kontak-tablet.png
+ M docs/screenshots/layanan-desktop.png
+ M docs/screenshots/layanan-tablet.png
+ M docs/screenshots/tentang-desktop.png
+ M docs/screenshots/tentang-tablet.png
+?? docs/evidence/v3/p0b/
+
+HTTP/1.1 404 Not Found
+Cache-Control: public, max-age=0, must-revalidate
+Content-Length: 107
+Content-Type: text/plain; charset=utf-8
+Date: Wed, 21 Oct 2026 09:36:54 GMT
+Server: Vercel
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Vercel-Error: DEPLOYMENT_NOT_FOUND
+X-Vercel-Id: sin1::ktwmr-1792575414191-483cbd28dfdc
+
+STATUS: LIVE URL: BELUM ADA (deployment manual user belum dikonfigurasi)
