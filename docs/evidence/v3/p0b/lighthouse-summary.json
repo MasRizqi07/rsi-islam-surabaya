@@ -1,0 +1,677 @@
+[
+  {
+    "name": "Beranda",
+    "path": "/",
+    "slug": "home",
+    "median": {
+      "scores": {
+        "performance": 94,
+        "accessibility": 93,
+        "bestPractices": 96,
+        "seo": 63
+      },
+      "cwv": {
+        "lcpMs": 2935,
+        "lcpSec": "2.94",
+        "cls": 0,
+        "tbtMs": 111,
+        "fcpMs": 935
+      },
+      "lcpElement": {
+        "elementSnippet": "N/A",
+        "selector": "N/A"
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": false,
+        "bestPractices": true,
+        "seo": false,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
+    },
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 94,
+          "accessibility": 93,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2935,
+          "lcpSec": "2.94",
+          "cls": 0,
+          "tbtMs": 111,
+          "fcpMs": 935
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 93,
+          "accessibility": 93,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2971,
+          "lcpSec": "2.97",
+          "cls": 0,
+          "tbtMs": 156,
+          "fcpMs": 959
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 83,
+          "accessibility": 93,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3170,
+          "lcpSec": "3.17",
+          "cls": 0,
+          "tbtMs": 426,
+          "fcpMs": 1070
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 4,
+        "scores": {
+          "performance": 95,
+          "accessibility": 93,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2915,
+          "lcpSec": "2.92",
+          "cls": 0,
+          "tbtMs": 85,
+          "fcpMs": 915
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 5,
+        "scores": {
+          "performance": 95,
+          "accessibility": 93,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2911,
+          "lcpSec": "2.91",
+          "cls": 0,
+          "tbtMs": 80,
+          "fcpMs": 904
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      }
+    ]
+  },
+  {
+    "name": "IGD Darurat",
+    "path": "/igd",
+    "slug": "igd",
+    "median": {
+      "scores": {
+        "performance": 83,
+        "accessibility": 92,
+        "bestPractices": 96,
+        "seo": 63
+      },
+      "cwv": {
+        "lcpMs": 3515,
+        "lcpSec": "3.52",
+        "cls": 0,
+        "tbtMs": 271,
+        "fcpMs": 1661
+      },
+      "lcpElement": {
+        "elementSnippet": "N/A",
+        "selector": "N/A"
+      },
+      "passTargets": {
+        "performance": false,
+        "accessibility": false,
+        "bestPractices": true,
+        "seo": false,
+        "lcp": false,
+        "cls": true,
+        "tbt": false
+      }
+    },
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 85,
+          "accessibility": 92,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3516,
+          "lcpSec": "3.52",
+          "cls": 0,
+          "tbtMs": 187,
+          "fcpMs": 1661
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 83,
+          "accessibility": 92,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3515,
+          "lcpSec": "3.52",
+          "cls": 0,
+          "tbtMs": 271,
+          "fcpMs": 1739
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 76,
+          "accessibility": 92,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 1980,
+          "lcpSec": "1.98",
+          "cls": 0,
+          "tbtMs": 1119,
+          "fcpMs": 1080
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 4,
+        "scores": {
+          "performance": 83,
+          "accessibility": 92,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3521,
+          "lcpSec": "3.52",
+          "cls": 0,
+          "tbtMs": 253,
+          "fcpMs": 1748
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 5,
+        "scores": {
+          "performance": 87,
+          "accessibility": 92,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3157,
+          "lcpSec": "3.16",
+          "cls": 0,
+          "tbtMs": 316,
+          "fcpMs": 1018
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Direktori Dokter",
+    "path": "/dokter",
+    "slug": "dokter",
+    "median": {
+      "scores": {
+        "performance": 78,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 63
+      },
+      "cwv": {
+        "lcpMs": 2943,
+        "lcpSec": "2.94",
+        "cls": 0,
+        "tbtMs": 815,
+        "fcpMs": 1407
+      },
+      "lcpElement": {
+        "elementSnippet": "N/A",
+        "selector": "N/A"
+      },
+      "passTargets": {
+        "performance": false,
+        "accessibility": true,
+        "bestPractices": true,
+        "seo": false,
+        "lcp": false,
+        "cls": true,
+        "tbt": false
+      }
+    },
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 71,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3538,
+          "lcpSec": "3.54",
+          "cls": 0,
+          "tbtMs": 815,
+          "fcpMs": 1407
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 76,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 1899,
+          "lcpSec": "1.90",
+          "cls": 0,
+          "tbtMs": 1152,
+          "fcpMs": 1529
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 78,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2024,
+          "lcpSec": "2.02",
+          "cls": 0,
+          "tbtMs": 926,
+          "fcpMs": 1519
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 4,
+        "scores": {
+          "performance": 92,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2943,
+          "lcpSec": "2.94",
+          "cls": 0,
+          "tbtMs": 184,
+          "fcpMs": 954
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 5,
+        "scores": {
+          "performance": 93,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2988,
+          "lcpSec": "2.99",
+          "cls": 0,
+          "tbtMs": 160,
+          "fcpMs": 993
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Tower Directory",
+    "path": "/tower",
+    "slug": "tower",
+    "median": {
+      "scores": {
+        "performance": 95,
+        "accessibility": 95,
+        "bestPractices": 96,
+        "seo": 63
+      },
+      "cwv": {
+        "lcpMs": 2927,
+        "lcpSec": "2.93",
+        "cls": 0,
+        "tbtMs": 85,
+        "fcpMs": 911
+      },
+      "lcpElement": {
+        "elementSnippet": "N/A",
+        "selector": "N/A"
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "seo": false,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
+    },
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 95,
+          "accessibility": 95,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2927,
+          "lcpSec": "2.93",
+          "cls": 0,
+          "tbtMs": 85,
+          "fcpMs": 911
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 95,
+          "accessibility": 95,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2914,
+          "lcpSec": "2.91",
+          "cls": 0,
+          "tbtMs": 80,
+          "fcpMs": 906
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 85,
+          "accessibility": 95,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3516,
+          "lcpSec": "3.52",
+          "cls": 0,
+          "tbtMs": 203,
+          "fcpMs": 1743
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 4,
+        "scores": {
+          "performance": 98,
+          "accessibility": 95,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2257,
+          "lcpSec": "2.26",
+          "cls": 0,
+          "tbtMs": 79,
+          "fcpMs": 905
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 5,
+        "scores": {
+          "performance": 74,
+          "accessibility": 95,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3466,
+          "lcpSec": "3.47",
+          "cls": 0,
+          "tbtMs": 671,
+          "fcpMs": 1148
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Wizard Pendaftaran",
+    "path": "/daftar",
+    "slug": "daftar",
+    "median": {
+      "scores": {
+        "performance": 95,
+        "accessibility": 96,
+        "bestPractices": 96,
+        "seo": 63
+      },
+      "cwv": {
+        "lcpMs": 2792,
+        "lcpSec": "2.79",
+        "cls": 0,
+        "tbtMs": 91,
+        "fcpMs": 756
+      },
+      "lcpElement": {
+        "elementSnippet": "N/A",
+        "selector": "N/A"
+      },
+      "passTargets": {
+        "performance": true,
+        "accessibility": true,
+        "bestPractices": true,
+        "seo": false,
+        "lcp": false,
+        "cls": true,
+        "tbt": true
+      }
+    },
+    "runs": [
+      {
+        "run": 1,
+        "scores": {
+          "performance": 96,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2754,
+          "lcpSec": "2.75",
+          "cls": 0,
+          "tbtMs": 75,
+          "fcpMs": 753
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 2,
+        "scores": {
+          "performance": 95,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2792,
+          "lcpSec": "2.79",
+          "cls": 0,
+          "tbtMs": 91,
+          "fcpMs": 757
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 3,
+        "scores": {
+          "performance": 93,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2797,
+          "lcpSec": "2.80",
+          "cls": 0,
+          "tbtMs": 192,
+          "fcpMs": 753
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 4,
+        "scores": {
+          "performance": 99,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 2109,
+          "lcpSec": "2.11",
+          "cls": 0,
+          "tbtMs": 84,
+          "fcpMs": 756
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      },
+      {
+        "run": 5,
+        "scores": {
+          "performance": 85,
+          "accessibility": 96,
+          "bestPractices": 96,
+          "seo": 63
+        },
+        "cwv": {
+          "lcpMs": 3362,
+          "lcpSec": "3.36",
+          "cls": 0,
+          "tbtMs": 229,
+          "fcpMs": 1600
+        },
+        "lcpDiagnostic": {
+          "elementSnippet": "N/A",
+          "selector": "N/A"
+        }
+      }
+    ]
+  }
+]

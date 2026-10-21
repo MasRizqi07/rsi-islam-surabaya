@@ -1,0 +1,32 @@
+# Command: npm run check:facts
+# Exit Code: 0
+# Git Commit: cd13566ddce31aaa634bf1aa52f26dcf91b4b553
+# Git Status: M docs/evidence/duplication-results.json
+ M docs/evidence/facts-check-results.json
+ M docs/screenshots/daftar-desktop.png
+ M docs/screenshots/daftar-tablet.png
+ M docs/screenshots/dokter-tablet.png
+ M docs/screenshots/home-desktop.png
+ M docs/screenshots/home-mobile-small.png
+ M docs/screenshots/home-mobile-standard.png
+ M docs/screenshots/home-tablet.png
+ M docs/screenshots/igd-desktop.png
+ M docs/screenshots/igd-mobile-small.png
+ M docs/screenshots/igd-mobile-standard.png
+ M docs/screenshots/igd-tablet.png
+ M docs/screenshots/kontak-desktop.png
+ M docs/screenshots/kontak-mobile-small.png
+ M docs/screenshots/kontak-mobile-standard.png
+ M docs/screenshots/kontak-tablet.png
+ M docs/screenshots/layanan-desktop.png
+ M docs/screenshots/layanan-tablet.png
+ M docs/screenshots/tentang-desktop.png
+ M docs/screenshots/tentang-tablet.png
+?? docs/evidence/v3/p0b/
+
+> rsi-islam-sby@2.0.0 check:facts
+> tsx scripts/check-facts.mjs
+
+=== HOSPITAL FACTS LEAKAGE SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta terdeteksi! Seluruh komponen mengimpor dari src/data/facts.ts.
