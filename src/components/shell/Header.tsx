@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HOSPITAL_FACTS } from '@/data/facts';
-import { Menu, X, Building2, Calendar, Phone, Stethoscope, Info } from 'lucide-react';
+import { Menu, X, Building2, Calendar, Phone, Stethoscope, Info, LogIn } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Dokter', href: '/dokter', icon: Stethoscope },
@@ -12,6 +12,7 @@ const NAV_ITEMS = [
   { label: 'Tower Directory', href: '/tower', icon: Building2 },
   { label: 'Tentang', href: '/tentang', icon: Info },
   { label: 'Kontak', href: '/kontak', icon: Phone },
+  { label: 'Login Demo', href: '/login', icon: LogIn },
 ];
 
 export function Header() {
