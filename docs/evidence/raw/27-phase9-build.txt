@@ -1,0 +1,58 @@
+npm run build
+
+> rsi-islam-sby@2.0.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env
+✓ Running next.config.mjs took 15ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 754ms
+  Running TypeScript ...
+  Finished TypeScript in 1999ms ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/50) ...
+  Generating static pages using 11 workers (12/50) 
+  Generating static pages using 11 workers (24/50) 
+  Generating static pages using 11 workers (37/50) 
+✓ Generating static pages using 11 workers (50/50) in 770ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/admin/bed-status
+├ ƒ /api/auth/[...all]
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/patient/appointments
+├ ƒ /api/patient/appointments/[id]
+├ ○ /daftar
+├ ○ /dokter
+├   /dokter/[slug]
+│ ├ ● /dokter/dr-fauzi-rachman-sppd
+│ ├ ● /dokter/dr-anisa-kusuma-sppd
+│ ├ ● /dokter/dr-bambang-suharto-sppd
+│ └ ● [+21 more paths]
+├ ○ /igd
+├ ○ /janji-temu
+├ ○ /kontak
+├ ○ /layanan
+├   /layanan/[slug]
+│ ├ ● /layanan/igd
+│ ├ ● /layanan/hemodialisis
+│ ├ ● /layanan/perawatan-intensif
+│ └ ● [+5 more paths]
+├ ○ /login
+├ ○ /styleguide
+├ ○ /tentang
+└ ○ /tower
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+EXIT CODE: 0

@@ -22,6 +22,14 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   const appointment = await prisma.appointment.findUnique({
     where: { id },
+    include: {
+      doctor: {
+        select: { id: true, name: true, title: true, slug: true, specialtyId: true },
+      },
+      polyclinic: {
+        select: { id: true, name: true, buildingId: true, floor: true },
+      },
+    },
   });
 
   if (!appointment) {
@@ -83,6 +91,10 @@ export async function DELETE(req: NextRequest, { params }: RouteParams) {
     const updated = await tx.appointment.update({
       where: { id },
       data: { status: 'CANCELLED' },
+      include: {
+        doctor: { select: { id: true, name: true, title: true, slug: true } },
+        polyclinic: { select: { id: true, name: true, buildingId: true, floor: true } },
+      },
     });
 
     await recordAuditLog({

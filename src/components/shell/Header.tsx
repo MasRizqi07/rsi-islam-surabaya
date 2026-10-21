@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: 'Dokter', href: '/dokter', icon: Stethoscope },
   { label: 'Layanan', href: '/layanan', icon: Building2 },
   { label: 'Tower Directory', href: '/tower', icon: Building2 },
+  { label: 'Janji Temu', href: '/janji-temu', icon: Calendar },
   { label: 'Tentang', href: '/tentang', icon: Info },
   { label: 'Kontak', href: '/kontak', icon: Phone },
   { label: 'Login Demo', href: '/login', icon: LogIn },

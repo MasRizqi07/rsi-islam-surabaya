@@ -1,0 +1,34 @@
+npx vitest run src/data/__tests__/phase9-appointments.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mpenegakan constraint database: pemesanan slot aktif yang sama menghasilkan 409 Conflict
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:182:40
+
+  179 
+  180 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  181 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 182   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mdua permintaan paralel ke slot yang sama: tepat satu berhasil (201) dan tepat satu ditolak (409)
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:182:40
+
+  179 
+  180 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  181 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 182   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+ [32m✓[39m src/data/__tests__/phase9-appointments.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 522[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+[2m   Start at [22m 23:55:18
+[2m   Duration [22m 1.07s[2m (tests 54%, import 40%, transform 5%, worker 1%)[22m
+
+EXIT CODE: 0
