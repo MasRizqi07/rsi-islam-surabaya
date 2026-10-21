@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Building2, ShieldAlert, HeartPulse, Stethoscope, Baby, Info } from 'lucide-react';
+import { HOSPITAL_FACTS } from '@/data/facts';
 
 const VERIFIED_FLOORS = [
   {
@@ -30,7 +31,7 @@ const VERIFIED_FLOORS = [
     name: 'Penunjang Diagnostik 24 Jam',
     category: 'Diagnostik',
     icon: Stethoscope,
-    facilities: ['Laboratorium Terpadu', 'Radiologi CT-Scan 128 Slice', 'Medical Check Up'],
+    facilities: ['Laboratorium Terpadu', `Radiologi ${HOSPITAL_FACTS.equipment.ctScan}`, 'Medical Check Up'],
     highlightColor: 'border-gold-500/60 bg-tower-900/80 hover:bg-tower-800/90',
   },
   {
@@ -49,7 +50,7 @@ export function HeroBlueprintCard() {
 
   return (
     <div
-      aria-label="Visualisasi Arsitektur Gedung Tower 13 Lantai"
+      aria-label={`Visualisasi Arsitektur ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai`}
       className="w-full max-w-lg bg-tower-950/95 border-2 border-gold-500/40 rounded-3xl p-5 sm:p-6 shadow-2xl backdrop-blur-md relative overflow-hidden"
     >
       {/* HEADER BLUEPRINT */}
@@ -60,7 +61,7 @@ export function HeroBlueprintCard() {
           </span>
           <h2 className="font-display font-bold text-xl sm:text-2xl text-ivory flex items-center gap-2">
             <Building2 className="w-5 h-5 text-gold-400 shrink-0" aria-hidden="true" />
-            <span>Gedung Tower 13 Lantai</span>
+            <span>{HOSPITAL_FACTS.buildings.tower.name} 13 Lantai</span>
           </h2>
         </div>
         <span className="hidden sm:inline-flex px-2.5 py-1 rounded-full bg-tower-900 border border-gold-500/40 text-[11px] font-mono font-bold text-gold-300">

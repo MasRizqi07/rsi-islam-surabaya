@@ -358,7 +358,7 @@ export default function HomePage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-tower-700" />
-                  <span>Radiologi & CT-Scan 128 Slice</span>
+                  <span>Radiologi & {HOSPITAL_FACTS.equipment.ctScan}</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-tower-700" />

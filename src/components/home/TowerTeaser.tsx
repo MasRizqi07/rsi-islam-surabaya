@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { TOWER_FLOORS } from '@/data/buildings';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { Building2, ArrowRight, ShieldCheck, Info } from 'lucide-react';
 
 export function TowerTeaser() {
@@ -20,7 +21,7 @@ export function TowerTeaser() {
             <span>Fitur Penanda Interaktif</span>
           </div>
           <h3 className="font-display font-bold text-3xl text-tower-900 leading-tight">
-            Eksplorasi Gedung Tower 13 Lantai
+            Eksplorasi {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai
           </h3>
           <p className="text-ink-soft text-sm mt-1 max-w-xl">
             Menjawab pertanyaan paling umum pengunjung: fasilitas dan poliklinik ada di lantai berapa?
@@ -90,7 +91,7 @@ export function TowerTeaser() {
             <div className="flex items-center justify-between border-b border-tower-100 pb-4">
               <div>
                 <span className="text-xs font-mono text-gold-700 uppercase tracking-widest block font-bold">
-                  Gedung Tower RSIS
+                  {HOSPITAL_FACTS.buildings.tower.name} RSIS
                 </span>
                 <h4 className="font-display font-bold text-2xl text-tower-900">
                   {activeFloor.label}

@@ -75,7 +75,7 @@ test.describe('Phase 4 Signature Features (Tower Directory & Registration Wizard
     // Verifikasi field terisi
     await expect(page.locator('#patient-name')).toHaveValue('Ahmad Fauzi (Demo Pasien)');
     await expect(page.locator('#patient-phone')).toHaveValue('081234567890');
-    await expect(page.locator('#patient-nik')).toHaveValue('3578012345670001');
+    await expect(page.locator('#patient-birth-date')).toHaveValue('1988-05-15');
 
     // PEMBUKTIAN KERAS ZERO NETWORK REQUESTS:
     // Pasang listener intersepsi pada seluruh outgoing network requests

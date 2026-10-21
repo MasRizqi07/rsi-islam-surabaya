@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Halaman Tidak Ditemukan (404) · RS Islam Surabaya A. Yani',
+  title: `Halaman Tidak Ditemukan (404) · ${HOSPITAL_FACTS.name}`,
   description: 'Halaman yang Anda tuju tidak ditemukan. Silakan gunakan navigasi cepat untuk kembali ke beranda, direktori dokter, atau akses darurat IGD.',
   robots: { index: false, follow: false },
 };
@@ -48,7 +48,7 @@ export default function NotFound() {
           </div>
 
           <span className="mt-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-tower-50 text-tower-800 border border-tower-200">
-            Gedung Tower 13 Lantai
+            {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai
           </span>
         </div>
 
@@ -66,7 +66,7 @@ export default function NotFound() {
           </h2>
 
           <p className="text-sm sm:text-base text-ink-soft max-w-xl mx-auto leading-relaxed">
-            Mohon maaf atas ketidaknyamanan ini. Tautan yang Anda ikuti mungkin telah diperbarui, berpindah lokasi ruangan di Gedung Tower, atau alamat URL mengalami salah ketik. Layanan darurat dan informasi medis kami tetap siaga melayani Anda dengan sepenuh hati.
+            Mohon maaf atas ketidaknyamanan ini. Tautan yang Anda ikuti mungkin telah diperbarui, berpindah lokasi ruangan di {HOSPITAL_FACTS.buildings.tower.name}, atau alamat URL mengalami salah ketik. Layanan darurat dan informasi medis kami tetap siaga melayani Anda dengan sepenuh hati.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export default function NotFound() {
                 IGD 24 Jam
               </h4>
               <p className="text-xs text-ink-soft leading-relaxed">
-                Instalasi gawat darurat trauma center di Gedung Tower Lantai 2 dengan protokol triase terpadu.
+                Instalasi gawat darurat trauma center di {HOSPITAL_FACTS.buildings.tower.name} Lantai 2 dengan protokol triase terpadu.
               </p>
             </div>
             <div className="pt-2 text-xs font-bold text-alert-600 inline-flex items-center gap-1">

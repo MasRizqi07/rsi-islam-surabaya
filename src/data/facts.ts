@@ -27,6 +27,7 @@ export const HOSPITAL_FACTS = {
 
   // K1: Dua nomor darurat dengan label netral
   emergency: {
+    title: 'Instalasi Gawat Darurat (IGD 24 Jam)',
     callCenterLabel: 'Emergency Call',
     callCenterNumber: '1500718',
     callCenterTel: 'tel:1500718',
@@ -81,6 +82,12 @@ export const HOSPITAL_FACTS = {
       grandOpening: '12 Juli 2018',
       inauguratedBy: 'Wakil Presiden RI Drs. H. M. Jusuf Kalla',
     },
+  },
+
+  // Peralatan & Penunjang Diagnostik Utama
+  equipment: {
+    ctScan: 'CT-Scan 128 Slice',
+    hemodialysis: '30 Mesin Hemodialisis',
   },
 
   // Tagline & Nilai

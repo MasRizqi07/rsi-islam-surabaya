@@ -54,10 +54,10 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
 
 ### 2.1 Stack Spesifikasi Inti
 - **Framework**: Next.js 16.4.2 (App Router murni, Turbopack, React 19.3.1).
-- **Mode Saji**: 100% Static Site Generation (SSG). Sebanyak **43 rute statis** terkompilasi penuh saat build time (waktu kompilasi: 1226ms).
+- **Mode Saji**: Static Site Generation (SSG). Sebanyak **43 rute statis** terkompilasi penuh saat build time (waktu kompilasi: 1226ms).
 - **Bahasa**: TypeScript 5.7.2 dalam konfigurasi `strict: true`. Bebas dari tipe `any`.
 - **Desain Sistem & Styling**: Tailwind CSS v4 dengan konfigurasi CSS-first `@theme` pada `globals.css` (warna `tower-*`, `gold-*`, `ivory`, `ink`, `alert-*`).
-- **Aset Grafis**: 100% Vektor SVG Matematikal murni (Khatam geometris bintang 8 dan siluet vertikal Tower 13 Lantai). Nol ketergantungan pada gambar eksternal yang rentan putus.
+- **Aset Grafis**: Vektor SVG Matematikal murni (Khatam geometris bintang 8 dan siluet vertikal Tower 13 Lantai). Nol ketergantungan pada gambar eksternal yang rentan putus.
 - **Tipografi**: `next/font/local` mandiri (Playfair Display & Plus Jakarta Sans di `src/app/fonts/`), hermetic tanpa koneksi eksternal.
 - **State Management**:
   - Filter dokter & navigasi denah: URL Query String terstandardisasi.
@@ -67,7 +67,7 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
 ### 2.2 Kepatuhan Batasan & Non-Tujuan (Strict Scope Lock)
 | Item Batasan | Realisasi Teknis | Verifikasi Pembuktian |
 |---|---|---|
-| **Zero Backend / Zero DB** | Tidak ada API route dinamis, serverless function, Prisma, Payload CMS, maupun PostgreSQL. | File tracing build membuktikan 100% halaman berstatus `○ (Static)` atau `● (SSG)`. |
+| **Zero Backend / Zero DB** | Tidak ada API route dinamis, serverless function, Prisma, Payload CMS, maupun PostgreSQL. | File tracing build membuktikan seluruh 43 halaman berstatus `○ (Static)` atau `● (SSG)`. |
 | **Zero Third-Party Tracking** | Tidak ada Google Analytics, Facebook Pixel, hotjar, atau cookie banner. | HTTP header `Permissions-Policy` dan CSP ketat memblokir pelacakan eksternal. |
 | **Zero Network Requests saat Submit** | Formulir pendaftaran rawat jalan mandiri hanya memproses data simulasi di RAM peramban. | Pengujian Playwright `page.on('request')` mencatat **tepat 0 outgoing network requests**. |
 | **Proteksi Phishing / Anti-Indeksasi** | `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header `X-Robots-Tag`. | Terverifikasi pada berkas fisik `public/robots.txt`, `next.config.mjs`, dan metadata root layout. |
@@ -107,7 +107,7 @@ Setiap pertentangan data dari sumber publik resmi RSIS diselesaikan secara metod
 
 ### Fase 2: Data Layer Fixture, Skema Zod & Fact Checker
 - **Sasaran**: Single source of truth `facts.ts`, 20 poliklinik terverifikasi (`specialties.ts`), 24 dokter fiktif berjadwal realistis (`doctors.ts`), 8 layanan unggulan (`services.ts`), denah 13 lantai Tower & 6 level Graha (`buildings.ts`), simulasi status kamar intensif (`bed-status.ts`), validasi skema runtime Zod (`schema.ts`), dan scanner kebocoran fakta (`check-facts.mjs`).
-- **Hasil**: 100% data valid dan lolos uji integritas referensial. Unit test Vitest 19/19 passed.
+- **Hasil**: Data valid dan memenuhi uji integritas referensial. Unit test Vitest 21/21 passed.
 - **Artefak Bukti**: [docs/evidence/phase-2-data.json](docs/evidence/phase-2-data.json) & [docs/evidence/facts-check-results.json](docs/evidence/facts-check-results.json).
 
 ### Fase 3: Halaman Inti Medis (Beranda, IGD, Dokter & Layanan)
@@ -122,12 +122,12 @@ Setiap pertentangan data dari sumber publik resmi RSIS diselesaikan secara metod
 
 ### Fase 5: Rute Sekunder, Detail Layanan & Security Hardening
 - **Sasaran**: Halaman Tentang Kami `/tentang` (timeline 15 tonggak sejarah 1975–2026, rekam jejak akreditasi K3), halaman Kontak & Lokasi `/kontak` (peta diagram vektor SVG tanpa tracking, tombol Google Maps resmi), 8 rute SSG dinamis `/layanan/[slug]`, halaman 404 kustom bernuansa Hijau Tower `/not-found`, dan penguatan keamanan HTTP Headers (CSP ketat, HSTS, X-Frame-Options: DENY, Permissions-Policy).
-- **Hasil**: Kompilasi 43 rute statis, 36 pengujian Playwright lintas viewport lulus 100% tanpa pelanggaran axe-core.
+- **Hasil**: Kompilasi 43 rute statis, 36 pengujian Playwright lintas viewport lulus tanpa pelanggaran axe-core.
 - **Artefak Bukti**: [docs/evidence/phase-5-secondary.json](docs/evidence/phase-5-secondary.json).
 
 ### Fase 6: Audit Kinerja Lighthouse Mobile, Multi-Viewport & Case Study README
 - **Sasaran**: Audit lab Lighthouse Mobile pada 5 rute inti, audit responsivitas 4 viewport (360px, 390px, 768px, 1280px) pada 8 rute kunci dengan zero horizontal overflow, 32 tangkapan layar responsif, optimasi zero-CLS SSG, dan penyusunan dokumentasi portofolio komprehensif.
-- **Hasil**: Skor Lighthouse Mobile Performance 93–97, Aksesibilitas 98–100, CLS 0.000 sempurna, 100/100 tes Playwright lulus.
+- **Hasil**: Skor Lighthouse Mobile Performance 93–97, Aksesibilitas 98–100, CLS 0.000, 106/106 tes Playwright lulus.
 - **Artefak Bukti**: [docs/evidence/phase-6-audit.json](docs/evidence/phase-6-audit.json), [docs/evidence/lighthouse-summary.json](docs/evidence/lighthouse-summary.json), dan [README.md](README.md).
 
 ---
@@ -153,7 +153,7 @@ Audit lab Lighthouse resmi dijalankan dengan profil **Default Mobile Throttling*
 > **Analisis Kegagalan Target CWV (D6 / Batasan yang Diketahui):**
 > 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf headline (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan tidak ada keterlambatan jaringan aset. Durasi LCP didominasi oleh *Element Render Delay* (~2.1s) akibat waktu eksekusi hidrasi JavaScript Next.js pada CPU seluler terkompresi 4x.
 > 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Selisih 6ms di atas ambang batas 200ms pada run 2, disebabkan oleh komputasi awal ikon triase SVG saat hidrasi peramban dengan throttling 4x.
-> 3. **Pencapaian Mutlak**: CLS tercatat **0.000 (Sempurna)** pada seluruh rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
+> 3. **Pencapaian**: CLS tercatat **0.000** pada seluruh rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
 
 ### 5.2 Matriks Responsivitas Visual (Playwright)
 Diverifikasi melalui pengujian terprogram pada [tests/phase6-viewports.spec.ts](tests/phase6-viewports.spec.ts):
@@ -299,7 +299,7 @@ Halo **Claude.ai**! Berikut adalah poin-poin arsitektural yang dirancang khusus 
 2. **Resolusi Tantangan Hydration & Zero-CLS SSG**:
    - Tantangan umum pada Next.js App Router dengan `useSearchParams()` adalah keharusan `<Suspense>` yang berisiko menampilkan fallback spinner/skeleton dan menyebabkan pergeseran tata letak (*layout shift*) saat hidrasi di peramban klien.
    - Solusi arsitektur yang kami terapkan: memindahkan sinkronisasi URL searchParams ke *effect lifecycle* berbasis `window.location.search` dan `window.history.replaceState`.
-   - **Dampak Arsitektur**: Komponen direktori dokter, denah tower, dan formulir wizard terkompilasi **100% statis sejak build time**. Tidak ada DOM unmounting/replacement saat hidrasi, sehingga **CLS tercatat 0.000 (Sempurna)** pada audit Lighthouse Mobile Lab.
+   - **Dampak Arsitektur**: Komponen direktori dokter, denah tower, dan formulir wizard terkompilasi **statis sejak build time**. Tidak ada DOM unmounting/replacement saat hidrasi, sehingga **CLS tercatat 0.000** pada audit Lighthouse Mobile Lab.
 
 3. **Pemisahan State & Isolasi Privasi**:
    - `registration-store.ts` dikonfigurasi murni in-memory tanpa middleware `persist`. Data simulasi yang dimasukkan evaluator langsung lenyap saat halaman ditutup atau dimuat ulang, mencegah persistensi data simulasi pasien di peramban publik.

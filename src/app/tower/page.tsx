@@ -1,9 +1,10 @@
 import { TowerDirectoryClient } from '@/components/tower/TowerDirectoryClient';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { Building2 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Tower Directory · Denah & Panduan Lantai Gedung · RS Islam Surabaya A. Yani',
-  description: 'Panduan denah vertikal interaktif Gedung Tower 13 Lantai dan Gedung Graha RS Islam Surabaya A. Yani. Ketahui lokasi poliklinik, IGD, laboratorium, dan kamar rawat inap.',
+  title: `Tower Directory · Denah & Panduan Lantai Gedung · ${HOSPITAL_FACTS.name}`,
+  description: `Panduan denah vertikal interaktif ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan ${HOSPITAL_FACTS.buildings.graha.name} ${HOSPITAL_FACTS.name}. Ketahui lokasi poliklinik, IGD, laboratorium, dan kamar rawat inap.`,
   robots: { index: false, follow: false },
 };
 
@@ -23,7 +24,7 @@ export default function TowerPage() {
         </h1>
 
         <p className="text-ink-soft text-sm sm:text-base max-w-2xl leading-relaxed">
-          Eksplorasi pembagian ruang dan instalasi medis di Gedung Tower 13 Lantai serta Gedung Graha. Seluruh data diselaraskan dengan publikasi resmi rumah sakit.
+          Eksplorasi pembagian ruang dan instalasi medis di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai serta {HOSPITAL_FACTS.buildings.graha.name}. Seluruh data diselaraskan dengan publikasi resmi rumah sakit.
         </p>
       </div>
 

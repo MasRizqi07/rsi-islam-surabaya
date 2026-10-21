@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useRegistrationStore } from '@/stores/registration-store';
 import { SPECIALTIES } from '@/data/specialties';
 import { DOCTORS } from '@/data/doctors';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { Penjamin } from '@/data/types';
 import {
   Calendar,
@@ -29,7 +30,7 @@ export function RegistrationWizardClient() {
     timeSlot,
     patientName,
     patientPhone,
-    patientNik,
+    patientBirthDate,
     queueTicket,
     setStep,
     setPenjamin,
@@ -159,10 +160,20 @@ export function RegistrationWizardClient() {
     } else if (!/^08[0-9]{8,12}$/.test(patientPhone.replace(/\D/g, ''))) {
       errors.patientPhone = 'Format nomor WhatsApp simulasi harus diawali 08 (10–14 digit)';
     }
-    if (!patientNik.trim()) {
-      errors.patientNik = 'Nomor KTP simulasi wajib diisi';
-    } else if (patientNik.replace(/\D/g, '').length !== 16) {
-      errors.patientNik = 'Nomor KTP simulasi harus tepat 16 digit angka';
+    if (!patientBirthDate) {
+      errors.patientBirthDate = 'Tanggal lahir pasien wajib diisi';
+    } else {
+      const bDate = new Date(patientBirthDate);
+      const today = new Date();
+      const minDate = new Date();
+      minDate.setFullYear(today.getFullYear() - 120);
+      if (isNaN(bDate.getTime())) {
+        errors.patientBirthDate = 'Format tanggal lahir tidak valid';
+      } else if (bDate > today) {
+        errors.patientBirthDate = 'Tanggal lahir tidak boleh di masa depan';
+      } else if (bDate < minDate) {
+        errors.patientBirthDate = 'Umur pasien tidak boleh melebihi 120 tahun';
+      }
     }
 
     if (Object.keys(errors).length > 0) {
@@ -223,11 +234,11 @@ export function RegistrationWizardClient() {
         <div className="flex items-center gap-2.5 min-w-0">
           <AlertTriangle className="w-4 h-4 text-tower-800 shrink-0" />
           <span className="text-xs leading-normal">
-            <strong className="font-bold text-tower-900">Simulasi Demo:</strong> Dilarang memasukkan NIK atau data medis riil. Seluruh form diproses 100% lokal di browser.
+            <strong className="font-bold text-tower-900">Simulasi Demo:</strong> Dilarang memasukkan data identitas kependudukan atau data medis riil. Seluruh formulir diproses lokal di browser.
           </span>
         </div>
         <span className="hidden sm:inline text-[11px] font-semibold text-tower-800 shrink-0 bg-gold-200/70 px-2 py-0.5 rounded-md">
-          100% Client-Side
+          Client-Side In-Memory
         </span>
       </div>
 
@@ -653,21 +664,19 @@ export function RegistrationWizardClient() {
               </div>
 
               <div>
-                <label htmlFor="patient-nik" className="block text-xs font-bold text-tower-900 uppercase tracking-wider mb-1.5">
-                  No. KTP Simulasi (16 Digit Angka Bebas) *
+                <label htmlFor="patient-birth-date" className="block text-xs font-bold text-tower-900 uppercase tracking-wider mb-1.5">
+                  Tanggal Lahir Pasien (Simulasi) *
                 </label>
                 <input
-                  id="patient-nik"
-                  type="text"
-                  maxLength={16}
-                  value={patientNik}
-                  onChange={(e) => setPatientData({ patientNik: e.target.value.replace(/\D/g, '') })}
-                  placeholder="3578012345670001 (16 digit angka)"
+                  id="patient-birth-date"
+                  type="date"
+                  value={patientBirthDate}
+                  onChange={(e) => setPatientData({ patientBirthDate: e.target.value })}
                   className="w-full min-h-[48px] px-4 py-2.5 rounded-xl bg-ivory text-tower-950 text-sm font-semibold border border-tower-100 focus:border-tower-700 focus:outline-none font-mono"
                 />
-                {formErrors.patientNik && (
+                {formErrors.patientBirthDate && (
                   <span className="text-xs font-semibold text-alert-600 mt-1 block">
-                    {formErrors.patientNik}
+                    {formErrors.patientBirthDate}
                   </span>
                 )}
               </div>
@@ -711,10 +720,10 @@ export function RegistrationWizardClient() {
                 Studi Kasus Portofolio · Tiket Antrean Demo
               </span>
               <h3 className="font-display font-bold text-2xl text-tower-950">
-                RS Islam Surabaya A. Yani
+                {HOSPITAL_FACTS.name}
               </h3>
               <p className="text-xs text-ink-soft">
-                Loket Pendaftaran Rawat Jalan · Lantai Dasar Gedung Graha
+                Loket Pendaftaran Rawat Jalan · Lantai Dasar {HOSPITAL_FACTS.buildings.graha.name}
               </p>
             </div>
 
@@ -739,9 +748,9 @@ export function RegistrationWizardClient() {
               </div>
 
               <div className="space-y-1">
-                <span className="text-ink-soft block">NIK Simulasi:</span>
+                <span className="text-ink-soft block">Tanggal Lahir:</span>
                 <span className="font-mono font-semibold text-tower-950 block">
-                  {queueTicket.patientNik.substring(0, 6)}******{queueTicket.patientNik.substring(12)}
+                  {queueTicket.patientBirthDate}
                 </span>
               </div>
 

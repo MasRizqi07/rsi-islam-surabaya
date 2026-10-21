@@ -14,7 +14,7 @@ export interface QueueTicket {
   timeSlot: string;
   patientName: string;
   patientPhone: string;
-  patientNik: string;
+  patientBirthDate: string;
 }
 
 export interface RegistrationState {
@@ -31,7 +31,7 @@ export interface RegistrationState {
   // Data pasien simulasi
   patientName: string;
   patientPhone: string;
-  patientNik: string;
+  patientBirthDate: string;
 
   // Tiket antrean hasil submit lokal (in-memory)
   queueTicket: QueueTicket | null;
@@ -42,7 +42,7 @@ export interface RegistrationState {
   setSpecialtyId: (specialtyId: string) => void;
   setDoctor: (doctorSlug: string, specialtyId?: string) => void;
   setAppointment: (appointmentDate: string, timeSlot: string) => void;
-  setPatientData: (data: Partial<{ patientName: string; patientPhone: string; patientNik: string }>) => void;
+  setPatientData: (data: Partial<{ patientName: string; patientPhone: string; patientBirthDate: string }>) => void;
   fillDemoData: () => void;
   submitRegistration: () => boolean;
   reset: () => void;
@@ -57,7 +57,7 @@ const INITIAL_STATE = {
   timeSlot: null,
   patientName: '',
   patientPhone: '',
-  patientNik: '',
+  patientBirthDate: '',
   queueTicket: null,
 };
 
@@ -107,7 +107,7 @@ export const useRegistrationStore = create<RegistrationState>((set, get) => ({
     set({
       patientName: 'Ahmad Fauzi (Demo Pasien)',
       patientPhone: '081234567890',
-      patientNik: '3578012345670001',
+      patientBirthDate: '1988-05-15',
     });
   },
 
@@ -117,7 +117,19 @@ export const useRegistrationStore = create<RegistrationState>((set, get) => ({
     if (!state.penjamin || !state.specialtyId || !state.doctorSlug || !state.appointmentDate || !state.timeSlot) {
       return false;
     }
-    if (!state.patientName.trim() || !state.patientPhone.trim() || state.patientNik.length < 16) {
+    if (!state.patientName.trim() || !state.patientPhone.trim()) {
+      return false;
+    }
+
+    // Validasi patientBirthDate: tanggal valid, tidak di masa depan, umur <= 120 tahun
+    if (!state.patientBirthDate || !/^\d{4}-\d{2}-\d{2}$/.test(state.patientBirthDate)) {
+      return false;
+    }
+    const bDate = new Date(state.patientBirthDate);
+    const today = new Date();
+    const minDate = new Date();
+    minDate.setFullYear(today.getFullYear() - 120);
+    if (isNaN(bDate.getTime()) || bDate > today || bDate < minDate) {
       return false;
     }
 
@@ -148,7 +160,7 @@ export const useRegistrationStore = create<RegistrationState>((set, get) => ({
       timeSlot: state.timeSlot,
       patientName: state.patientName,
       patientPhone: state.patientPhone,
-      patientNik: state.patientNik,
+      patientBirthDate: state.patientBirthDate,
     };
 
     set({

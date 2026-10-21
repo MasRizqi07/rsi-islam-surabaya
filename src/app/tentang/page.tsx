@@ -13,8 +13,8 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Tentang Kami · Sejarah 51 Tahun & Nilai Filosofis · RS Islam Surabaya A. Yani',
-  description: 'Sejarah pengabdian 51 tahun RS Islam Surabaya A. Yani sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian Gedung Tower 13 Lantai.',
+  title: `Tentang Kami · Sejarah 51 Tahun & Nilai Filosofis · ${HOSPITAL_FACTS.name}`,
+  description: `Sejarah pengabdian 51 tahun ${HOSPITAL_FACTS.name} sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.`,
   robots: { index: false, follow: false },
 };
 
@@ -44,7 +44,7 @@ export default function TentangPage() {
           </h1>
 
           <p className="text-tower-100 text-sm sm:text-base leading-relaxed">
-            Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan Yayasan Rumah Sakit Islam Surabaya (YARSIS), RS Islam Surabaya A. Yani tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan Gedung Tower 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
+            Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan {HOSPITAL_FACTS.foundation}, {HOSPITAL_FACTS.name} tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
           </p>
 
           <div className="p-4 rounded-2xl bg-tower-900/80 border border-gold-500/30 text-xs sm:text-sm text-gold-300 italic">
@@ -75,7 +75,7 @@ export default function TentangPage() {
               13 Lantai
             </span>
             <span className="text-xs font-bold text-tower-700 uppercase tracking-wider block">
-              Gedung Tower
+              {HOSPITAL_FACTS.buildings.tower.name}
             </span>
             <p className="text-[11px] text-ink-soft">
               Sentral ICU, kamar operasi modern, dan rawat inap.
@@ -132,7 +132,7 @@ export default function TentangPage() {
               Rekam Jejak Akreditasi Paripurna Historis
             </h2>
             <p className="text-ink-soft text-sm leading-relaxed">
-              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, RS Islam Surabaya A. Yani secara konsisten mempertahankan pengakuan mutu tertinggi dari lembaga independen nasional.
+              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten mempertahankan pengakuan mutu tertinggi dari lembaga independen nasional.
             </p>
           </div>
 
@@ -239,7 +239,7 @@ export default function TentangPage() {
 
               <div className="space-y-1">
                 <h3 className="font-display font-bold text-lg text-tower-950">
-                  Akreditasi Paripurna LAM-KPRS 2022
+                  Akreditasi Paripurna {HOSPITAL_FACTS.accreditationBody} 2022
                 </h3>
                 <p className="text-xs text-ink-soft leading-relaxed">
                   Lembaga Akreditasi Mutu dan Keselamatan Pasien Rumah Sakit (LAM-KPRS). Standarisasi pelayanan era transformasi kesehatan nasional dan keselamatan medis modern.
@@ -291,7 +291,7 @@ export default function TentangPage() {
               Presisi Klinis Modern
             </h3>
             <p className="text-xs text-ink-soft leading-relaxed">
-              Pemanfaatan teknologi diagnostik mutakhir (CT-Scan 128 Slice, C-Arm, dan 30 mesin hemodialisis single use) demi akurasi tindakan medis.
+              Pemanfaatan teknologi diagnostik mutakhir ({HOSPITAL_FACTS.equipment.ctScan}, C-Arm, dan {HOSPITAL_FACTS.equipment.hemodialysis} single use) demi akurasi tindakan medis.
             </p>
           </div>
 
@@ -316,7 +316,7 @@ export default function TentangPage() {
             Perjalanan Panjang Pengabdian
           </span>
           <h2 className="font-display font-bold text-2xl sm:text-3xl text-tower-950">
-            Kronologi Sejarah RS Islam Surabaya A. Yani (1975–2026)
+            Kronologi Sejarah {HOSPITAL_FACTS.name} (1975–2026)
           </h2>
           <p className="text-sm text-ink-soft max-w-2xl">
             Dari cikal bakal fasilitas 20 tempat tidur sederhana hingga menjadi ikon menara medis 13 lantai bertaraf nasional.
@@ -331,10 +331,10 @@ export default function TentangPage() {
       <section className="bg-tower-900 text-ivory rounded-3xl p-8 sm:p-12 border border-gold-500/30 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="space-y-2 text-center md:text-left">
           <h2 className="font-display font-bold text-2xl sm:text-3xl text-ivory">
-            Jelajahi Fasilitas Gedung Tower
+            Jelajahi Fasilitas {HOSPITAL_FACTS.buildings.tower.name}
           </h2>
           <p className="text-ivory/80 text-sm max-w-xl">
-            Ketahui lokasi poliklinik spesialis, instalasi darurat, dan fasilitas penunjang di Gedung Tower 13 Lantai.
+            Ketahui lokasi poliklinik spesialis, instalasi darurat, dan fasilitas penunjang di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.
           </p>
         </div>
 

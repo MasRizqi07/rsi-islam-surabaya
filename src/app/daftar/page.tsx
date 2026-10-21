@@ -1,9 +1,10 @@
 import { RegistrationWizardClient } from '@/components/daftar/RegistrationWizardClient';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { CalendarCheck } from 'lucide-react';
 
 export const metadata = {
-  title: 'Pendaftaran Pasien Online (Demo) · RS Islam Surabaya A. Yani',
-  description: 'Simulasi alur pendaftaran rawat jalan mandiri RS Islam Surabaya A. Yani dalam 4 langkah terpadu: Jalur Pasien, Poliklinik, Dokter & Jadwal, serta Penerbitan Tiket Antrean Demo.',
+  title: `Pendaftaran Pasien Online (Demo) · ${HOSPITAL_FACTS.name}`,
+  description: `Simulasi alur pendaftaran rawat jalan mandiri ${HOSPITAL_FACTS.name} dalam 4 langkah terpadu: Jalur Pasien, Poliklinik, Dokter & Jadwal, serta Penerbitan Tiket Antrean Demo.`,
   robots: { index: false, follow: false },
 };
 
@@ -23,7 +24,7 @@ export default function DaftarPage() {
         </h1>
 
         <p className="text-ink-soft text-xs sm:text-sm max-w-2xl leading-relaxed">
-          Simulasi alur pendaftaran rawat jalan online 4 langkah. Form ini diproses 100% secara lokal di peramban tanpa transmisi data ke server eksternal.
+          Simulasi alur pendaftaran rawat jalan online 4 langkah. Form ini diproses secara lokal di peramban tanpa transmisi data ke server eksternal.
         </p>
       </div>
 

@@ -1,9 +1,10 @@
 import { DoctorListClient } from './DoctorListClient';
+import { HOSPITAL_FACTS } from '@/data/facts';
 import { Stethoscope, AlertCircle } from 'lucide-react';
 
 export const metadata = {
-  title: 'Direktori & Jadwal Praktik Dokter · RS Islam Surabaya A. Yani',
-  description: 'Pencarian dokter spesialis, jadwal praktik mingguan, dan layanan rujukan BPJS Kesehatan atau Eksekutif di RS Islam Surabaya A. Yani.',
+  title: `Direktori & Jadwal Praktik Dokter · ${HOSPITAL_FACTS.name}`,
+  description: `Pencarian dokter spesialis, jadwal praktik mingguan, dan layanan rujukan BPJS Kesehatan atau Eksekutif di ${HOSPITAL_FACTS.name}.`,
   robots: { index: false, follow: false },
 };
 

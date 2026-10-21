@@ -40,7 +40,7 @@ export function Footer() {
             <ul className="space-y-1 text-sm">
               <li>
                 <Link href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
-                  Instalasi Gawat Darurat (IGD 24 Jam)
+                  Layanan Gawat Darurat & Triase 24 Jam
                 </Link>
               </li>
               <li>
@@ -101,7 +101,7 @@ export function Footer() {
               Kanal Media Resmi
             </h3>
             <p className="text-xs text-ivory/70">
-              Kanal resmi RS Islam Surabaya A. Yani yang aktif dan terverifikasi:
+              Kanal resmi {HOSPITAL_FACTS.name} yang aktif dan terverifikasi:
             </p>
             
             {/* K7: Hanya @rsisurabaya */}
