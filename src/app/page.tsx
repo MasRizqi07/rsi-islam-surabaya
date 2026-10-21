@@ -42,9 +42,9 @@ export default function HomePage() {
           style={{ backgroundColor: 'transparent' }}
         />
         
-        {/* Glow Lembut Emas */}
-        <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div aria-hidden="true" className="absolute bottom-0 left-10 w-96 h-96 bg-tower-700/20 rounded-full blur-3xl pointer-events-none" />
+        {/* Glow Lembut Emas Menggunakan Radial Gradient Tanpa Filter Blur (Performa Tinggi) */}
+        <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(201, 162, 74, 0.15) 0%, transparent 70%)' }} />
+        <div aria-hidden="true" className="absolute bottom-0 left-10 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(15, 107, 97, 0.25) 0%, transparent 70%)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -69,6 +69,7 @@ export default function HomePage() {
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
                   href="/daftar"
+                  prefetch={false}
                   className="min-h-[48px] px-7 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 active:bg-gold-700 text-tower-950 font-bold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
                   <Calendar className="w-4 h-4" aria-hidden="true" />
@@ -77,6 +78,7 @@ export default function HomePage() {
 
                 <Link
                   href="/dokter"
+                  prefetch={false}
                   className="min-h-[48px] px-7 py-3 rounded-xl bg-tower-800/90 hover:bg-tower-700 text-ivory font-bold text-sm border border-gold-500/30 transition-all flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
                   <Stethoscope className="w-4 h-4" aria-hidden="true" />

@@ -45,8 +45,7 @@ export default function IgdPage() {
           {/* Status Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-alert-600/20 border border-alert-600/40 text-ivory text-[10px] sm:text-xs font-bold uppercase tracking-wider">
             <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-alert-600 opacity-75" />
-              <span className="relative inline-flex rounded-full h-full w-full bg-alert-600" />
+              <span className="relative inline-flex rounded-full h-full w-full bg-alert-600 shadow-[0_0_6px_rgba(198,47,47,0.9)]" />
             </span>
             <span className="text-ivory font-extrabold tracking-wide">
               INSTALASI GAWAT DARURAT (IGD) SIAGA 24 JAM · BUKA HARI LIBUR & TANGGAL MERAH
