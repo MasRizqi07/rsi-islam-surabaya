@@ -22,7 +22,9 @@ for (const t of tasks) {
   if (t.name === 'e2e.log') {
     try {
       execSync('powershell -Command "Get-Process -Id (Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue).OwningProcess -ErrorAction SilentlyContinue | Stop-Process -Force"', { stdio: 'ignore' });
-    } catch {}
+    } catch (_err) {
+      void _err;
+    }
   }
   console.log(`[RUNNING] ${t.cmd}...`);
   const res = spawnSync(t.cmd, { shell: true, encoding: 'utf8' });
