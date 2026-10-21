@@ -13,7 +13,7 @@ import {
 
 export const metadata = {
   title: `Katalog Layanan & 20 Poliklinik · ${HOSPITAL_FACTS.name}`,
-  description: `Informasi lengkap 8 layanan unggulan terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di ${HOSPITAL_FACTS.name}.`,
+  description: `Informasi lengkap 8 layanan medis terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di ${HOSPITAL_FACTS.name}.`,
   robots: { index: false, follow: false },
 };
 
@@ -33,11 +33,11 @@ export default function LayananPage() {
         </h1>
 
         <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
-          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
+          Menyediakan 8 layanan medis terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
         </p>
       </div>
 
-      {/* 1. SECTION 8 LAYANAN UNGGULAN (BENTO & GRID HYBRID) */}
+      {/* 1. SECTION 8 LAYANAN MEDIS TERPADU (BENTO & GRID HYBRID) */}
       <section aria-labelledby="featured-services-heading" className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
@@ -45,7 +45,7 @@ export default function LayananPage() {
               Fasilitas Prioritas
             </span>
             <h2 id="featured-services-heading" className="font-display font-bold text-2xl sm:text-3xl text-tower-900">
-              8 Layanan Unggulan Rumah Sakit
+              8 Layanan Medis Terpadu Rumah Sakit
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-ink-soft max-w-md">

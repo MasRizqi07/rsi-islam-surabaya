@@ -1,9 +1,6 @@
 {
-  "timestamp": "2026-10-21T09:35:31.850Z",
-  "targetDirectories": [
-    "./src/app",
-    "./src/components"
-  ],
+  "timestamp": "2026-10-21T10:11:56.889Z",
+  "hstsConfigured": true,
   "totalViolations": 0,
   "violations": [],
   "status": "ALL_PASSED"

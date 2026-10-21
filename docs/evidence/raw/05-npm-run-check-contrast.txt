@@ -1,0 +1,24 @@
+npm run check:contrast
+
+> rsi-islam-sby@2.0.0 check:contrast
+> node scripts/check-contrast.mjs
+
+=== WCAG 2.2 AA Contrast Ratio Verification ===
+
+[PASS] Ink on Ivory (Body text): 15.87:1 (Min: 4.5:1)
+[PASS] Ink-Soft on Ivory (Secondary text): 6.41:1 (Min: 4.5:1)
+[PASS] Tower-800 on Ivory (Headings / Primary): 8.90:1 (Min: 4.5:1)
+[PASS] Tower-700 on Ivory (Active icons): 6.01:1 (Min: 4.5:1)
+[PASS] Tower-600 on Ivory (Links): 5.03:1 (Min: 4.5:1)
+[PASS] Gold-700 on Ivory (Accent text): 4.77:1 (Min: 4.5:1)
+[PASS] Ivory on Tower-800 (Primary button text): 8.90:1 (Min: 4.5:1)
+[PASS] Ivory on Tower-900 (Header text): 11.74:1 (Min: 4.5:1)
+[PASS] Ivory on Tower-950 (Footer text): 15.65:1 (Min: 4.5:1)
+[PASS] Gold-300 on Tower-900 (Dark hero accent): 7.81:1 (Min: 4.5:1)
+[PASS] Gold-300 on Tower-950 (Footer gold accent): 10.41:1 (Min: 4.5:1)
+[PASS] Ivory on Alert-600 (Emergency button text): 5.14:1 (Min: 4.5:1)
+[PASS] Alert-600 on Alert-50 (Alert box message): 4.78:1 (Min: 4.5:1)
+[PASS] Tower-950 on Gold-100 (Highlight badge text): 13.94:1 (Min: 4.5:1)
+
+[SUCCESS] Seluruh 14 pasangan warna token lolos standar WCAG 2.2 AA (>= 4.5:1).
+EXIT CODE: 0

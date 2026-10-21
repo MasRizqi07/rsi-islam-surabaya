@@ -328,7 +328,7 @@ export default function IgdPage() {
                 Alur Penanganan Terpadu {HOSPITAL_FACTS.buildings.tower.name} Lantai 2
               </h2>
               <p className="text-ink-soft text-sm leading-relaxed">
-                Keunggulan utama {HOSPITAL_FACTS.buildings.tower.name} RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
+                Karakteristik utama {HOSPITAL_FACTS.buildings.tower.name} RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
               </p>
             </div>
 

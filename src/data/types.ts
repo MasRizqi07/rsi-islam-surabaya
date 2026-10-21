@@ -40,7 +40,7 @@ export interface Service {
   buildingId: BuildingId;
   floor: number;
   open24h: boolean;
-  highlight: boolean;      // Masuk 8 layanan unggulan terverifikasi
+  highlight: boolean;      // Masuk 8 layanan medis terpadu terverifikasi
   sourceNote: string;      // Asal verifikasi sumber publik (misal "S1 Pelayanan & Penunjang")
 }
 

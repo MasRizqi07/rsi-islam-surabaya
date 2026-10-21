@@ -132,7 +132,7 @@ export default function TentangPage() {
               Rekam Jejak Akreditasi Paripurna Historis
             </h2>
             <p className="text-ink-soft text-sm leading-relaxed">
-              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten mempertahankan pengakuan mutu tertinggi dari lembaga independen nasional.
+              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten meraih Akreditasi Paripurna 2016 · 2019 · 2022 dari lembaga independen nasional.
             </p>
           </div>
 

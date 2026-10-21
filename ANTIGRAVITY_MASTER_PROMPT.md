@@ -313,7 +313,7 @@ Antigravity wajib mengeksekusi proyek mengikuti urutan fase ini secara sekuensia
 2. **Kontak & Lokasi (`src/app/kontak/page.tsx`)**: Alamat fisik, nomor telepon sentral & darurat, jam buka fasilitas 24 jam, ilustrasi peta SVG statis + tautan langsung Google Maps (tanpa API key).
 3. **Detail Layanan Unggulan (`src/app/layanan/[slug]/page.tsx`)**: Halaman detail untuk 8 layanan unggulan beserta fasilitas teknologi dan dokter terkait.
 4. **Halaman 404 Kustom (`src/app/not-found.tsx`)**: Desain bertema "Hijau Tower" dengan tombol kembali ke beranda atau IGD.
-5. Konfigurasi keamanan `next.config.mjs` (Security Headers, CSP ketat).
+5. Konfigurasi keamanan `next.config.mjs` (Security Headers, CSP berbasis allowlist).
 
 #### Exit Evidence Gate 5:
 * `npm run build` sukses menghasilkan seluruh rute statis.

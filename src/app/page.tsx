@@ -149,15 +149,15 @@ export default function HomePage() {
         <BedStatusWidget />
       </section>
 
-      {/* 4. SECTION LAYANAN UNGGULAN (6 KARTU) */}
-      <section aria-label="Layanan Medis Unggulan" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* 4. SECTION LAYANAN MEDIS TERPADU (6 KARTU) */}
+      <section aria-label="Layanan Medis Terpadu" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-tower-100 pb-4">
           <div>
             <span className="text-xs uppercase tracking-widest font-mono text-gold-700 block mb-1 font-bold">
               Pelayanan Komprehensif
             </span>
             <h2 className="font-display font-bold text-3xl text-tower-900">
-              Layanan Medis Unggulan
+              Layanan Medis Terpadu
             </h2>
             <p className="text-ink-soft text-sm mt-1">
               Fasilitas diagnostik dan terapeutik modern berstandar akreditasi paripurna.

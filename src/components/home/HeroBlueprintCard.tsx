@@ -72,7 +72,7 @@ export function HeroBlueprintCard() {
       {/* 4 LANTAI UTAMA TERVERIFIKASI */}
       <div className="pt-3.5 pb-2 space-y-2">
         <span className="text-[11px] uppercase tracking-wider text-ivory/70 font-semibold block">
-          4 Lantai Layanan Unggulan Terverifikasi:
+          4 Lantai Layanan Medis Terverifikasi:
         </span>
 
         <div className="space-y-2">

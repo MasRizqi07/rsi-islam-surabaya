@@ -17,7 +17,7 @@
 ## ⚠️ Pernyataan Penafian Independen (Disclaimer)
 Aplikasi ini merupakan **studi kasus portofolio desain dan software engineering independen**. Proyek ini **TIDAK berafiliasi** secara resmi dengan Rumah Sakit Islam Surabaya (RSIS) maupun Yayasan Rumah Sakit Islam Surabaya (YARSIS). Dibuat semata-mata untuk tujuan demonstrasi kecakapan rekayasa perangkat lunak modern.
 
-* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header keamanan HTTP `X-Robots-Tag: noindex, nofollow` untuk mencegah kebingungan publik dengan situs resmi rumah sakit.
+* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Allow: /`), dan header keamanan HTTP `X-Robots-Tag: noindex, nofollow` untuk mencegah kebingungan publik dengan situs resmi rumah sakit (koreksi spesifikasi: `Allow: /` memastikan crawler dapat memproses dan mematuhi direktif `noindex`).
 * **Privasi Mutlak**: Tanpa skrip pelacak analitik pihak ketiga (*Zero Third-Party Tracking / Zero Cookies*). Formulir pendaftaran demo diproses murni di memori lokal peramban (**Zero Outgoing Network Requests**).
 * **Karakter Fiktif**: Seluruh profil dokter dan jadwal praktik yang ditampilkan adalah tokoh fiktif simulasi (`isFictional: true`) yang secara konsisten ditandai lencana visual tegas *"Ilustrasi"*.
 
@@ -144,9 +144,9 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
    - Tombol satu-klik *"Isi Data Simulasi Otomatis"* untuk kemudahan pengujian evaluator.
    - **Zero Network Requests**: Terbukti secara otomatis memproses seluruh form di memori peramban tanpa koneksi backend.
 9. **Tentang Kami (`/tentang`)**
-   - Narasi 51 tahun perjalanan RSI Surabaya A. Yani sejak diresmikan Presiden Soeharto pada 1975.
+   - Narasi 51 tahun perjalanan RSI Surabaya A. Yani sejak 1975.
    - Garis waktu kronologis 15 tonggak sejarah (1975–2026) bersumber dari dokumen publik Lampiran C.
-   - Rekam jejak akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022–2026).
+   - Rekam jejak akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022).
    - Transparansi nilai dan tata kelola YARSIS (Yayasan Rumah Sakit Islam Surabaya).
 10. **Kontak & Lokasi (`/kontak`)**
     - Kontak darurat ganda K1, jam buka fasilitas penunjang 24 jam, dan peta arsitektural SVG tanpa pelacak cookies.
@@ -235,18 +235,15 @@ npm run audit:lighthouse
 
 ## 📁 Direktori Bukti & Artefak (Evidence Gate)
 
-Seluruh bukti eksekusi tersimpan secara transparan di dalam direktori `docs/`:
-- [docs/evidence/phase-0-discovery.json](docs/evidence/phase-0-discovery.json): Verifikasi tooling dan dependensi awal.
-- [docs/evidence/phase-1-shell.json](docs/evidence/phase-1-shell.json): Hasil kompilasi shell global, header, footer, dan skip-link.
-- [docs/evidence/contrast-results.json](docs/evidence/contrast-results.json): Matriks rasio kontras 14 token warna.
-- [docs/evidence/phase-2-data.json](docs/evidence/phase-2-data.json): Validasi skema Zod dan data fixture medis.
+Seluruh bukti eksekusi dan catatan keputusan tersimpan secara transparan di dalam direktori `docs/`:
+- [docs/evidence/raw/](docs/evidence/raw/): Output terminal mentah sebagai satu-satunya bukti sah verifikasi teknis.
+- [docs/evidence/README.md](docs/evidence/README.md): Register validitas bukti eksekusi.
+- [docs/adr/0001-toolchain-versions.md](docs/adr/0001-toolchain-versions.md): Keputusan arsitektur penetapan versi toolchain (`eslint` 9.16.0 & `typescript` 5.7.2).
+- [docs/evidence/contrast-results.json](docs/evidence/contrast-results.json): Matriks rasio kontras token warna.
 - [docs/evidence/facts-check-results.json](docs/evidence/facts-check-results.json): Bukti 0 kebocoran literal fakta rumah sakit.
-- [docs/evidence/phase-3-routes.json](docs/evidence/phase-3-routes.json): Kompilasi rute inti medis dan audit aksesibilitas.
-- [docs/evidence/phase-4-features.json](docs/evidence/phase-4-features.json): Verifikasi Tower Directory dan bukti Zero Network Requests pendaftaran demo.
-- [docs/evidence/phase-5-secondary.json](docs/evidence/phase-5-secondary.json): Verifikasi rute sekunder, SSG layanan dinamis, dan security hardening.
-- [docs/evidence/phase-6-audit.json](docs/evidence/phase-6-audit.json): Rekapitulasi komprehensif audit Lighthouse Mobile, audit multi-viewport, dan matriks pengujian 100 tests.
-- [docs/evidence/lighthouse-summary.json](docs/evidence/lighthouse-summary.json): Laporan mentah JSON skor dan metrik Core Web Vitals Lighthouse.
-- [docs/screenshots/](docs/screenshots/): 32 tangkapan layar responsif resolusi 360px, 390px, 768px, dan 1280px pada 8 rute kunci.
+- [docs/evidence/duplication-results.json](docs/evidence/duplication-results.json): Hasil pemindaian duplikasi literal data.
+- [docs/evidence/legacy-narrative/](docs/evidence/legacy-narrative/): Arsip ringkasan naratif lama buatan agent (bukan bukti mentah).
+- [docs/screenshots/](docs/screenshots/): Tangkapan layar responsif resolusi 360px, 390px, 768px, dan 1280px pada 8 rute kunci.
 
 ---
 

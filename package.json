@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "private": true,
   "description": "RS Islam Surabaya A. Yani - Konsep Hijau Tower (Portfolio Case Study)",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

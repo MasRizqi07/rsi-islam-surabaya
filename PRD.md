@@ -26,7 +26,7 @@ Versi 1 dibuat sebelum konteks "portfolio case study" diperjelas, dan sejumlah k
 | 3 | Klaim "gambar hampir semua broken (lazy-load SVG placeholder)". | **Dicabut.** Tidak ada bukti. | Placeholder base64 tersebut adalah artefak fetcher tanpa JavaScript. Screenshot membuktikan gambar tampil normal di browser nyata. |
 | 4 | Klaim "Google Maps tidak muncul tanpa JS" dihubungkan ke website RSIS. | **Dicabut.** | Yang memerlukan JavaScript adalah halaman `maps.app.goo.gl` milik Google, bukan situs web RSIS. |
 | 5 | Hanya mencantumkan satu nomor darurat (`1500718`). | **Diperbaiki.** Sumber publik menampilkan **dua** nomor berbeda (lihat §2.2 K1). | Mencegah informasi keliru; menampilkan Emergency Call (`1500718`) dan Ambulans (`08 112 33 999`) dengan label netral. |
-| 6 | Target SEO "ranking halaman 1 Google". | **Dibuang.** Wajib `<meta name="robots" content="noindex, nofollow">` & `robots.txt` Disallow. | Situs konsep yang meniru identitas RS berisiko dianggap peniruan/phishing oleh mesin pencari bila diindeks publik. |
+| 6 | Target SEO "ranking halaman 1 Google". | **Dibuang.** Wajib `<meta name="robots" content="noindex, nofollow">` & header HTTP `X-Robots-Tag` (`robots.txt` Allow: / agar crawler membaca direktif noindex). | Situs konsep yang meniru identitas RS berisiko dianggap peniruan/phishing oleh mesin pencari bila diindeks publik. |
 | 7 | Angka tenaga medis tertulis 107, padahal rinciannya berjumlah 112. | **Diperbaiki.** UI menampilkan "100+ tenaga medis" (lihat §2.2 K2). | Menghindari tampilan angka presisi yang kontradiktif antar sumber resmi RSIS. |
 | 8 | Teks korup (karakter asing) di tabel gap analysis. | **Dibersihkan total.** | Integritas dokumen dan artefak profesional. |
 
@@ -349,7 +349,7 @@ Sistem warna dikonfigurasikan pada Tailwind CSS v4 `@theme`:
 * Fitur sekunder yang hanya dikerjakan jika Fase 1–5 selesai lebih awal. Memuat 4 artikel edukasi kesehatan preventif bertema islami-medis dengan penafian tegas: *"Konten edukasi simulasi, bukan rujukan medis resmi"*.
 
 ### FR-12 · Mode Konsep, Privasi & Keamanan (P0)
-* **Anti-Indeksasi Penuh**: Tag `<meta name="robots" content="noindex, nofollow">` pada root layout, file `robots.txt` dengan aturan `Disallow: /`, tanpa sitemap XML, dan tanpa JSON-LD berjenis Hospital/Physician.
+* **Anti-Indeksasi Penuh**: Tag `<meta name="robots" content="noindex, nofollow">` pada root layout, header HTTP `X-Robots-Tag: noindex, nofollow`, file `robots.txt` dengan aturan `Allow: /` (memastikan bot membaca meta noindex), tanpa sitemap XML, dan tanpa JSON-LD berjenis Hospital/Physician.
 * **Nol Pelacak Pihak Ketiga**: Tidak menggunakan skrip Google Analytics, Facebook Pixel, cookies pelacak, atau font CDN eksternal (seluruh font di-self host via `next/font`).
 * **Pemberitahuan Transparan**: Banner disclaimer portofolio dan footer disclaimer hadir di setiap halaman.
 

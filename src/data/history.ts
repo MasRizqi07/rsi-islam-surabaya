@@ -62,7 +62,7 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   {
     year: '2016',
     title: 'Akreditasi Tingkat Paripurna Pertama',
-    description: 'Meraih predikat tertinggi Akreditasi Tingkat Paripurna (Bintang Lima) dari Komisi Akreditasi Rumah Sakit (KARS).',
+    description: 'Meraih Akreditasi Tingkat Paripurna dari Komisi Akreditasi Rumah Sakit (KARS).',
     tag: 'Prestasi',
   },
   {
@@ -79,7 +79,7 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   },
   {
     year: '2020',
-    title: 'Garda Terdepan Pandemi COVID-19',
+    title: 'Penanganan Pandemi COVID-19',
     description: 'Penyediaan 80 tempat tidur ruang isolasi khusus bertekanan negatif dan pelayanan skrining terpadu demi perlindungan warga Surabaya.',
     tag: 'Pengabdian',
   },

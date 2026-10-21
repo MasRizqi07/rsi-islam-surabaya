@@ -13,7 +13,7 @@ describe('Data Layer & Integrity Tests', () => {
     expect(uniqueIds.size).toBe(20);
   });
 
-  it('harus memuat 8 layanan unggulan terverifikasi', () => {
+  it('harus memuat 8 layanan terpadu terverifikasi', () => {
     expect(SERVICES).toHaveLength(8);
     const uniqueSlugs = new Set(SERVICES.map((s) => s.slug));
     expect(uniqueSlugs.size).toBe(8);

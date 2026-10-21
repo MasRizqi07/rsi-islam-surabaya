@@ -1,0 +1,4 @@
+git grep -n tertinggi src
+src/app/tentang/page.tsx:135:              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten mempertahankan pengakuan mutu tertinggi dari lembaga independen nasional.
+src/data/history.ts:65:    description: 'Meraih predikat tertinggi Akreditasi Tingkat Paripurna (Bintang Lima) dari Komisi Akreditasi Rumah Sakit (KARS).',
+EXIT CODE: 0

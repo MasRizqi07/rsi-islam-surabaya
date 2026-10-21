@@ -1,0 +1,2 @@
+git grep -n Strict-Transport-Security next.config.mjs
+EXIT CODE: 1

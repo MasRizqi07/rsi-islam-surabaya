@@ -68,9 +68,9 @@ Seluruh proses perancangan dan implementasi dieksekusi dengan standar **Evidence
 | Item Batasan | Realisasi Teknis | Verifikasi Pembuktian |
 |---|---|---|
 | **Zero Backend / Zero DB** | Tidak ada API route dinamis, serverless function, Prisma, Payload CMS, maupun PostgreSQL. | File tracing build membuktikan seluruh 43 halaman berstatus `○ (Static)` atau `● (SSG)`. |
-| **Zero Third-Party Tracking** | Tidak ada Google Analytics, Facebook Pixel, hotjar, atau cookie banner. | HTTP header `Permissions-Policy` dan CSP ketat memblokir pelacakan eksternal. |
+| **Zero Third-Party Tracking** | Tidak ada Google Analytics, Facebook Pixel, hotjar, atau cookie banner. | HTTP header `Permissions-Policy` dan CSP berbasis allowlist (dengan `'unsafe-inline'` pada script-src untuk kebutuhan hidrasi Next.js) memblokir pelacakan eksternal. |
 | **Zero Network Requests saat Submit** | Formulir pendaftaran rawat jalan mandiri hanya memproses data simulasi di RAM peramban. | Pengujian Playwright `page.on('request')` mencatat **tepat 0 outgoing network requests**. |
-| **Proteksi Phishing / Anti-Indeksasi** | `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header `X-Robots-Tag`. | Terverifikasi pada berkas fisik `public/robots.txt`, `next.config.mjs`, dan metadata root layout. |
+| **Proteksi Phishing / Anti-Indeksasi** | `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Allow: /`), dan header `X-Robots-Tag`. | Terverifikasi pada berkas fisik `public/robots.txt`, `next.config.mjs`, dan metadata root layout. |
 | **Karakter Fiktif Transparan** | 24 profil dokter berstatus `isFictional: true` dengan lencana visual tegas *"Ilustrasi"*. | Validasi Zod dan skrip pengujian Playwright E2E. |
 
 ---
@@ -121,7 +121,7 @@ Setiap pertentangan data dari sumber publik resmi RSIS diselesaikan secara metod
 - **Artefak Bukti**: [docs/evidence/phase-4-features.json](docs/evidence/phase-4-features.json).
 
 ### Fase 5: Rute Sekunder, Detail Layanan & Security Hardening
-- **Sasaran**: Halaman Tentang Kami `/tentang` (timeline 15 tonggak sejarah 1975–2026, rekam jejak akreditasi K3), halaman Kontak & Lokasi `/kontak` (peta diagram vektor SVG tanpa tracking, tombol Google Maps resmi), 8 rute SSG dinamis `/layanan/[slug]`, halaman 404 kustom bernuansa Hijau Tower `/not-found`, dan penguatan keamanan HTTP Headers (CSP ketat, HSTS, X-Frame-Options: DENY, Permissions-Policy).
+- **Sasaran**: Halaman Tentang Kami `/tentang` (timeline 15 tonggak sejarah 1975–2026, rekam jejak akreditasi K3), halaman Kontak & Lokasi `/kontak` (peta diagram vektor SVG tanpa tracking, tombol Google Maps resmi), 8 rute SSG dinamis `/layanan/[slug]`, halaman 404 kustom bernuansa Hijau Tower `/not-found`, dan penguatan keamanan HTTP Headers (CSP berbasis allowlist; `'unsafe-inline'` pada script-src dipertahankan karena kebutuhan hidrasi dan payload inline script Next.js di setup ini, HSTS, X-Frame-Options: DENY, Permissions-Policy).
 - **Hasil**: Kompilasi 43 rute statis, 36 pengujian Playwright lintas viewport lulus tanpa pelanggaran axe-core.
 - **Artefak Bukti**: [docs/evidence/phase-5-secondary.json](docs/evidence/phase-5-secondary.json).
 
@@ -167,7 +167,7 @@ Diverifikasi melalui pengujian terprogram pada [tests/phase6-viewports.spec.ts](
 - **Vitest Unit Tests**: `19 passed (19)` — Integritas logika data medis, filter dokter, dan parsing Zod.
 - **Playwright Test Runner**: `100 passed (100)` — Termasuk uji navigasi keyboard Tower, isolasi submit form demo, sinkronisasi filter searchParams, dan audit axe-core.
 - **Axe-core A11y Scanner**: 0 pelanggaran berstatus Serious atau Critical pada seluruh rute.
-- **WCAG 2.2 AA Contrast Scanner**: 14/14 pasangan warna lolos ambang batas rasio 4.5:1 (rasio tertinggi 15.87:1).
+- **WCAG 2.2 AA Contrast Scanner**: 14/14 pasangan warna lolos ambang batas rasio 4.5:1 (rasio maksimal 15.87:1).
 - **Hospital Facts Leakage Scanner**: 0 kebocoran literal konstanta darurat.
 
 ---
@@ -246,7 +246,7 @@ rsi-islam-sby/
 │   ├── phase4.spec.ts                   # E2E Tower Directory & Zero Network submit
 │   ├── phase5.spec.ts                   # E2E rute sekunder & detail layanan
 │   └── phase6-viewports.spec.ts         # Uji multi-viewport responsivitas visual
-├── next.config.mjs                      # CSP ketat, security headers, anti-robots
+├── next.config.mjs                      # CSP allowlist, security headers, anti-robots
 ├── package.json                         # Dependensi dan skrip eksekusi
 └── README.md                            # Dokumentasi studi kasus portofolio
 ```

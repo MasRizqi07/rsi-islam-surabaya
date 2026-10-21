@@ -1,0 +1,2 @@
+grep -rniE "soeharto|WhatsApp Darurat|2022.?2026|tertinggi" src README.md docs --exclude-dir=legacy-narrative
+EXIT CODE: 1

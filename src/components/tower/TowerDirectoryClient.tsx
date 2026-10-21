@@ -530,11 +530,11 @@ export function TowerDirectoryClient() {
               </div>
             )}
 
-            {/* LAYANAN UNGGULAN TERKAIT DI LANTAI INI */}
+            {/* LAYANAN TERPADU TERKAIT DI LANTAI INI */}
             {matchedServices.length > 0 && (
               <div className="pt-2 space-y-3">
                 <span className="text-xs font-bold text-tower-900 uppercase tracking-wider block">
-                  Instalasi & Layanan Unggulan di Lantai Ini:
+                  Instalasi & Layanan Terpadu di Lantai Ini:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {matchedServices.map((svc) => (
