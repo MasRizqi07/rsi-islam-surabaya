@@ -1,0 +1,227 @@
+// Prisma Schema for RSI Islam Surabaya A. Yani ("Hijau Tower" Demo Fullstack)
+// PRD v3.0 Specification
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------
+// CORE CLINICAL & HOSPITAL ENTITIES
+// -----------------------------------------------------------------------------
+
+model Specialty {
+  id          String       @id
+  name        String
+  group       String       // dasar | spesialistik | penunjang
+  summary     String
+  iconName    String
+  doctors     Doctor[]
+  polyclinics Polyclinic[]
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Polyclinic {
+  id          String        @id
+  name        String
+  buildingId  String        // tower | graha
+  floor       Int
+  specialtyId String?
+  specialty   Specialty?    @relation(fields: [specialtyId], references: [id])
+  doctors     Doctor[]
+  appointments Appointment[]
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Doctor {
+  id           String           @id @default(cuid())
+  slug         String           @unique
+  name         String
+  title        String
+  specialtyId  String
+  specialty    Specialty        @relation(fields: [specialtyId], references: [id])
+  subSpecialty String?
+  penjamin     String[]         // ['bpjs', 'umum', 'asuransi']
+  poli         String[]         // ['reguler', 'eksekutif']
+  bio          String
+  isFictional  Boolean          @default(true) // Wajib true (PRD §5)
+  polyclinicId String?
+  polyclinic   Polyclinic?      @relation(fields: [polyclinicId], references: [id])
+  schedules    DoctorSchedule[]
+  appointments Appointment[]
+
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model DoctorSchedule {
+  id        String   @id @default(cuid())
+  doctorId  String
+  doctor    Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  hari      String   // senin | selasa | rabu | kamis | jumat | sabtu | minggu
+  mulai     String   // HH:mm misal "08:00"
+  selesai   String   // HH:mm misal "12:00"
+  poli      String   // reguler | eksekutif
+  quota     Int      @default(15)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([doctorId, hari])
+}
+
+model Service {
+  id          String   @id
+  slug        String   @unique
+  name        String
+  summary     String
+  description String
+  buildingId  String   // tower | graha
+  floor       Int
+  open24h     Boolean  @default(false)
+  highlight   Boolean  @default(false)
+  sourceNote  String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TowerFloor {
+  id           String   @id @default(cuid())
+  buildingId   String   // tower | graha
+  floor        Int
+  label        String
+  serviceSlugs String[]
+  known        Boolean  // false jika informasi tidak tersedia publik (K4)
+  description  String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([buildingId, floor])
+}
+
+model BedStatus {
+  id            String   @id @default(cuid())
+  unit          String   @unique // ICU, ICCU, HCU, NICU, PICU, Rawat Inap Reguler
+  status        String   // tersedia | terbatas | penuh
+  note          String?
+  totalBeds     Int      @default(20)
+  availableBeds Int      @default(5)
+
+  updatedAt     DateTime @updatedAt
+}
+
+// -----------------------------------------------------------------------------
+// AUTHENTICATION & DEMO USERS (Better Auth compatible)
+// -----------------------------------------------------------------------------
+
+model User {
+  id            String        @id @default(cuid())
+  name          String
+  email         String        @unique
+  emailVerified Boolean       @default(false)
+  image         String?
+  passwordHash  String?
+  role          String        @default("PATIENT") // PATIENT | ADMIN
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  sessions      Session[]
+  accounts      Account[]
+  appointments  Appointment[]
+  auditLogs     AuditLog[]
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// -----------------------------------------------------------------------------
+// APPOINTMENTS & AUDIT LOGS
+// -----------------------------------------------------------------------------
+
+model Appointment {
+  id                String     @id @default(cuid())
+  appointmentNumber String     @unique
+  patientId         String
+  patient           User       @relation(fields: [patientId], references: [id])
+  doctorId          String
+  doctor            Doctor     @relation(fields: [doctorId], references: [id])
+  polyclinicId      String?
+  polyclinic        Polyclinic? @relation(fields: [polyclinicId], references: [id])
+  appointmentDate   String     // YYYY-MM-DD
+  timeSlot          String     // HH:mm
+  penjamin          String     // bpjs | umum | asuransi
+  poli              String     // reguler | eksekutif
+  status            String     @default("BOOKED") // BOOKED | COMPLETED | CANCELLED | NO_SHOW
+  idempotencyKey    String?    @unique
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  auditLogs         AuditLog[]
+
+  @@index([patientId])
+  @@index([doctorId, appointmentDate, timeSlot])
+}
+
+model AuditLog {
+  id            String       @id @default(cuid())
+  actorId       String
+  actor         User         @relation(fields: [actorId], references: [id])
+  action        String       // LOGIN_SUCCESS | LOGIN_FAILED | APPOINTMENT_CREATED | APPOINTMENT_CANCELLED | APPOINTMENT_STATUS_CHANGED | BED_STATUS_CHANGED
+  resource      String       // appointment/{id}, auth/session, bed-status/{unit}
+  statusBefore  String?
+  statusAfter   String?
+  appointmentId String?
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id])
+  details       String?      // No IP, No user-agent, No email (PRD §5)
+  timestamp     DateTime     @default(now())
+
+  @@index([actorId])
+  @@index([action])
+  @@index([timestamp])
+}

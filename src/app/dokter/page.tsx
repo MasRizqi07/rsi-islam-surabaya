@@ -1,6 +1,7 @@
 import { DoctorListClient } from './DoctorListClient';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { Stethoscope, AlertCircle } from 'lucide-react';
+import { getDoctorsFromDb, getSpecialtiesFromDb } from '@/lib/db-queries';
 
 export const metadata = {
   title: `Direktori & Jadwal Praktik Dokter · ${HOSPITAL_FACTS.name}`,
@@ -8,7 +9,10 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function DokterPage() {
+export default async function DokterPage() {
+  const doctors = await getDoctorsFromDb();
+  const specialties = await getSpecialtiesFromDb();
+
   return (
     <div className="py-10 sm:py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
@@ -36,8 +40,8 @@ export default function DokterPage() {
         </div>
       </div>
 
-      {/* DIREKTORI DOKTER & FILTER (STATIC PRE-RENDERED) */}
-      <DoctorListClient />
+      {/* DIREKTORI DOKTER & FILTER (DATABASE RUNTIME QUERY) */}
+      <DoctorListClient initialDoctors={doctors} initialSpecialties={specialties} />
 
     </div>
   );

@@ -1,0 +1,9 @@
+npm run check:facts
+
+> rsi-islam-sby@2.0.0 check:facts
+> tsx scripts/check-facts.mjs
+
+=== HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
+EXIT CODE: 0

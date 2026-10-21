@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { DOCTORS } from '@/data/doctors';
 import { SPECIALTIES } from '@/data/specialties';
 import { filterDoctors } from '@/lib/data-utils';
-import { Hari, Penjamin, PoliCategory } from '@/data/types';
+import { Doctor, Specialty, Hari, Penjamin, PoliCategory } from '@/data/types';
+
 import {
   Search,
   Stethoscope,
@@ -27,7 +28,17 @@ const DAYS_OPTIONS = [
   { value: 'sabtu', label: 'Sabtu' },
 ];
 
-export function DoctorListClient() {
+interface DoctorListClientProps {
+  initialDoctors?: Doctor[];
+  initialSpecialties?: Specialty[];
+}
+
+export function DoctorListClient({
+  initialDoctors,
+  initialSpecialties,
+}: DoctorListClientProps = {}) {
+  const doctors = initialDoctors ?? DOCTORS;
+  const specialties = initialSpecialties ?? SPECIALTIES;
   const pathname = usePathname();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,13 +105,16 @@ export function DoctorListClient() {
   };
 
   // Filter dokter
-  const filteredDoctors = filterDoctors({
-    searchQuery,
-    specialtyId: selectedSpecialty,
-    hari: selectedHari as Hari,
-    penjamin: selectedPenjamin as Penjamin,
-    poli: selectedPoli as PoliCategory,
-  });
+  const filteredDoctors = filterDoctors(
+    {
+      searchQuery,
+      specialtyId: selectedSpecialty,
+      hari: selectedHari as Hari,
+      penjamin: selectedPenjamin as Penjamin,
+      poli: selectedPoli as PoliCategory,
+    },
+    doctors
+  );
 
   return (
     <div className="space-y-8">
@@ -117,7 +131,7 @@ export function DoctorListClient() {
 
           <div className="flex items-center gap-3">
             <span className="text-xs text-ink-soft">
-              Menampilkan <strong>{filteredDoctors.length}</strong> dari {DOCTORS.length} dokter fiktif
+              Menampilkan <strong>{filteredDoctors.length}</strong> dari {doctors.length} dokter fiktif
             </span>
             {(searchQuery || selectedSpecialty !== 'all' || selectedHari !== 'all' || selectedPenjamin !== 'all' || selectedPoli !== 'all') && (
               <button
@@ -169,8 +183,8 @@ export function DoctorListClient() {
               }}
               className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-ivory text-tower-950 text-xs font-semibold border border-tower-100 focus:border-tower-700 focus:outline-none"
             >
-              <option value="all">Semua Poliklinik ({SPECIALTIES.length})</option>
-              {SPECIALTIES.map((s) => (
+              <option value="all">Semua Poliklinik ({specialties.length})</option>
+              {specialties.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
                 </option>

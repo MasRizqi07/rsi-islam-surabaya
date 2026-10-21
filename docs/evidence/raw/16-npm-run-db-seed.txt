@@ -1,0 +1,25 @@
+npm run db:seed
+
+> rsi-islam-sby@2.0.0 db:seed
+> tsx prisma/seed.ts
+
+=== MEMULAI SEEDING DATABASE RSI ISLAM SURABAYA (PRD v3.0) ===
+ [DB] Constraint DB partial unique index verified: unique_active_doctor_slot
+ [DB] 20 Poliklinik seeded (upsert idempotent)
+ [DB] 17 Spesialisasi dokter seeded (target: 17)
+ [DB] 24 Dokter fiktif + jadwal mingguan seeded (semua isFictional=true)
+ [DB] 8 Layanan terpadu seeded
+ [DB] Tower 13 lantai & Graha floors seeded (data hanya di Lt. 2, 3, 4, 7 untuk Tower)
+ [DB] Bed status seeded (6 unit)
+ [DB] Akun demo seeded:
+      - Pasien: pasien.demo@rsi-surabaya.test (Role: PATIENT, password hash bcrypt)
+      - Admin: admin.demo@rsi-surabaya.test (Role: ADMIN, password hash bcrypt)
+
+=== VERIFIKASI AKSEPTANSI US-1 ===
+- Total Dokter        : 24 (Harus 24, semua isFictional=true: true)
+- Total Spesialisasi  : 17 (Harus 17)
+- Total Poliklinik    : 20 (Harus 20)
+- Total Layanan       : 8 (Harus 8)
+- Tower 13 Lantai     : 13 total lantai (Harus 13, dengan data di 4 lantai: true)
+[SUCCESS] US-1 ACCEPTANCE CRITERIA 100% TERPENUHI!
+EXIT CODE: 0
