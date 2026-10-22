@@ -13,12 +13,7 @@ import {
   XCircle,
   LogIn,
   LogOut,
-  Stethoscope,
-  Building2,
-  User,
-  Clock,
   Save,
-  Trash2,
   RefreshCw,
   Info,
 } from 'lucide-react';

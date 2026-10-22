@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireAuth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { recordAuditLog } from '@/lib/audit';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 /**
  * Endpoint Janji Temu Pasien (RBAC US-3, US-4, US-5, S5, S6)
@@ -41,6 +42,26 @@ export async function POST(req: NextRequest) {
   const authResult = await requireAuth(req.headers);
   if (authResult instanceof NextResponse) {
     return authResult; // 401
+  }
+
+  // Rate Limiting Pembuatan Janji (PRD v3.0 S10 - P2)
+  const rateCheck = checkRateLimit(`appointment:${authResult.user.id}`, {
+    windowMs: 60 * 1000,
+    max: 10,
+  });
+
+  if (!rateCheck.allowed) {
+    return NextResponse.json(
+      { error: 'Batas frekuensi pembuatan janji tercapai. Silakan coba beberapa saat lagi.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(rateCheck.resetSeconds),
+          'X-RateLimit-Limit': String(rateCheck.limit),
+          'X-RateLimit-Remaining': '0',
+        },
+      }
+    );
   }
 
   try {

@@ -3,7 +3,7 @@ import { prisma } from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { GET as adminAppointmentsGetHandler } from '@/app/api/admin/appointments/route';
 import { PATCH as adminAppointmentPatchHandler } from '@/app/api/admin/appointments/[id]/route';
-import { GET as adminBedGetHandler, PUT as adminBedPutHandler } from '@/app/api/admin/bed-status/route';
+import { PUT as adminBedPutHandler } from '@/app/api/admin/bed-status/route';
 import { GET as adminAuditLogsGetHandler } from '@/app/api/admin/audit-logs/route';
 import { GET as publicBedGetHandler } from '@/app/api/bed-status/route';
 import { NextRequest } from 'next/server';
@@ -48,22 +48,22 @@ describe('Phase 10 Admin Workflows, Bed Status, Audit Trail & RBAC (US-6, US-7, 
     const pCookie = pRes.headers.get('set-cookie')?.split(';')[0] || '';
     patientSessionHeader = new Headers({ cookie: pCookie, 'Content-Type': 'application/json' });
 
-    // 4. Bersihkan data uji tahun 2099 sebelum mulai
+    // 4. Bersihkan data uji tahun 2098 sebelum mulai
     await prisma.auditLog.deleteMany({
-      where: { appointment: { appointmentDate: { startsWith: '2099-' } } },
+      where: { appointment: { appointmentDate: { startsWith: '2098-' } } },
     });
     await prisma.appointment.deleteMany({
-      where: { appointmentDate: { startsWith: '2099-' } },
+      where: { appointmentDate: { startsWith: '2098-' } },
     });
   });
 
   afterAll(async () => {
-    // Bersihkan data uji tahun 2099 setelah selesai
+    // Bersihkan data uji tahun 2098 setelah selesai
     await prisma.auditLog.deleteMany({
-      where: { appointment: { appointmentDate: { startsWith: '2099-' } } },
+      where: { appointment: { appointmentDate: { startsWith: '2098-' } } },
     });
     await prisma.appointment.deleteMany({
-      where: { appointmentDate: { startsWith: '2099-' } },
+      where: { appointmentDate: { startsWith: '2098-' } },
     });
     await prisma.$disconnect();
   });
@@ -104,7 +104,7 @@ describe('Phase 10 Admin Workflows, Bed Status, Audit Trail & RBAC (US-6, US-7, 
           appointmentNumber: `APT-ADM-COMP-${Date.now()}`,
           patientId: patientUser.id,
           doctorId: testDoctor.id,
-          appointmentDate: '2099-08-10',
+          appointmentDate: '2098-08-10',
           timeSlot: '09:30',
           penjamin: 'bpjs',
           poli: 'reguler',
@@ -150,7 +150,7 @@ describe('Phase 10 Admin Workflows, Bed Status, Audit Trail & RBAC (US-6, US-7, 
           appointmentNumber: `APT-ADM-NOSHOW-${Date.now()}`,
           patientId: patientUser.id,
           doctorId: testDoctor.id,
-          appointmentDate: '2099-08-11',
+          appointmentDate: '2098-08-11',
           timeSlot: '10:00',
           penjamin: 'umum',
           poli: 'reguler',
@@ -190,7 +190,7 @@ describe('Phase 10 Admin Workflows, Bed Status, Audit Trail & RBAC (US-6, US-7, 
           appointmentNumber: `APT-ADM-CANC-${Date.now()}`,
           patientId: patientUser.id,
           doctorId: testDoctor.id,
-          appointmentDate: '2099-08-12',
+          appointmentDate: '2098-08-12',
           timeSlot: '11:00',
           penjamin: 'asuransi',
           poli: 'eksekutif',
@@ -219,7 +219,7 @@ describe('Phase 10 Admin Workflows, Bed Status, Audit Trail & RBAC (US-6, US-7, 
           appointmentNumber: `APT-ADM-TERM-${Date.now()}`,
           patientId: patientUser.id,
           doctorId: testDoctor.id,
-          appointmentDate: '2099-08-13',
+          appointmentDate: '2098-08-13',
           timeSlot: '13:00',
           penjamin: 'umum',
           poli: 'reguler',

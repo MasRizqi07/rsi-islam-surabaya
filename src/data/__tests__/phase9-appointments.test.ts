@@ -1,14 +1,14 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
 import { prisma } from '@/lib/db';
 import { auth } from '@/lib/auth';
+import { resetRateLimitStore } from '@/lib/rate-limit';
 import { GET as aptListGetHandler, POST as aptCreatePostHandler } from '@/app/api/patient/appointments/route';
-import { GET as aptDetailGetHandler, DELETE as aptCancelDeleteHandler } from '@/app/api/patient/appointments/[id]/route';
+import { DELETE as aptCancelDeleteHandler } from '@/app/api/patient/appointments/[id]/route';
 import { NextRequest } from 'next/server';
 
 describe('Phase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)', () => {
   let patientSessionHeader: Headers;
   let otherPatientSessionHeader: Headers;
-  let adminSessionHeader: Headers;
 
   let patientUser: { id: string; email: string };
   let otherPatientUser: { id: string; email: string };
@@ -72,12 +72,7 @@ describe('Phase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, 
     const p2Cookie = p2Res.headers.get('set-cookie')?.split(';')[0] || '';
     otherPatientSessionHeader = new Headers({ cookie: p2Cookie, 'Content-Type': 'application/json' });
 
-    const admRes = await auth.api.signInEmail({
-      body: { email: 'admin.demo@rsi-surabaya.test', password: 'AdminSecure123!' },
-      asResponse: true,
-    });
-    const admCookie = admRes.headers.get('set-cookie')?.split(';')[0] || '';
-    adminSessionHeader = new Headers({ cookie: admCookie, 'Content-Type': 'application/json' });
+
 
     // 5. Bersihkan data janji uji tahun 2099 sebelum mulai agar idempoten
     await prisma.auditLog.deleteMany({
@@ -86,6 +81,10 @@ describe('Phase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, 
     await prisma.appointment.deleteMany({
       where: { appointmentDate: { startsWith: '2099-' } },
     });
+  });
+
+  beforeEach(() => {
+    resetRateLimitStore();
   });
 
   afterAll(async () => {

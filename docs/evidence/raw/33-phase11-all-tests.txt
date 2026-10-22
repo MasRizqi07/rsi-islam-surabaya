@@ -1,0 +1,50 @@
+npm test
+
+> rsi-islam-sby@2.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+ [32m✓[39m src/data/__tests__/data.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/duplication.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 179[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/db-phase7.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 152[2mms[22m[39m
+[90mstdout[2m | src/data/__tests__/facts-check.test.ts[2m > [22m[2mHospital Facts & Anti-Regression Scanner (R8 Fase 5.1)[2m > [22m[2mKasus Lolos (Passing Cases)[2m > [22m[2mpemindaian repositori aktif mengembalikan status lolos (exitCode: 0)
+[22m[39m=== HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
+
+ [32m✓[39m src/data/__tests__/facts-check.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/phase11-hardening.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 385[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/phase10-admin.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 593[2mms[22m[39m
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mpenegakan constraint database: pemesanan slot aktif yang sama menghasilkan 409 Conflict
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:203:40
+
+  200 
+  201 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  202 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 203   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mdua permintaan paralel ke slot yang sama: tepat satu berhasil (201) dan tepat satu ditolak (409)
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:203:40
+
+  200 
+  201 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  202 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 203   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+ [32m✓[39m src/data/__tests__/phase9-appointments.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 906[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/access-matrix-phase8.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 954[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m      Tests [22m [1m[32m93 passed[39m[22m[90m (93)[39m
+[2m   Start at [22m 23:46:07
+[2m   Duration [22m 1.78s[2m (tests 56%, import 41%, transform 2%, worker 1%)[22m
+
+EXIT CODE: 0

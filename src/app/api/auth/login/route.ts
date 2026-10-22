@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { recordAuditLog } from '@/lib/audit';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,6 +18,27 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanEmail = email.trim().toLowerCase();
+
+    // Rate Limiting (S10 - P2)
+    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '127.0.0.1';
+    const rateCheck = checkRateLimit(`login:${ip}:${cleanEmail}`, {
+      windowMs: 60 * 1000,
+      max: 5,
+    });
+
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { error: 'Terlalu banyak percobaan masuk. Silakan tunggu beberapa saat.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateCheck.resetSeconds),
+            'X-RateLimit-Limit': String(rateCheck.limit),
+            'X-RateLimit-Remaining': '0',
+          },
+        }
+      );
+    }
 
     // 1. Cari user di database
     const user = await prisma.user.findUnique({
