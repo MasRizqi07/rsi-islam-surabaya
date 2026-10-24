@@ -28,6 +28,10 @@ export const FORBIDDEN_CLAIMS_RULES = [
     },
   },
   { name: 'Klaim CSP ketat (R3)', regex: /CSP\s*ketat/i },
+  {
+    name: 'Skema/field nomor identitas 16 digit terlarang (C4)',
+    regex: /nomorIdentitas|\b(?:nik|ktp|identitas)\b.*(?:\b16\b|\\d\{16\})|\\d\{16\}/i,
+  },
 ];
 
 /**
@@ -97,7 +101,8 @@ function scanDirectory(dir, nextConfigHasHsts) {
       entry === '.git' ||
       entry === '__tests__' ||
       normalized.includes('docs/evidence/legacy-narrative') ||
-      normalized.includes('docs/evidence/raw')
+      normalized.includes('docs/evidence/raw') ||
+      normalized.includes('docs/design-reference')
     ) {
       continue;
     }

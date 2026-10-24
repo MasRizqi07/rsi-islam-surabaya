@@ -77,5 +77,11 @@ describe('Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1)', () => {
       const violations = scanContentForViolations(content, 'src/components/sample.tsx', true);
       expect(violations.some((v: { rule: string }) => v.rule.includes('1500718'))).toBe(true);
     });
+
+    it('mendeteksi dan menolak skema/field nomor identitas 16 digit terlarang (C4)', () => {
+      const content = 'const schema = z.object({ nomorIdentitasContoh: z.string().regex(/^\\d{16}$/) });';
+      const violations = scanContentForViolations(content, 'src/data/schema.ts', true);
+      expect(violations.some((v: { rule: string }) => v.rule.includes('nomor identitas 16 digit'))).toBe(true);
+    });
   });
 });

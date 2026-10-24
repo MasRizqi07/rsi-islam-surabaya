@@ -134,26 +134,26 @@ Setiap pertentangan data dari sumber publik resmi RSIS diselesaikan secara metod
 
 ## 5. Matriks Hasil Pengujian & Bukti Kualitas Komprehensif
 
-### 5.1 Hasil Audit Lighthouse Mobile Lab v3 (3 Run / Rute, Default Mobile Throttling)
-Audit lab Lighthouse resmi dijalankan dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Metrik berikut adalah **nilai median dari 3 iterasi pengujian per rute**:
+### 5.1 Hasil Audit Lighthouse Mobile Lab v3 (Median 5 Run, Default Mobile Throttling)
+Audit lab Lighthouse resmi dijalankan dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Metrik berikut adalah **nilai median dari 5 iterasi pengujian per rute (total 25 run)** yang dibaca langsung dari berkas JSON mentah di `docs/evidence/v3/p0b/lighthouse/` oleh `scripts/lighthouse-table.mjs` (tersimpan di `docs/evidence/raw/38-lighthouse-table.txt`):
 
-```
-┌─────────┬──────────────────────┬───────────┬────────────┬────────────┬──────────┬─────────────┬────────────┬──────────────┬────────────┐
-│ (index) │ Rute                 │ Path      │ Perf (≥90) │ A11y (≥95) │ BP (≥95) │ LCP (≤2.5s) │ CLS (≤0.1) │ TBT (≤200ms) │ All Target │
-├─────────┼──────────────────────┼───────────┼────────────┼────────────┼──────────┼─────────────┼────────────┼──────────────┼────────────┤
-│ 0       │ 'Beranda'            │ '/'       │ 89 (MISSED)│ 100 (PASS) │ 96 (PASS)│ 3.29s (FAIL)│ 0 (PASS)   │ 184ms (PASS) │ FAIL (LCP) │
-│ 1       │ 'IGD Darurat'        │ '/igd'    │ 92 (PASS)  │ 98 (PASS)  │ 96 (PASS)│ 2.88s (FAIL)│ 0 (PASS)   │ 206ms (FAIL) │ FAIL (TBT) │
-│ 2       │ 'Direktori Dokter'   │ '/dokter' │ 93 (PASS)  │ 100 (PASS) │ 96 (PASS)│ 3.01s (FAIL)│ 0 (PASS)   │ 125ms (PASS) │ FAIL (LCP) │
-│ 3       │ 'Tower Directory'    │ '/tower'  │ 95 (PASS)  │ 98 (PASS)  │ 96 (PASS)│ 2.78s (FAIL)│ 0 (PASS)   │ 93ms (PASS)  │ FAIL (LCP) │
-│ 4       │ 'Wizard Pendaftaran' │ '/daftar' │ 96 (PASS)  │ 100 (PASS) │ 96 (PASS)│ 2.77s (FAIL)│ 0 (PASS)   │ 90ms (PASS)  │ FAIL (LCP) │
-└─────────┴──────────────────────┴───────────┴────────────┴────────────┴──────────┴─────────────┴────────────┴──────────────┴────────────┘
-```
+| Rute Halaman | Path | Perf (≥90) | A11y (≥95) | Best Practices (≥95) | LCP (≤2.5s) | TBT (≤200ms) | CLS (≤0.1) | Status Evaluasi |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Beranda** | `/` | **94** | 93 ❌ | **96** | 2.94s ❌ | **111ms** | **0.000** | **FAIL (A11y, LCP)** |
+| **IGD Darurat** | `/igd` | 83 ❌ | 92 ❌ | **96** | 3.52s ❌ | 271ms ❌ | **0.000** | **FAIL (Perf, A11y, LCP, TBT)** |
+| **Direktori Dokter** | `/dokter` | 78 ❌ | **96** | **96** | 2.94s ❌ | 815ms ❌ | **0.000** | **FAIL (Perf, LCP, TBT)** |
+| **Tower Directory** | `/tower` | **95** | **95** | **96** | 2.93s ❌ | **85ms** | **0.000** | **FAIL (LCP)** |
+| **Pendaftaran Online** | `/daftar` | **95** | **96** | **96** | 2.79s ❌ | **91ms** | **0.000** | **FAIL (LCP)** |
 
-> [!NOTE]
-> **Analisis Kegagalan Target CWV (D6 / Batasan yang Diketahui):**
-> 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf headline (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan tidak ada keterlambatan jaringan aset. Durasi LCP didominasi oleh *Element Render Delay* (~2.1s) akibat waktu eksekusi hidrasi JavaScript Next.js pada CPU seluler terkompresi 4x.
-> 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Selisih 6ms di atas ambang batas 200ms pada run 2, disebabkan oleh komputasi awal ikon triase SVG saat hidrasi peramban dengan throttling 4x.
-> 3. **Pencapaian**: CLS tercatat **0.000** pada seluruh rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
+> [!WARNING]
+> **Analisis & Rincian Kegagalan Target CWV / Batasan Teknis (C1 & C2):**
+> 1. **Kegagalan Target LCP (Seluruh 5 Rute > 2.5s)**: Pada profil seluler dengan emulasi pelambatan CPU 4x, seluruh 5 rute melebihi batas 2.5s (2.79s–3.52s). Seluruh klaim terdahulu mengenai elemen LCP spesifik atau rincian render delay dihapus karena audit `lcpElement` bernilai kosong/N/A pada pembacaan terotomasi.
+> 2. **Status Optimasi**: Tindakan optimasi seperti penghapusan `blur-3xl` dan penambahan `prefetch={false}` berstatus **efek tidak terukur** karena tidak didukung data median komparatif *sebelum* dan *sesudah* dari skrip yang sama. Selain itu, `prefetch={false}` memiliki konsekuensi trade-off navigasi antar-halaman menjadi lebih lambat akibat resource baru diunduh saat pengguna mengeklik tautan.
+> 3. **Kegagalan Target Rute Spesifik**:
+>    - `/` (Beranda): A11y 93 < 95, LCP 2.94s > 2.5s.
+>    - `/igd` (IGD): Perf 83 < 90, A11y 92 < 95, LCP 3.52s > 2.5s, TBT 271ms > 200ms.
+>    - `/dokter` (Direktori Dokter): Perf 78 < 90, LCP 2.94s > 2.5s, TBT 815ms > 200ms.
+> 4. **Pencapaian**: CLS tercatat **0.000** pada seluruh rute, Best Practices **96/100**, dan A11y **95–96/100** pada rute `/dokter`, `/tower`, dan `/daftar`.
 
 ### 5.2 Matriks Responsivitas Visual (Playwright)
 Diverifikasi melalui pengujian terprogram pada [tests/phase6-viewports.spec.ts](tests/phase6-viewports.spec.ts):

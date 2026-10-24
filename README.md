@@ -37,22 +37,26 @@ Konsep **"Hijau Tower"** mengangkat gedung bukan sekadar sebagai foto latar pasi
 
 ## 🏆 Rekapitulasi Metrik Kualitas & Hasil Audit Lab
 
-### 1. Audit Kinerja Lighthouse Mobile (Median 3 Run, Default Mobile Throttling)
-Hasil audit lab dijalankan menggunakan Google Chrome Headless dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Angka di bawah adalah **median dari 3 iterasi pengujian per rute**:
+### 1. Audit Kinerja Lighthouse Mobile (Median 5 Run, Default Mobile Throttling)
+Hasil audit lab resmi dijalankan menggunakan Google Chrome Headless dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Angka di bawah adalah **median dari 5 iterasi pengujian per rute (total 25 run)** yang dibaca langsung dari berkas JSON mentah di `docs/evidence/v3/p0b/lighthouse/` oleh `scripts/lighthouse-table.mjs` (tersimpan di `docs/evidence/raw/38-lighthouse-table.txt`):
 
-| Rute Halaman | Path | Kinerja (Target ≥90) | Aksesibilitas (Target ≥95) | Best Practices (Target ≥95) | LCP (Target ≤2.5s) | CLS (Target ≤0.1) | TBT (Target ≤200ms) | Status Evaluasi |
+| Rute Halaman | Path | Perf (≥90) | A11y (≥95) | Best Practices (≥95) | LCP (≤2.5s) | TBT (≤200ms) | CLS (≤0.1) | Status Evaluasi |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Beranda** | `/` | 89 *(Miss)* | **100** | **96** | 3.29s *(Miss)* | **0.000** | **184ms** | **FAIL (LCP, Perf)** |
-| **IGD Darurat** | `/igd` | **92** | **98** | **96** | 2.88s *(Miss)* | **0.000** | 206ms *(Miss)* | **FAIL (LCP, TBT)** |
-| **Direktori Dokter** | `/dokter` | **93** | **100** | **96** | 3.01s *(Miss)* | **0.000** | **125ms** | **FAIL (LCP)** |
-| **Tower Directory** | `/tower` | **95** | **98** | **96** | 2.78s *(Miss)* | **0.000** | **93ms** | **FAIL (LCP)** |
-| **Wizard Pendaftaran** | `/daftar` | **96** | **100** | **96** | 2.77s *(Miss)* | **0.000** | **90ms** | **FAIL (LCP)** |
+| **Beranda** | `/` | **94** | 93 ❌ | **96** | 2.94s ❌ | **111ms** | **0.000** | **FAIL (A11y, LCP)** |
+| **IGD Darurat** | `/igd` | 83 ❌ | 92 ❌ | **96** | 3.52s ❌ | 271ms ❌ | **0.000** | **FAIL (Perf, A11y, LCP, TBT)** |
+| **Direktori Dokter** | `/dokter` | 78 ❌ | **96** | **96** | 2.94s ❌ | 815ms ❌ | **0.000** | **FAIL (Perf, LCP, TBT)** |
+| **Tower Directory** | `/tower` | **95** | **95** | **96** | 2.93s ❌ | **85ms** | **0.000** | **FAIL (LCP)** |
+| **Pendaftaran Online** | `/daftar` | **95** | **96** | **96** | 2.79s ❌ | **91ms** | **0.000** | **FAIL (LCP)** |
 
 > [!WARNING]
-> **Batasan yang Diketahui & Analisis Akar Masalah CWV (D6):**
-> 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf teks intro (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan font disajikan lokal (self-hosted). Waktu LCP didominasi oleh *Element Render Delay* (~2.1s) saat JavaScript runtime Next.js melakukan hidrasi komponen pada lingkungan seluler dengan pelambatan CPU 4x.
-> 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Terlampaui 6ms pada run 2 akibat komputasi rendering SVG triase saat hidrasi awal.
-> 3. **Pencapaian**: CLS tercatat **0.000** pada seluruh 5 rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
+> **Batasan yang Diketahui & Analisis Akar Masalah CWV (C1 & C2):**
+> 1. **Kegagalan Target LCP (Seluruh 5 Rute > 2.5s)**: Pada profil seluler dengan emulasi pelambatan CPU 4x, seluruh 5 rute melebihi batas 2.5s (2.79s–3.52s). Seluruh klaim terdahulu mengenai elemen LCP spesifik atau rincian render delay dihapus karena audit `lcpElement` bernilai kosong/N/A pada pembacaan terotomasi.
+> 2. **Status Optimasi**: Tindakan optimasi seperti penghapusan `blur-3xl` dan penambahan `prefetch={false}` berstatus **efek tidak terukur** karena tidak didukung data median komparatif *sebelum* dan *sesudah* dari skrip yang sama. Selain itu, `prefetch={false}` memiliki konsekuensi trade-off navigasi antar-halaman menjadi lebih lambat akibat resource baru diunduh saat pengguna mengeklik tautan.
+> 3. **Kegagalan Target Rute Spesifik**:
+>    - `/` (Beranda): A11y 93 < 95, LCP 2.94s > 2.5s.
+>    - `/igd` (IGD): Perf 83 < 90, A11y 92 < 95, LCP 3.52s > 2.5s, TBT 271ms > 200ms.
+>    - `/dokter` (Direktori Dokter): Perf 78 < 90, LCP 2.94s > 2.5s, TBT 815ms > 200ms.
+> 4. **Pencapaian**: CLS tercatat **0.000** pada seluruh rute, Best Practices **96/100**, dan A11y **95–96/100** pada rute `/dokter`, `/tower`, dan `/daftar`.
 
 ### 2. Matriks Pengujian Visual Multi-Viewport (Responsiveness)
 Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggaran horizontal overflow** (`scrollWidth === clientWidth`):
