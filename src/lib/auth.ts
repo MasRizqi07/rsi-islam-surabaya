@@ -5,12 +5,34 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { prisma } from './db';
 
+const betterAuthSecret = process.env.BETTER_AUTH_SECRET;
+if (process.env.NODE_ENV === 'production') {
+  if (!betterAuthSecret || betterAuthSecret.length < 32) {
+    throw new Error(
+      'FATAL [S-2]: Variabel lingkungan BETTER_AUTH_SECRET wajib diset dan memiliki panjang minimal 32 karakter pada lingkungan production.'
+    );
+  }
+}
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
   baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
-  secret: process.env.BETTER_AUTH_SECRET || 'f6c8d7e9a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8',
+  secret: betterAuthSecret,
+  disabledPaths: [
+    '/update-user',
+    '/sign-up/email',
+    '/change-email',
+    '/delete-user',
+    '/change-password',
+    '/revoke-sessions',
+  ],
+  advanced: {
+    ipAddress: {
+      disableIpTracking: true, // S-6: Nonaktifkan pelacakan IP address pada sesi
+    },
+  },
   emailAndPassword: {
     enabled: true,
     disableSignUp: true, // Dilarang registrasi publik (PRD §4.3)
@@ -25,6 +47,7 @@ export const auth = betterAuth({
       role: {
         type: 'string',
         defaultValue: 'PATIENT',
+        input: false, // S-1: Dilarang diisi/diubah melalui input klien
       },
     },
   },
@@ -108,9 +131,11 @@ export async function requireRole(
     return authResult; // 401
   }
 
-  if (authResult.user.role !== requiredRole && requiredRole === 'ADMIN') {
+  // S-3: Pemeriksaan peran simetris (role !== requiredRole -> 403)
+  if (authResult.user.role !== requiredRole) {
+    const roleLabel = requiredRole === 'ADMIN' ? 'administrator' : requiredRole;
     return NextResponse.json(
-      { error: 'Forbidden: Akses ditolak. Diperlukan hak akses administrator.' },
+      { error: `Forbidden: Akses ditolak. Diperlukan hak akses ${roleLabel}.` },
       { status: 403 }
     );
   }

@@ -1,0 +1,33 @@
+npx vitest run src/data/__tests__/phase11-security.test.ts -t "S-4"
+
+ RUN  v5.0.5 D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby
+
+ ❯ src/data/__tests__/phase11-security.test.ts (2 tests | 1 failed) 77ms
+   ❯ Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) (2)
+     ❯ S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal (2)
+       ✓ S-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal 63ms
+       × S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+Error: SIMULATED_CANCEL_AUDIT_FAILURE
+ ❯ Proxy.tx.auditLog.create src/data/__tests__/phase11-security.test.ts:179:19
+    177|         return originalTx.call(prismaAny, async (tx: any) => {
+    178|           tx.auditLog.create = async () => {
+    179|             throw new Error('SIMULATED_CANCEL_AUDIT_FAILURE');
+       |                   ^
+    180|           };
+    181|           return fn(tx);
+ ❯ recordAuditLog src/lib/audit.ts:73:26
+ ❯ src/app/api/patient/appointments/[id]/route.ts:100:11
+ ❯ Proxy._transactionWithCallback node_modules/@prisma/client/src/runtime/getPrismaClient.ts:722:18
+ ❯ DELETE src/app/api/patient/appointments/[id]/route.ts:90:32
+ ❯ src/data/__tests__/phase11-security.test.ts:191:21
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  13:32:11
+   Duration  1.40s
+
+EXIT CODE: 1

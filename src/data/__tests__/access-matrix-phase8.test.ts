@@ -4,7 +4,8 @@ import { POST as loginHandler } from '@/app/api/auth/login/route';
 import { GET as adminBedGetHandler, PUT as adminBedPutHandler } from '@/app/api/admin/bed-status/route';
 import { GET as patientAptGetHandler, POST as patientAptPostHandler } from '@/app/api/patient/appointments/route';
 import { GET as aptDetailGetHandler, DELETE as aptDeleteHandler } from '@/app/api/patient/appointments/[id]/route';
-import { NextRequest } from 'next/server';
+import { POST as authAllPostHandler } from '@/app/api/auth/[...all]/route';
+import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 
 describe('Phase 8 Access Matrix & RBAC Verification (US-2, US-3, US-7, S3, S4, S8)', () => {
@@ -252,12 +253,12 @@ describe('Phase 8 Access Matrix & RBAC Verification (US-2, US-3, US-7, S3, S4, S
       expect(Array.isArray(json.appointments)).toBe(true);
     });
 
-    it('Baris: /api/patient/appointments | Kolom: Sesi ADMIN -> 200 OK', async () => {
+    it('Baris: /api/patient/appointments | Kolom: Sesi ADMIN -> 403 Forbidden (S-3 Pemisahan Peran Tegas)', async () => {
       const req = new NextRequest('http://localhost:3000/api/patient/appointments', {
         headers: adminSessionHeader,
       });
       const res = await patientAptGetHandler(req);
-      expect(res.status).toBe(200);
+      expect(res.status).toBe(403);
     });
 
     // -------------------------------------------------------------------------
@@ -443,4 +444,68 @@ describe('Phase 8 Access Matrix & RBAC Verification (US-2, US-3, US-7, S3, S4, S
       }
     });
   });
+
+  // ===========================================================================
+  // S-1 & S-3: MATRIKS AKSES ENDPOINT AUTH DAN PEMISAHAN PERAN
+  // ===========================================================================
+  describe('S-1 & S-3 · Matriks Akses Endpoint Better Auth Non-Allowlist & Pemeriksaan Peran Simetris', () => {
+    const disabledEndpoints = [
+      '/api/auth/update-user',
+      '/api/auth/sign-up/email',
+      '/api/auth/change-email',
+      '/api/auth/delete-user',
+      '/api/auth/change-password',
+      '/api/auth/revoke-sessions',
+    ];
+
+    for (const ep of disabledEndpoints) {
+      it(`Baris: ${ep} | Kolom: Tanpa Sesi -> 404 Not Found (S-1)`, async () => {
+        const req = new NextRequest(`http://localhost:3000${ep}`, {
+          method: 'POST',
+          body: JSON.stringify({ role: 'ADMIN' }),
+        });
+        const res = await authAllPostHandler(req);
+        expect(res.status).toBe(404);
+      });
+
+      it(`Baris: ${ep} | Kolom: Sesi PATIENT -> 404 Not Found (S-1)`, async () => {
+        const req = new NextRequest(`http://localhost:3000${ep}`, {
+          method: 'POST',
+          headers: patientSessionHeader,
+          body: JSON.stringify({ role: 'ADMIN' }),
+        });
+        const res = await authAllPostHandler(req);
+        expect(res.status).toBe(404);
+      });
+
+      it(`Baris: ${ep} | Kolom: Sesi ADMIN -> 404 Not Found (S-1)`, async () => {
+        const req = new NextRequest(`http://localhost:3000${ep}`, {
+          method: 'POST',
+          headers: adminSessionHeader,
+          body: JSON.stringify({ role: 'ADMIN' }),
+        });
+        const res = await authAllPostHandler(req);
+        expect(res.status).toBe(404);
+      });
+    }
+
+    it('S-3: requireRole simetris menolak ADMIN saat rute membutuhkan PATIENT (403)', async () => {
+      const { requireRole } = await import('@/lib/auth');
+      const res = await requireRole('PATIENT', adminSessionHeader);
+      expect(res instanceof NextResponse).toBe(true);
+      if (res instanceof NextResponse) {
+        expect(res.status).toBe(403);
+      }
+    });
+
+    it('S-3: requireRole simetris menolak PATIENT saat rute membutuhkan ADMIN (403)', async () => {
+      const { requireRole } = await import('@/lib/auth');
+      const res = await requireRole('ADMIN', patientSessionHeader);
+      expect(res instanceof NextResponse).toBe(true);
+      if (res instanceof NextResponse) {
+        expect(res.status).toBe(403);
+      }
+    });
+  });
 });
+

@@ -5,21 +5,15 @@ import { SPECIALTIES } from '../src/data/specialties';
 import { SERVICES } from '../src/data/services';
 import { TOWER_FLOORS, GRAHA_FLOORS } from '../src/data/buildings';
 import { BED_STATUS_ITEMS } from '../src/data/bed-status';
+import { setupDatabase } from '../scripts/setup-db';
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('=== MEMULAI SEEDING DATABASE RSI ISLAM SURABAYA (PRD v3.0) ===');
 
-  // 1. Partial Unique Index untuk perlindungan concurrency janji temu (US-4)
-  // Menjamin di level DB bahwa tidak ada 2 janji aktif (status != 'CANCELLED')
-  // pada dokter dan slot waktu yang sama.
-  await prisma.$executeRawUnsafe(`
-    CREATE UNIQUE INDEX IF NOT EXISTS unique_active_doctor_slot
-    ON "Appointment" ("doctorId", "appointmentDate", "timeSlot")
-    WHERE "status" != 'CANCELLED';
-  `);
-  console.log(' [DB] Constraint DB partial unique index verified: unique_active_doctor_slot');
+  // 1. Eksekusi setup migrasi constraint DB (S-5 / US-4)
+  await setupDatabase();
 
   // 2. Seed 20 Poliklinik Rawat Jalan
   // 20 poliklinik terverifikasi dari Lampiran A PRD v2.0

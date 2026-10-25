@@ -1,29 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireAuth } from '@/lib/auth';
+import { requireRole } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { recordAuditLog } from '@/lib/audit';
 import { checkRateLimit } from '@/lib/rate-limit';
 
 /**
- * Endpoint Janji Temu Pasien (RBAC US-3, US-4, US-5, S5, S6)
+ * Endpoint Janji Temu Pasien (RBAC US-3, US-4, US-5, S-3, S-4)
  * - Tanpa sesi -> 401
+ * - Sesi selain PATIENT (mis. ADMIN) -> 403 Forbidden (S-3 Pemisahan Peran Tegas: ADMIN wajib via /api/admin/appointments)
  * - Sesi PATIENT -> Hanya melihat/membuat janji untuk dirinya sendiri (patientId di body diabaikan)
- * - Sesi ADMIN -> Memiliki visibilitas penuh
  */
 export async function GET(req: NextRequest) {
-  const authResult = await requireAuth(req.headers);
+  const authResult = await requireRole('PATIENT', req.headers);
   if (authResult instanceof NextResponse) {
-    return authResult; // 401
+    return authResult; // 401 atau 403
   }
 
-  // Jika PATIENT, filter mutlak berdasarkan user.id sesi server
-  const whereClause =
-    authResult.user.role === 'ADMIN'
-      ? {}
-      : { patientId: authResult.user.id };
-
+  // Filter mutlak berdasarkan user.id sesi server pasien
   const appointments = await prisma.appointment.findMany({
-    where: whereClause,
+    where: { patientId: authResult.user.id },
     include: {
       doctor: {
         select: { id: true, name: true, title: true, slug: true, specialtyId: true },
@@ -39,9 +34,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const authResult = await requireAuth(req.headers);
+  const authResult = await requireRole('PATIENT', req.headers);
   if (authResult instanceof NextResponse) {
-    return authResult; // 401
+    return authResult; // 401 atau 403
   }
 
   // Rate Limiting Pembuatan Janji (PRD v3.0 S10 - P2)

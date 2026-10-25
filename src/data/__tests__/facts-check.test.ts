@@ -83,5 +83,18 @@ describe('Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1)', () => {
       const violations = scanContentForViolations(content, 'src/data/schema.ts', true);
       expect(violations.some((v: { rule: string }) => v.rule.includes('nomor identitas 16 digit'))).toBe(true);
     });
+
+    it('mendeteksi dan menolak pola fallback secret process.env.*SECRET* || (S-2)', () => {
+      const content = "const sec = process.env.MY_SECRET || 'fallback_dummy';";
+      const violations = scanContentForViolations(content, 'src/lib/sample.ts', true);
+      expect(violations.some((v: { rule: string }) => v.rule.includes('Pola fallback secret'))).toBe(true);
+    });
+
+    it('mendeteksi dan menolak nilai hex 64 karakter yang pernah bocor di riwayat (S-2)', () => {
+      const leakedHex = 'f6c8d7e9' + 'a1b2c3d4' + 'e5f6a7b8' + 'c9d0e1f2' + 'a3b4c5d6' + 'e7f8a9b0' + 'c1d2e3f4' + 'a5b6c7d8';
+      const content = `BETTER_AUTH_SECRET="${leakedHex}"`;
+      const violations = scanContentForViolations(content, '.env.example', true);
+      expect(violations.some((v: { rule: string }) => v.rule.includes('Hex secret 64 karakter'))).toBe(true);
+    });
   });
 });

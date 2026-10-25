@@ -143,6 +143,17 @@ Proyek ini secara tegas **TIDAK** mencakup:
 - Monorepo / Docker containerization.
 - CI/CD pipeline produksi.
 
+### 4.3 Keputusan Arsitektur Autentikasi Demo & Pemisahan Peran RBAC (S-1 & S-3)
+Menindaklanjuti audit independen keamanan Fase 11.1, arsitektur RBAC Better Auth ditetapkan dengan spesifikasi:
+1. **Proteksi Hak Akses Klien (S-1)**: Field `user.role` dikonfigurasi `input: false` pada Better Auth sehingga tidak dapat dimodifikasi oleh klien. Seluruh rute Better Auth yang tidak digunakan antarmuka diblokir melalui allowlist ketat (`/sign-in/email`, `/sign-out`, `/get-session`, `/ok`) dan `disabledPaths`, menolak semua endpoint manipulasi profil publik (404 Not Found).
+2. **Pemisahan Peran Tegas / Strict Role Separation (S-3)**:
+   - Helper otorisasi `requireRole('PATIENT' | 'ADMIN')` bersifat simetris murni (`role !== requiredRole` → 403 Forbidden).
+   - Rute personal pasien (`/api/patient/appointments` dan `/api/patient/appointments/[id]`) dikhususkan murni untuk peran `PATIENT`.
+   - Administrator (`ADMIN`) **dilarang keras** menggunakan rute pasien (ditolak dengan 403 Forbidden). Seluruh supervisi dan tata kelola janji temu oleh administrator wajib melalui konsol khusus `/api/admin/appointments` dan `/api/admin/appointments/[id]`.
+3. **Atomisitas Transaksi & Integritas Audit (S-4)**: Pembuatan dan pembatalan janji temu dieksekusi dalam transaksi atomik Prisma bersama pencatatan `AuditLog`. Jika audit log gagal, mutasi dibatalkan (*full rollback*).
+4. **Privasi & Kebijakan Data Minimal (S-6)**: Pelacakan IP dinonaktifkan (`disableIpTracking = true`). Audit log aplikasi menjamin nol data pribadi (IP Address, User-Agent, Email). Sesi Better Auth yang mencatat User-Agent dicatat sebagai batasan framework.
+
+
 ---
 
 ## 5. Persona & Journey Pengguna

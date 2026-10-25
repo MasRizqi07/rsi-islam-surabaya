@@ -28,7 +28,8 @@ export default function HomePage() {
       {/* 1. SECTION HERO DENGAN FOTO ASLI GEDUNG & RITME TOWER (LCP ELEMENT = TEKS HEADLINE) */}
       <section
         id="hero-section"
-        className="relative bg-tower-950 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
+        style={{ backgroundColor: '#063B36' }}
+        className="relative bg-tower-900 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
       >
         {/* FOTO ASLI GEDUNG RS ISLAM SURABAYA SEBAGAI LATAR HERO ATMOSFERIK */}
         <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none overflow-hidden">

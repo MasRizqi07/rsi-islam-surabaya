@@ -279,6 +279,21 @@ Seluruh bukti eksekusi dan catatan keputusan tersimpan secara transparan di dala
 
 ---
 
+## 🔒 Catatan Keamanan & Batasan Framework (Audit Fase 11.1)
+
+### 1. Pemberitahuan Keamanan & Rotasi Secret Wajib (S-2)
+Nilai secret autentikasi hex lama yang pernah tercantum pada riwayat commit awal (`f6c8d7e9...`) dianggap **terkompromi / bocor**.
+- **Wajib Rotasi**: Seluruh pengembang dan deployment yang pernah menggunakan secret tersebut diwajibkan merotasi `BETTER_AUTH_SECRET` menggunakan generator acak kuat (mis. `openssl rand -base64 32`).
+- **Enforcement Production**: Fallback secret di kode sumber telah dihapus permanen. Pada lingkungan produksi (`NODE_ENV=production`), aplikasi akan menolak startup (fatal error) jika `BETTER_AUTH_SECRET` tidak diset dengan panjang minimal 32 karakter.
+
+### 2. Pemisahan Peran Tegas RBAC (S-3)
+Helper otorisasi `requireRole('PATIENT' | 'ADMIN')` bersifat **simetris murni** (`role !== requiredRole` → 403 Forbidden). Rute personal pasien (`/api/patient/appointments`) hanya diizinkan untuk peran `PATIENT`. Akun `ADMIN` yang mengakses rute pasien ditolak dengan status 403 Forbidden dan wajib menggunakan konsol tata kelola khusus `/api/admin/appointments`.
+
+### 3. Batasan Pelacakan Sesi Better Auth (S-6)
+Sesuai prinsip etika & privasi PRD §5 (Zero PII/Network Tracking), pelacakan IP address telah dinonaktifkan pada Better Auth (`advanced.ipAddress.disableIpTracking = true`). Namun, Better Auth versi terpasang (v1.7.12) belum menyediakan opsi bawaan untuk menonaktifkan pencatatan `userAgent` pada tabel sesi database (kolom `userAgent` merupakan skema bawaan Better Auth). Adapun tabel audit log aplikasi (`AuditLog`) terjamin 100% bebas dari penyimpanan IP Address dan User-Agent.
+
+---
+
 ## 📜 Lisensi & Hak Cipta
 Hak cipta konsep perancangan arsitektur dan kode implementasi © 2026 **Pacoel** & **Antigravity**.  
 Diterbitkan sebagai materi studi kasus rekayasa perangkat lunak dan portofolio teknologi mutakhir.

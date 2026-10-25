@@ -32,6 +32,14 @@ export const FORBIDDEN_CLAIMS_RULES = [
     name: 'Skema/field nomor identitas 16 digit terlarang (C4)',
     regex: /nomorIdentitas|\b(?:nik|ktp|identitas)\b.*(?:\b16\b|\\d\{16\})|\\d\{16\}/i,
   },
+  {
+    name: 'Pola fallback secret process.env.*SECRET* || terlarang (S-2)',
+    regex: /process\.env\.[A-Z0-9_]*SECRET[A-Z0-9_]*\s*\|\|/i,
+  },
+  {
+    name: 'Hex secret 64 karakter yang pernah bocor di riwayat (S-2)',
+    regex: new RegExp('f6c8d7e9' + 'a1b2c3d4' + 'e5f6a7b8' + 'c9d0e1f2' + 'a3b4c5d6' + 'e7f8a9b0' + 'c1d2e3f4' + 'a5b6c7d8', 'i'),
+  },
 ];
 
 /**
@@ -151,9 +159,12 @@ export function runFactsCheck() {
     }
   }
 
-  // Scan README.md di root
+  // Scan README.md dan .env.example di root
   if (existsSync('README.md')) {
     allViolations = allViolations.concat(scanFile('README.md', nextConfigHasHsts));
+  }
+  if (existsSync('.env.example')) {
+    allViolations = allViolations.concat(scanFile('.env.example', nextConfigHasHsts));
   }
 
   mkdirSync('docs/evidence', { recursive: true });
