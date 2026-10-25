@@ -290,7 +290,7 @@ Nilai secret autentikasi hex lama yang pernah tercantum pada riwayat commit awal
 Helper otorisasi `requireRole('PATIENT' | 'ADMIN')` bersifat **simetris murni** (`role !== requiredRole` → 403 Forbidden). Rute personal pasien (`/api/patient/appointments`) hanya diizinkan untuk peran `PATIENT`. Akun `ADMIN` yang mengakses rute pasien ditolak dengan status 403 Forbidden dan wajib menggunakan konsol tata kelola khusus `/api/admin/appointments`.
 
 ### 3. Batasan Pelacakan Sesi Better Auth (S-6)
-Sesuai prinsip etika & privasi PRD §5 (Zero PII/Network Tracking), pelacakan IP address telah dinonaktifkan pada Better Auth (`advanced.ipAddress.disableIpTracking = true`). Namun, Better Auth versi terpasang (v1.7.12) belum menyediakan opsi bawaan untuk menonaktifkan pencatatan `userAgent` pada tabel sesi database (kolom `userAgent` merupakan skema bawaan Better Auth). Adapun tabel audit log aplikasi (`AuditLog`) terjamin 100% bebas dari penyimpanan IP Address dan User-Agent.
+Sesuai prinsip etika & privasi PRD §5 (Zero PII/Network Tracking), pelacakan IP address telah dikonfigurasikan dengan `advanced.ipAddress.disableIpTracking = true`. Hasil verifikasi query SQL langsung pada tabel database `Session` membuktikan bahwa `ipAddress` tidak lagi mencatat IP klien (berisi string kosong `""`), sedangkan kolom `userAgent` tetap mencatat user-agent peramban karena Better Auth v1.7.12 tidak menyediakan opsi bawaan untuk menonaktifkan kolom `userAgent`. Adapun tabel audit log aplikasi (`AuditLog`) terjamin 100% bebas dari penyimpanan IP Address dan User-Agent.
 
 ---
 
