@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { HISTORY_TIMELINE } from '@/data/history';
 import { TimelineDecadeClient } from '@/components/tentang/TimelineDecadeClient';
@@ -7,9 +8,9 @@ import {
   Award,
   HeartHandshake,
   ShieldCheck,
-  Sparkles,
   Stethoscope,
   Star,
+  Camera,
 } from 'lucide-react';
 
 export const metadata = {
@@ -22,33 +23,71 @@ export default function TentangPage() {
   return (
     <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative rounded-3xl bg-tower-950 text-ivory p-8 sm:p-14 overflow-hidden border border-gold-500/30 shadow-2xl">
-        <div
-          className="absolute inset-0 opacity-25 pointer-events-none"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 80% 20%, rgba(201, 162, 74, 0.4) 0%, transparent 60%), radial-gradient(circle at 10% 80%, rgba(15, 107, 97, 0.4) 0%, transparent 60%)',
-          }}
-        />
+      {/* 1. HERO SECTION DENGAN FOTO ASLI GEDUNG */}
+      <section className="relative rounded-3xl bg-tower-950 text-ivory p-6 sm:p-12 overflow-hidden border border-gold-500/30 shadow-2xl">
+        {/* Latar Belakang Foto Asli Atmosferik */}
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
+          <Image
+            src="/assets/rsi-ayani.jpg"
+            alt=""
+            fill
+            className="object-cover object-center opacity-20 mix-blend-luminosity filter brightness-75 contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/95 to-tower-950/80" />
+          <div className="absolute inset-0 bg-khatam-pattern opacity-15" />
+        </div>
         
-        <div className="relative z-10 max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-900 border border-gold-500/30 text-gold-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" aria-hidden="true" />
-            <span>Sejarah & Nilai Pengabdian YARSIS Sejak 1975</span>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/30 text-gold-300 text-xs font-semibold backdrop-blur-md">
+              <div className="relative w-5 h-5 rounded-full overflow-hidden border border-gold-400 bg-white shrink-0">
+                <Image
+                  src="/assets/Logo-RSI-Baru-320x320.jpeg"
+                  alt="Logo RSI Surabaya"
+                  width={20}
+                  height={20}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span>Sejarah & Nilai Pengabdian YARSIS Sejak 1975</span>
+            </div>
+
+            <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight tracking-tight">
+              51 Tahun Merawat Insan, <br />
+              <span className="text-gold-300 italic font-semibold">Menebar Nilai Islam.</span>
+            </h1>
+
+            <p className="text-tower-100 text-sm sm:text-base leading-relaxed">
+              Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan {HOSPITAL_FACTS.foundation}, {HOSPITAL_FACTS.name} tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
+            </p>
+
+            <div className="p-4 rounded-2xl bg-tower-900/80 border border-gold-500/30 text-xs sm:text-sm text-gold-300 italic">
+              &ldquo;{HOSPITAL_FACTS.motto}&rdquo;
+            </div>
           </div>
 
-          <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight tracking-tight">
-            51 Tahun Merawat Insan, <br />
-            <span className="text-gold-300 italic font-semibold">Menebar Nilai Islam.</span>
-          </h1>
-
-          <p className="text-tower-100 text-sm sm:text-base leading-relaxed">
-            Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan {HOSPITAL_FACTS.foundation}, {HOSPITAL_FACTS.name} tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
-          </p>
-
-          <div className="p-4 rounded-2xl bg-tower-900/80 border border-gold-500/30 text-xs sm:text-sm text-gold-300 italic">
-            &ldquo;{HOSPITAL_FACTS.motto}&rdquo;
+          {/* KARTU FOTO DOKUMENTASI GEDUNG RS */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-xl group">
+              <div className="relative w-full h-64 sm:h-72">
+                <Image
+                  src="/assets/rsi-ayani.jpg"
+                  alt={`Fasad Gedung Asli ${HOSPITAL_FACTS.name}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-tower-950/90 via-transparent to-black/20" />
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-950/90 border border-gold-400 text-[10px] font-bold text-gold-300">
+                  <Camera className="w-3 h-3 text-gold-400" />
+                  <span>Dokumentasi Fasad Gedung</span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-tower-950/85 border border-gold-500/30 text-[11px] text-ivory/90">
+                  <span className="font-bold text-gold-300 block mb-0.5">Kompleks {HOSPITAL_FACTS.name}</span>
+                  <span>{HOSPITAL_FACTS.contact.address}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

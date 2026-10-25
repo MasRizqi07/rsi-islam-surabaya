@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { Menu, X, Building2, Calendar, Phone, Stethoscope, Info, LogIn } from 'lucide-react';
@@ -31,9 +32,16 @@ export function Header() {
             className="flex items-center gap-3 group focus:outline-none"
             aria-label={`${HOSPITAL_FACTS.name} - Beranda`}
           >
-            {/* Monogram / Icon Geometris Hijau Tower */}
-            <div className="w-11 h-11 rounded-lg bg-tower-900 border border-gold-500/40 flex items-center justify-center text-gold-300 font-display font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
-              <span>RSI</span>
+            {/* Logo Resmi RS Islam Surabaya A. Yani */}
+            <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-gold-500/40 shadow-sm bg-white shrink-0 group-hover:scale-105 transition-transform">
+              <Image
+                src="/assets/Logo-RSI-Baru-320x320.jpeg"
+                alt={`Logo ${HOSPITAL_FACTS.name}`}
+                width={44}
+                height={44}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
 
             <div className="flex flex-col">

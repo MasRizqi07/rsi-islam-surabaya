@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { ShieldCheck, MapPin, Phone, ExternalLink } from 'lucide-react';
 
@@ -13,13 +14,14 @@ export function Footer() {
           
           {/* KOLOM 1: IDENTITAS & NILAI */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-tower-900 border border-gold-500/40 flex items-center justify-center text-gold-300 font-display font-bold text-lg">
-                RSI
-              </div>
-              <span className="font-display font-bold text-xl text-ivory tracking-tight">
-                {HOSPITAL_FACTS.name}
-              </span>
+            <div className="p-3 bg-white/95 rounded-2xl border border-gold-500/30 inline-block shadow-md">
+              <Image
+                src="/assets/logo-web-rsi.png"
+                alt={HOSPITAL_FACTS.name}
+                width={200}
+                height={70}
+                className="h-10 w-auto object-contain"
+              />
             </div>
 
             <p className="text-sm text-ivory/70 leading-relaxed">

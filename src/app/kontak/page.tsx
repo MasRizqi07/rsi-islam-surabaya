@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import {
   MapPin,
@@ -239,12 +240,29 @@ export default function KontakPage() {
             </div>
           </div>
 
-          {/* PHYSICAL ADDRESS CARD */}
-          <div className="bg-tower-50 rounded-3xl p-6 border border-tower-100 space-y-2 text-xs">
+          {/* PHYSICAL ADDRESS & REAL BUILDING PHOTO CARD */}
+          <div className="bg-white rounded-3xl p-6 border border-tower-100 shadow-sm space-y-4 text-xs">
             <div className="flex items-center gap-2 text-tower-900 font-bold">
               <Compass className="w-4 h-4 text-gold-700" />
-              <span>Alamat Fisik Kompleks Rumah Sakit</span>
+              <span>Alamat Fisik & Fasad Gedung</span>
             </div>
+
+            {/* FOTO FASAD ASLI UNTUK PANDUAN KEDATANGAN */}
+            <div className="relative w-full h-48 rounded-2xl overflow-hidden border border-tower-200 shadow-inner group">
+              <Image
+                src="/assets/rsi-ayani.jpg"
+                alt={`Fasad Gedung ${HOSPITAL_FACTS.name}`}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 1024px) 100vw, 400px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-tower-950/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white text-[11px] font-bold">
+                <span>Fasad {HOSPITAL_FACTS.buildings.graha.name} & {HOSPITAL_FACTS.buildings.tower.name}</span>
+                <span className="px-2 py-0.5 rounded bg-tower-900/90 text-gold-300 border border-gold-500/40 text-[10px]">Foto Asli</span>
+              </div>
+            </div>
+
             <p className="font-semibold text-tower-950 text-sm">
               {contact.address}
             </p>

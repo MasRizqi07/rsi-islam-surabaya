@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { SERVICES } from '@/data/services';
 import { BedStatusWidget } from '@/components/home/BedStatusWidget';
@@ -15,7 +16,6 @@ import {
   Star,
   MapPin,
   ArrowRight,
-  Sparkles,
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -25,24 +25,28 @@ export default function HomePage() {
   return (
     <div className="space-y-16 sm:space-y-24">
       
-      {/* 1. SECTION HERO DENGAN SILUET & RITME TOWER (LCP ELEMENT = TEKS HEADLINE) */}
+      {/* 1. SECTION HERO DENGAN FOTO ASLI GEDUNG & RITME TOWER (LCP ELEMENT = TEKS HEADLINE) */}
       <section
         id="hero-section"
-        style={{ backgroundColor: '#063B36' }}
-        className="relative bg-tower-900 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
+        className="relative bg-tower-950 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
       >
-        {/* Latar Belakang Gradien Halus & Pola Geometris Terisolasi */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-b from-tower-900 via-tower-900 to-tower-950 opacity-95 pointer-events-none"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-khatam-pattern opacity-30 pointer-events-none"
-          style={{ backgroundColor: 'transparent' }}
-        />
+        {/* FOTO ASLI GEDUNG RS ISLAM SURABAYA SEBAGAI LATAR HERO ATMOSFERIK */}
+        <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <Image
+            src="/assets/rsi-ayani.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-30 mix-blend-luminosity scale-105 filter brightness-75 contrast-125"
+          />
+          {/* Overlay Gradien Hijau Tower & Vignette untuk Menjaga Kontras Teks */}
+          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/90 to-tower-900/85" />
+          <div className="absolute inset-0 bg-gradient-to-t from-tower-950 via-transparent to-tower-950/80" />
+          <div className="absolute inset-0 bg-khatam-pattern opacity-20" />
+        </div>
         
-        {/* Glow Lembut Emas Menggunakan Radial Gradient Tanpa Filter Blur (Performa Tinggi) */}
+        {/* Glow Lembut Emas Menggunakan Radial Gradient */}
         <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(201, 162, 74, 0.15) 0%, transparent 70%)' }} />
         <div aria-hidden="true" className="absolute bottom-0 left-10 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(15, 107, 97, 0.25) 0%, transparent 70%)' }} />
 
@@ -51,9 +55,22 @@ export default function HomePage() {
             
             {/* KOLOM TEKS HERO (RSC MURNI, LCP LANGSUNG TERSEDIA SAAT INITIAL HTML LOAD) */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-800/80 border border-gold-500/30 text-gold-300 text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5 text-gold-500" aria-hidden="true" />
-                <span>{HOSPITAL_FACTS.salutation}</span>
+              {/* BADGE PROFIL RUMAH SAKIT RESMI */}
+              <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/40 text-ivory shadow-lg backdrop-blur-md">
+                <div className="relative w-7 h-7 rounded-full overflow-hidden border border-gold-400 bg-white shrink-0">
+                  <Image
+                    src="/assets/Logo-RSI-Baru-320x320.jpeg"
+                    alt={`Logo ${HOSPITAL_FACTS.name}`}
+                    width={28}
+                    height={28}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="font-bold text-gold-300">{HOSPITAL_FACTS.name}</span>
+                  <span className="text-tower-300">·</span>
+                  <span className="text-tower-100 hidden sm:inline">{HOSPITAL_FACTS.tagline}</span>
+                </div>
               </div>
 
               {/* LCP Target: Teks Heading Utama */}
@@ -217,6 +234,93 @@ export default function HomePage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* 4B. SECTION PROFIL KOMPLEKS GEDUNG ASLI & DOKUMENTASI FASILITAS */}
+      <section aria-label="Profil Gedung Rumah Sakit Asli" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-tower-950 via-tower-900 to-tower-950 rounded-3xl p-6 sm:p-10 border-2 border-gold-500/40 text-ivory shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* FOTO UTAMA ASLI RUMAH SAKIT */}
+            <div className="lg:col-span-7">
+              <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl group">
+                <Image
+                  src="/assets/rsi-ayani.jpg"
+                  alt={`Fasad Gedung Asli ${HOSPITAL_FACTS.name}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-tower-950/90 via-transparent to-black/20 pointer-events-none" />
+                
+                {/* Badge Foto Asli */}
+                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-tower-950/85 border border-gold-400 text-xs font-bold text-gold-300 backdrop-blur-md">
+                  <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse" />
+                  <span>Foto Asli Dokumentasi Gedung</span>
+                </div>
+
+                {/* Caption Fasad */}
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-tower-950/90 border border-gold-500/30 backdrop-blur-md">
+                  <div className="flex items-center justify-between text-xs font-bold text-ivory mb-1">
+                    <span>{HOSPITAL_FACTS.name}</span>
+                    <span className="text-gold-300 font-mono">Wonokromo, Surabaya</span>
+                  </div>
+                  <p className="text-xs text-ivory/80 leading-relaxed">
+                    Fasad hijau depan: {HOSPITAL_FACTS.buildings.graha.name} & IGD 24 Jam. Fasad belakang: {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai terpadu.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* DETAIL PROFIL & LOGO RESMI */}
+            <div className="lg:col-span-5 space-y-6">
+              <div className="p-3 bg-white/95 rounded-2xl border border-gold-500/30 inline-block shadow-md">
+                <Image
+                  src="/assets/logo-web-rsi.png"
+                  alt={HOSPITAL_FACTS.name}
+                  width={200}
+                  height={70}
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-400">
+                  Fasilitas Terpadu Jawa Timur
+                </span>
+                <h3 className="font-display font-bold text-2xl sm:text-3xl text-ivory leading-snug">
+                  Integrasi Layanan Modern di Jl. Achmad Yani
+                </h3>
+                <p className="text-sm text-ivory/80 leading-relaxed">
+                  Menghubungkan layanan rawat jalan, instalasi gawat darurat, dan perawatan intensif dalam satu kompleks pelayanan terintegrasi.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 text-xs pt-2">
+                <div className="p-3 rounded-xl bg-tower-900/80 border border-gold-500/30">
+                  <span className="block font-bold text-gold-300 text-base mb-0.5">13 Lantai</span>
+                  <span className="text-ivory/70">{HOSPITAL_FACTS.buildings.tower.name}</span>
+                </div>
+                <div className="p-3 rounded-xl bg-tower-900/80 border border-gold-500/30">
+                  <span className="block font-bold text-gold-300 text-base mb-0.5">6 Level</span>
+                  <span className="text-ivory/70">{HOSPITAL_FACTS.buildings.graha.name}</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link
+                  href="/tentang"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-md transition-all group"
+                >
+                  <span>Eksplorasi Profil & Sejarah</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </section>
 

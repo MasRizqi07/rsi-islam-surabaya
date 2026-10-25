@@ -32,6 +32,11 @@ const plusJakarta = localFont({
 export const metadata: Metadata = {
   title: `${HOSPITAL_FACTS.name} · Konsep "Hijau Tower"`,
   description: `Studi kasus portofolio independen redesign website ${HOSPITAL_FACTS.name}. Presisi medis berpadu warisan arsitektur islami modern.`,
+  icons: {
+    icon: '/assets/Logo-RSI-Baru-320x320.jpeg',
+    shortcut: '/assets/Logo-RSI-Baru-320x320.jpeg',
+    apple: '/assets/Logo-RSI-Baru-320x320.jpeg',
+  },
   robots: {
     index: false,
     follow: false,

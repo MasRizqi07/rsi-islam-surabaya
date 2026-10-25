@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { SERVICES } from '@/data/services';
 import { SPECIALTIES } from '@/data/specialties';
 import { HOSPITAL_FACTS } from '@/data/facts';
@@ -21,20 +22,32 @@ export default function LayananPage() {
   return (
     <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
-      {/* HEADER KATALOG */}
-      <div className="space-y-4 border-b border-tower-100 pb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
-          <Building2 className="w-3.5 h-3.5 text-tower-700" />
-          <span>Fasilitas & Penunjang Medis Modern</span>
+      {/* HEADER KATALOG DENGAN LOGO RESMI */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-tower-100 pb-8">
+        <div className="space-y-4 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
+            <Building2 className="w-3.5 h-3.5 text-tower-700" />
+            <span>Fasilitas & Penunjang Medis Modern</span>
+          </div>
+
+          <h1 className="font-display font-bold text-3xl sm:text-5xl text-tower-950 tracking-tight">
+            Katalog Layanan Medis Terpadu
+          </h1>
+
+          <p className="text-ink-soft text-sm sm:text-base leading-relaxed">
+            Menyediakan 8 layanan medis terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
+          </p>
         </div>
 
-        <h1 className="font-display font-bold text-3xl sm:text-5xl text-tower-950 tracking-tight">
-          Katalog Layanan Medis Terpadu
-        </h1>
-
-        <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
-          Menyediakan 8 layanan medis terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
-        </p>
+        <div className="p-3 bg-white rounded-2xl border border-tower-200 shadow-sm shrink-0 hidden md:inline-block">
+          <Image
+            src="/assets/logo-web-rsi.png"
+            alt={HOSPITAL_FACTS.name}
+            width={180}
+            height={60}
+            className="h-10 w-auto object-contain"
+          />
+        </div>
       </div>
 
       {/* 1. SECTION 8 LAYANAN MEDIS TERPADU (BENTO & GRID HYBRID) */}
