@@ -25,13 +25,15 @@ async function main() {
   }
 
   console.log('3. Menjalankan SQL: SELECT "id", "userId", "ipAddress", "userAgent", "createdAt" FROM "Session" ORDER BY "createdAt" DESC LIMIT 5;');
-  const rawRows = await prisma.$queryRawUnsafe<Array<{
+  const rawRows = (await prisma.$queryRawUnsafe(
+    'SELECT "id", "userId", "ipAddress", "userAgent", "createdAt" FROM "Session" ORDER BY "createdAt" DESC LIMIT 5;'
+  )) as Array<{
     id: string;
     userId: string;
     ipAddress: string | null;
     userAgent: string | null;
     createdAt: Date;
-  }>>('SELECT "id", "userId", "ipAddress", "userAgent", "createdAt" FROM "Session" ORDER BY "createdAt" DESC LIMIT 5;');
+  }>;
 
   console.log('\nHASIL QUERY TABEL session:');
   console.table(rawRows);
