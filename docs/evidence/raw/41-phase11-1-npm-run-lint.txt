@@ -1,0 +1,6 @@
+npm run lint
+
+> rsi-islam-sby@2.0.0 lint
+> eslint "src/**/*.{ts,tsx}" "scripts/**/*.{js,mjs}" "*.mjs"
+
+EXIT CODE: 0

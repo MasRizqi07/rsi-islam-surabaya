@@ -1,0 +1,74 @@
+npm test
+
+> rsi-islam-sby@2.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby
+
+ ✓ src/data/__tests__/data.test.ts (19 tests) 19ms
+ ✓ src/data/__tests__/duplication.test.ts (2 tests) 251ms
+ ✓ src/data/__tests__/db-phase7.test.ts (11 tests) 205ms
+stdout | src/data/__tests__/facts-check.test.ts > Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1) > Kasus Lolos (Passing Cases) > pemindaian repositori aktif mengembalikan status lolos (exitCode: 0)
+=== HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
+
+ ✓ src/data/__tests__/facts-check.test.ts (13 tests) 475ms
+   ✓ Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1) (13)
+     ✓ Kasus Lolos (Passing Cases) (3)
+       ✓ pemindaian repositori aktif mengembalikan status lolos (exitCode: 0) 466ms
+stderr | src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal
+[API /api/patient/appointments POST] Error: Error: SIMULATED_AUDIT_LOG_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:119:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:217:13
+    at async Proxy._transactionWithCallback (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\node_modules\@prisma\client\runtime\library.js:130:8120)
+    at POST (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:197:28)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:139:21
+    at async file:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:2801:20
+
+stderr | src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+[API /api/patient/appointments/[id] DELETE] Error: Error: SIMULATED_CANCEL_AUDIT_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:177:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:103:13
+    at async Proxy._transactionWithCallback (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\node_modules\@prisma\client\runtime\library.js:130:8120)
+    at DELETE (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:93:34)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:189:21
+    at async file:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:2801:20
+
+ ✓ src/data/__tests__/phase11-security.test.ts (5 tests) 335ms
+ ✓ src/data/__tests__/phase11-hardening.test.ts (8 tests) 386ms
+stdout | src/data/__tests__/phase9-appointments.test.ts > Phase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7) > US-4 · Penegakan Constraint Database & Uji Konkurensi Paralel > penegakan constraint database: pemesanan slot aktif yang sama menghasilkan 409 Conflict
+prisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:198:40
+
+  195 
+  196 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  197 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 198   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+ ✓ src/data/__tests__/phase10-admin.test.ts (13 tests) 687ms
+stdout | src/data/__tests__/phase9-appointments.test.ts > Phase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7) > US-4 · Penegakan Constraint Database & Uji Konkurensi Paralel > dua permintaan paralel ke slot yang sama: tepat satu berhasil (201) dan tepat satu ditolak (409)
+prisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:198:40
+
+  195 
+  196 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  197 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 198   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+ ✓ src/data/__tests__/phase9-appointments.test.ts (14 tests) 1062ms
+ ✓ src/data/__tests__/access-matrix-phase8.test.ts (36 tests) 1362ms
+
+ Test Files  9 passed (9)
+      Tests  121 passed (121)
+   Start at  13:52:49
+   Duration  2.82s (tests 48%, import 47%, transform 4%, worker 1%)
+
+EXIT CODE: 0

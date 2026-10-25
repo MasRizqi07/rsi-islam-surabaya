@@ -1,0 +1,32 @@
+npx vitest run src/data/__tests__/phase11-security.test.ts
+
+ RUN  v5.0.5 D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby
+
+stderr | src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal
+[API /api/patient/appointments POST] Error: Error: SIMULATED_AUDIT_LOG_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:119:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:217:13
+    at async Proxy._transactionWithCallback (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\node_modules\@prisma\client\runtime\library.js:130:8120)
+    at POST (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:197:28)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:139:21
+    at async file:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:2801:20
+
+stderr | src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+[API /api/patient/appointments/[id] DELETE] Error: Error: SIMULATED_CANCEL_AUDIT_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:177:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:103:13
+    at async Proxy._transactionWithCallback (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\node_modules\@prisma\client\runtime\library.js:130:8120)
+    at DELETE (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:93:34)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:189:21
+    at async file:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:2801:20
+
+ ✓ src/data/__tests__/phase11-security.test.ts (5 tests) 661ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  13:52:26
+   Duration  1.77s (import 54%, tests 42%, transform 4%)
+
+EXIT CODE: 0
