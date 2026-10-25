@@ -1,3 +1,2 @@
 git status --short
-
 EXIT CODE: 0

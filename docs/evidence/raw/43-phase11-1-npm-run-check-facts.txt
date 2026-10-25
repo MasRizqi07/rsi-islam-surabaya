@@ -6,5 +6,4 @@ npm run check:facts
 === HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
 
 [SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
-
 EXIT CODE: 0

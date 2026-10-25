@@ -1,0 +1,56 @@
+npx tsx scripts/verify-session-s6.ts
+=== VERIFIKASI S-6: AUDIT SESI & PELACAKAN IP/USER-AGENT ===
+1. Melakukan login sebagai pasien.demo@rsi-surabaya.test...
+2. Login berhasil dilakukan.
+3. Menjalankan SQL: SELECT "id", "userId", "ipAddress", "userAgent", "createdAt" FROM "Session" ORDER BY "createdAt" DESC LIMIT 5;
+
+HASIL QUERY TABEL session:
+┌─────────┬────────────────────────────────────┬─────────────────────────────┬───────────┬─────────────────────────────────────────────────────────────────────┬──────────────────────────┐
+│ (index) │ id                                 │ userId                      │ ipAddress │ userAgent                                                           │ createdAt                │
+├─────────┼────────────────────────────────────┼─────────────────────────────┼───────────┼─────────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ 0       │ 'zqPCchL9UHj0ye3mLdwxwTa4MScP7fbh' │ 'cmvhz50cv005zgucwcsc6h8l8' │ ''        │ 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Antigravity-Auditor/1.0' │ 2026-10-25T07:24:24.141Z │
+│ 1       │ '1iqn3J4a978onuwjMlIP30e5XDuwcelq' │ 'cmvhz50cv005zgucwcsc6h8l8' │ ''        │ ''                                                                  │ 2026-10-25T07:23:48.077Z │
+│ 2       │ 'bIMZGZkFuK66VuVetEgxUABUmUMmyYB3' │ 'cmvhz50cv005zgucwcsc6h8l8' │ ''        │ ''                                                                  │ 2026-10-25T07:23:13.441Z │
+│ 3       │ 'Sths5swXs06H9xoq5gRZRkeJFYLZgK7K' │ 'cmvhz50cv005zgucwcsc6h8l8' │ ''        │ ''                                                                  │ 2026-10-25T07:22:45.299Z │
+│ 4       │ 'He0xB3FibXY3ilwglF8CrikRVLwhIRuO' │ 'cmvhzv63m0000gu8wzihj3ser' │ ''        │ ''                                                                  │ 2026-10-25T07:22:45.117Z │
+└─────────┴────────────────────────────────────┴─────────────────────────────┴───────────┴─────────────────────────────────────────────────────────────────────┴──────────────────────────┘
+
+JSON OUTPUT:
+[
+  {
+    "id": "zqPCchL9UHj0ye3mLdwxwTa4MScP7fbh",
+    "userId": "cmvhz50cv005zgucwcsc6h8l8",
+    "ipAddress": "",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Antigravity-Auditor/1.0",
+    "createdAt": "2026-10-25T07:24:24.141Z"
+  },
+  {
+    "id": "1iqn3J4a978onuwjMlIP30e5XDuwcelq",
+    "userId": "cmvhz50cv005zgucwcsc6h8l8",
+    "ipAddress": "",
+    "userAgent": "",
+    "createdAt": "2026-10-25T07:23:48.077Z"
+  },
+  {
+    "id": "bIMZGZkFuK66VuVetEgxUABUmUMmyYB3",
+    "userId": "cmvhz50cv005zgucwcsc6h8l8",
+    "ipAddress": "",
+    "userAgent": "",
+    "createdAt": "2026-10-25T07:23:13.441Z"
+  },
+  {
+    "id": "Sths5swXs06H9xoq5gRZRkeJFYLZgK7K",
+    "userId": "cmvhz50cv005zgucwcsc6h8l8",
+    "ipAddress": "",
+    "userAgent": "",
+    "createdAt": "2026-10-25T07:22:45.299Z"
+  },
+  {
+    "id": "He0xB3FibXY3ilwglF8CrikRVLwhIRuO",
+    "userId": "cmvhzv63m0000gu8wzihj3ser",
+    "ipAddress": "",
+    "userAgent": "",
+    "createdAt": "2026-10-25T07:22:45.117Z"
+  }
+]
+EXIT CODE: 0

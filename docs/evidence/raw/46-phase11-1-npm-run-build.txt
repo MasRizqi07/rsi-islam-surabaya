@@ -5,18 +5,18 @@ npm run build
 
 ▲ Next.js 16.4.2 (Turbopack)
 - Environments: .env
-✓ Running next.config.mjs took 27ms
+✓ Running next.config.mjs took 19ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.5s
+✓ Compiled successfully in 1464ms
   Running TypeScript ...
-  Finished TypeScript in 5.6s ...
+  Finished TypeScript in 3.1s ...
   Collecting page data using 11 workers ...
   Generating static pages using 11 workers (0/54) ...
   Generating static pages using 11 workers (13/54) 
   Generating static pages using 11 workers (26/54) 
   Generating static pages using 11 workers (40/54) 
-✓ Generating static pages using 11 workers (54/54) in 1294ms
+✓ Generating static pages using 11 workers (54/54) in 804ms
   Finalizing page optimization ...
 
 Route (app)
@@ -54,6 +54,7 @@ Route (app)
 ├ ○ /styleguide
 ├ ○ /tentang
 └ ○ /tower
+
 
 ○  (Static)   prerendered as static content
 ●  (SSG)      prerendered as static HTML (uses generateStaticParams)
