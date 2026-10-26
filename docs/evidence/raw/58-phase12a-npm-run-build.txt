@@ -1,0 +1,66 @@
+npm run build
+
+> rsi-islam-sby@2.0.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+- Environments: .env
+✓ Running next.config.mjs took 14ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1072ms
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/54) ...
+  Generating static pages using 11 workers (13/54) 
+  Generating static pages using 11 workers (26/54) 
+  Generating static pages using 11 workers (40/54) 
+✓ Generating static pages using 11 workers (54/54) in 730ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ƒ /api/admin/appointments
+├ ƒ /api/admin/appointments/[id]
+├ ƒ /api/admin/audit-logs
+├ ƒ /api/admin/bed-status
+├ ƒ /api/auth/[...all]
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/bed-status
+├ ƒ /api/patient/appointments
+├ ƒ /api/patient/appointments/[id]
+├ ○ /daftar
+├ ○ /dokter
+├   /dokter/[slug]
+│ ├ ● /dokter/dr-fauzi-rachman-sppd
+│ ├ ● /dokter/dr-anisa-kusuma-sppd
+│ ├ ● /dokter/dr-bambang-suharto-sppd
+│ └ ● [+21 more paths]
+├ ○ /igd
+├ ○ /janji-temu
+├ ○ /kontak
+├ ○ /layanan
+├   /layanan/[slug]
+│ ├ ● /layanan/igd
+│ ├ ● /layanan/hemodialisis
+│ ├ ● /layanan/perawatan-intensif
+│ └ ● [+5 more paths]
+├ ○ /login
+├ ○ /styleguide
+├ ○ /tentang
+└ ○ /tower
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+EXIT CODE: 0

@@ -1,0 +1,7 @@
+git log --oneline -5
+6fdf0ce fix(tooling): perbaiki resolusi case-insensitive PATH Windows pada capture-evidence
+3141e78 feat(ui): selesaikan fondasi token kepatuhan konten dan aturan ui fase 12a
+bba0be7 chore(evidence): update screenshots and test artifact jsons
+25e9cf8 docs(evidence): perbarui rekaman bukti mentah fase 11.1 closeout
+aea1597 chore(deps): tambahkan postinstall prisma generate dan perbaiki tipe verify-session-s6
+EXIT CODE: 0
