@@ -20,11 +20,21 @@ export const FORBIDDEN_CLAIMS_RULES = [
     test: (content) => /Bintang\s*Lima/i.test(content) && !content.includes('sourceNote'),
   },
   {
-    name: 'Superlatif R7 tanpa sourceNote (R7/R8)',
+    name: 'Superlatif R7 & klaim kepercayaan tak terbukti (R7/R8/A2)',
     test: (content) => {
-      // Periksa keberadaan superlatif terlarang
-      const regex = /\b(terbaik|tertinggi|terdepan|terlengkap|nomor satu|unggul|keunggulan)\b/i;
+      // Periksa keberadaan superlatif atau klaim kepercayaan terlarang
+      const regex = /\b(terbaik|tertinggi|terdepan|terlengkap|nomor satu|unggul|keunggulan|terpercaya)\b/i;
       return regex.test(content) && !content.includes('sourceNote');
+    },
+  },
+  {
+    name: 'Klaim status Terakreditasi saat ini di luar konteks historis (K3/A2)',
+    test: (content, filePath = '') => {
+      const isUi = filePath.startsWith('src/app') || filePath.startsWith('src/components');
+      if (!isUi) return false;
+      if (!/terakreditasi/i.test(content)) return false;
+      // Diizinkan hanya jika merujuk ke data historis akreditasi
+      return !content.includes('accreditationHistory') && !content.includes('Akreditasi Paripurna');
     },
   },
   { name: 'Klaim CSP ketat (R3)', regex: /CSP\s*ketat/i },
@@ -66,7 +76,7 @@ export function scanContentForViolations(content, filePath = '', nextConfigHasHs
   for (const rule of FORBIDDEN_CLAIMS_RULES) {
     let matched = false;
     if (rule.test) {
-      matched = rule.test(content);
+      matched = rule.test(content, filePath);
     } else if (rule.regex) {
       matched = rule.regex.test(content);
     }
@@ -110,6 +120,9 @@ function scanDirectory(dir, nextConfigHasHsts) {
       entry === '__tests__' ||
       normalized.includes('docs/evidence/legacy-narrative') ||
       normalized.includes('docs/evidence/raw') ||
+      normalized.includes('docs/evidence/v3') ||
+      normalized.includes('docs/evidence/v12') ||
+      normalized.includes('lighthouse') ||
       normalized.includes('docs/design-reference')
     ) {
       continue;

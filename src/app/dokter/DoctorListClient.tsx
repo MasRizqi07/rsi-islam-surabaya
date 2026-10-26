@@ -398,13 +398,13 @@ export function DoctorListClient({
               return (
                 <div
                   key={doc.slug}
-                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-tower-700/50 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-tower-700/50 hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-200 group flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     {/* AVATAR INISIAL & LENCANA ILUSTRASI */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-150">
                           {initials}
                         </div>
                         <div>
@@ -475,7 +475,7 @@ export function DoctorListClient({
                   <div className="pt-5 mt-4 border-t border-tower-50 flex items-center justify-between gap-2">
                     <Link
                       href={`/dokter/${doc.slug}`}
-                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform duration-150"
                     >
                       <span>Lihat Profil Lengkap</span>
                       <ArrowRight className="w-3.5 h-3.5" />

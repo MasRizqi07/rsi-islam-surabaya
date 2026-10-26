@@ -82,7 +82,7 @@ export function HeroBlueprintCard() {
           <button
             type="button"
             onClick={() => setViewMode('photo')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors duration-150 ${
               viewMode === 'photo'
                 ? 'bg-gold-500 text-tower-950 font-bold shadow-xs'
                 : 'text-ivory/80 hover:text-ivory'
@@ -94,7 +94,7 @@ export function HeroBlueprintCard() {
           <button
             type="button"
             onClick={() => setViewMode('blueprint')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors duration-150 ${
               viewMode === 'blueprint'
                 ? 'bg-gold-500 text-tower-950 font-bold shadow-xs'
                 : 'text-ivory/80 hover:text-ivory'
@@ -114,7 +114,7 @@ export function HeroBlueprintCard() {
               src="/assets/rsi-ayani.jpg"
               alt={`Foto Gedung Asli ${HOSPITAL_FACTS.name}`}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
               sizes="(max-width: 640px) 100vw, 480px"
               priority
             />
@@ -144,7 +144,7 @@ export function HeroBlueprintCard() {
           <div className="grid grid-cols-2 gap-2 text-xs">
             <div className="p-2.5 rounded-xl bg-tower-900/80 border border-gold-500/20 text-ivory/90 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
-              <span>Fasilitas Tipe B Syariah</span>
+              <span>Rumah Sakit {HOSPITAL_FACTS.hospitalClass}</span>
             </div>
             <div className="p-2.5 rounded-xl bg-tower-900/80 border border-gold-500/20 text-ivory/90 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0" />
@@ -168,7 +168,7 @@ export function HeroBlueprintCard() {
                 <div
                   key={item.floor}
                   onMouseEnter={() => setActiveFloor(item.floor)}
-                  className={`p-3 rounded-xl border transition-all cursor-pointer ${
+                  className={`p-3 rounded-xl border transition-[color,background-color,border-color,box-shadow] duration-150 cursor-pointer ${
                     isSelected
                       ? 'border-gold-400 bg-tower-800 text-ivory shadow-md ring-1 ring-gold-400/30'
                       : 'border-gold-500/20 bg-tower-900/60 text-ivory/90 hover:border-gold-500/40 hover:bg-tower-900'
@@ -245,10 +245,10 @@ export function HeroBlueprintCard() {
         </span>
         <Link
           href="/tower"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-xs shadow-md transition-all group ml-auto"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-xs shadow-md transition-[color,background-color,box-shadow] duration-150 group ml-auto"
         >
           <span>Buka Tower Directory Lengkap</span>
-          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-150" aria-hidden="true" />
         </Link>
       </div>
     </div>

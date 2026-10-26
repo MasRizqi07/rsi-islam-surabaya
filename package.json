@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit",
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:facts": "tsx scripts/check-facts.mjs",
+    "check:ui": "node scripts/check-ui-rules.mjs",
     "validate:data": "tsx scripts/validate-data.mjs",
     "check:duplication": "node scripts/check-duplication.mjs",
     "test": "vitest run",

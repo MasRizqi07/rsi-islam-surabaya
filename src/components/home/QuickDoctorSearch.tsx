@@ -92,7 +92,7 @@ export function QuickDoctorSearch() {
         <div className="sm:col-span-3">
           <button
             type="submit"
-            className="w-full min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-300 active:bg-gold-700 text-tower-950 font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+            className="w-full min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-300 active:bg-gold-700 text-tower-950 font-bold text-sm shadow-md transition-colors duration-150 flex items-center justify-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
           >
             <Search className="w-4 h-4" aria-hidden="true" />
             <span>Cari Dokter</span>

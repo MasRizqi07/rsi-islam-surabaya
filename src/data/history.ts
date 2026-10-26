@@ -3,6 +3,8 @@
  * Sumber: Lampiran C PRD v2.0 & Publikasi Resmi Yayasan Rumah Sakit Islam Surabaya (YARSIS)
  */
 
+import { HOSPITAL_FACTS, SERVICE_YEARS } from './facts';
+
 export interface HistoryMilestone {
   year: string;
   title: string;
@@ -97,8 +99,8 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   },
   {
     year: '2026',
-    title: '51 Tahun Mengabdi & Transformasi Digital',
-    description: 'Menyongsong 51 tahun perjalanan dengan operasional Rumah Sakit Kelas B, kapasitas 238 tempat tidur, 100+ tenaga medis terpercaya, dan transformasi digital berkelanjutan.',
+    title: `${SERVICE_YEARS} Tahun Mengabdi & Transformasi Digital`,
+    description: `Menyongsong ${SERVICE_YEARS} tahun perjalanan dengan operasional ${HOSPITAL_FACTS.hospitalClass}, kapasitas ${HOSPITAL_FACTS.bedCapacity} tempat tidur, ${HOSPITAL_FACTS.medicalStaffLabel}, dan transformasi digital berkelanjutan.`,
     tag: 'Kini & Masa Depan',
   },
 ];

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { HOSPITAL_FACTS } from '@/data/facts';
+import { HOSPITAL_FACTS, SERVICE_YEARS } from '@/data/facts';
 import { HISTORY_TIMELINE } from '@/data/history';
 import { TimelineDecadeClient } from '@/components/tentang/TimelineDecadeClient';
 import {
@@ -14,8 +14,8 @@ import {
 } from 'lucide-react';
 
 export const metadata = {
-  title: `Tentang Kami · Sejarah 51 Tahun & Nilai Filosofis · ${HOSPITAL_FACTS.name}`,
-  description: `Sejarah pengabdian 51 tahun ${HOSPITAL_FACTS.name} sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.`,
+  title: `Tentang Kami · Sejarah ${SERVICE_YEARS} Tahun & Nilai Filosofis · ${HOSPITAL_FACTS.name}`,
+  description: `Sejarah pengabdian ${SERVICE_YEARS} tahun ${HOSPITAL_FACTS.name} sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.`,
   robots: { index: false, follow: false },
 };
 
@@ -39,21 +39,13 @@ export default function TentangPage() {
         
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/30 text-gold-300 text-xs font-semibold backdrop-blur-md">
-              <div className="relative w-5 h-5 rounded-full overflow-hidden border border-gold-400 bg-white shrink-0">
-                <Image
-                  src="/assets/Logo-RSI-Baru-320x320.jpeg"
-                  alt="Logo RSI Surabaya"
-                  width={20}
-                  height={20}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/30 text-gold-300 text-xs font-semibold backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-gold-400" aria-hidden="true" />
               <span>Sejarah & Nilai Pengabdian YARSIS Sejak 1975</span>
             </div>
 
             <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight tracking-tight">
-              51 Tahun Merawat Insan, <br />
+              {SERVICE_YEARS} Tahun Merawat Insan, <br />
               <span className="text-gold-300 italic font-semibold">Menebar Nilai Islam.</span>
             </h1>
 
@@ -74,7 +66,7 @@ export default function TentangPage() {
                   src="/assets/rsi-ayani.jpg"
                   alt={`Fasad Gedung Asli ${HOSPITAL_FACTS.name}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 100vw, 400px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-tower-950/90 via-transparent to-black/20" />
@@ -105,7 +97,7 @@ export default function TentangPage() {
               Tahun Berdiri
             </span>
             <p className="text-[11px] text-ink-soft">
-              51 tahun mengabdi bagi kesehatan masyarakat Jawa Timur.
+              {SERVICE_YEARS} tahun mengabdi bagi kesehatan masyarakat Jawa Timur.
             </p>
           </div>
 
@@ -185,11 +177,11 @@ export default function TentangPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Medallion 1: 2016 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -221,11 +213,11 @@ export default function TentangPage() {
           </div>
 
           {/* Medallion 2: 2019 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -257,11 +249,11 @@ export default function TentangPage() {
           </div>
 
           {/* Medallion 3: 2022 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -380,7 +372,7 @@ export default function TentangPage() {
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           <Link
             href="/tower"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 text-tower-950 font-bold text-sm shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 text-tower-950 font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150"
           >
             <Building2 className="w-4 h-4" />
             <span>Tower Directory</span>

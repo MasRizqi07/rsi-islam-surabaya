@@ -311,7 +311,7 @@ export default async function DoctorDetailPage({ params }: { params: Promise<{ s
             {/* CTA Button */}
             <Link
               href={`/daftar?dokter=${doctor.slug}`}
-              className="w-full py-3.5 px-4 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm text-center shadow-md transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm text-center shadow-md transition-[color,background-color,box-shadow] duration-150 flex items-center justify-center gap-2"
             >
               <CalendarCheck className="w-4 h-4" />
               <span>Daftar ke Dokter Ini</span>

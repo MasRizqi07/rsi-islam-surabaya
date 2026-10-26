@@ -21,6 +21,9 @@ const ROUTES = [
   { slug: 'dokter', path: '/dokter', name: 'Direktori Dokter' },
   { slug: 'tower', path: '/tower', name: 'Tower Directory' },
   { slug: 'daftar', path: '/daftar', name: 'Pendaftaran Online' },
+  { slug: 'layanan', path: '/layanan', name: 'Daftar Layanan' },
+  { slug: 'login', path: '/login', name: 'Autentikasi / Login' },
+  { slug: 'janji-temu', path: '/janji-temu', name: 'Booking Janji Temu' },
 ];
 
 function median(values) {
@@ -30,7 +33,10 @@ function median(values) {
   return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
-const baseDir = join(process.cwd(), 'docs', 'evidence', 'v3', 'p0b', 'lighthouse');
+const targetArg = process.argv[2];
+const baseDir = targetArg
+  ? (targetArg.startsWith('/') || targetArg.includes(':') ? targetArg : join(process.cwd(), targetArg))
+  : join(process.cwd(), 'docs', 'evidence', 'v12', 'baseline');
 
 const rows = [];
 const failedRoutes = [];

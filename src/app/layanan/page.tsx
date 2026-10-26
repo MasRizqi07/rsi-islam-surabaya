@@ -71,7 +71,7 @@ export default function LayananPage() {
             <div
               key={svc.slug}
               id={svc.slug}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 transition-all flex flex-col justify-between space-y-6 group"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between space-y-6 group"
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -116,12 +116,12 @@ export default function LayananPage() {
                 >
                   <Building2 className="w-3.5 h-3.5" />
                   <span>Lihat di Denah Tower</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
                 </Link>
 
                 <Link
                   href={`/layanan/${svc.slug}`}
-                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold transition-all shadow-2xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold transition-[color,background-color] duration-150 shadow-2xs"
                 >
                   Detail Fasilitas
                 </Link>

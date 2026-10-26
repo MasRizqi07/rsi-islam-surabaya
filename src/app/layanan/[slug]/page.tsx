@@ -162,7 +162,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
           <Link
             href={`/tower?gedung=${service.buildingId}&lantai=${service.floor}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-all shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-[color,background-color,box-shadow] duration-150 shrink-0"
           >
             <Building2 className="w-4 h-4" />
             <span>Buka di Tower Directory</span>

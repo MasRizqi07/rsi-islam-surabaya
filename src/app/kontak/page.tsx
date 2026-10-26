@@ -86,7 +86,7 @@ export default function KontakPage() {
 
                   <a
                     href={emergency.callCenterTel}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-ivory text-alert-600 font-bold text-xs shadow-md hover:bg-gold-100 transition-all shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-ivory text-alert-600 font-bold text-xs shadow-md hover:bg-gold-100 transition-[color,background-color,box-shadow] duration-150 shrink-0"
                   >
                     <PhoneCall className="w-4 h-4 animate-pulse" />
                     <span>Panggil Sekarang</span>
@@ -124,7 +124,7 @@ export default function KontakPage() {
 
                   <a
                     href={emergency.ambulanceTel}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gold-500 text-tower-950 font-bold text-xs shadow-md hover:bg-gold-300 transition-all shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gold-500 text-tower-950 font-bold text-xs shadow-md hover:bg-gold-300 transition-[color,background-color,box-shadow] duration-150 shrink-0"
                   >
                     <Phone className="w-4 h-4" />
                     <span>Hubungi Armada</span>
@@ -253,7 +253,7 @@ export default function KontakPage() {
                 src="/assets/rsi-ayani.jpg"
                 alt={`Fasad Gedung ${HOSPITAL_FACTS.name}`}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
                 sizes="(max-width: 1024px) 100vw, 400px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-tower-950/80 via-transparent to-transparent pointer-events-none" />
@@ -312,57 +312,57 @@ export default function KontakPage() {
               >
                 <defs>
                   <pattern id="archGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#003731" strokeOpacity="0.08" strokeWidth="0.3" />
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-tower-900)" strokeOpacity="0.08" strokeWidth="0.3" />
                   </pattern>
                   <linearGradient id="towerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#04231F" />
-                    <stop offset="100%" stopColor="#0A4F48" />
+                    <stop offset="0%" stopColor="var(--color-tower-950)" />
+                    <stop offset="100%" stopColor="var(--color-tower-800)" />
                   </linearGradient>
                   <linearGradient id="grahaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#063B36" />
-                    <stop offset="100%" stopColor="#0F6B61" />
+                    <stop offset="0%" stopColor="var(--color-tower-900)" />
+                    <stop offset="100%" stopColor="var(--color-tower-700)" />
                   </linearGradient>
                   <linearGradient id="skybridgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#8A6A14" />
-                    <stop offset="100%" stopColor="#C9A24A" />
+                    <stop offset="0%" stopColor="var(--color-gold-700)" />
+                    <stop offset="100%" stopColor="var(--color-gold-500)" />
                   </linearGradient>
                 </defs>
 
                 {/* Base Grid */}
-                <rect width="880" height="600" fill="#EEF8F6" />
+                <rect width="880" height="600" fill="var(--color-tower-50)" />
                 <rect width="880" height="600" fill="url(#archGrid)" />
 
                 {/* WEST: RAILROAD (JALUR REL KERETA WONOKROMO) */}
                 <g id="railroad" opacity="0.85">
-                  <rect x="25" y="0" width="36" height="600" fill="#D6EFEB" />
-                  <line x1="37" y1="0" x2="37" y2="600" stroke="#707977" strokeWidth="2" />
-                  <line x1="49" y1="0" x2="49" y2="600" stroke="#707977" strokeWidth="2" />
+                  <rect x="25" y="0" width="36" height="600" fill="var(--color-tower-100)" />
+                  <line x1="37" y1="0" x2="37" y2="600" stroke="var(--color-ink-soft)" strokeWidth="2" />
+                  <line x1="49" y1="0" x2="49" y2="600" stroke="var(--color-ink-soft)" strokeWidth="2" />
                   <path
                     d="M29 20h28 M29 60h28 M29 100h28 M29 140h28 M29 180h28 M29 220h28 M29 260h28 M29 300h28 M29 340h28 M29 380h28 M29 420h28 M29 460h28 M29 500h28 M29 540h28 M29 580h28"
-                    stroke="#3f4947"
+                    stroke="var(--color-ink-soft)"
                     strokeWidth="1.8"
                   />
-                  <rect x="15" y="16" width="56" height="74" rx="4" fill="#ffffff" stroke="#707977" strokeWidth="1" />
-                  <text x="43" y="44" textAnchor="middle" fill="#04231F" fontSize="10" fontWeight="700" fontFamily="sans-serif">
+                  <rect x="15" y="16" width="56" height="74" rx="4" fill="white" stroke="var(--color-ink-soft)" strokeWidth="1" />
+                  <text x="43" y="44" textAnchor="middle" fill="var(--color-tower-950)" fontSize="10" fontWeight="700" fontFamily="sans-serif">
                     STASIUN
                   </text>
-                  <text x="43" y="58" textAnchor="middle" fill="#8A6A14" fontSize="9" fontWeight="600" fontFamily="sans-serif">
+                  <text x="43" y="58" textAnchor="middle" fill="var(--color-gold-700)" fontSize="9" fontWeight="600" fontFamily="sans-serif">
                     WONOKROMO
                   </text>
-                  <text x="43" y="74" textAnchor="middle" fill="#4B5F5C" fontSize="8" fontFamily="sans-serif">
+                  <text x="43" y="74" textAnchor="middle" fill="var(--color-ink-soft)" fontSize="8" fontFamily="sans-serif">
                     ± 500m Utara
                   </text>
                 </g>
 
                 {/* MAIN THOROUGHFARE: JL. ACHMAD YANI */}
                 <g id="main-road">
-                  <rect x="95" y="0" width="110" height="600" fill="#D6EFEB" />
-                  <line x1="150" y1="0" x2="150" y2="600" stroke="#ffffff" strokeWidth="2.5" strokeDasharray="14 10" />
+                  <rect x="95" y="0" width="110" height="600" fill="var(--color-tower-100)" />
+                  <line x1="150" y1="0" x2="150" y2="600" stroke="white" strokeWidth="2.5" strokeDasharray="14 10" />
                   <text
                     x="145"
                     y="520"
                     transform="rotate(-90 145 520)"
-                    fill="#4B5F5C"
+                    fill="var(--color-ink-soft)"
                     fontSize="13"
                     fontWeight="700"
                     letterSpacing="3"
@@ -373,17 +373,17 @@ export default function KontakPage() {
                 </g>
 
                 {/* MEDIAN GREEN BELT */}
-                <rect x="205" y="0" width="16" height="600" fill="#0F6B61" opacity="0.4" />
+                <rect x="205" y="0" width="16" height="600" fill="var(--color-tower-700)" opacity="0.4" />
 
                 {/* FRONTAGE ROAD TIMUR */}
                 <g id="frontage-road">
-                  <rect x="221" y="0" width="75" height="600" fill="#E2F5F1" />
-                  <line x1="258" y1="0" x2="258" y2="600" stroke="#ffffff" strokeWidth="2" strokeDasharray="10 8" />
+                  <rect x="221" y="0" width="75" height="600" fill="var(--color-tower-50)" />
+                  <line x1="258" y1="0" x2="258" y2="600" stroke="white" strokeWidth="2" strokeDasharray="10 8" />
                   <text
                     x="252"
                     y="500"
                     transform="rotate(-90 252 500)"
-                    fill="#0A4F48"
+                    fill="var(--color-tower-800)"
                     fontSize="10"
                     fontWeight="700"
                     letterSpacing="2"
@@ -395,53 +395,53 @@ export default function KontakPage() {
 
                 {/* GATES ON FRONTAGE */}
                 <g id="gate-entry">
-                  <circle cx="296" cy="190" r="14" fill="#0A4F48" />
-                  <path d="M291 190h10m-3 -3l3 3-3 3" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
-                  <rect x="316" y="176" width="94" height="26" rx="4" fill="#ffffff" stroke="#0A4F48" strokeWidth="1.2" />
-                  <text x="363" y="193" textAnchor="middle" fill="#0A4F48" fontSize="9.5" fontWeight="700" fontFamily="sans-serif">
+                  <circle cx="296" cy="190" r="14" fill="var(--color-tower-800)" />
+                  <path d="M291 190h10m-3 -3l3 3-3 3" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  <rect x="316" y="176" width="94" height="26" rx="4" fill="white" stroke="var(--color-tower-800)" strokeWidth="1.2" />
+                  <text x="363" y="193" textAnchor="middle" fill="var(--color-tower-800)" fontSize="9.5" fontWeight="700" fontFamily="sans-serif">
                     GERBANG MASUK
                   </text>
                 </g>
 
                 <g id="gate-emergency">
-                  <circle cx="296" cy="380" r="14" fill="#C62F2F" />
-                  <path d="M291 380h10m-3 -3l3 3-3 3" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
-                  <rect x="316" y="366" width="104" height="26" rx="4" fill="#ffffff" stroke="#C62F2F" strokeWidth="1.2" />
-                  <text x="368" y="383" textAnchor="middle" fill="#C62F2F" fontSize="9" fontWeight="700" fontFamily="sans-serif">
+                  <circle cx="296" cy="380" r="14" fill="var(--color-alert-600)" />
+                  <path d="M291 380h10m-3 -3l3 3-3 3" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  <rect x="316" y="366" width="104" height="26" rx="4" fill="white" stroke="var(--color-alert-600)" strokeWidth="1.2" />
+                  <text x="368" y="383" textAnchor="middle" fill="var(--color-alert-600)" fontSize="9" fontWeight="700" fontFamily="sans-serif">
                     RAMP KHUSUS IGD
                   </text>
                 </g>
 
                 <g id="gate-exit">
-                  <circle cx="296" cy="520" r="14" fill="#4B5F5C" />
-                  <path d="M301 520h-10m3 -3l-3 3 3 3" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" />
-                  <rect x="316" y="506" width="94" height="26" rx="4" fill="#ffffff" stroke="#4B5F5C" strokeWidth="1.2" />
-                  <text x="363" y="523" textAnchor="middle" fill="#4B5F5C" fontSize="9.5" fontWeight="700" fontFamily="sans-serif">
+                  <circle cx="296" cy="520" r="14" fill="var(--color-ink-soft)" />
+                  <path d="M301 520h-10m3 -3l-3 3 3 3" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  <rect x="316" y="506" width="94" height="26" rx="4" fill="white" stroke="var(--color-ink-soft)" strokeWidth="1.2" />
+                  <text x="363" y="523" textAnchor="middle" fill="var(--color-ink-soft)" fontSize="9.5" fontWeight="700" fontFamily="sans-serif">
                     GERBANG KELUAR
                   </text>
                 </g>
 
                 {/* HOSPITAL PERIMETER */}
-                <rect x="420" y="30" width="440" height="540" rx="16" fill="#ffffff" stroke="#0F6B61" strokeWidth="1.5" strokeDasharray="6 4" />
+                <rect x="420" y="30" width="440" height="540" rx="16" fill="white" stroke="var(--color-tower-700)" strokeWidth="1.5" strokeDasharray="6 4" />
 
                 {/* DRIVEWAY */}
-                <path d="M305 190 Q440 190 440 240 L440 460 Q440 520 305 520" fill="none" stroke="#D6EFEB" strokeWidth="24" strokeLinecap="round" />
-                <path d="M305 380 L500 380" stroke="#FDECEC" strokeWidth="16" strokeLinecap="round" />
-                <path d="M305 380 L500 380" stroke="#C62F2F" strokeWidth="2" strokeDasharray="4 4" />
+                <path d="M305 190 Q440 190 440 240 L440 460 Q440 520 305 520" fill="none" stroke="var(--color-tower-100)" strokeWidth="24" strokeLinecap="round" />
+                <path d="M305 380 L500 380" stroke="var(--color-alert-50)" strokeWidth="16" strokeLinecap="round" />
+                <path d="M305 380 L500 380" stroke="var(--color-alert-600)" strokeWidth="2" strokeDasharray="4 4" />
 
                 {/* GEDUNG GRAHA */}
                 <g id="building-graha">
                   <rect x="490" y="65" width="200" height="170" rx="10" fill="url(#grahaGrad)" />
-                  <rect x="505" y="80" width="170" height="22" rx="3" fill="#ffffff" fillOpacity="0.15" />
-                  <rect x="505" y="110" width="170" height="22" rx="3" fill="#ffffff" fillOpacity="0.15" />
-                  <rect x="505" y="140" width="170" height="22" rx="3" fill="#ffffff" fillOpacity="0.15" />
-                  <text x="590" y="188" textAnchor="middle" fill="#ffffff" fontSize="15" fontWeight="700" fontFamily="serif">
+                  <rect x="505" y="80" width="170" height="22" rx="3" fill="white" fillOpacity="0.15" />
+                  <rect x="505" y="110" width="170" height="22" rx="3" fill="white" fillOpacity="0.15" />
+                  <rect x="505" y="140" width="170" height="22" rx="3" fill="white" fillOpacity="0.15" />
+                  <text x="590" y="188" textAnchor="middle" fill="white" fontSize="15" fontWeight="700" fontFamily="serif">
                     GEDUNG GRAHA
                   </text>
-                  <text x="590" y="206" textAnchor="middle" fill="#D6EFEB" fontSize="10" fontWeight="600" fontFamily="sans-serif">
+                  <text x="590" y="206" textAnchor="middle" fill="var(--color-tower-100)" fontSize="10" fontWeight="600" fontFamily="sans-serif">
                     Lobi Utama · 20 Poliklinik
                   </text>
-                  <text x="590" y="222" textAnchor="middle" fill="#EEF8F6" fontSize="8.5" fontFamily="sans-serif">
+                  <text x="590" y="222" textAnchor="middle" fill="var(--color-tower-50)" fontSize="8.5" fontFamily="sans-serif">
                     Pendaftaran BPJS & Umum · Kasir
                   </text>
                 </g>
@@ -449,33 +449,33 @@ export default function KontakPage() {
                 {/* GEDUNG TOWER */}
                 <g id="building-tower">
                   <rect x="490" y="325" width="200" height="220" rx="10" fill="url(#towerGrad)" />
-                  <path d="M505 345h170 M505 365h170 M505 385h170 M505 405h170 M505 425h170 M505 445h170 M505 465h170" stroke="#D6EFEB" strokeOpacity="0.3" strokeWidth="1" />
-                  <rect x="540" y="338" width="100" height="18" rx="9" fill="#8A6A14" />
-                  <text x="590" y="350" textAnchor="middle" fill="#F4EBD0" fontSize="9" fontWeight="700" fontFamily="sans-serif">
+                  <path d="M505 345h170 M505 365h170 M505 385h170 M505 405h170 M505 425h170 M505 445h170 M505 465h170" stroke="var(--color-tower-100)" strokeOpacity="0.3" strokeWidth="1" />
+                  <rect x="540" y="338" width="100" height="18" rx="9" fill="var(--color-gold-700)" />
+                  <text x="590" y="350" textAnchor="middle" fill="var(--color-gold-100)" fontSize="9" fontWeight="700" fontFamily="sans-serif">
                     TOWER 13 LANTAI
                   </text>
-                  <text x="590" y="490" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="700" fontFamily="serif">
+                  <text x="590" y="490" textAnchor="middle" fill="white" fontSize="16" fontWeight="700" fontFamily="serif">
                     GEDUNG TOWER
                   </text>
-                  <text x="590" y="510" textAnchor="middle" fill="#D6EFEB" fontSize="10.5" fontWeight="600" fontFamily="sans-serif">
+                  <text x="590" y="510" textAnchor="middle" fill="var(--color-tower-100)" fontSize="10.5" fontWeight="600" fontFamily="sans-serif">
                     IGD 24 Jam · Farmasi · Rawat Inap
                   </text>
-                  <text x="590" y="528" textAnchor="middle" fill="#ffffff" fontSize="9" fontFamily="sans-serif">
+                  <text x="590" y="528" textAnchor="middle" fill="white" fontSize="9" fontFamily="sans-serif">
                     ICU · Laboratorium · Radiologi 24H
                   </text>
 
                   {/* Dedicated Drop-off zone at Tower base */}
-                  <rect x="445" y="360" width="35" height="40" rx="4" fill="#C62F2F" />
-                  <text x="462" y="384" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="700" fontFamily="sans-serif">
+                  <rect x="445" y="360" width="35" height="40" rx="4" fill="var(--color-alert-600)" />
+                  <text x="462" y="384" textAnchor="middle" fill="white" fontSize="9" fontWeight="700" fontFamily="sans-serif">
                     IGD
                   </text>
                 </g>
 
                 {/* SKYBRIDGE */}
                 <g id="skybridge">
-                  <rect x="560" y="235" width="60" height="90" rx="6" fill="url(#skybridgeGrad)" stroke="#8A6A14" strokeWidth="1.5" />
-                  <line x1="570" y1="245" x2="570" y2="315" stroke="#ffffff" strokeWidth="1.5" />
-                  <line x1="590" y1="245" x2="590" y2="315" stroke="#ffffff" strokeWidth="1.5" />
+                  <rect x="560" y="235" width="60" height="90" rx="6" fill="url(#skybridgeGrad)" stroke="var(--color-gold-700)" strokeWidth="1.5" />
+                  <line x1="570" y1="245" x2="570" y2="315" stroke="white" strokeWidth="1.5" />
+                  <line x1="590" y1="245" x2="590" y2="315" stroke="white" strokeWidth="1.5" />
                 </g>
               </svg>
             </div>
@@ -491,7 +491,7 @@ export default function KontakPage() {
                 href={contact.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-all shrink-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-[color,background-color,box-shadow] duration-150 shrink-0"
               >
                 <Navigation className="w-4 h-4" />
                 <span>Buka Arah di Google Maps</span>

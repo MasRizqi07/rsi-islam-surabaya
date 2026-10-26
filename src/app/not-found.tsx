@@ -74,7 +74,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 max-w-xl mx-auto">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-xs shadow-md transition-[color,background-color,box-shadow] duration-150"
           >
             <Home className="w-4 h-4 text-gold-300" />
             <span>Kembali ke Beranda Utama</span>
@@ -82,7 +82,7 @@ export default function NotFound() {
 
           <a
             href={emergency.callCenterTel}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-alert-600 hover:bg-alert-700 text-ivory font-bold text-xs shadow-md transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-alert-600 hover:bg-alert-700 text-ivory font-bold text-xs shadow-md transition-[color,background-color,box-shadow] duration-150"
           >
             <PhoneCall className="w-4 h-4 animate-pulse" />
             <span>Layanan IGD 24 Jam ({emergency.callCenterNumber})</span>
@@ -90,7 +90,7 @@ export default function NotFound() {
 
           <Link
             href="/dokter"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-tower-50 hover:bg-tower-100 text-tower-900 font-bold text-xs border border-tower-200 transition-all"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-tower-50 hover:bg-tower-100 text-tower-900 font-bold text-xs border border-tower-200 transition-[color,background-color,border-color] duration-150"
           >
             <Stethoscope className="w-4 h-4 text-tower-700" />
             <span>Cari Dokter & Poli</span>
@@ -114,10 +114,10 @@ export default function NotFound() {
           
           <Link
             href="/tower"
-            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-all flex flex-col justify-between group space-y-3"
+            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between group space-y-3"
           >
             <div className="space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform duration-150">
                 <Building2 className="w-5 h-5" />
               </div>
               <h4 className="font-display font-bold text-base text-tower-950 group-hover:text-tower-700 transition-colors">
@@ -129,16 +129,16 @@ export default function NotFound() {
             </div>
             <div className="pt-2 text-xs font-bold text-tower-800 inline-flex items-center gap-1">
               <span>Buka Denah Gedung</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
             </div>
           </Link>
 
           <Link
             href="/daftar"
-            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-all flex flex-col justify-between group space-y-3"
+            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between group space-y-3"
           >
             <div className="space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform duration-150">
                 <CalendarCheck className="w-5 h-5" />
               </div>
               <h4 className="font-display font-bold text-base text-tower-950 group-hover:text-tower-700 transition-colors">
@@ -150,16 +150,16 @@ export default function NotFound() {
             </div>
             <div className="pt-2 text-xs font-bold text-tower-800 inline-flex items-center gap-1">
               <span>Mulai Pendaftaran</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
             </div>
           </Link>
 
           <Link
             href="/igd"
-            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-all flex flex-col justify-between group space-y-3"
+            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between group space-y-3"
           >
             <div className="space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-alert-50 text-alert-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-alert-50 text-alert-600 flex items-center justify-center group-hover:scale-105 transition-transform duration-150">
                 <ShieldAlert className="w-5 h-5" />
               </div>
               <h4 className="font-display font-bold text-base text-tower-950 group-hover:text-tower-700 transition-colors">
@@ -171,16 +171,16 @@ export default function NotFound() {
             </div>
             <div className="pt-2 text-xs font-bold text-alert-600 inline-flex items-center gap-1">
               <span>Protokol Triase</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
             </div>
           </Link>
 
           <Link
             href="/kontak"
-            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-all flex flex-col justify-between group space-y-3"
+            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between group space-y-3"
           >
             <div className="space-y-2">
-              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform duration-150">
                 <MapPin className="w-5 h-5" />
               </div>
               <h4 className="font-display font-bold text-base text-tower-950 group-hover:text-tower-700 transition-colors">
@@ -192,7 +192,7 @@ export default function NotFound() {
             </div>
             <div className="pt-2 text-xs font-bold text-tower-800 inline-flex items-center gap-1">
               <span>Akses Gerbang</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
             </div>
           </Link>
 

@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Dokter', href: '/dokter', icon: Stethoscope },
   { label: 'Layanan', href: '/layanan', icon: Building2 },
   { label: 'Tower Directory', href: '/tower', icon: Building2 },
-  { label: 'Janji Temu', href: '/janji-temu', icon: Calendar },
+  { label: 'Simulasi Pendaftaran', href: '/daftar', icon: Calendar },
   { label: 'Tentang', href: '/tentang', icon: Info },
   { label: 'Kontak', href: '/kontak', icon: Phone },
   { label: 'Login Demo', href: '/login', icon: LogIn },
@@ -45,9 +45,14 @@ export function Header() {
             </div>
 
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg text-tower-900 leading-tight tracking-tight group-hover:text-tower-700 transition-colors">
-                {HOSPITAL_FACTS.name}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="font-display font-bold text-base sm:text-lg text-tower-900 leading-tight tracking-tight group-hover:text-tower-700 transition-colors">
+                  {HOSPITAL_FACTS.name}
+                </span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gold-100 text-tower-900 border border-gold-400/50 shrink-0">
+                  Demo Portofolio
+                </span>
+              </div>
               <span className="text-xs text-ink-soft tracking-wider font-medium">
                 {HOSPITAL_FACTS.tagline} · Sejak {HOSPITAL_FACTS.foundedYear}
               </span>
@@ -77,11 +82,11 @@ export function Header() {
           {/* ACTION BUTTON & MOBILE TOGGLE */}
           <div className="flex items-center gap-3">
             <Link
-              href="/daftar"
-              className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-semibold text-sm shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-tower-700 focus:ring-offset-2"
+              href="/janji-temu"
+              className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-semibold text-sm shadow-md hover:shadow-lg transition-colors duration-150 focus:ring-2 focus:ring-tower-700 focus:ring-offset-2"
             >
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-              <span>Daftar Online</span>
+              <span>Buat Janji Temu</span>
             </Link>
 
             {/* HAMBURGER TOGGLE */}
@@ -132,12 +137,12 @@ export function Header() {
             
             <div className="pt-4 border-t border-tower-100">
               <Link
-                href="/daftar"
+                href="/janji-temu"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center w-full min-h-[44px] px-4 py-3 rounded-lg bg-tower-800 text-ivory font-bold text-center shadow-md active:bg-tower-900"
               >
                 <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                <span>Daftar Online (Demo)</span>
+                <span>Buat Janji Temu</span>
               </Link>
             </div>
           </nav>

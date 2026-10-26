@@ -265,7 +265,7 @@ export function RegistrationWizardClient() {
             return (
               <li
                 key={s.num}
-                className={`flex items-center gap-2 p-2 rounded-lg border transition-all duration-200 ${
+                className={`flex items-center gap-2 p-2 rounded-lg border transition-[color,background-color,border-color] duration-150 ${
                   isActive
                     ? 'bg-tower-800 text-ivory border-tower-800 font-bold shadow-xs'
                     : isCompleted
@@ -308,7 +308,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 1: JALUR PELAYANAN ==================== */}
       {step === 1 && (
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-tower-100 shadow-sm space-y-5 transition-all duration-200">
+        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-tower-100 shadow-sm space-y-5">
           <div className="space-y-1">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-gold-700">
               Langkah 1 dari 4
@@ -352,7 +352,7 @@ export function RegistrationWizardClient() {
                   key={opt.id}
                   type="button"
                   onClick={() => setPenjamin(opt.id)}
-                  className={`p-4 sm:p-5 rounded-xl text-left border-2 transition-all flex flex-col justify-between space-y-3 min-h-[140px] cursor-pointer ${
+                  className={`p-4 sm:p-5 rounded-xl text-left border-2 transition-[border-color,background-color,box-shadow] duration-150 flex flex-col justify-between space-y-3 min-h-[140px] cursor-pointer ${
                     isSelected
                       ? 'border-tower-800 bg-tower-50/90 shadow-md ring-2 ring-tower-800/20'
                       : 'border-tower-100 bg-ivory hover:border-tower-300 hover:bg-white'
@@ -386,7 +386,7 @@ export function RegistrationWizardClient() {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="inline-flex items-center gap-2 min-h-[44px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm shadow-sm hover:shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 min-h-[44px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm shadow-sm hover:shadow-md transition-[color,background-color,box-shadow] duration-150 cursor-pointer"
             >
               <span>Lanjut ke Pilih Poliklinik</span>
               <ArrowRight className="w-4 h-4" />
@@ -397,7 +397,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 2: POLIKLINIK ==================== */}
       {step === 2 && (
-        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
+        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
@@ -436,7 +436,7 @@ export function RegistrationWizardClient() {
                   onClick={() => {
                     setSpecialtyId(spec.id);
                   }}
-                  className={`p-5 rounded-2xl text-left border transition-all flex flex-col justify-between space-y-3 min-h-[130px] ${
+                  className={`p-5 rounded-2xl text-left border transition-[border-color,background-color,box-shadow] duration-150 flex flex-col justify-between space-y-3 min-h-[130px] ${
                     isSelected
                       ? 'border-tower-800 bg-tower-50/80 shadow-md ring-2 ring-tower-800/20'
                       : 'border-tower-100 bg-ivory hover:border-tower-300 hover:bg-white'
@@ -481,7 +481,7 @@ export function RegistrationWizardClient() {
               type="button"
               disabled={!specialtyId}
               onClick={() => setStep(3)}
-              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 disabled:opacity-40 disabled:cursor-not-allowed text-ivory font-bold text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 disabled:opacity-40 disabled:cursor-not-allowed text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150"
             >
               <span>Lanjut ke Dokter & Jadwal</span>
               <ArrowRight className="w-4 h-4" />
@@ -492,7 +492,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 3: DOKTER & JADWAL ==================== */}
       {step === 3 && (
-        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
+        <div className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6">
           <div className="space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
               Langkah 3 dari 4
@@ -538,7 +538,7 @@ export function RegistrationWizardClient() {
                       key={doc.slug}
                       type="button"
                       onClick={() => setDoctor(doc.slug)}
-                      className={`p-5 rounded-2xl text-left border transition-all flex items-start gap-4 ${
+                      className={`p-5 rounded-2xl text-left border transition-[border-color,background-color,box-shadow] duration-150 flex items-start gap-4 ${
                         isSelected
                           ? 'border-tower-800 bg-tower-50/80 shadow-md ring-2 ring-tower-800/20'
                           : 'border-tower-100 bg-ivory hover:border-tower-300 hover:bg-white'
@@ -589,7 +589,7 @@ export function RegistrationWizardClient() {
                       key={item.dateStr}
                       type="button"
                       onClick={() => setAppointment(item.dateStr, item.timeSlot)}
-                      className={`p-4 rounded-xl text-left border transition-all space-y-1.5 ${
+                      className={`p-4 rounded-xl text-left border transition-[border-color,background-color,box-shadow] duration-150 space-y-1.5 ${
                         isSelected
                           ? 'border-tower-800 bg-tower-800 text-ivory shadow-md ring-2 ring-gold-500/40'
                           : 'border-tower-100 bg-ivory text-tower-950 hover:bg-white hover:border-tower-300'
@@ -627,7 +627,7 @@ export function RegistrationWizardClient() {
               type="button"
               disabled={!doctorSlug || !appointmentDate || !timeSlot}
               onClick={() => setStep(4)}
-              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 disabled:opacity-40 disabled:cursor-not-allowed text-ivory font-bold text-sm shadow-md transition-all"
+              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 disabled:opacity-40 disabled:cursor-not-allowed text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150"
             >
               <span>Lanjut ke Data Pasien</span>
               <ArrowRight className="w-4 h-4" />
@@ -638,7 +638,7 @@ export function RegistrationWizardClient() {
 
       {/* ==================== LANGKAH 4: DATA PASIEN & KONFIRMASI ==================== */}
       {step === 4 && (
-        <form onSubmit={handleValidateAndSubmit} className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6 transition-all duration-200">
+        <form onSubmit={handleValidateAndSubmit} className="bg-white rounded-2xl p-5 sm:p-8 border border-tower-100 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-700">
@@ -656,7 +656,7 @@ export function RegistrationWizardClient() {
             <button
               type="button"
               onClick={fillDemoData}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-100 hover:bg-gold-300 text-tower-950 font-bold text-xs border border-gold-500/40 shadow-sm transition-all shrink-0"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-100 hover:bg-gold-300 text-tower-950 font-bold text-xs border border-gold-500/40 shadow-sm transition-[color,background-color,border-color] duration-150 shrink-0"
             >
               <Sparkles className="w-4 h-4 text-tower-800" />
               <span>Isi Data Simulasi Otomatis (1-Klik)</span>
@@ -766,7 +766,7 @@ export function RegistrationWizardClient() {
               id="btn-submit-registration"
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all disabled:opacity-50 cursor-pointer"
+              className="inline-flex items-center gap-2 min-h-[48px] px-8 py-3 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 disabled:opacity-50 cursor-pointer"
             >
               {isSubmitting ? (
                 <>
@@ -903,7 +903,7 @@ export function RegistrationWizardClient() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/janji-temu"
-              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-tower-950 font-bold text-sm shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-600 text-tower-950 font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 cursor-pointer"
             >
               <Calendar className="w-4 h-4" />
               <span>Lihat di Riwayat Janji Temu Saya</span>
@@ -913,7 +913,7 @@ export function RegistrationWizardClient() {
               id="print-ticket-btn"
               type="button"
               onClick={() => window.print()}
-              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 min-h-[48px] px-6 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 cursor-pointer"
             >
               <Printer className="w-4 h-4" />
               <span>Cetak Tiket Antrean (Print)</span>

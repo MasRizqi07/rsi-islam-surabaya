@@ -96,5 +96,21 @@ describe('Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1)', () => {
       const violations = scanContentForViolations(content, '.env.example', true);
       expect(violations.some((v: { rule: string }) => v.rule.includes('Hex secret 64 karakter'))).toBe(true);
     });
+
+    it('mendeteksi dan menolak klaim terpercaya tanpa sourceNote (A2)', () => {
+      const content = 'Layanan medis terpercaya untuk keluarga Anda.';
+      const violations = scanContentForViolations(content, 'src/components/sample.tsx', true);
+      expect(violations.some((v: { rule: string }) => v.rule.includes('Superlatif R7'))).toBe(true);
+    });
+
+    it('mendeteksi dan menolak klaim status Terakreditasi saat ini di luar konteks historis (K3/A2)', () => {
+      const badContent = '<span>Rumah Sakit Terakreditasi</span>';
+      const badViolations = scanContentForViolations(badContent, 'src/app/page.tsx', true);
+      expect(badViolations.some((v: { rule: string }) => v.rule.includes('Terakreditasi saat ini'))).toBe(true);
+
+      const goodContent = '<span>{HOSPITAL_FACTS.accreditationHistory}</span>';
+      const goodViolations = scanContentForViolations(goodContent, 'src/app/page.tsx', true);
+      expect(goodViolations.some((v: { rule: string }) => v.rule.includes('Terakreditasi saat ini'))).toBe(false);
+    });
   });
 });

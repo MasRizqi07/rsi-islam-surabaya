@@ -91,7 +91,7 @@ export const HOSPITAL_FACTS = {
   },
 
   // Tagline & Nilai
-  tagline: 'Modern dan Terpercaya',
+  tagline: 'Pelayanan Medis Terintegrasi',
   motto: 'Kesembuhan datang dari Allah, keselamatan dan kepuasan pasien tanggung jawab kami.',
   salutation: 'Assalamu’alaikum Warahmatullahi Wabarakatuh',
 
@@ -102,4 +102,8 @@ export const HOSPITAL_FACTS = {
   },
 } as const;
 
+export const CURRENT_YEAR = 2026;
+export const SERVICE_YEARS = CURRENT_YEAR - HOSPITAL_FACTS.foundedYear;
+
 export type HospitalFacts = typeof HOSPITAL_FACTS;
+

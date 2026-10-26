@@ -64,7 +64,7 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
             role="tab"
             aria-selected={selectedCategory === 'all'}
             onClick={() => setSelectedCategory('all')}
-            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
               selectedCategory === 'all'
                 ? 'bg-tower-800 text-ivory shadow-sm'
                 : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -78,7 +78,7 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
             role="tab"
             aria-selected={selectedCategory === 'dasar'}
             onClick={() => setSelectedCategory('dasar')}
-            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
               selectedCategory === 'dasar'
                 ? 'bg-tower-800 text-ivory shadow-sm'
                 : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -92,7 +92,7 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
             role="tab"
             aria-selected={selectedCategory === 'bedah'}
             onClick={() => setSelectedCategory('bedah')}
-            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
               selectedCategory === 'bedah'
                 ? 'bg-tower-800 text-ivory shadow-sm'
                 : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -106,7 +106,7 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
             role="tab"
             aria-selected={selectedCategory === 'ibu-anak'}
             onClick={() => setSelectedCategory('ibu-anak')}
-            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
               selectedCategory === 'ibu-anak'
                 ? 'bg-tower-800 text-ivory shadow-sm'
                 : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -150,11 +150,11 @@ export function ClinicIndexClient({ specialties }: ClinicIndexClientProps) {
         {filteredSpecialties.map((spec) => (
           <div
             key={spec.id}
-            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-all flex flex-col justify-between group space-y-4"
+            className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs hover:shadow-md hover:border-tower-700/50 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between group space-y-4"
           >
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-tower-100 text-tower-800 flex items-center justify-center group-hover:scale-105 transition-transform duration-150">
                   <Stethoscope className="w-5 h-5" />
                 </div>
                 <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold-100 text-tower-950 border border-gold-400/40">

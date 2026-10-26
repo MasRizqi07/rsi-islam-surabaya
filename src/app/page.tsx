@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { HOSPITAL_FACTS } from '@/data/facts';
+import { HOSPITAL_FACTS, SERVICE_YEARS } from '@/data/facts';
 import { SERVICES } from '@/data/services';
 import { BedStatusWidget } from '@/components/home/BedStatusWidget';
 import { QuickDoctorSearch } from '@/components/home/QuickDoctorSearch';
@@ -28,7 +28,7 @@ export default function HomePage() {
       {/* 1. SECTION HERO DENGAN FOTO ASLI GEDUNG & RITME TOWER (LCP ELEMENT = TEKS HEADLINE) */}
       <section
         id="hero-section"
-        style={{ backgroundColor: '#063B36' }}
+        style={{ backgroundColor: 'var(--color-tower-900)' }}
         className="relative bg-tower-900 text-ivory py-16 lg:py-24 overflow-hidden shadow-inner"
       >
         {/* FOTO ASLI GEDUNG RS ISLAM SURABAYA SEBAGAI LATAR HERO ATMOSFERIK */}
@@ -56,17 +56,9 @@ export default function HomePage() {
             
             {/* KOLOM TEKS HERO (RSC MURNI, LCP LANGSUNG TERSEDIA SAAT INITIAL HTML LOAD) */}
             <div className="lg:col-span-7 space-y-6">
-              {/* BADGE PROFIL RUMAH SAKIT RESMI */}
-              <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/40 text-ivory shadow-lg backdrop-blur-md">
-                <div className="relative w-7 h-7 rounded-full overflow-hidden border border-gold-400 bg-white shrink-0">
-                  <Image
-                    src="/assets/Logo-RSI-Baru-320x320.jpeg"
-                    alt={`Logo ${HOSPITAL_FACTS.name}`}
-                    width={28}
-                    height={28}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              {/* BADGE PROFIL RUMAH SAKIT RESMI (TANPA PENGULANGAN LOGO) */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/40 text-ivory shadow-lg backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-gold-400" aria-hidden="true" />
                 <div className="flex items-center gap-2 text-xs">
                   <span className="font-bold text-gold-300">{HOSPITAL_FACTS.name}</span>
                   <span className="text-tower-300">·</span>
@@ -81,26 +73,26 @@ export default function HomePage() {
               </h1>
 
               <p className="text-ivory text-base sm:text-lg leading-relaxed max-w-xl">
-                Rumah Sakit Islam Surabaya A. Yani memadukan keahlian klinis terpercaya sejak {HOSPITAL_FACTS.foundedYear} dengan arsitektur vertikal Tower 13 Lantai untuk keselamatan dan kenyamanan pasien.
+                Rumah Sakit Islam Surabaya A. Yani beroperasi sejak {HOSPITAL_FACTS.foundedYear} dengan kapasitas {HOSPITAL_FACTS.bedCapacity} tempat tidur dan {HOSPITAL_FACTS.medicalStaffLabel}, memadukan layanan medis dan arsitektur vertikal Tower 13 Lantai.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-2">
                 <Link
-                  href="/daftar"
+                  href="/janji-temu"
                   prefetch={false}
-                  className="min-h-[48px] px-7 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 active:bg-gold-700 text-tower-950 font-bold text-sm shadow-lg hover:shadow-xl transition-all flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+                  className="min-h-[48px] px-7 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-lg hover:shadow-xl transition-[color,background-color,box-shadow] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
                   <Calendar className="w-4 h-4" aria-hidden="true" />
-                  <span>Daftar Poliklinik (Demo)</span>
+                  <span>Buat Janji Temu</span>
                 </Link>
 
                 <Link
-                  href="/dokter"
+                  href="/daftar"
                   prefetch={false}
-                  className="min-h-[48px] px-7 py-3 rounded-xl bg-tower-800/90 hover:bg-tower-700 text-ivory font-bold text-sm border border-gold-500/30 transition-all flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+                  className="min-h-[48px] px-7 py-3 rounded-xl bg-tower-800/90 hover:bg-tower-700 text-ivory font-bold text-sm border border-gold-500/30 transition-[color,background-color,border-color] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
-                  <Stethoscope className="w-4 h-4" aria-hidden="true" />
-                  <span>Cari Dokter Spesialis</span>
+                  <Calendar className="w-4 h-4" aria-hidden="true" />
+                  <span>Simulasi Pendaftaran</span>
                 </Link>
               </div>
 
@@ -108,15 +100,15 @@ export default function HomePage() {
               <div className="pt-6 grid grid-cols-3 gap-4 border-t border-gold-500/20 text-xs sm:text-sm">
                 <div>
                   <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.foundedYear}</span>
-                  <span className="text-tower-100 text-xs">51 Tahun Mengabdi</span>
+                  <span className="text-tower-100 text-xs">{SERVICE_YEARS} Tahun Mengabdi</span>
                 </div>
                 <div>
                   <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.hospitalClass}</span>
-                  <span className="text-tower-100 text-xs">Rumah Sakit Terakreditasi</span>
+                  <span className="text-tower-100 text-xs">Operasional Kelas B</span>
                 </div>
                 <div>
-                  <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.medicalStaffLabel}</span>
-                  <span className="text-tower-100 text-xs">Dokter & Paramedis</span>
+                  <span className="block font-display font-bold text-2xl text-gold-300">{HOSPITAL_FACTS.bedCapacity}</span>
+                  <span className="text-tower-100 text-xs">Tempat Tidur Pasien</span>
                 </div>
               </div>
             </div>
@@ -145,7 +137,7 @@ export default function HomePage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`flex flex-col items-center justify-center p-4 rounded-xl text-center transition-all ${
+                className={`flex flex-col items-center justify-center p-4 rounded-xl text-center transition-colors duration-150 ${
                   item.alert
                     ? 'bg-alert-50 hover:bg-alert-600 hover:text-ivory text-alert-600 font-bold shadow-sm'
                     : 'bg-tower-50/70 hover:bg-tower-800 hover:text-ivory text-tower-950 font-semibold hover:shadow-md'
@@ -195,7 +187,7 @@ export default function HomePage() {
           {featuredServices.map((svc) => (
             <div
               key={svc.slug}
-              className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-md hover:border-tower-700/40 transition-all flex flex-col justify-between"
+              className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-md hover:border-tower-700/40 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -250,7 +242,7 @@ export default function HomePage() {
                   src="/assets/rsi-ayani.jpg"
                   alt={`Fasad Gedung Asli ${HOSPITAL_FACTS.name}`}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 1024px) 100vw, 60vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-tower-950/90 via-transparent to-black/20 pointer-events-none" />
@@ -274,16 +266,11 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* DETAIL PROFIL & LOGO RESMI */}
+            {/* DETAIL PROFIL & IDENTITAS KOMPLEKS */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="p-3 bg-white/95 rounded-2xl border border-gold-500/30 inline-block shadow-md">
-                <Image
-                  src="/assets/logo-web-rsi.png"
-                  alt={HOSPITAL_FACTS.name}
-                  width={200}
-                  height={70}
-                  className="h-10 w-auto object-contain"
-                />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-900 border border-gold-500/30 text-xs font-semibold text-gold-300 shadow-md">
+                <Building2 className="w-4 h-4 text-gold-400" aria-hidden="true" />
+                <span>Dokumentasi Kompleks Fasilitas Medis</span>
               </div>
 
               <div className="space-y-2">
@@ -312,10 +299,10 @@ export default function HomePage() {
               <div className="pt-2">
                 <Link
                   href="/tentang"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-md transition-all group"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 group"
                 >
                   <span>Eksplorasi Profil & Sejarah</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-150" />
                 </Link>
               </div>
 
@@ -435,7 +422,7 @@ export default function HomePage() {
                   href={contact.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] px-5 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all inline-flex items-center gap-2"
+                  className="min-h-[44px] px-5 py-2.5 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 inline-flex items-center gap-2"
                 >
                   <MapPin className="w-4 h-4" />
                   <span>Buka Petunjuk Arah Google Maps</span>
@@ -443,7 +430,7 @@ export default function HomePage() {
 
                 <Link
                   href="/kontak"
-                  className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-tower-50 text-tower-900 border border-tower-100 font-bold text-sm shadow-sm transition-all inline-flex items-center gap-2"
+                  className="min-h-[44px] px-5 py-2.5 rounded-xl bg-white hover:bg-tower-50 text-tower-900 border border-tower-100 font-bold text-sm shadow-sm transition-[color,background-color,border-color,box-shadow] duration-150 inline-flex items-center gap-2"
                 >
                   <span>Info Transportasi & Parkir</span>
                 </Link>
