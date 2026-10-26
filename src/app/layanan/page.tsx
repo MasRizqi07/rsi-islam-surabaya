@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { SERVICES } from '@/data/services';
 import { SPECIALTIES } from '@/data/specialties';
 import { HOSPITAL_FACTS } from '@/data/facts';
@@ -39,14 +38,14 @@ export default function LayananPage() {
           </p>
         </div>
 
-        <div className="p-3 bg-white rounded-2xl border border-tower-200 shadow-sm shrink-0 hidden md:inline-block">
-          <Image
-            src="/assets/logo-web-rsi.png"
-            alt={HOSPITAL_FACTS.name}
-            width={180}
-            height={60}
-            className="h-10 w-auto object-contain"
-          />
+        <div className="px-4 py-3 bg-tower-50/90 rounded-2xl border border-tower-200 shadow-sm shrink-0 hidden md:flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-tower-800 text-gold-300 flex items-center justify-center shadow-xs">
+            <Building2 className="w-5 h-5 text-gold-300" aria-hidden="true" />
+          </div>
+          <div className="text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-tower-800 block">Katalog Resmi</span>
+            <span className="text-xs font-semibold text-tower-950">20 Poliklinik & Penunjang</span>
+          </div>
         </div>
       </div>
 
@@ -71,7 +70,7 @@ export default function LayananPage() {
             <div
               key={svc.slug}
               id={svc.slug}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 transition-[border-color,box-shadow] duration-150 flex flex-col justify-between space-y-6 group"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 card-lift transition-[border-color,box-shadow,transform] duration-150 flex flex-col justify-between space-y-6 group"
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -121,7 +120,7 @@ export default function LayananPage() {
 
                 <Link
                   href={`/layanan/${svc.slug}`}
-                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold transition-[color,background-color] duration-150 shadow-2xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold press-feedback transition-[color,background-color,transform] duration-150 shadow-2xs"
                 >
                   Detail Fasilitas
                 </Link>

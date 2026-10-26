@@ -80,7 +80,7 @@ export default function HomePage() {
                 <Link
                   href="/janji-temu"
                   prefetch={false}
-                  className="min-h-[48px] px-7 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-lg hover:shadow-xl transition-[color,background-color,box-shadow] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+                  className="min-h-[48px] px-7 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-lg hover:shadow-xl press-feedback transition-[color,background-color,box-shadow,transform] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
                   <Calendar className="w-4 h-4" aria-hidden="true" />
                   <span>Buat Janji Temu</span>
@@ -89,7 +89,7 @@ export default function HomePage() {
                 <Link
                   href="/daftar"
                   prefetch={false}
-                  className="min-h-[48px] px-7 py-3 rounded-xl bg-tower-800/90 hover:bg-tower-700 text-ivory font-bold text-sm border border-gold-500/30 transition-[color,background-color,border-color] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+                  className="min-h-[48px] px-7 py-3 rounded-xl bg-tower-800/90 hover:bg-tower-700 text-ivory font-bold text-sm border border-gold-500/30 press-feedback transition-[color,background-color,border-color,transform] duration-150 flex items-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
                 >
                   <Calendar className="w-4 h-4" aria-hidden="true" />
                   <span>Simulasi Pendaftaran</span>
@@ -137,7 +137,7 @@ export default function HomePage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`flex flex-col items-center justify-center p-4 rounded-xl text-center transition-colors duration-150 ${
+                className={`flex flex-col items-center justify-center p-4 rounded-xl text-center card-lift press-feedback transition-[color,background-color,box-shadow,transform] duration-150 ${
                   item.alert
                     ? 'bg-alert-50 hover:bg-alert-600 hover:text-ivory text-alert-600 font-bold shadow-sm'
                     : 'bg-tower-50/70 hover:bg-tower-800 hover:text-ivory text-tower-950 font-semibold hover:shadow-md'

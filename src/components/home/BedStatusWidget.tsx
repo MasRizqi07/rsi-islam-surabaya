@@ -33,9 +33,12 @@ export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
             <Bed className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-display font-bold text-lg text-tower-900 leading-tight">
-              Status Ketersediaan Kamar
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="font-display font-bold text-lg text-tower-900 leading-tight">
+                Status Ketersediaan Kamar
+              </h2>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" title="Data Aktif" aria-hidden="true" />
+            </div>
             <span className="text-xs text-ink-soft">
               Pusat Perawatan Kritis Terpadu (Tower Lt. 4)
             </span>
@@ -69,7 +72,7 @@ export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
           return (
             <div
               key={item.unit}
-              className="p-3.5 rounded-xl bg-ivory border border-tower-100 flex items-start justify-between gap-2"
+              className="p-3.5 rounded-xl bg-ivory border border-tower-100 flex items-start justify-between gap-2 card-lift"
             >
               <div className="space-y-1">
                 <span className="font-bold text-sm text-tower-950 block">

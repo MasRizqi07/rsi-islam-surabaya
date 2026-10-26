@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { RegistrationWizardClient } from '@/components/daftar/RegistrationWizardClient';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { CalendarCheck } from 'lucide-react';
@@ -30,14 +29,12 @@ export default function DaftarPage() {
           </p>
         </div>
 
-        <div className="p-2.5 bg-white rounded-2xl border border-tower-200 shadow-xs shrink-0 hidden sm:inline-block">
-          <Image
-            src="/assets/logo-web-rsi.png"
-            alt={HOSPITAL_FACTS.name}
-            width={160}
-            height={55}
-            className="h-8 w-auto object-contain"
-          />
+        <div className="px-3.5 py-2 bg-tower-50/90 rounded-2xl border border-tower-200 shadow-xs shrink-0 hidden sm:flex items-center gap-2.5">
+          <CalendarCheck className="w-5 h-5 text-tower-700" aria-hidden="true" />
+          <div className="text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-tower-800 block">Sistem Mandiri</span>
+            <span className="text-xs font-semibold text-tower-950">Poliklinik Rawat Jalan</span>
+          </div>
         </div>
       </div>
 

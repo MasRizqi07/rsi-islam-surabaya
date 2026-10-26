@@ -58,14 +58,8 @@ export function HeroBlueprintCard() {
       {/* HEADER & TAB TOGGLE */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3.5 border-b border-gold-500/30">
         <div className="flex items-center gap-2.5">
-          <div className="relative w-8 h-8 rounded-full overflow-hidden border border-gold-400 bg-white shrink-0">
-            <Image
-              src="/assets/Logo-RSI-Baru-320x320.jpeg"
-              alt="Logo RSI Surabaya"
-              width={32}
-              height={32}
-              className="w-full h-full object-cover"
-            />
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center border border-gold-400/50 bg-tower-900/90 text-gold-300 shadow-sm shrink-0">
+            <Layers className="w-4 h-4 text-gold-300" aria-hidden="true" />
           </div>
           <div>
             <span className="text-[10px] font-mono text-gold-300 uppercase tracking-widest block font-bold">
@@ -82,7 +76,7 @@ export function HeroBlueprintCard() {
           <button
             type="button"
             onClick={() => setViewMode('photo')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors duration-150 ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg press-feedback transition-colors duration-150 ${
               viewMode === 'photo'
                 ? 'bg-gold-500 text-tower-950 font-bold shadow-xs'
                 : 'text-ivory/80 hover:text-ivory'
@@ -94,14 +88,14 @@ export function HeroBlueprintCard() {
           <button
             type="button"
             onClick={() => setViewMode('blueprint')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors duration-150 ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg press-feedback transition-colors duration-150 ${
               viewMode === 'blueprint'
                 ? 'bg-gold-500 text-tower-950 font-bold shadow-xs'
                 : 'text-ivory/80 hover:text-ivory'
             }`}
           >
             <Layers className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>Denah Lantai</span>
+            <span>Ritme Tower</span>
           </button>
         </div>
       </div>

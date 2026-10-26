@@ -89,7 +89,7 @@ export default function TentangPage() {
         <h2 id="facts-strip-heading" className="sr-only">Statistik Utama Rumah Sakit</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.foundedYear}
             </span>
@@ -101,7 +101,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               13 Lantai
             </span>
@@ -113,7 +113,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.bedCapacity}
             </span>
@@ -125,7 +125,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.medicalStaffLabel}
             </span>
@@ -137,7 +137,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="col-span-2 md:col-span-1 bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="col-span-2 md:col-span-1 bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.hospitalClass}
             </span>

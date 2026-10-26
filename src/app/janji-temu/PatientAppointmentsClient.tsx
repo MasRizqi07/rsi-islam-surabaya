@@ -215,8 +215,24 @@ export function PatientAppointmentsClient() {
   const countCompleted = appointments.filter((a) => a.status === 'COMPLETED').length;
   const countCancelled = appointments.filter((a) => a.status === 'CANCELLED').length;
 
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto py-10 px-4 space-y-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-xl text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl skeleton-shimmer mx-auto" />
+          <div className="space-y-2">
+            <div className="h-8 w-64 skeleton-shimmer mx-auto rounded-lg" />
+            <div className="h-4 w-96 max-w-full skeleton-shimmer mx-auto rounded-md" />
+          </div>
+          <div className="h-20 w-full skeleton-shimmer rounded-xl" />
+          <div className="h-12 w-64 skeleton-shimmer mx-auto rounded-xl" />
+        </div>
+      </div>
+    );
+  }
+
   // Jika Belum Login
-  if (!currentUser && !loading) {
+  if (!currentUser) {
     return (
       <div className="max-w-2xl mx-auto py-10 px-4 space-y-6">
         <div className="bg-white rounded-3xl p-6 sm:p-10 border border-tower-100 shadow-xl text-center space-y-6">
@@ -248,7 +264,7 @@ export function PatientAppointmentsClient() {
               type="button"
               onClick={handleQuickLogin}
               disabled={actionLoading === 'login'}
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-xl bg-tower-800 hover:bg-tower-900 text-ivory font-bold text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-xl bg-tower-800 hover:bg-tower-900 text-ivory font-bold text-sm shadow-md press-feedback transition-[background-color,transform] duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <LogIn className="w-4 h-4" />
               <span>{actionLoading === 'login' ? 'Menghubungkan...' : 'Masuk sebagai Pasien Demo (1-Klik)'}</span>
@@ -256,7 +272,7 @@ export function PatientAppointmentsClient() {
 
             <Link
               href="/login"
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-xl bg-ivory hover:bg-tower-100 text-tower-900 font-bold text-sm border border-tower-200 transition flex items-center justify-center gap-2"
+              className="w-full sm:w-auto min-h-[48px] px-6 py-3 rounded-xl bg-ivory hover:bg-tower-100 text-tower-900 font-bold text-sm border border-tower-200 press-feedback transition-[background-color,border-color,transform] duration-150 flex items-center justify-center gap-2"
             >
               <span>Halaman Login Lengkap</span>
             </Link>

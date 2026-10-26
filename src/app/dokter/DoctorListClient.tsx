@@ -351,7 +351,7 @@ export function DoctorListClient({
             <button
               type="button"
               onClick={handleReset}
-              className="text-tower-800 hover:text-tower-950 font-bold text-xs underline cursor-pointer ml-1"
+              className="text-tower-800 hover:text-tower-950 font-bold text-xs underline press-feedback cursor-pointer ml-1"
             >
               Hapus Semua
             </button>
@@ -376,7 +376,7 @@ export function DoctorListClient({
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 press-feedback transition-[background-color,transform] duration-150 cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Reset Semua Filter</span>
@@ -398,7 +398,7 @@ export function DoctorListClient({
               return (
                 <div
                   key={doc.slug}
-                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-tower-700/50 hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-200 group flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-gold-500/50 card-lift transition-[transform,box-shadow,border-color] duration-150 group flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     {/* AVATAR INISIAL & LENCANA ILUSTRASI */}
@@ -482,10 +482,10 @@ export function DoctorListClient({
                     </Link>
 
                     <Link
-                      href={`/daftar?dokter=${doc.slug}`}
-                      className="px-3.5 py-1.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory text-xs font-bold shadow-sm transition-colors cursor-pointer"
+                      href={`/janji-temu?doctor=${doc.slug}`}
+                      className="px-3.5 py-1.5 rounded-lg bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 text-xs font-bold shadow-xs press-feedback transition-[background-color,transform] duration-150 cursor-pointer"
                     >
-                      Daftar
+                      Janji Temu
                     </Link>
                   </div>
                 </div>

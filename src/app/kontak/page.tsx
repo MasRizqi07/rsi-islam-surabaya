@@ -86,7 +86,7 @@ export default function KontakPage() {
 
                   <a
                     href={emergency.callCenterTel}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-ivory text-alert-600 font-bold text-xs shadow-md hover:bg-gold-100 transition-[color,background-color,box-shadow] duration-150 shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-ivory text-alert-600 font-bold text-xs shadow-md hover:bg-gold-100 press-feedback transition-[color,background-color,box-shadow,transform] duration-150 shrink-0"
                   >
                     <PhoneCall className="w-4 h-4 animate-pulse" />
                     <span>Panggil Sekarang</span>
@@ -124,7 +124,7 @@ export default function KontakPage() {
 
                   <a
                     href={emergency.ambulanceTel}
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gold-500 text-tower-950 font-bold text-xs shadow-md hover:bg-gold-300 transition-[color,background-color,box-shadow] duration-150 shrink-0"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gold-500 text-tower-950 font-bold text-xs shadow-md hover:bg-gold-300 press-feedback transition-[color,background-color,box-shadow,transform] duration-150 shrink-0"
                   >
                     <Phone className="w-4 h-4" />
                     <span>Hubungi Armada</span>

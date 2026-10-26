@@ -84,9 +84,9 @@ export function LoginFormClient() {
           <button
             type="button"
             onClick={() => fillCredentials('patient')}
-            className="flex items-center gap-3 p-3 rounded-xl bg-white border border-tower-200 hover:border-tower-600 text-left transition shadow-xs group"
+            className="flex items-center gap-3 p-3 rounded-xl bg-white border border-tower-200 hover:border-tower-600 text-left card-lift press-feedback transition-[border-color,box-shadow,transform] duration-150 shadow-xs group"
           >
-            <div className="w-9 h-9 rounded-lg bg-tower-100 text-tower-800 flex items-center justify-center shrink-0 group-hover:bg-tower-800 group-hover:text-ivory transition">
+            <div className="w-9 h-9 rounded-lg bg-tower-100 text-tower-800 flex items-center justify-center shrink-0 group-hover:bg-tower-800 group-hover:text-ivory transition-[color,background-color] duration-150">
               <User className="w-5 h-5" />
             </div>
             <div>
@@ -98,9 +98,9 @@ export function LoginFormClient() {
           <button
             type="button"
             onClick={() => fillCredentials('admin')}
-            className="flex items-center gap-3 p-3 rounded-xl bg-white border border-tower-200 hover:border-tower-600 text-left transition shadow-xs group"
+            className="flex items-center gap-3 p-3 rounded-xl bg-white border border-tower-200 hover:border-tower-600 text-left card-lift press-feedback transition-[border-color,box-shadow,transform] duration-150 shadow-xs group"
           >
-            <div className="w-9 h-9 rounded-lg bg-gold-100 text-gold-800 flex items-center justify-center shrink-0 group-hover:bg-tower-800 group-hover:text-ivory transition">
+            <div className="w-9 h-9 rounded-lg bg-gold-100 text-gold-800 flex items-center justify-center shrink-0 group-hover:bg-tower-800 group-hover:text-ivory transition-[color,background-color] duration-150">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
@@ -160,7 +160,7 @@ export function LoginFormClient() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-tower-800 hover:bg-tower-900 text-ivory font-bold text-sm tracking-wide transition shadow-md flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+          className="w-full min-h-[48px] py-3 px-4 rounded-xl bg-tower-800 hover:bg-tower-900 text-ivory font-bold text-sm tracking-wide press-feedback transition-[background-color,transform] duration-150 shadow-md flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
         >
           {isLoading ? (
             <span>Memverifikasi kredensial...</span>

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { PatientAppointmentsClient } from './PatientAppointmentsClient';
 import { CalendarCheck2 } from 'lucide-react';
@@ -13,7 +12,7 @@ export default function JanjiTemuPage() {
   return (
     <div className="py-6 sm:py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       
-      {/* HEADER HALAMAN DENGAN LOGO RESMI */}
+      {/* HEADER HALAMAN */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-tower-100">
         <div className="space-y-1.5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-200">
@@ -30,14 +29,12 @@ export default function JanjiTemuPage() {
           </p>
         </div>
 
-        <div className="p-2.5 bg-white rounded-2xl border border-tower-200 shadow-xs shrink-0 hidden sm:inline-block">
-          <Image
-            src="/assets/logo-web-rsi.png"
-            alt={HOSPITAL_FACTS.name}
-            width={160}
-            height={55}
-            className="h-8 w-auto object-contain"
-          />
+        <div className="px-3.5 py-2 bg-tower-50/90 rounded-2xl border border-tower-200 shadow-xs shrink-0 hidden sm:flex items-center gap-2.5">
+          <CalendarCheck2 className="w-5 h-5 text-tower-700" aria-hidden="true" />
+          <div className="text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-tower-800 block">Sistem Terintegrasi</span>
+            <span className="text-xs font-semibold text-tower-950">Jadwal Rawat Jalan</span>
+          </div>
         </div>
       </div>
 
