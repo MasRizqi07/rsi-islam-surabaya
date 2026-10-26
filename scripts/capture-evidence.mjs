@@ -15,8 +15,10 @@ mkdirSync(outDir, { recursive: true });
 const env = { ...process.env };
 if (process.platform === 'win32') {
   const gitUsrBin = 'C:\\Program Files\\Git\\usr\\bin';
-  if (!env.PATH.includes(gitUsrBin)) {
-    env.PATH = `${gitUsrBin};${env.PATH}`;
+  const pathKey = Object.keys(env).find((k) => k.toUpperCase() === 'PATH') || 'Path';
+  const currentPath = env[pathKey] || '';
+  if (!currentPath.includes(gitUsrBin)) {
+    env[pathKey] = `${gitUsrBin};${currentPath}`;
   }
 }
 
