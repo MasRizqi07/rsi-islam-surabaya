@@ -3,6 +3,8 @@
  * Sumber: Lampiran C PRD v2.0 & Publikasi Resmi Yayasan Rumah Sakit Islam Surabaya (YARSIS)
  */
 
+import { HOSPITAL_FACTS, SERVICE_YEARS } from './facts';
+
 export interface HistoryMilestone {
   year: string;
   title: string;
@@ -62,7 +64,7 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   {
     year: '2016',
     title: 'Akreditasi Tingkat Paripurna Pertama',
-    description: 'Meraih predikat tertinggi Akreditasi Tingkat Paripurna (Bintang Lima) dari Komisi Akreditasi Rumah Sakit (KARS).',
+    description: 'Meraih Akreditasi Tingkat Paripurna dari Komisi Akreditasi Rumah Sakit (KARS).',
     tag: 'Prestasi',
   },
   {
@@ -79,7 +81,7 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   },
   {
     year: '2020',
-    title: 'Garda Terdepan Pandemi COVID-19',
+    title: 'Penanganan Pandemi COVID-19',
     description: 'Penyediaan 80 tempat tidur ruang isolasi khusus bertekanan negatif dan pelayanan skrining terpadu demi perlindungan warga Surabaya.',
     tag: 'Pengabdian',
   },
@@ -97,8 +99,8 @@ export const HISTORY_TIMELINE: HistoryMilestone[] = [
   },
   {
     year: '2026',
-    title: '51 Tahun Mengabdi & Transformasi Digital',
-    description: 'Menyongsong 51 tahun perjalanan dengan operasional Rumah Sakit Kelas B, kapasitas 238 tempat tidur, 100+ tenaga medis terpercaya, dan transformasi digital berkelanjutan.',
+    title: `${SERVICE_YEARS} Tahun Mengabdi & Transformasi Digital`,
+    description: `Menyongsong ${SERVICE_YEARS} tahun perjalanan dengan operasional ${HOSPITAL_FACTS.hospitalClass}, kapasitas ${HOSPITAL_FACTS.bedCapacity} tempat tidur, ${HOSPITAL_FACTS.medicalStaffLabel}, dan transformasi digital berkelanjutan.`,
     tag: 'Kini & Masa Depan',
   },
 ];

@@ -69,7 +69,6 @@ export const DemoRegistrationSchema = z.object({
   tanggalPeriksa: z.string().min(1, 'Tanggal periksa wajib dipilih'),
   namaPasien: z.string().min(3, 'Nama pasien minimal 3 karakter'),
   nomorHp: z.string().regex(/^(\+62|62|0)8[1-9][0-9]{6,10}$/, 'Format nomor HP Indonesia tidak valid (contoh: 081234567890)'),
-  nomorIdentitasContoh: z.string().regex(/^\d{16}$/, 'Nomor identitas simulasi wajib 16 digit'),
 });
 
 export type DemoRegistrationInput = z.infer<typeof DemoRegistrationSchema>;

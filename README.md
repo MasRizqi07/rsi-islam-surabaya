@@ -5,11 +5,13 @@
 > 
 > ![Beranda Desktop](docs/screenshots/home-desktop.png)
 
-[![Next.js](https://img.shields.io/badge/Next.js-16%20(App%20Router)-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16%20(App%20Router%20Fullstack)-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict%20Mode-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%20%2B%20Prisma-4169E1?style=flat&logo=postgresql)](https://www.prisma.io/)
+[![Auth](https://img.shields.io/badge/Auth-Better%20Auth%20%2B%20RBAC-blueviolet?style=flat)](src/lib/auth.ts)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4%20(@theme)-38B2AC?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
 [![WCAG 2.2 AA](https://img.shields.io/badge/A11y-WCAG%202.2%20AA%20Compliant-green?style=flat)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![Unit Tests](https://img.shields.io/badge/Vitest-21%2F21%20Passed-brightgreen?style=flat)](tests/)
+[![Unit & Integration Tests](https://img.shields.io/badge/Vitest-93%2F93%20Passed-brightgreen?style=flat)](tests/)
 [![E2E Tests](https://img.shields.io/badge/Playwright-106%2F106%20Passed-brightgreen?style=flat)](tests/)
 
 ---
@@ -17,8 +19,8 @@
 ## ⚠️ Pernyataan Penafian Independen (Disclaimer)
 Aplikasi ini merupakan **studi kasus portofolio desain dan software engineering independen**. Proyek ini **TIDAK berafiliasi** secara resmi dengan Rumah Sakit Islam Surabaya (RSIS) maupun Yayasan Rumah Sakit Islam Surabaya (YARSIS). Dibuat semata-mata untuk tujuan demonstrasi kecakapan rekayasa perangkat lunak modern.
 
-* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Disallow: /`), dan header keamanan HTTP `X-Robots-Tag: noindex, nofollow` untuk mencegah kebingungan publik dengan situs resmi rumah sakit.
-* **Privasi Mutlak**: Tanpa skrip pelacak analitik pihak ketiga (*Zero Third-Party Tracking / Zero Cookies*). Formulir pendaftaran demo diproses murni di memori lokal peramban (**Zero Outgoing Network Requests**).
+* **Anti-Indeksasi Penuh**: Dikonfigurasi dengan `<meta name="robots" content="noindex, nofollow">`, berkas fisik `public/robots.txt` (`Allow: /`), dan header keamanan HTTP `X-Robots-Tag: noindex, nofollow` untuk mencegah kebingungan publik dengan situs resmi rumah sakit (koreksi spesifikasi: `Allow: /` memastikan crawler dapat memproses dan mematuhi direktif `noindex`).
+* **Privasi Mutlak**: Tanpa skrip pelacak analitik pihak ketiga (*Zero Third-Party Tracking / Zero Third-Party Requests*). Sesuai mandat PRD v3.0 §5, satu-satunya permintaan keluar dari formulir pendaftaran adalah satu `POST` ke origin sendiri saat submit (tanpa request ke pihak ketiga dan tanpa `localStorage`/`sessionStorage`).
 * **Karakter Fiktif**: Seluruh profil dokter dan jadwal praktik yang ditampilkan adalah tokoh fiktif simulasi (`isFictional: true`) yang secara konsisten ditandai lencana visual tegas *"Ilustrasi"*.
 
 ---
@@ -35,22 +37,26 @@ Konsep **"Hijau Tower"** mengangkat gedung bukan sekadar sebagai foto latar pasi
 
 ## 🏆 Rekapitulasi Metrik Kualitas & Hasil Audit Lab
 
-### 1. Audit Kinerja Lighthouse Mobile (Median 3 Run, Default Mobile Throttling)
-Hasil audit lab dijalankan menggunakan Google Chrome Headless dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Angka di bawah adalah **median dari 3 iterasi pengujian per rute**:
+### 1. Audit Kinerja Lighthouse Mobile (Median 5 Run, Default Mobile Throttling)
+Hasil audit lab resmi dijalankan menggunakan Google Chrome Headless dengan profil **Default Mobile Throttling** (emulasi CPU slowdown 4x, mobile network standar) tanpa modifikasi/penggembungan skor. Angka di bawah adalah **median dari 5 iterasi pengujian per rute (total 25 run)** yang dibaca langsung dari berkas JSON mentah di `docs/evidence/v3/p0b/lighthouse/` oleh `scripts/lighthouse-table.mjs` (tersimpan di `docs/evidence/raw/38-lighthouse-table.txt`):
 
-| Rute Halaman | Path | Kinerja (Target ≥90) | Aksesibilitas (Target ≥95) | Best Practices (Target ≥95) | LCP (Target ≤2.5s) | CLS (Target ≤0.1) | TBT (Target ≤200ms) | Status Evaluasi |
+| Rute Halaman | Path | Perf (≥90) | A11y (≥95) | Best Practices (≥95) | LCP (≤2.5s) | TBT (≤200ms) | CLS (≤0.1) | Status Evaluasi |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Beranda** | `/` | 89 *(Miss)* | **100** | **96** | 3.29s *(Miss)* | **0.000** | **184ms** | **FAIL (LCP, Perf)** |
-| **IGD Darurat** | `/igd` | **92** | **98** | **96** | 2.88s *(Miss)* | **0.000** | 206ms *(Miss)* | **FAIL (LCP, TBT)** |
-| **Direktori Dokter** | `/dokter` | **93** | **100** | **96** | 3.01s *(Miss)* | **0.000** | **125ms** | **FAIL (LCP)** |
-| **Tower Directory** | `/tower` | **95** | **98** | **96** | 2.78s *(Miss)* | **0.000** | **93ms** | **FAIL (LCP)** |
-| **Wizard Pendaftaran** | `/daftar` | **96** | **100** | **96** | 2.77s *(Miss)* | **0.000** | **90ms** | **FAIL (LCP)** |
+| **Beranda** | `/` | **94** | 93 ❌ | **96** | 2.94s ❌ | **111ms** | **0.000** | **FAIL (A11y, LCP)** |
+| **IGD Darurat** | `/igd` | 83 ❌ | 92 ❌ | **96** | 3.52s ❌ | 271ms ❌ | **0.000** | **FAIL (Perf, A11y, LCP, TBT)** |
+| **Direktori Dokter** | `/dokter` | 78 ❌ | **96** | **96** | 2.94s ❌ | 815ms ❌ | **0.000** | **FAIL (Perf, LCP, TBT)** |
+| **Tower Directory** | `/tower` | **95** | **95** | **96** | 2.93s ❌ | **85ms** | **0.000** | **FAIL (LCP)** |
+| **Pendaftaran Online** | `/daftar` | **95** | **96** | **96** | 2.79s ❌ | **91ms** | **0.000** | **FAIL (LCP)** |
 
 > [!WARNING]
-> **Batasan yang Diketahui & Analisis Akar Masalah CWV (D6):**
-> 1. **LCP (> 2.50s pada profil seluler 4x CPU slowdown)**: LCP element teridentifikasi pada paragraf teks intro (`p.text-ivory/80`). TTFB sangat cepat (11ms) dan font disajikan lokal (self-hosted). Waktu LCP didominasi oleh *Element Render Delay* (~2.1s) saat JavaScript runtime Next.js melakukan hidrasi komponen pada lingkungan seluler dengan pelambatan CPU 4x.
-> 2. **IGD TBT (206ms vs Target ≤ 200ms)**: Terlampaui 6ms pada run 2 akibat komputasi rendering SVG triase saat hidrasi awal.
-> 3. **Pencapaian**: CLS tercatat **0.000** pada seluruh 5 rute, Aksesibilitas **98–100/100**, dan Best Practices **96/100**.
+> **Batasan yang Diketahui & Analisis Akar Masalah CWV (C1 & C2):**
+> 1. **Kegagalan Target LCP (Seluruh 5 Rute > 2.5s)**: Pada profil seluler dengan emulasi pelambatan CPU 4x, seluruh 5 rute melebihi batas 2.5s (2.79s–3.52s). Seluruh klaim terdahulu mengenai elemen LCP spesifik atau rincian render delay dihapus karena audit `lcpElement` bernilai kosong/N/A pada pembacaan terotomasi.
+> 2. **Status Optimasi**: Tindakan optimasi seperti penghapusan `blur-3xl` dan penambahan `prefetch={false}` berstatus **efek tidak terukur** karena tidak didukung data median komparatif *sebelum* dan *sesudah* dari skrip yang sama. Selain itu, `prefetch={false}` memiliki konsekuensi trade-off navigasi antar-halaman menjadi lebih lambat akibat resource baru diunduh saat pengguna mengeklik tautan.
+> 3. **Kegagalan Target Rute Spesifik**:
+>    - `/` (Beranda): A11y 93 < 95, LCP 2.94s > 2.5s.
+>    - `/igd` (IGD): Perf 83 < 90, A11y 92 < 95, LCP 3.52s > 2.5s, TBT 271ms > 200ms.
+>    - `/dokter` (Direktori Dokter): Perf 78 < 90, LCP 2.94s > 2.5s, TBT 815ms > 200ms.
+> 4. **Pencapaian**: CLS tercatat **0.000** pada seluruh rute, Best Practices **96/100**, dan A11y **95–96/100** pada rute `/dokter`, `/tower`, dan `/daftar`.
 
 ### 2. Matriks Pengujian Visual Multi-Viewport (Responsiveness)
 Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggaran horizontal overflow** (`scrollWidth === clientWidth`):
@@ -63,18 +69,42 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
 | **Desktop** | 1280 × 800 px | 8 Rute Kunci | **0 px (Nol)** | [docs/screenshots/*-desktop.png](docs/screenshots/) |
 
 ### 3. Matriks Pengujian Fungsional & Integritas
-- **Unit Tests (Vitest)**: **21/21 lulus** (integritas relasi skema data dokter, poliklinik, layanan, dan gedung).
-- **Playwright E2E Suite**: **106/106 pengujian lulus** (mencakup alur pendaftaran demo, sinkronisasi filter searchParams, dan isolasi jaringan).
+- **Unit & Integration Tests (Vitest)**: **93/93 lulus** lintas 8 test suites (`phase11-hardening`, `phase10-admin`, `phase9-appointments`, `access-matrix-phase8`, `db-phase7`, `facts-check`, `duplication`, `data`).
+- **Playwright E2E Suite**: **106/106 pengujian lulus** (mencakup alur pendaftaran demo, sinkronisasi filter searchParams, pencegahan horizontal overflow multi-viewport, dan isolasi jaringan pihak ketiga).
 - **Axe-core Accessibility Audit**: **0 pelanggaran kategori Serious atau Critical** pada seluruh rute.
 - **Audit Kontras Warna WCAG 2.2 AA**: **14/14 pasangan warna token lolos** (rasio 4.77:1 hingga 15.87:1 terhadap ambang minimum 4.5:1).
 - **Scanner Kebocoran Fakta RS (`check:facts`)**: **0 kebocoran literal** (seluruh fakta diimpor dari berkas tunggal `src/data/facts.ts`).
 - **Scanner Duplikasi Data (`check:duplication`)**: **0 duplikasi string literal data** (seluruh string data diimpor dari `src/data/*`).
 
 ### 4. Batasan yang Diketahui (Known Limitations)
-1. **Database Belum Terpasang**: Aplikasi saat ini beroperasi murni dengan mock data in-memory (Zustand & TypeScript fixtures) dan Static Site Generation (SSG). Belum ada database relasional (PostgreSQL / Prisma).
-2. **Autentikasi & RBAC Belum Terpasang**: Sistem otentikasi pengguna, session manajemen, dan role-based access control belum diimplementasikan.
-3. **Live URL**: `LIVE URL: BELUM ADA` (deployment manual hosting user belum dikonfigurasi).
-4. **Pendaftaran Pasien Online**: Berupa simulasi interaktif frontend murni (client-side) tanpa transmisi data ke API backend nyata.
+1. **Live Preview URL**: `LIVE URL: BELUM ADA` (deployment hosting pengguna belum dikonfigurasi).
+2. **Karakter Data Demo Fiktif**: Seluruh data pasien, riwayat janji temu, dan dokter berstatus 100% fiktif simulasi (`isFictional: true`) guna mematuhi prinsip privasi PRD §5 dan UU PDP.
+3. **Batasan Serverless Rate Limiter (S10)**: Rate limiter in-memory beroperasi per runtime node/instance. Dalam arsitektur serverless multi-instance tanpa Redis (Redis di luar cakupan per PRD §4.3), sliding window beroperasi pada memori instance masing-masing.
+
+---
+
+## 📋 Tabel CLAIM → EVIDENCE (PRD v3.0 Mandate)
+
+Seluruh klaim arsitektur, fungsionalitas, keamanan, dan kinerja portofolio ini didukung secara transparan oleh berkas log output terminal mentah di [`docs/evidence/raw/`](docs/evidence/raw/):
+
+| ID Klaim | Deskripsi Klaim & Spesifikasi | Berkas Bukti Mentah | Status & Exit Code |
+|---|---|---|:---:|
+| **S1** | PostgreSQL Schema & Seeding (24 dokter, 17 spesialisasi, 20 poli, 8 layanan, Tower 13 lantai) | [`16-npm-run-db-seed.txt`](docs/evidence/raw/16-npm-run-db-seed.txt) | **PASS (0)** |
+| **S2** | Runtime Database Read (direktori dokter & jadwal dibaca dinamis dari DB) | [`17-phase7-test.txt`](docs/evidence/raw/17-phase7-test.txt) | **PASS (0)** |
+| **S3** | Autentikasi Demo & Password Hash Bcrypt (tanpa plaintext di DB, cookie HttpOnly) | [`20-phase8-access-matrix.txt`](docs/evidence/raw/20-phase8-access-matrix.txt) | **PASS (0)** |
+| **S4** | Role-Based Access Control (RBAC PATIENT vs ADMIN ditegakkan di setiap server handler) | [`20-phase8-access-matrix.txt`](docs/evidence/raw/20-phase8-access-matrix.txt) | **PASS (0)** |
+| **S5** | Pembuatan Janji Temu, Constraint DB Unique Slot, & Uji Konkurensi Paralel | [`24-phase9-appointments.txt`](docs/evidence/raw/24-phase9-appointments.txt) | **PASS (0)** |
+| **S6** | Pasien Melihat & Membatalkan Janji Sendiri (Proteksi Kepemilikan & Status Terminal) | [`24-phase9-appointments.txt`](docs/evidence/raw/24-phase9-appointments.txt) | **PASS (0)** |
+| **S7** | Manajemen Janji Temu Administrator (Transisi BOOKED → COMPLETED/NO_SHOW & Validasi 409) | [`28-phase10-admin-tests.txt`](docs/evidence/raw/28-phase10-admin-tests.txt) | **PASS (0)** |
+| **S8** | Jejak Audit Atomik Transaksional Bebas PII (Tanpa IP, User-Agent, atau Email Pasien) | [`28-phase10-admin-tests.txt`](docs/evidence/raw/28-phase10-admin-tests.txt) | **PASS (0)** |
+| **S9** | Pembaruan Status Tempat Tidur oleh Admin & Refleksi Publik Runtime (/tower & Beranda) | [`28-phase10-admin-tests.txt`](docs/evidence/raw/28-phase10-admin-tests.txt) | **PASS (0)** |
+| **S10** | Rate Limiter In-Memory pada Login & Booking dengan Dokumentasi Batasan Serverless | [`32-phase11-hardening-tests.txt`](docs/evidence/raw/32-phase11-hardening-tests.txt) | **PASS (0)** |
+| **S11** | Skrip Reset Database Demo Idempoten (`npm run db:reset-demo`) | [`29-phase10-reset-demo.txt`](docs/evidence/raw/29-phase10-reset-demo.txt) | **PASS (0)** |
+| **SEC-1** | Security Headers Lengkap (HSTS, CSP allowlist, X-Robots-Tag, X-Frame-Options DENY) | [`32-phase11-hardening-tests.txt`](docs/evidence/raw/32-phase11-hardening-tests.txt) · [`37-phase11-curl-headers.txt`](docs/evidence/raw/37-phase11-curl-headers.txt) | **PASS (0)** |
+| **FACT-1** | Anti-Regression & Hospital Facts Scanner (0 kebocoran literal, 0 klaim terlarang) | [`34-phase11-check-facts.txt`](docs/evidence/raw/34-phase11-check-facts.txt) | **PASS (0)** |
+| **BUILD-1** | Kompilasi Produksi Bersih 54 Rute Tanpa Warning Typecheck | [`35-phase11-build.txt`](docs/evidence/raw/35-phase11-build.txt) | **PASS (0)** |
+| **E2E-1** | Playwright Multi-Viewport, Aksesibilitas Axe-core, & Workflow Penuh (106/106 Lolos) | [`36-phase11-e2e.txt`](docs/evidence/raw/36-phase11-e2e.txt) | **PASS (0)** |
+| **TEST-ALL**| Seluruh Rangkaian Pengujian Otomatis Unit & Integrasi (93/93 Lolos) | [`33-phase11-all-tests.txt`](docs/evidence/raw/33-phase11-all-tests.txt) | **PASS (0)** |
 
 ---
 
@@ -83,34 +113,36 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
 ```
                    +------------------------------------------+
                    |          Next.js 16 App Router           |
-                   |      (Static Site Generation - SSG)      |
+                   |   (Fullstack: SSG + Route Handlers)      |
                    +------------------------------------------+
                                         |
-        +-------------------------------+-------------------------------+
-        |                               |                               |
-        v                               v                               v
+         +------------------------------+-------------------------------+
+         |                              |                               |
+         v                              v                               v
 +------------------+          +-------------------+           +------------------+
-|  Tailwind CSS v4 |          | In-Memory Zustand |           | Zod Data Schemas |
-|  (@theme tokens) |          | (Demo Wizard Only)|           | & TS Fixtures    |
+|  Tailwind CSS v4 |          | PostgreSQL 16 DB  |           | Better Auth      |
+|  (@theme tokens) |          | via Prisma ORM    |           | + Bcrypt Hashing |
 +------------------+          +-------------------+           +------------------+
-        |                                                               |
-        v                                                               v
-+------------------+                                          +------------------+
-| Tailwind CSS v4  |                                          | Vitest Unit Tests|
-| + CSS Animations |                                          | & Playwright E2E |
-+------------------+                                          +------------------+
+         |                              |                               |
+         v                              v                               v
++------------------+          +-------------------+           +------------------+
+| Playwright E2E   |          | Audit Trail Model |           | Sliding Window   |
+| + Axe-core A11y  |          | (Zero-PII PRD §5) |           | Rate Limiter S10 |
++------------------+          +-------------------+           +------------------+
 ```
 
 | Komponen | Teknologi | Rationale & Alasan Pemilihan |
 |---|---|---|
-| **Framework** | Next.js 16 (App Router) | Static Site Generation (SSG) murni; 43 rute terkompilasi statis untuk kecepatan saji instan tanpa beban database. |
+| **Framework** | Next.js 16 (App Router) | Arsitektur fullstack terpadu; SSG untuk katalog publik dan Route Handlers dinamis untuk API otorisasi & janji temu. |
+| **Basis Data** | PostgreSQL 16 + Prisma ORM | Model relasional kuat dengan constraint partial index pada slot janji temu untuk mencegah double booking. |
+| **Autentikasi** | Better Auth + Bcrypt | Session management berbasis cookie HttpOnly aman dan password hash `$2a$10$` di basis data (nol plaintext). |
+| **Otorisasi (RBAC)** | Role-Based Server Guards | Enforced pada level server handler (`requireAuth`, `requireRole`) untuk peran `PATIENT` dan `ADMIN`. |
+| **Proteksi Abuse** | In-Memory Sliding Window | Rate limiter S10 untuk login dan booking dengan batasan serverless terdokumentasi (tanpa dependensi eksternal). |
 | **Bahasa** | TypeScript (Strict Mode) | Keamanan tipe menyeluruh tanpa tipe `any`. |
 | **Styling** | Tailwind CSS v4 (`@theme`) | CSS-first design tokens di `globals.css`, eliminasi overhead runtime CSS-in-JS. |
 | **Tipografi** | Playfair Display & Plus Jakarta Sans | Perpaduan tipografi serif prestisius dengan sans-serif fungsional modern. |
-| **Aset Grafis** | Vektor SVG Murni | Ornamen geometris Khatam bintang 8 dan siluet vertikal Tower 13 Lantai tanpa ketergantungan foto eksternal. |
-| **State Management** | URL SearchParams + Zustand | Parameter filter tersinkronisasi ke URL; Zustand digunakan secara in-memory untuk formulir demo tanpa persistensi storage. |
-| **Validasi Runtime** | Zod | Integritas fixture data medis dan skema validasi form. |
-| **Otomasi Pengujian** | Vitest + Playwright + Axe-core | Pengujian unit, verifikasi alur multi-browser (Desktop & Mobile), serta audit aksesibilitas otomatis. |
+| **Validasi Runtime** | Zod | Integritas payload API dan skema validasi form. |
+| **Otomasi Pengujian** | Vitest + Playwright + Axe-core | Pengujian unit & integrasi (93 tests), pengujian multi-viewport (106 tests), serta audit aksesibilitas otomatis. |
 
 ---
 
@@ -144,9 +176,9 @@ Pengujian otomatis Playwright pada 4 resolusi standar membuktikan **0 pelanggara
    - Tombol satu-klik *"Isi Data Simulasi Otomatis"* untuk kemudahan pengujian evaluator.
    - **Zero Network Requests**: Terbukti secara otomatis memproses seluruh form di memori peramban tanpa koneksi backend.
 9. **Tentang Kami (`/tentang`)**
-   - Narasi 51 tahun perjalanan RSI Surabaya A. Yani sejak diresmikan Presiden Soeharto pada 1975.
+   - Narasi 51 tahun perjalanan RSI Surabaya A. Yani sejak 1975.
    - Garis waktu kronologis 15 tonggak sejarah (1975–2026) bersumber dari dokumen publik Lampiran C.
-   - Rekam jejak akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022–2026).
+   - Rekam jejak akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022).
    - Transparansi nilai dan tata kelola YARSIS (Yayasan Rumah Sakit Islam Surabaya).
 10. **Kontak & Lokasi (`/kontak`)**
     - Kontak darurat ganda K1, jam buka fasilitas penunjang 24 jam, dan peta arsitektural SVG tanpa pelacak cookies.
@@ -235,18 +267,30 @@ npm run audit:lighthouse
 
 ## 📁 Direktori Bukti & Artefak (Evidence Gate)
 
-Seluruh bukti eksekusi tersimpan secara transparan di dalam direktori `docs/`:
-- [docs/evidence/phase-0-discovery.json](docs/evidence/phase-0-discovery.json): Verifikasi tooling dan dependensi awal.
-- [docs/evidence/phase-1-shell.json](docs/evidence/phase-1-shell.json): Hasil kompilasi shell global, header, footer, dan skip-link.
-- [docs/evidence/contrast-results.json](docs/evidence/contrast-results.json): Matriks rasio kontras 14 token warna.
-- [docs/evidence/phase-2-data.json](docs/evidence/phase-2-data.json): Validasi skema Zod dan data fixture medis.
+Seluruh bukti eksekusi dan catatan keputusan tersimpan secara transparan di dalam direktori `docs/`:
+- [docs/evidence/raw/](docs/evidence/raw/): Output terminal mentah sebagai satu-satunya bukti sah verifikasi teknis.
+- [docs/evidence/README.md](docs/evidence/README.md): Register validitas bukti eksekusi.
+- [docs/adr/0001-toolchain-versions.md](docs/adr/0001-toolchain-versions.md): Keputusan arsitektur penetapan versi toolchain (`eslint` 9.16.0 & `typescript` 5.7.2).
+- [docs/evidence/contrast-results.json](docs/evidence/contrast-results.json): Matriks rasio kontras token warna.
 - [docs/evidence/facts-check-results.json](docs/evidence/facts-check-results.json): Bukti 0 kebocoran literal fakta rumah sakit.
-- [docs/evidence/phase-3-routes.json](docs/evidence/phase-3-routes.json): Kompilasi rute inti medis dan audit aksesibilitas.
-- [docs/evidence/phase-4-features.json](docs/evidence/phase-4-features.json): Verifikasi Tower Directory dan bukti Zero Network Requests pendaftaran demo.
-- [docs/evidence/phase-5-secondary.json](docs/evidence/phase-5-secondary.json): Verifikasi rute sekunder, SSG layanan dinamis, dan security hardening.
-- [docs/evidence/phase-6-audit.json](docs/evidence/phase-6-audit.json): Rekapitulasi komprehensif audit Lighthouse Mobile, audit multi-viewport, dan matriks pengujian 100 tests.
-- [docs/evidence/lighthouse-summary.json](docs/evidence/lighthouse-summary.json): Laporan mentah JSON skor dan metrik Core Web Vitals Lighthouse.
-- [docs/screenshots/](docs/screenshots/): 32 tangkapan layar responsif resolusi 360px, 390px, 768px, dan 1280px pada 8 rute kunci.
+- [docs/evidence/duplication-results.json](docs/evidence/duplication-results.json): Hasil pemindaian duplikasi literal data.
+- [docs/evidence/legacy-narrative/](docs/evidence/legacy-narrative/): Arsip ringkasan naratif lama buatan agent (bukan bukti mentah).
+- [docs/screenshots/](docs/screenshots/): Tangkapan layar responsif resolusi 360px, 390px, 768px, dan 1280px pada 8 rute kunci.
+
+---
+
+## 🔒 Catatan Keamanan & Batasan Framework (Audit Fase 11.1)
+
+### 1. Pemberitahuan Keamanan & Rotasi Secret Wajib (S-2)
+Nilai secret autentikasi hex lama yang pernah tercantum pada riwayat commit awal (`f6c8d7e9...`) dianggap **terkompromi / bocor**.
+- **Wajib Rotasi**: Seluruh pengembang dan deployment yang pernah menggunakan secret tersebut diwajibkan merotasi `BETTER_AUTH_SECRET` menggunakan generator acak kuat (mis. `openssl rand -base64 32`).
+- **Enforcement Production**: Fallback secret di kode sumber telah dihapus permanen. Pada lingkungan produksi (`NODE_ENV=production`), aplikasi akan menolak startup (fatal error) jika `BETTER_AUTH_SECRET` tidak diset dengan panjang minimal 32 karakter.
+
+### 2. Pemisahan Peran Tegas RBAC (S-3)
+Helper otorisasi `requireRole('PATIENT' | 'ADMIN')` bersifat **simetris murni** (`role !== requiredRole` → 403 Forbidden). Rute personal pasien (`/api/patient/appointments`) hanya diizinkan untuk peran `PATIENT`. Akun `ADMIN` yang mengakses rute pasien ditolak dengan status 403 Forbidden dan wajib menggunakan konsol tata kelola khusus `/api/admin/appointments`.
+
+### 3. Batasan Pelacakan Sesi Better Auth (S-6)
+Sesuai prinsip etika & privasi PRD §5 (Zero PII/Network Tracking), pelacakan IP address telah dikonfigurasikan dengan `advanced.ipAddress.disableIpTracking = true`. Hasil verifikasi query SQL langsung pada tabel database `Session` membuktikan bahwa `ipAddress` tidak lagi mencatat IP klien (berisi string kosong `""`), sedangkan kolom `userAgent` tetap mencatat user-agent peramban karena Better Auth v1.7.12 tidak menyediakan opsi bawaan untuk menonaktifkan kolom `userAgent`. Adapun tabel audit log aplikasi (`AuditLog`) terjamin 100% bebas dari penyimpanan IP Address dan User-Agent.
 
 ---
 

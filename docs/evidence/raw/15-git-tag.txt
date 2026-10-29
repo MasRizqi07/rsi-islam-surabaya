@@ -1,0 +1,6 @@
+git tag -n --list
+phase-0-4       Phase 0 to 4 baseline implementation
+phase-5         Phase 5 secondary routes and service details (hasil audit: lihat Fase 5.1)
+phase-6         Phase 6 multi-viewport responsiveness and visual audit
+v3-p0           v3 Phase 0 baseline integration
+EXIT CODE: 0

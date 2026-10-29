@@ -26,7 +26,7 @@ Versi 1 dibuat sebelum konteks "portfolio case study" diperjelas, dan sejumlah k
 | 3 | Klaim "gambar hampir semua broken (lazy-load SVG placeholder)". | **Dicabut.** Tidak ada bukti. | Placeholder base64 tersebut adalah artefak fetcher tanpa JavaScript. Screenshot membuktikan gambar tampil normal di browser nyata. |
 | 4 | Klaim "Google Maps tidak muncul tanpa JS" dihubungkan ke website RSIS. | **Dicabut.** | Yang memerlukan JavaScript adalah halaman `maps.app.goo.gl` milik Google, bukan situs web RSIS. |
 | 5 | Hanya mencantumkan satu nomor darurat (`1500718`). | **Diperbaiki.** Sumber publik menampilkan **dua** nomor berbeda (lihat §2.2 K1). | Mencegah informasi keliru; menampilkan Emergency Call (`1500718`) dan Ambulans (`08 112 33 999`) dengan label netral. |
-| 6 | Target SEO "ranking halaman 1 Google". | **Dibuang.** Wajib `<meta name="robots" content="noindex, nofollow">` & `robots.txt` Disallow. | Situs konsep yang meniru identitas RS berisiko dianggap peniruan/phishing oleh mesin pencari bila diindeks publik. |
+| 6 | Target SEO "ranking halaman 1 Google". | **Dibuang.** Wajib `<meta name="robots" content="noindex, nofollow">` & header HTTP `X-Robots-Tag` (`robots.txt` Allow: / agar crawler membaca direktif noindex). | Situs konsep yang meniru identitas RS berisiko dianggap peniruan/phishing oleh mesin pencari bila diindeks publik. |
 | 7 | Angka tenaga medis tertulis 107, padahal rinciannya berjumlah 112. | **Diperbaiki.** UI menampilkan "100+ tenaga medis" (lihat §2.2 K2). | Menghindari tampilan angka presisi yang kontradiktif antar sumber resmi RSIS. |
 | 8 | Teks korup (karakter asing) di tabel gap analysis. | **Dibersihkan total.** | Integritas dokumen dan artefak profesional. |
 
@@ -142,6 +142,17 @@ Proyek ini secara tegas **TIDAK** mencakup:
 - Tracker analitik / cookies banner.
 - Monorepo / Docker containerization.
 - CI/CD pipeline produksi.
+
+### 4.3 Keputusan Arsitektur Autentikasi Demo & Pemisahan Peran RBAC (S-1 & S-3)
+Menindaklanjuti audit independen keamanan Fase 11.1, arsitektur RBAC Better Auth ditetapkan dengan spesifikasi:
+1. **Proteksi Hak Akses Klien (S-1)**: Field `user.role` dikonfigurasi `input: false` pada Better Auth sehingga tidak dapat dimodifikasi oleh klien. Seluruh rute Better Auth yang tidak digunakan antarmuka diblokir melalui allowlist ketat (`/sign-in/email`, `/sign-out`, `/get-session`, `/ok`) dan `disabledPaths`, menolak semua endpoint manipulasi profil publik (404 Not Found).
+2. **Pemisahan Peran Tegas / Strict Role Separation (S-3)**:
+   - Helper otorisasi `requireRole('PATIENT' | 'ADMIN')` bersifat simetris murni (`role !== requiredRole` → 403 Forbidden).
+   - Rute personal pasien (`/api/patient/appointments` dan `/api/patient/appointments/[id]`) dikhususkan murni untuk peran `PATIENT`.
+   - Administrator (`ADMIN`) **dilarang keras** menggunakan rute pasien (ditolak dengan 403 Forbidden). Seluruh supervisi dan tata kelola janji temu oleh administrator wajib melalui konsol khusus `/api/admin/appointments` dan `/api/admin/appointments/[id]`.
+3. **Atomisitas Transaksi & Integritas Audit (S-4)**: Pembuatan dan pembatalan janji temu dieksekusi dalam transaksi atomik Prisma bersama pencatatan `AuditLog`. Jika audit log gagal, mutasi dibatalkan (*full rollback*).
+4. **Privasi & Kebijakan Data Minimal (S-6)**: Pelacakan IP dinonaktifkan (`disableIpTracking = true`). Audit log aplikasi menjamin nol data pribadi (IP Address, User-Agent, Email). Sesi Better Auth yang mencatat User-Agent dicatat sebagai batasan framework.
+
 
 ---
 
@@ -349,7 +360,7 @@ Sistem warna dikonfigurasikan pada Tailwind CSS v4 `@theme`:
 * Fitur sekunder yang hanya dikerjakan jika Fase 1–5 selesai lebih awal. Memuat 4 artikel edukasi kesehatan preventif bertema islami-medis dengan penafian tegas: *"Konten edukasi simulasi, bukan rujukan medis resmi"*.
 
 ### FR-12 · Mode Konsep, Privasi & Keamanan (P0)
-* **Anti-Indeksasi Penuh**: Tag `<meta name="robots" content="noindex, nofollow">` pada root layout, file `robots.txt` dengan aturan `Disallow: /`, tanpa sitemap XML, dan tanpa JSON-LD berjenis Hospital/Physician.
+* **Anti-Indeksasi Penuh**: Tag `<meta name="robots" content="noindex, nofollow">` pada root layout, header HTTP `X-Robots-Tag: noindex, nofollow`, file `robots.txt` dengan aturan `Allow: /` (memastikan bot membaca meta noindex), tanpa sitemap XML, dan tanpa JSON-LD berjenis Hospital/Physician.
 * **Nol Pelacak Pihak Ketiga**: Tidak menggunakan skrip Google Analytics, Facebook Pixel, cookies pelacak, atau font CDN eksternal (seluruh font di-self host via `next/font`).
 * **Pemberitahuan Transparan**: Banner disclaimer portofolio dan footer disclaimer hadir di setiap halaman.
 

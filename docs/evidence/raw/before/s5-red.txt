@@ -1,0 +1,11 @@
+npm run db:setup
+
+npm error Missing script: "db:setup"
+npm error
+npm error Did you mean this?
+npm error   npm run db:seed # run the "db:seed" package script
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+
+EXIT CODE: 1

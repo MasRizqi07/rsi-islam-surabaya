@@ -1,0 +1,24 @@
+npm test
+
+> rsi-islam-sby@2.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+ [32m✓[39m src/data/__tests__/data.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/duplication.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 211[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/db-phase7.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 138[2mms[22m[39m
+[90mstdout[2m | src/data/__tests__/facts-check.test.ts[2m > [22m[2mHospital Facts & Anti-Regression Scanner (R8 Fase 5.1)[2m > [22m[2mKasus Lolos (Passing Cases)[2m > [22m[2mpemindaian repositori aktif mengembalikan status lolos (exitCode: 0)
+[22m[39m=== HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
+
+ [32m✓[39m src/data/__tests__/facts-check.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 281[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m42 passed[39m[22m[90m (42)[39m
+[2m   Start at [22m 17:46:45
+[2m   Duration [22m 542ms[2m (tests 73%, import 16%, transform 7%, worker 3%)[22m
+
+EXIT CODE: 0

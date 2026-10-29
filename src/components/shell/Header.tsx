@@ -2,16 +2,19 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { HOSPITAL_FACTS } from '@/data/facts';
-import { Menu, X, Building2, Calendar, Phone, Stethoscope, Info } from 'lucide-react';
+import { Menu, X, Building2, Calendar, Phone, Stethoscope, Info, LogIn } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Dokter', href: '/dokter', icon: Stethoscope },
   { label: 'Layanan', href: '/layanan', icon: Building2 },
   { label: 'Tower Directory', href: '/tower', icon: Building2 },
+  { label: 'Simulasi Pendaftaran', href: '/daftar', icon: Calendar },
   { label: 'Tentang', href: '/tentang', icon: Info },
   { label: 'Kontak', href: '/kontak', icon: Phone },
+  { label: 'Login Demo', href: '/login', icon: LogIn },
 ];
 
 export function Header() {
@@ -29,15 +32,28 @@ export function Header() {
             className="flex items-center gap-3 group focus:outline-none"
             aria-label={`${HOSPITAL_FACTS.name} - Beranda`}
           >
-            {/* Monogram / Icon Geometris Hijau Tower */}
-            <div className="w-11 h-11 rounded-lg bg-tower-900 border border-gold-500/40 flex items-center justify-center text-gold-300 font-display font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
-              <span>RSI</span>
+            {/* Logo Resmi RS Islam Surabaya A. Yani */}
+            <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-gold-500/40 shadow-sm bg-white shrink-0 group-hover:scale-105 transition-transform">
+              <Image
+                src="/assets/Logo-RSI-Baru-320x320.jpeg"
+                alt={`Logo ${HOSPITAL_FACTS.name}`}
+                width={44}
+                height={44}
+                className="w-full h-full object-cover"
+                priority
+                unoptimized
+              />
             </div>
 
             <div className="flex flex-col">
-              <span className="font-display font-bold text-lg text-tower-900 leading-tight tracking-tight group-hover:text-tower-700 transition-colors">
-                {HOSPITAL_FACTS.name}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="font-display font-bold text-base sm:text-lg text-tower-900 leading-tight tracking-tight group-hover:text-tower-700 transition-colors">
+                  {HOSPITAL_FACTS.name}
+                </span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gold-100 text-tower-900 border border-gold-400/50 shrink-0">
+                  Demo Portofolio
+                </span>
+              </div>
               <span className="text-xs text-ink-soft tracking-wider font-medium">
                 {HOSPITAL_FACTS.tagline} · Sejak {HOSPITAL_FACTS.foundedYear}
               </span>
@@ -52,6 +68,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors ${
                     isActive
                       ? 'bg-tower-100 text-tower-900'
@@ -67,11 +84,12 @@ export function Header() {
           {/* ACTION BUTTON & MOBILE TOGGLE */}
           <div className="flex items-center gap-3">
             <Link
-              href="/daftar"
-              className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-semibold text-sm shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-tower-700 focus:ring-offset-2"
+              href="/janji-temu"
+              prefetch={false}
+              className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-semibold text-sm shadow-md hover:shadow-lg transition-colors duration-150 focus:ring-2 focus:ring-tower-700 focus:ring-offset-2"
             >
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-              <span>Daftar Online</span>
+              <span>Buat Janji Temu</span>
             </Link>
 
             {/* HAMBURGER TOGGLE */}
@@ -107,6 +125,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-3 py-3 rounded-lg text-base font-semibold min-h-[44px] ${
                     isActive
@@ -122,12 +141,13 @@ export function Header() {
             
             <div className="pt-4 border-t border-tower-100">
               <Link
-                href="/daftar"
+              href="/janji-temu"
+              prefetch={false}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center w-full min-h-[44px] px-4 py-3 rounded-lg bg-tower-800 text-ivory font-bold text-center shadow-md active:bg-tower-900"
               >
                 <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
-                <span>Daftar Online (Demo)</span>
+                <span>Buat Janji Temu</span>
               </Link>
             </div>
           </nav>

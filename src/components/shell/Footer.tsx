@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { ShieldCheck, MapPin, Phone, ExternalLink } from 'lucide-react';
 
@@ -13,13 +14,14 @@ export function Footer() {
           
           {/* KOLOM 1: IDENTITAS & NILAI */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-tower-900 border border-gold-500/40 flex items-center justify-center text-gold-300 font-display font-bold text-lg">
-                RSI
-              </div>
-              <span className="font-display font-bold text-xl text-ivory tracking-tight">
-                {HOSPITAL_FACTS.name}
-              </span>
+            <div className="p-3 bg-white/95 rounded-2xl border border-gold-500/30 inline-block shadow-md">
+              <Image
+                src="/assets/logo-web-rsi.png"
+                alt={HOSPITAL_FACTS.name}
+                width={200}
+                height={70}
+                className="h-10 w-auto object-contain"
+              />
             </div>
 
             <p className="text-sm text-ivory/70 leading-relaxed">
@@ -39,27 +41,27 @@ export function Footer() {
             </h3>
             <ul className="space-y-1 text-sm">
               <li>
-                <Link href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Layanan Gawat Darurat & Triase 24 Jam
                 </Link>
               </li>
               <li>
-                <Link href="/dokter" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/dokter" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Direktori & Jadwal Dokter
                 </Link>
               </li>
               <li>
-                <Link href="/tower" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/tower" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Tower Directory (Denah Gedung)
                 </Link>
               </li>
               <li>
-                <Link href="/layanan" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/layanan" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Katalog Layanan & Penunjang
                 </Link>
               </li>
               <li>
-                <Link href="/daftar" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/daftar" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Pendaftaran Pasien Online (Demo)
                 </Link>
               </li>

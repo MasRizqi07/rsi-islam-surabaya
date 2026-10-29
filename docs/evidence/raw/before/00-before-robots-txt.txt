@@ -1,0 +1,4 @@
+powershell -Command Get-Content public/robots.txt
+User-agent: *
+Disallow: /
+EXIT CODE: 0

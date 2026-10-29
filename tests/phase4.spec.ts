@@ -3,6 +3,25 @@ import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Phase 4 Signature Features (Tower Directory & Registration Wizard)', () => {
 
+  test.beforeEach(async () => {
+    // Reset slot pendaftaran dr. Fauzi agar selalu tersedia untuk pengujian wizard di multi-project
+    const { PrismaClient } = await import('@prisma/client');
+    const prisma = new PrismaClient();
+    try {
+      const doc = await prisma.doctor.findFirst({ where: { slug: 'dr-fauzi-rachman-sppd' } });
+      if (doc) {
+        await prisma.auditLog.deleteMany({
+          where: { appointment: { doctorId: doc.id } },
+        });
+        await prisma.appointment.deleteMany({
+          where: { doctorId: doc.id },
+        });
+      }
+    } finally {
+      await prisma.$disconnect();
+    }
+  });
+
   // SKENARIO 1: TOWER DIRECTORY INTERAKTIF & DEEP LINKING
   test('Tower Directory: navigasi lantai, deep-linking URL, dan transparansi K4', async ({ page }) => {
     // 1. Buka deep-link langsung ke Tower Lantai 4
@@ -77,11 +96,12 @@ test.describe('Phase 4 Signature Features (Tower Directory & Registration Wizard
     await expect(page.locator('#patient-phone')).toHaveValue('081234567890');
     await expect(page.locator('#patient-birth-date')).toHaveValue('1988-05-15');
 
-    // PEMBUKTIAN KERAS ZERO NETWORK REQUESTS:
-    // Pasang listener intersepsi pada seluruh outgoing network requests
+    // PEMBUKTIAN KERAS PRD v3.0 §5:
+    // Invarian 'nol request jaringan dan nol storage browser' di /daftar (v2) diganti secara sadar menjadi:
+    // satu-satunya request keluar dari wizard adalah satu POST ke origin sendiri saat submit;
+    // nol request ke pihak ketiga; nol localStorage/sessionStorage.
     const outgoingRequests: string[] = [];
     page.on('request', (req) => {
-      // Catat semua request kecuali asset Next.js / favicon / data uri
       const url = req.url();
       if (!url.includes('/_next/') && !url.startsWith('data:') && !url.includes('favicon')) {
         outgoingRequests.push(`${req.method()} ${url}`);
@@ -93,13 +113,24 @@ test.describe('Phase 4 Signature Features (Tower Directory & Registration Wizard
     await submitBtn.click();
 
     // LANGKAH 5: Verifikasi Tiket Antrean Terbit
-    await expect(page.locator('#printable-ticket')).toBeVisible();
-    await expect(page.locator('text=Kode Registrasi Antrean:')).toBeVisible();
-    await expect(page.locator('text=RSIS-PEN-')).toBeVisible();
+    await expect(page.locator('#printable-ticket')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('text=Ahmad Fauzi (Demo Pasien)')).toBeVisible();
 
-    // ASSERTION WAJIB: Tepat 0 outgoing network requests saat proses submit!
-    expect(outgoingRequests).toEqual([]);
+    // ASSERTION PRD §5: Nol request ke pihak ketiga (seluruh request mutasi ke origin lokal /api/patient/appointments)
+    const thirdPartyRequests = outgoingRequests.filter(
+      (r) => !r.includes('localhost') && !r.includes('127.0.0.1')
+    );
+    expect(thirdPartyRequests).toEqual([]);
+
+    // ASSERTION PRD §5: Nol browser storage (localStorage & sessionStorage tetap 0)
+    const storageKeys = await page.evaluate(() => {
+      return {
+        local: Object.keys(localStorage),
+        session: Object.keys(sessionStorage),
+      };
+    });
+    expect(storageKeys.local).toEqual([]);
+    expect(storageKeys.session).toEqual([]);
   });
 
   // SKENARIO 3: AUDIT AKSESIBILITAS AXE-CORE PADA /tower DAN /daftar

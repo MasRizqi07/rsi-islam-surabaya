@@ -15,8 +15,9 @@ export interface DoctorFilterParams {
 /**
  * Filter direktori dokter berdasarkan multi-dimensi kriteria pencarian
  */
-export function filterDoctors(params: DoctorFilterParams): Doctor[] {
-  return DOCTORS.filter((doctor) => {
+export function filterDoctors(params: DoctorFilterParams, doctorList?: Doctor[]): Doctor[] {
+  const source = doctorList ?? DOCTORS;
+  return source.filter((doctor) => {
     // 1. Pencarian teks nama atau subspesialisasi
     if (params.searchQuery && params.searchQuery.trim() !== '') {
       const q = params.searchQuery.toLowerCase().trim();

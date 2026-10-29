@@ -51,7 +51,7 @@ export function TowerTeaser() {
                 key={f.floor}
                 type="button"
                 onClick={() => setSelectedFloor(f.floor)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-semibold transition-all border min-h-[44px] ${
+                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-150 border min-h-[44px] ${
                   isSelected
                     ? 'bg-tower-800 text-ivory border-tower-800 shadow-md scale-[1.02]'
                     : hasData

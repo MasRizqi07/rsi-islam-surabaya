@@ -1,0 +1,6 @@
+git grep -n -F "CSP ketat"
+ANTIGRAVITY_MASTER_PROMPT.md:316:5. Konfigurasi keamanan `next.config.mjs` (Security Headers, CSP ketat).
+docs/FINAL_PROJECT_AUDIT_REPORT.md:71:| **Zero Third-Party Tracking** | Tidak ada Google Analytics, Facebook Pixel, hotjar, atau cookie banner. | HTTP header `Permissions-Policy` dan CSP ketat memblokir pelacakan eksternal. |
+docs/FINAL_PROJECT_AUDIT_REPORT.md:124:- **Sasaran**: Halaman Tentang Kami `/tentang` (timeline 15 tonggak sejarah 1975–2026, rekam jejak akreditasi K3), halaman Kontak & Lokasi `/kontak` (peta diagram vektor SVG tanpa tracking, tombol Google Maps resmi), 8 rute SSG dinamis `/layanan/[slug]`, halaman 404 kustom bernuansa Hijau Tower `/not-found`, dan penguatan keamanan HTTP Headers (CSP ketat, HSTS, X-Frame-Options: DENY, Permissions-Policy).
+docs/FINAL_PROJECT_AUDIT_REPORT.md:249:├── next.config.mjs                      # CSP ketat, security headers, anti-robots
+EXIT CODE: 0

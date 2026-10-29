@@ -1,7 +1,7 @@
 import { Service } from './types';
 
 /**
- * 8 LAYANAN UNGGULAN & PENUNJANG RUMAH SAKIT
+ * 8 LAYANAN MEDIS TERPADU & PENUNJANG RUMAH SAKIT
  * Berdasarkan Lampiran A PRD v2.0 (Sumber publik S1 rsisurabaya.com)
  */
 export const SERVICES: Service[] = [

@@ -1,0 +1,3 @@
+git grep -n -E 2022.?2026
+docs/evidence/phase-5-secondary.json:15:        "Rekam jejak kepatuhan akreditasi historis K3 (KARS Paripurna 2016 & 2019, LAM-KPRS Paripurna 2022-2026)",
+EXIT CODE: 0

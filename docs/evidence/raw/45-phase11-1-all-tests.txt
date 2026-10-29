@@ -1,0 +1,74 @@
+npm test
+
+> rsi-islam-sby@2.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+ [32m✓[39m src/data/__tests__/data.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/db-phase7.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 269[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/duplication.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 219[2mms[22m[39m
+[90mstdout[2m | src/data/__tests__/facts-check.test.ts[2m > [22m[2mHospital Facts & Anti-Regression Scanner (R8 Fase 5.1)[2m > [22m[2mKasus Lolos (Passing Cases)[2m > [22m[2mpemindaian repositori aktif mengembalikan status lolos (exitCode: 0)
+[22m[39m=== HOSPITAL FACTS & ANTI-REGRESSION SCANNER (scripts/check-facts.mjs) ===
+
+[SUCCESS] 0 kebocoran fakta dan 0 klaim terlarang terdeteksi! Repositori patuh penuh.
+
+ [32m✓[39m src/data/__tests__/facts-check.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 475[2mms[22m[39m
+   [32m✓[39m Hospital Facts & Anti-Regression Scanner (R8 Fase 5.1) [2m(13)[22m
+     [32m✓[39m Kasus Lolos (Passing Cases) [2m(3)[22m
+       [33m[2m✓[22m[39m pemindaian repositori aktif mengembalikan status lolos (exitCode: 0)[33m 466[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/phase11-security.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 282[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/phase11-hardening.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 463[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/phase10-admin.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 573[2mms[22m[39m
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mpenegakan constraint database: pemesanan slot aktif yang sama menghasilkan 409 Conflict
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:198:40
+
+  195 
+  196 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  197 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 198   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+[90mstdout[2m | src/data/__tests__/phase9-appointments.test.ts[2m > [22m[2mPhase 9 Appointment Workflows, Concurrency & Idempotency (US-4, US-5, US-7)[2m > [22m[2mUS-4 · Penegakan Constraint Database & Uji Konkurensi Paralel[2m > [22m[2mdua permintaan paralel ke slot yang sama: tepat satu berhasil (201) dan tepat satu ditolak (409)
+[22m[39mprisma:error 
+Invalid `tx.appointment.create()` invocation in
+D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:198:40
+
+  195 
+  196 // 10. Mutasi Atomik dalam Transaksi Prisma bersama Audit Log (US-7)
+  197 const newAppointment = await prisma.$transaction(async (tx) => {
+→ 198   const apt = await tx.appointment.create(
+Unique constraint failed on the fields: (`doctorId`,`appointmentDate`,`timeSlot`)
+
+ [32m✓[39m src/data/__tests__/phase9-appointments.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 700[2mms[22m[39m
+ [32m✓[39m src/data/__tests__/access-matrix-phase8.test.ts [2m([22m[2m36 tests[22m[2m)[22m[33m 909[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m      Tests [22m [1m[32m121 passed[39m[22m[90m (121)[39m
+[2m   Start at [22m 14:22:43
+[2m   Duration [22m 2.19s[2m (import 53%, tests 43%, transform 4%, worker 1%)[22m
+
+[90mstderr[2m | src/data/__tests__/phase11-security.test.ts[2m > [22m[2mPhase 11.1 Security Hardening Tests (S-1, S-4, S-5)[2m > [22m[2mS-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal[2m > [22m[2mS-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal
+[22m[39m[API /api/patient/appointments POST] Error: Error: SIMULATED_AUDIT_LOG_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:119:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:217:13
+    at async Proxy._transactionWithCallback [90m(D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\[39mnode_modules\[4m@prisma\client[24m\runtime\library.js:130:8120[90m)[39m
+    at POST (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:197:28)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:139:21
+    at async [90mfile:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/[39mnode_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstderr[2m | src/data/__tests__/phase11-security.test.ts[2m > [22m[2mPhase 11.1 Security Hardening Tests (S-1, S-4, S-5)[2m > [22m[2mS-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal[2m > [22m[2mS-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+[22m[39m[API /api/patient/appointments/[id] DELETE] Error: Error: SIMULATED_CANCEL_AUDIT_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:177:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:103:13
+    at async Proxy._transactionWithCallback [90m(D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\[39mnode_modules\[4m@prisma\client[24m\runtime\library.js:130:8120[90m)[39m
+    at DELETE (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:93:34)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:189:21
+    at async [90mfile:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/[39mnode_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+EXIT CODE: 0

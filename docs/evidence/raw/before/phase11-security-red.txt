@@ -1,0 +1,81 @@
+npx vitest run src/data/__tests__/phase11-security.test.ts
+
+ RUN  v5.0.5 D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby
+
+stderr | src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal
+[API /api/patient/appointments POST] Error: Error: SIMULATED_AUDIT_LOG_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:121:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:222:13
+    at async Proxy._transactionWithCallback (D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\node_modules\@prisma\client\runtime\library.js:130:8120)
+    at POST (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:202:28)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:141:21
+    at async file:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/node_modules/vitest/dist/chunks/run.BPv-BBRv.js:2801:20
+
+ ❯ src/data/__tests__/phase11-security.test.ts (5 tests | 3 failed) 349ms
+   ❯ Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) (5)
+     ❯ S-1 · Proteksi Eksploitasi Peran & Pembatasan Handler Better Auth (2)
+       × S-1.1: Percobaan eskalasi hak akses role ADMIN via POST /api/auth/update-user harus ditolak (404/403) dan role di DB tetap PATIENT 38ms
+       × S-1.2: Endpoint non-allowlist Better Auth harus ditolak 404 Not Found 16ms
+     ❯ S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal (2)
+       ✓ S-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal 63ms
+       × S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal 14ms
+     ✓ S-5 · Keberadaan Partial Unique Index unique_active_doctor_slot di Database (1)
+       ✓ S-5.1: pg_indexes memuat partial unique index unique_active_doctor_slot pada tabel Appointment 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-1 · Proteksi Eksploitasi Peran & Pembatasan Handler Better Auth > S-1.1: Percobaan eskalasi hak akses role ADMIN via POST /api/auth/update-user harus ditolak (404/403) dan role di DB tetap PATIENT
+AssertionError: expected [ 403, 404 ] to include 200
+ ❯ src/data/__tests__/phase11-security.test.ts:70:26
+     68|
+     69|       // Endpoint tidak boleh berhasil dieksekusi oleh pasien
+     70|       expect([403, 404]).toContain(res.status);
+       |                          ^
+     71|
+     72|       // Verifikasi mutlak di database: role pasien TIDAK PERNAH berubah menjadi ADMIN
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-1 · Proteksi Eksploitasi Peran & Pembatasan Handler Better Auth > S-1.2: Endpoint non-allowlist Better Auth harus ditolak 404 Not Found
+AssertionError: Path /api/auth/sign-up/email harus ditolak dengan 404: expected 400 to be 404 // Object.is equality
+
+- Expected
++ Received
+
+- 404
++ 400
+
+ ❯ src/data/__tests__/phase11-security.test.ts:96:69
+     94|
+     95|         const res = await authAllPostHandler(req);
+     96|         expect(res.status, `Path ${path} harus ditolak dengan 404`).toBe(404);
+       |                                                                     ^
+     97|       }
+     98|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/data/__tests__/phase11-security.test.ts > Phase 11.1 Security Hardening Tests (S-1, S-4, S-5) > S-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal > S-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+Error: SIMULATED_CANCEL_AUDIT_FAILURE
+ ❯ Proxy.tx.auditLog.create src/data/__tests__/phase11-security.test.ts:179:19
+    177|         return originalTx.call(prismaAny, async (tx: any) => {
+    178|           tx.auditLog.create = async () => {
+    179|             throw new Error('SIMULATED_CANCEL_AUDIT_FAILURE');
+       |                   ^
+    180|           };
+    181|           return fn(tx);
+ ❯ recordAuditLog src/lib/audit.ts:73:26
+ ❯ src/app/api/patient/appointments/[id]/route.ts:100:11
+ ❯ Proxy._transactionWithCallback node_modules/@prisma/client/src/runtime/getPrismaClient.ts:722:18
+ ❯ DELETE src/app/api/patient/appointments/[id]/route.ts:90:32
+ ❯ src/data/__tests__/phase11-security.test.ts:191:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 2 passed (5)
+   Start at  13:32:11
+   Duration  1.40s (import 59%, tests 30%, transform 11%)
+
+EXIT CODE: 1

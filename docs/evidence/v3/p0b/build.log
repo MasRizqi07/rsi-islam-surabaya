@@ -1,50 +1,42 @@
 # Command: npm run build
 # Exit Code: 0
-# Git Commit: cd13566ddce31aaa634bf1aa52f26dcf91b4b553
-# Git Status: M docs/evidence/duplication-results.json
- M docs/evidence/facts-check-results.json
- M docs/screenshots/daftar-desktop.png
- M docs/screenshots/daftar-tablet.png
- M docs/screenshots/dokter-tablet.png
- M docs/screenshots/home-desktop.png
- M docs/screenshots/home-mobile-small.png
- M docs/screenshots/home-mobile-standard.png
- M docs/screenshots/home-tablet.png
- M docs/screenshots/igd-desktop.png
- M docs/screenshots/igd-mobile-small.png
- M docs/screenshots/igd-mobile-standard.png
- M docs/screenshots/igd-tablet.png
- M docs/screenshots/kontak-desktop.png
- M docs/screenshots/kontak-mobile-small.png
- M docs/screenshots/kontak-mobile-standard.png
- M docs/screenshots/kontak-tablet.png
- M docs/screenshots/layanan-desktop.png
- M docs/screenshots/layanan-tablet.png
- M docs/screenshots/tentang-desktop.png
- M docs/screenshots/tentang-tablet.png
-?? docs/evidence/v3/p0b/
+# Git Commit: f9336afac4925fdb672164fab718db0ffc19da4f
+# Git Status: CLEAN
 
 > rsi-islam-sby@2.0.0 build
 > next build
 
 ▲ Next.js 16.4.2 (Turbopack)
-✓ Running next.config.mjs took 19ms
+- Environments: .env
+✓ Running next.config.mjs took 27ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 812ms
+✓ Compiled successfully in 1746ms
   Running TypeScript ...
-  Finished TypeScript in 1828ms ...
+  Finished TypeScript in 2.8s ...
   Collecting page data using 11 workers ...
-  Generating static pages using 11 workers (0/43) ...
-  Generating static pages using 11 workers (10/43) 
-  Generating static pages using 11 workers (21/43) 
-  Generating static pages using 11 workers (32/43) 
-✓ Generating static pages using 11 workers (43/43) in 804ms
+  Generating static pages using 11 workers (0/54) ...
+  Generating static pages using 11 workers (13/54) 
+  Generating static pages using 11 workers (26/54) 
+  Generating static pages using 11 workers (40/54) 
+✓ Generating static pages using 11 workers (54/54) in 2.3s
   Finalizing page optimization ...
 
 Route (app)
 ┌ ○ /
 ├ ○ /_not-found
+├ ○ /admin
+├ ƒ /api/admin/appointments
+├ ƒ /api/admin/appointments/[id]
+├ ƒ /api/admin/audit-logs
+├ ƒ /api/admin/bed-status
+├ ƒ /api/auth/[...all]
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/bed-status
+├ ƒ /api/patient/appointments
+├ ƒ /api/patient/appointments/[id]
 ├ ○ /daftar
 ├ ○ /dokter
 ├   /dokter/[slug]
@@ -53,6 +45,7 @@ Route (app)
 │ ├ ● /dokter/dr-bambang-suharto-sppd
 │ └ ● [+21 more paths]
 ├ ○ /igd
+├ ○ /janji-temu
 ├ ○ /kontak
 ├ ○ /layanan
 ├   /layanan/[slug]
@@ -60,10 +53,12 @@ Route (app)
 │ ├ ● /layanan/hemodialisis
 │ ├ ● /layanan/perawatan-intensif
 │ └ ● [+5 more paths]
+├ ○ /login
 ├ ○ /styleguide
 ├ ○ /tentang
 └ ○ /tower
 
 
-○  (Static)  prerendered as static content
-●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Latar Emerald Gelap Tower -->
+  <rect width="64" height="64" rx="14" fill="#063B36"/>
+  <!-- Border Emas Halus -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" stroke="#C9A24A" stroke-width="1.5" stroke-opacity="0.6"/>
+  
+  <!-- Siluet Vertikal Tower 13 Lantai (Karya Mandiri) -->
+  <path d="M22 52h20M24 48h16M24 44h16M24 40h16M24 36h16M24 32h16M24 28h16M24 24h16M24 20h16M24 16h16M26 12h12M28 8h8" stroke="#C9A24A" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Garis Menara Kubah Puncak -->
+  <path d="M32 5v4M30 9h4" stroke="#E6C670" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Ornamen Khatam Geometris Inti -->
+  <circle cx="32" cy="32" r="3" fill="#C9A24A" fill-opacity="0.8"/>
+</svg>

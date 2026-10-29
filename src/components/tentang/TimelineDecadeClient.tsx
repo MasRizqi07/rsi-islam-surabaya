@@ -37,7 +37,7 @@ export function TimelineDecadeClient({ timeline }: TimelineDecadeClientProps) {
           role="tab"
           aria-selected={activeDecade === 'all'}
           onClick={() => setActiveDecade('all')}
-          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
             activeDecade === 'all'
               ? 'bg-tower-800 text-ivory shadow-sm'
               : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -51,7 +51,7 @@ export function TimelineDecadeClient({ timeline }: TimelineDecadeClientProps) {
           role="tab"
           aria-selected={activeDecade === '1970-1999'}
           onClick={() => setActiveDecade('1970-1999')}
-          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
             activeDecade === '1970-1999'
               ? 'bg-tower-800 text-ivory shadow-sm'
               : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -65,7 +65,7 @@ export function TimelineDecadeClient({ timeline }: TimelineDecadeClientProps) {
           role="tab"
           aria-selected={activeDecade === '2000-2019'}
           onClick={() => setActiveDecade('2000-2019')}
-          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
             activeDecade === '2000-2019'
               ? 'bg-tower-800 text-ivory shadow-sm'
               : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -79,7 +79,7 @@ export function TimelineDecadeClient({ timeline }: TimelineDecadeClientProps) {
           role="tab"
           aria-selected={activeDecade === '2020-2026'}
           onClick={() => setActiveDecade('2020-2026')}
-          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all ${
+          className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-colors duration-150 ${
             activeDecade === '2020-2026'
               ? 'bg-tower-800 text-ivory shadow-sm'
               : 'bg-tower-50 text-tower-900 hover:bg-tower-100'
@@ -94,9 +94,9 @@ export function TimelineDecadeClient({ timeline }: TimelineDecadeClientProps) {
         {filteredTimeline.map((item) => (
           <div key={item.year} className="relative group">
             {/* Titik Emas Garis Waktu */}
-            <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory shadow-sm group-hover:scale-125 transition-transform" />
+            <div className="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-ivory shadow-sm group-hover:scale-125 transition-transform duration-150" />
 
-            <div className="bg-white rounded-2xl p-6 border border-tower-100 shadow-xs space-y-2 hover:border-tower-700/40 hover:shadow-md transition-all">
+            <div className="bg-white rounded-2xl p-6 border border-tower-100 shadow-xs space-y-2 hover:border-tower-700/40 hover:shadow-md transition-[border-color,box-shadow] duration-150">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="flex items-center gap-3">
                   <span className="font-display font-black text-xl sm:text-2xl text-tower-900">

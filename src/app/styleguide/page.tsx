@@ -103,7 +103,7 @@ export default function StyleguidePage() {
           <div className="pt-2">
             <span className="text-xs font-mono text-ink-soft">Heading 2 · font-display</span>
             <div className="font-display font-bold text-2xl sm:text-3xl text-tower-800">
-              Pelayanan Medis Modern & Terpercaya
+              Pelayanan Medis Modern Terintegrasi
             </div>
           </div>
 
@@ -130,15 +130,15 @@ export default function StyleguidePage() {
         </h2>
 
         <div className="flex flex-wrap gap-4 items-center p-6 bg-white rounded-2xl border border-tower-100">
-          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-all">
+          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150">
             Tombol Primer (Tower 800)
           </button>
 
-          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-tower-100 hover:bg-tower-50 text-tower-900 font-bold text-sm border border-tower-800/20 transition-all">
+          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-tower-100 hover:bg-tower-50 text-tower-900 font-bold text-sm border border-tower-800/20 transition-[color,background-color,border-color] duration-150">
             Tombol Sekunder (Tower 100)
           </button>
 
-          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-alert-600 hover:bg-alert-700 text-ivory font-bold text-sm shadow-md transition-all flex items-center gap-2">
+          <button className="min-h-[44px] px-6 py-2.5 rounded-lg bg-alert-600 hover:bg-alert-700 text-ivory font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150 flex items-center gap-2">
             <PhoneCall className="w-4 h-4" />
             Tombol Darurat (Alert 600)
           </button>

@@ -1,9 +1,28 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { BED_STATUS_ITEMS } from '@/data/bed-status';
+import { BedStatusItem } from '@/data/types';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import { Bed, AlertCircle, CheckCircle, Clock } from 'lucide-react';
 
 export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
-  const items = isTeaser ? BED_STATUS_ITEMS.slice(0, 4) : BED_STATUS_ITEMS;
+  const [items, setItems] = useState<BedStatusItem[]>(
+    isTeaser ? BED_STATUS_ITEMS.slice(0, 4) : BED_STATUS_ITEMS
+  );
+
+  useEffect(() => {
+    fetch('/api/bed-status')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.beds && Array.isArray(data.beds)) {
+          setItems(isTeaser ? data.beds.slice(0, 4) : data.beds);
+        }
+      })
+      .catch(() => {
+        // Fallback default fixture
+      });
+  }, [isTeaser]);
 
   return (
     <div className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm space-y-4">
@@ -14,9 +33,12 @@ export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
             <Bed className="w-5 h-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-display font-bold text-lg text-tower-900 leading-tight">
-              Status Ketersediaan Kamar
-            </h2>
+            <div className="flex items-center gap-2">
+              <h2 className="font-display font-bold text-lg text-tower-900 leading-tight">
+                Status Ketersediaan Kamar
+              </h2>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" title="Data Aktif" aria-hidden="true" />
+            </div>
             <span className="text-xs text-ink-soft">
               Pusat Perawatan Kritis Terpadu (Tower Lt. 4)
             </span>
@@ -50,7 +72,7 @@ export function BedStatusWidget({ isTeaser = false }: { isTeaser?: boolean }) {
           return (
             <div
               key={item.unit}
-              className="p-3.5 rounded-xl bg-ivory border border-tower-100 flex items-start justify-between gap-2"
+              className="p-3.5 rounded-xl bg-ivory border border-tower-100 flex items-start justify-between gap-2 card-lift"
             >
               <div className="space-y-1">
                 <span className="font-bold text-sm text-tower-950 block">

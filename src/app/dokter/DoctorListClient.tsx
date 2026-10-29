@@ -6,7 +6,8 @@ import Link from 'next/link';
 import { DOCTORS } from '@/data/doctors';
 import { SPECIALTIES } from '@/data/specialties';
 import { filterDoctors } from '@/lib/data-utils';
-import { Hari, Penjamin, PoliCategory } from '@/data/types';
+import { Doctor, Specialty, Hari, Penjamin, PoliCategory } from '@/data/types';
+
 import {
   Search,
   Stethoscope,
@@ -27,7 +28,17 @@ const DAYS_OPTIONS = [
   { value: 'sabtu', label: 'Sabtu' },
 ];
 
-export function DoctorListClient() {
+interface DoctorListClientProps {
+  initialDoctors?: Doctor[];
+  initialSpecialties?: Specialty[];
+}
+
+export function DoctorListClient({
+  initialDoctors,
+  initialSpecialties,
+}: DoctorListClientProps = {}) {
+  const doctors = initialDoctors ?? DOCTORS;
+  const specialties = initialSpecialties ?? SPECIALTIES;
   const pathname = usePathname();
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -94,13 +105,16 @@ export function DoctorListClient() {
   };
 
   // Filter dokter
-  const filteredDoctors = filterDoctors({
-    searchQuery,
-    specialtyId: selectedSpecialty,
-    hari: selectedHari as Hari,
-    penjamin: selectedPenjamin as Penjamin,
-    poli: selectedPoli as PoliCategory,
-  });
+  const filteredDoctors = filterDoctors(
+    {
+      searchQuery,
+      specialtyId: selectedSpecialty,
+      hari: selectedHari as Hari,
+      penjamin: selectedPenjamin as Penjamin,
+      poli: selectedPoli as PoliCategory,
+    },
+    doctors
+  );
 
   return (
     <div className="space-y-8">
@@ -117,7 +131,7 @@ export function DoctorListClient() {
 
           <div className="flex items-center gap-3">
             <span className="text-xs text-ink-soft">
-              Menampilkan <strong>{filteredDoctors.length}</strong> dari {DOCTORS.length} dokter fiktif
+              Menampilkan <strong>{filteredDoctors.length}</strong> dari {doctors.length} dokter fiktif
             </span>
             {(searchQuery || selectedSpecialty !== 'all' || selectedHari !== 'all' || selectedPenjamin !== 'all' || selectedPoli !== 'all') && (
               <button
@@ -169,8 +183,8 @@ export function DoctorListClient() {
               }}
               className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-ivory text-tower-950 text-xs font-semibold border border-tower-100 focus:border-tower-700 focus:outline-none"
             >
-              <option value="all">Semua Poliklinik ({SPECIALTIES.length})</option>
-              {SPECIALTIES.map((s) => (
+              <option value="all">Semua Poliklinik ({specialties.length})</option>
+              {specialties.map((s) => (
                 <option key={s.id} value={s.id}>
                   {s.name}
                 </option>
@@ -337,7 +351,7 @@ export function DoctorListClient() {
             <button
               type="button"
               onClick={handleReset}
-              className="text-tower-800 hover:text-tower-950 font-bold text-xs underline cursor-pointer ml-1"
+              className="text-tower-800 hover:text-tower-950 font-bold text-xs underline press-feedback cursor-pointer ml-1"
             >
               Hapus Semua
             </button>
@@ -362,7 +376,7 @@ export function DoctorListClient() {
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-tower-800 text-ivory font-bold text-sm hover:bg-tower-700 press-feedback transition-[background-color,transform] duration-150 cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Reset Semua Filter</span>
@@ -384,13 +398,13 @@ export function DoctorListClient() {
               return (
                 <div
                   key={doc.slug}
-                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-tower-700/50 hover:-translate-y-1 transition-all duration-200 group flex flex-col justify-between"
+                  className="bg-white rounded-2xl p-6 border border-tower-100 shadow-sm hover:shadow-lg hover:border-gold-500/50 card-lift transition-[transform,box-shadow,border-color] duration-150 group flex flex-col justify-between"
                 >
                   <div className="space-y-4">
                     {/* AVATAR INISIAL & LENCANA ILUSTRASI */}
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0 group-hover:scale-105 transition-transform">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-tower-800 to-tower-950 text-gold-300 font-display font-bold text-lg flex items-center justify-center border border-gold-500/30 shadow-sm shrink-0 group-hover:scale-105 transition-transform duration-150">
                           {initials}
                         </div>
                         <div>
@@ -461,17 +475,17 @@ export function DoctorListClient() {
                   <div className="pt-5 mt-4 border-t border-tower-50 flex items-center justify-between gap-2">
                     <Link
                       href={`/dokter/${doc.slug}`}
-                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+                      className="text-xs font-bold text-tower-800 hover:text-tower-600 inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform duration-150"
                     >
                       <span>Lihat Profil Lengkap</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
 
                     <Link
-                      href={`/daftar?dokter=${doc.slug}`}
-                      className="px-3.5 py-1.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory text-xs font-bold shadow-sm transition-colors cursor-pointer"
+                      href={`/janji-temu?doctor=${doc.slug}`}
+                      className="px-3.5 py-1.5 rounded-lg bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 text-xs font-bold shadow-xs press-feedback transition-[background-color,transform] duration-150 cursor-pointer"
                     >
-                      Daftar
+                      Janji Temu
                     </Link>
                   </div>
                 </div>

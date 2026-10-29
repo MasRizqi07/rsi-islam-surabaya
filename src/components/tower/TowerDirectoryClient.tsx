@@ -149,7 +149,7 @@ export function TowerDirectoryClient() {
               aria-controls="building-panel"
               id="tab-tower"
               onClick={() => handleSelectBuilding('tower')}
-              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-colors duration-150 flex items-center gap-2 ${
                 activeBuilding === 'tower'
                   ? 'bg-tower-800 text-ivory shadow-md'
                   : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
@@ -166,7 +166,7 @@ export function TowerDirectoryClient() {
               aria-controls="building-panel"
               id="tab-graha"
               onClick={() => handleSelectBuilding('graha')}
-              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 ${
+              className={`min-h-[44px] px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm transition-colors duration-150 flex items-center gap-2 ${
                 activeBuilding === 'graha'
                   ? 'bg-tower-800 text-ivory shadow-md'
                   : 'text-tower-900 hover:text-tower-700 hover:bg-tower-100/60'
@@ -182,7 +182,7 @@ export function TowerDirectoryClient() {
             <button
               type="button"
               onClick={() => setOnlyVerified(false)}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-colors duration-150 ${
                 !onlyVerified
                   ? 'bg-white text-tower-950 shadow-xs'
                   : 'text-ink-soft hover:text-tower-900'
@@ -193,7 +193,7 @@ export function TowerDirectoryClient() {
             <button
               type="button"
               onClick={() => setOnlyVerified(true)}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-colors duration-150 ${
                 onlyVerified
                   ? 'bg-white text-tower-950 shadow-xs'
                   : 'text-ink-soft hover:text-tower-900'
@@ -264,7 +264,7 @@ export function TowerDirectoryClient() {
                   aria-controls="floor-detail-panel"
                   type="button"
                   onClick={() => handleSelectFloor(f.floor)}
-                  className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all duration-200 border min-h-[48px] overflow-hidden cursor-pointer ${
+                  className={`relative w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-[color,background-color,border-color,box-shadow,transform] duration-200 border min-h-[48px] overflow-hidden cursor-pointer ${
                     isSelected
                       ? 'bg-tower-800 text-ivory border-tower-800 shadow-md ring-2 ring-gold-500/50 scale-[1.01]'
                       : hasData
@@ -338,7 +338,7 @@ export function TowerDirectoryClient() {
               <button
                 type="button"
                 onClick={() => handleSelectBuilding('tower')}
-                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-[color,background-color,border-color,box-shadow] duration-200 ${
                   activeBuilding === 'tower'
                     ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
                     : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
@@ -351,7 +351,7 @@ export function TowerDirectoryClient() {
                     return (
                       <div
                         key={flNum}
-                        className={`w-full h-1.5 rounded-xs transition-all ${
+                        className={`w-full h-1.5 rounded-xs transition-[color,background-color,box-shadow,transform] duration-150 ${
                           isCurrent
                             ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
                             : activeBuilding === 'tower'
@@ -372,7 +372,7 @@ export function TowerDirectoryClient() {
               <button
                 type="button"
                 onClick={() => handleSelectBuilding('graha')}
-                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-all duration-200 ${
+                className={`cursor-pointer p-2.5 rounded-xl border text-center space-y-2 transition-[color,background-color,border-color,box-shadow] duration-200 ${
                   activeBuilding === 'graha'
                     ? 'bg-tower-900 border-gold-400/60 ring-1 ring-gold-400/30 shadow-md'
                     : 'bg-tower-900/60 border-tower-800 hover:border-tower-700'
@@ -385,7 +385,7 @@ export function TowerDirectoryClient() {
                     return (
                       <div
                         key={flNum}
-                        className={`w-full h-2.5 rounded-xs transition-all ${
+                        className={`w-full h-2.5 rounded-xs transition-[color,background-color,box-shadow,transform] duration-150 ${
                           isCurrent
                             ? 'bg-gold-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] scale-x-110'
                             : activeBuilding === 'graha'
@@ -411,7 +411,7 @@ export function TowerDirectoryClient() {
           key={`${activeBuilding}-${selectedFloor}`}
           role="region"
           aria-live="polite"
-          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[580px] flex flex-col justify-between transition-all duration-200"
+          className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-lg space-y-6 min-h-[580px] flex flex-col justify-between transition-[border-color,box-shadow] duration-200"
         >
           <div className="space-y-6">
             
@@ -530,11 +530,11 @@ export function TowerDirectoryClient() {
               </div>
             )}
 
-            {/* LAYANAN UNGGULAN TERKAIT DI LANTAI INI */}
+            {/* LAYANAN TERPADU TERKAIT DI LANTAI INI */}
             {matchedServices.length > 0 && (
               <div className="pt-2 space-y-3">
                 <span className="text-xs font-bold text-tower-900 uppercase tracking-wider block">
-                  Instalasi & Layanan Unggulan di Lantai Ini:
+                  Instalasi & Layanan Terpadu di Lantai Ini:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {matchedServices.map((svc) => (
@@ -602,7 +602,7 @@ export function TowerDirectoryClient() {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-tower-50 text-tower-900 hover:bg-tower-100 font-bold border border-tower-200 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-tower-50 text-tower-900 hover:bg-tower-100 font-bold border border-tower-200 transition-colors duration-150 cursor-pointer"
             >
               {copied ? (
                 <>
@@ -620,7 +620,7 @@ export function TowerDirectoryClient() {
             <div className="flex items-center gap-2">
               <Link
                 href="/daftar"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-tower-800 hover:bg-tower-700 text-ivory font-bold transition-[color,background-color,box-shadow] duration-150 shadow-sm"
               >
                 <span>Daftar Pemeriksaan</span>
                 <ArrowRight className="w-3.5 h-3.5" />

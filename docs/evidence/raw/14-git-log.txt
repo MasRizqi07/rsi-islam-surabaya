@@ -1,0 +1,10 @@
+git log --oneline -8
+7a5e58b fix(phase5.1): remediasi hasil audit - klaim faktual, HSTS produksi, CSP allowlist, toolchain engines, dan robots.txt allow
+dd47bca chore(p0b): record Phase 0b baseline evidence logs, duplication results, and mobile lighthouse summary
+cd13566 chore(p0b): fix catch block linting in evidence generator script
+d1763c7 chore(p0b): update evidence generator with port cleanup before e2e run
+76912d3 perf(p0b): optimize hero background render, doctor list mount, and igd badge
+19e5d7a fix(p0b): closeout items B5-B8 - duplication scanner, NIK removal, documentation cleanup
+362aef6 Merge pull request #2 from MasRizqi07/v3/p0-baseline
+a50057f feat(ui): implement Google Stitch design system & interactive polish across all core routes
+EXIT CODE: 0

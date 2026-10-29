@@ -1,0 +1,25 @@
+node scripts/lighthouse-table.mjs
+### TABEL HASIL AUDIT LIGHTHOUSE MOBILE LAB (MEDIAN 5 RUN)
+Sumber Data: 25 JSON Mentah di `docs/evidence/v3/p0b/lighthouse/`
+Profil: Default Mobile (Emulasi 4x CPU Slowdown, Jaringan Standar Seluler)
+
+| Rute Halaman | Path | Perf (≥90) | A11y (≥95) | Best Practices (≥95) | LCP (≤2.5s) | TBT (≤200ms) | CLS (≤0.1) | Status Evaluasi |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Beranda** | `/` | **94** | 93 ❌ | **96** | 2.94s ❌ | **111ms** | **0.000** | **FAIL (A11y, LCP)** |
+| **IGD Darurat** | `/igd` | 83 ❌ | 92 ❌ | **96** | 3.52s ❌ | 271ms ❌ | **0.000** | **FAIL (Perf, A11y, LCP, TBT)** |
+| **Direktori Dokter** | `/dokter` | 78 ❌ | **96** | **96** | 2.94s ❌ | 815ms ❌ | **0.000** | **FAIL (Perf, LCP, TBT)** |
+| **Tower Directory** | `/tower` | **95** | **95** | **96** | 2.93s ❌ | **85ms** | **0.000** | **FAIL (LCP)** |
+| **Pendaftaran Online** | `/daftar` | **95** | **96** | **96** | 2.79s ❌ | **91ms** | **0.000** | **FAIL (LCP)** |
+
+**Ringkasan Status Evaluasi Berdasarkan Median Absolut:**
+- Total Rute Diuji: 5
+- Rute Lolos Target Penuh: 0
+- Rute Gagal Target Teknis: 5
+
+**Rincian Kegagalan Target Per Rute (Tanpa Manipulasi):**
+- Rute `/`: A11y 93 < 95, LCP 2.94s > 2.5s
+- Rute `/igd`: Perf 83 < 90, A11y 92 < 95, LCP 3.52s > 2.5s, TBT 271ms > 200ms
+- Rute `/dokter`: Perf 78 < 90, LCP 2.94s > 2.5s, TBT 815ms > 200ms
+- Rute `/tower`: LCP 2.93s > 2.5s
+- Rute `/daftar`: LCP 2.79s > 2.5s
+EXIT CODE: 0

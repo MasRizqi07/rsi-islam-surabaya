@@ -13,7 +13,7 @@ import {
 
 export const metadata = {
   title: `Katalog Layanan & 20 Poliklinik · ${HOSPITAL_FACTS.name}`,
-  description: `Informasi lengkap 8 layanan unggulan terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di ${HOSPITAL_FACTS.name}.`,
+  description: `Informasi lengkap 8 layanan medis terpadu, penunjang diagnostik 24 jam, dan indeks interaktif 20 poliklinik spesialis rawat jalan di ${HOSPITAL_FACTS.name}.`,
   robots: { index: false, follow: false },
 };
 
@@ -21,23 +21,35 @@ export default function LayananPage() {
   return (
     <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
-      {/* HEADER KATALOG */}
-      <div className="space-y-4 border-b border-tower-100 pb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
-          <Building2 className="w-3.5 h-3.5 text-tower-700" />
-          <span>Fasilitas & Penunjang Medis Modern</span>
+      {/* HEADER KATALOG DENGAN LOGO RESMI */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-tower-100 pb-8">
+        <div className="space-y-4 max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-tower-100 text-tower-900 border border-tower-600/20">
+            <Building2 className="w-3.5 h-3.5 text-tower-700" />
+            <span>Fasilitas & Penunjang Medis Modern</span>
+          </div>
+
+          <h1 className="font-display font-bold text-3xl sm:text-5xl text-tower-950 tracking-tight">
+            Katalog Layanan Medis Terpadu
+          </h1>
+
+          <p className="text-ink-soft text-sm sm:text-base leading-relaxed">
+            Menyediakan 8 layanan medis terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
+          </p>
         </div>
 
-        <h1 className="font-display font-bold text-3xl sm:text-5xl text-tower-950 tracking-tight">
-          Katalog Layanan Medis Terpadu
-        </h1>
-
-        <p className="text-ink-soft text-sm sm:text-base max-w-3xl leading-relaxed">
-          Menyediakan 8 layanan unggulan terverifikasi dan 20 poliklinik rawat jalan yang terintegrasi di {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai dan {HOSPITAL_FACTS.buildings.graha.name} {HOSPITAL_FACTS.name} dengan standar syariah paripurna.
-        </p>
+        <div className="px-4 py-3 bg-tower-50/90 rounded-2xl border border-tower-200 shadow-sm shrink-0 hidden md:flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-tower-800 text-gold-300 flex items-center justify-center shadow-xs">
+            <Building2 className="w-5 h-5 text-gold-300" aria-hidden="true" />
+          </div>
+          <div className="text-left">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-tower-800 block">Katalog Resmi</span>
+            <span className="text-xs font-semibold text-tower-950">20 Poliklinik & Penunjang</span>
+          </div>
+        </div>
       </div>
 
-      {/* 1. SECTION 8 LAYANAN UNGGULAN (BENTO & GRID HYBRID) */}
+      {/* 1. SECTION 8 LAYANAN MEDIS TERPADU (BENTO & GRID HYBRID) */}
       <section aria-labelledby="featured-services-heading" className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
@@ -45,7 +57,7 @@ export default function LayananPage() {
               Fasilitas Prioritas
             </span>
             <h2 id="featured-services-heading" className="font-display font-bold text-2xl sm:text-3xl text-tower-900">
-              8 Layanan Unggulan Rumah Sakit
+              8 Layanan Medis Terpadu Rumah Sakit
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-ink-soft max-w-md">
@@ -58,7 +70,7 @@ export default function LayananPage() {
             <div
               key={svc.slug}
               id={svc.slug}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 transition-all flex flex-col justify-between space-y-6 group"
+              className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-xs hover:shadow-lg hover:border-tower-700/40 card-lift transition-[border-color,box-shadow,transform] duration-150 flex flex-col justify-between space-y-6 group"
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -103,12 +115,12 @@ export default function LayananPage() {
                 >
                   <Building2 className="w-3.5 h-3.5" />
                   <span>Lihat di Denah Tower</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-150" />
                 </Link>
 
                 <Link
                   href={`/layanan/${svc.slug}`}
-                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold transition-all shadow-2xs"
+                  className="px-3.5 py-1.5 rounded-lg bg-tower-50 hover:bg-tower-800 hover:text-ivory text-tower-900 text-xs font-bold press-feedback transition-[color,background-color,transform] duration-150 shadow-2xs"
                 >
                   Detail Fasilitas
                 </Link>

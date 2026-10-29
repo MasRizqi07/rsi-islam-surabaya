@@ -48,6 +48,7 @@ export function EmergencyBar() {
             {/* Link Cepat IGD & Triase */}
             <Link
               href="/igd"
+              prefetch={false}
               className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-gold-300 hover:text-gold-100 font-semibold transition-colors ml-1"
             >
               <span>Info IGD & Triase</span>

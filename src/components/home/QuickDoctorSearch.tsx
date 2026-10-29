@@ -92,13 +92,39 @@ export function QuickDoctorSearch() {
         <div className="sm:col-span-3">
           <button
             type="submit"
-            className="w-full min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-300 active:bg-gold-700 text-tower-950 font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
+            className="w-full min-h-[48px] px-6 py-2.5 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm shadow-md press-feedback transition-[background-color,transform] duration-150 flex items-center justify-center gap-2 focus:ring-2 focus:ring-ivory focus:outline-none"
           >
             <Search className="w-4 h-4" aria-hidden="true" />
             <span>Cari Dokter</span>
           </button>
         </div>
       </form>
+
+      {/* QUICK SPECIALTY SHORTCUT PILLS */}
+      <div className="mt-4 pt-4 border-t border-gold-500/20 flex flex-wrap items-center gap-2 text-xs">
+        <span className="text-ivory/60 text-[11px] font-bold uppercase tracking-wider">
+          Pilihan Cepat:
+        </span>
+        {[
+          { id: 'sp-penyakit-dalam', label: 'Penyakit Dalam' },
+          { id: 'sp-anak', label: 'Spesialis Anak' },
+          { id: 'sp-jantung', label: 'Jantung & Vaskular' },
+          { id: 'sp-obgyn', label: 'Kebidanan & Kandungan' },
+          { id: 'sp-mata', label: 'Klinik Mata' },
+        ].map((pill) => (
+          <button
+            key={pill.id}
+            type="button"
+            onClick={() => {
+              setSpecialtyId(pill.id);
+              router.push(`/dokter?spesialis=${pill.id}`);
+            }}
+            className="px-2.5 py-1 rounded-lg bg-tower-800/80 hover:bg-gold-500 hover:text-tower-950 text-ivory/90 text-xs border border-gold-500/20 press-feedback transition-[color,background-color,border-color] duration-150"
+          >
+            {pill.label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

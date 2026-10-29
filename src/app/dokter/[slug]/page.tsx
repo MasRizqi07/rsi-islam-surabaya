@@ -7,6 +7,7 @@ import { getDoctorBySlug } from '@/lib/data-utils';
 import {
   Clock,
   ArrowLeft,
+  Calendar,
   CalendarCheck,
   AlertCircle,
   CheckCircle2,
@@ -309,13 +310,23 @@ export default async function DoctorDetailPage({ params }: { params: Promise<{ s
             </div>
 
             {/* CTA Button */}
-            <Link
-              href={`/daftar?dokter=${doctor.slug}`}
-              className="w-full py-3.5 px-4 rounded-xl bg-tower-800 hover:bg-tower-700 active:bg-tower-900 text-ivory font-bold text-sm text-center shadow-md transition-all flex items-center justify-center gap-2"
-            >
-              <CalendarCheck className="w-4 h-4" />
-              <span>Daftar ke Dokter Ini</span>
-            </Link>
+            <div className="space-y-2">
+              <Link
+                href={`/janji-temu?doctor=${doctor.slug}`}
+                className="w-full py-3.5 px-4 rounded-xl bg-gold-500 hover:bg-gold-400 active:bg-gold-600 text-tower-950 font-bold text-sm text-center shadow-md press-feedback transition-[color,background-color,box-shadow,transform] duration-150 flex items-center justify-center gap-2"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Buat Janji Temu Dokter</span>
+              </Link>
+
+              <Link
+                href={`/daftar?dokter=${doctor.slug}`}
+                className="w-full py-2.5 px-4 rounded-xl bg-tower-50 hover:bg-tower-100 text-tower-900 font-bold text-xs text-center border border-tower-200 press-feedback transition-[background-color,transform] duration-150 flex items-center justify-center gap-2"
+              >
+                <CalendarCheck className="w-3.5 h-3.5 text-tower-700" />
+                <span>Simulasi Pendaftaran Mandiri</span>
+              </Link>
+            </div>
 
             {/* Secondary Link to Tower Directory */}
             <div className="text-center pt-1">

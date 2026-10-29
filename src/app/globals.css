@@ -23,6 +23,34 @@
 
   --font-display: var(--font-playfair), Georgia, serif;
   --font-body: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Skala Radius (3 Tingkat) */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  /* Elevasi Shadow (4 Tingkat, Satu Skala) */
+  --shadow-1: 0 1px 3px rgba(6, 59, 54, 0.08), 0 1px 2px rgba(6, 59, 54, 0.05);
+  --shadow-2: 0 4px 6px -1px rgba(6, 59, 54, 0.1), 0 2px 4px -2px rgba(6, 59, 54, 0.06);
+  --shadow-3: 0 10px 15px -3px rgba(6, 59, 54, 0.12), 0 4px 6px -4px rgba(6, 59, 54, 0.08);
+  --shadow-4: 0 20px 25px -5px rgba(6, 59, 54, 0.15), 0 8px 10px -6px rgba(6, 59, 54, 0.1);
+
+  /* Skala Z-Index (0/10/20/40/100/1000) */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-40: 40;
+  --z-100: 100;
+  --z-1000: 1000;
+
+  /* Durasi Animasi Terukur */
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 360ms;
+
+  /* Easing Transisi */
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-in: cubic-bezier(.7, 0, .84, 0);
 }
 
 :root {
@@ -62,6 +90,128 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* =========================================================================
+   VIEW TRANSITIONS API (Kinetika Transisi Antar Halaman Halus Native)
+   ========================================================================= */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 240ms cubic-bezier(0, 0, 0.2, 1) both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Card Lift Hover Effect */
+.card-lift {
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
+  border-color: rgba(201, 162, 74, 0.45);
+}
+
+/* Staggered Entrance Keyframe */
+@keyframes entrance-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-entrance {
+  animation: entrance-fade-up var(--dur-base) var(--ease-out) forwards;
+}
+
+/* Primitif Reveal Scroll CSS Modern: Default selalu terlihat (Zero-JS Fallback) */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-fade var(--dur-base) var(--ease-out) both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+
+    @keyframes reveal-fade {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+/* Umpan Balik Tekan Terukur (<100ms) */
+.press-feedback {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.press-feedback:active {
+  transform: scale(0.98);
+}
+
+/* Shimmer Loading Skeleton */
+@keyframes shimmer-sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(6, 59, 54, 0.06) 25%, rgba(6, 59, 54, 0.12) 50%, rgba(6, 59, 54, 0.06) 75%);
+  background-size: 200% 100%;
+  animation: shimmer-sweep 1.5s infinite linear;
+}
+
+/* @starting-style untuk Dialog Native Modal */
+dialog[open] {
+  transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+/* Stagger Variable Delay */
+.stagger-item {
+  transition-delay: calc(var(--i, 0) * 40ms);
 }
 
 /* Pola Geometris Khatam Islam Kontemporer (Bintang 8) */

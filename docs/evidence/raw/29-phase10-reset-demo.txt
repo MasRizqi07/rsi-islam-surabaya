@@ -1,0 +1,13 @@
+npm run db:reset-demo
+
+> rsi-islam-sby@2.0.0 db:reset-demo
+> tsx scripts/reset-demo.ts
+
+=== MEMULAI RESET DATABASE DEMO (PRD v3.0 US-8, S11) ===
+ [RESET] Berhasil menghapus 0 audit log janji temu.
+ [RESET] Berhasil menghapus 0 janji temu demo.
+ [RESET] Berhasil mereset 6 unit kamar rawat inap/intensif.
+ [RESET] Akun demo pasien dan admin berhasil disinkronkan.
+ [RESET] Audit log DEMO_DATA_RESET berhasil dicatat.
+=== RESET DATABASE SELESAI (SUKSES 100%) ===
+EXIT CODE: 0

@@ -1,0 +1,6 @@
+git grep -n -i soeharto
+README.md:147:   - Narasi 51 tahun perjalanan RSI Surabaya A. Yani sejak diresmikan Presiden Soeharto pada 1975.
+docs/design-reference/tentang_kami_sejarah_51_tahun_rs_islam_surabaya_a._yani/code.html:85:<span class="font-label-sm text-on-surface-variant">Diresmikan Presiden Soeharto</span>
+docs/design-reference/tentang_kami_sejarah_51_tahun_rs_islam_surabaya_a._yani/code.html:291:                Didirikan oleh para perintis Yayasan Rumah Sakit Islam Surabaya (YARSIS) dengan kapasitas awal 20 tempat tidur, diresmikan oleh Presiden Soeharto sebagai wujud nyata kepedulian umat terhadap kesehatan masyarakat.
+docs/evidence/phase-5-secondary.json:13:        "Narasi sejarah berdirinya RSI Surabaya A. Yani (sejak 1975 diresmikan Presiden Soeharto)",
+EXIT CODE: 0

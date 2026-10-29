@@ -1,0 +1,32 @@
+npx vitest run src/data/__tests__/phase11-security.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+ [32m✓[39m src/data/__tests__/phase11-security.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 410[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m   Start at [22m 14:22:35
+[2m   Duration [22m 1.19s[2m (import 54%, tests 40%, transform 6%, worker 1%)[22m
+
+[90mstderr[2m | src/data/__tests__/phase11-security.test.ts[2m > [22m[2mPhase 11.1 Security Hardening Tests (S-1, S-4, S-5)[2m > [22m[2mS-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal[2m > [22m[2mS-4.1: POST /api/patient/appointments melakukan rollback penuh bila audit log gagal
+[22m[39m[API /api/patient/appointments POST] Error: Error: SIMULATED_AUDIT_LOG_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:119:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:217:13
+    at async Proxy._transactionWithCallback [90m(D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\[39mnode_modules\[4m@prisma\client[24m\runtime\library.js:130:8120[90m)[39m
+    at POST (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/route.ts:197:28)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:139:21
+    at async [90mfile:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/[39mnode_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstderr[2m | src/data/__tests__/phase11-security.test.ts[2m > [22m[2mPhase 11.1 Security Hardening Tests (S-1, S-4, S-5)[2m > [22m[2mS-4 · Atomisitas Transaksi & Rollback jika Pencatatan Audit Gagal[2m > [22m[2mS-4.2: DELETE /api/patient/appointments/[id] melakukan rollback bila audit log gagal
+[22m[39m[API /api/patient/appointments/[id] DELETE] Error: Error: SIMULATED_CANCEL_AUDIT_FAILURE
+    at Proxy.tx.auditLog.create (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:177:19)
+    at recordAuditLog (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/lib/audit.ts:73:26)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:103:13
+    at async Proxy._transactionWithCallback [90m(D:\MY CODE\ANTIGRAVITY\01-production\rsi-islam-sby\[39mnode_modules\[4m@prisma\client[24m\runtime\library.js:130:8120[90m)[39m
+    at DELETE (D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/app/api/patient/appointments/[id]/route.ts:93:34)
+    at D:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby/src/data/__tests__/phase11-security.test.ts:189:21
+    at async [90mfile:///D:/MY%20CODE/ANTIGRAVITY/01-production/rsi-islam-sby/[39mnode_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+EXIT CODE: 0

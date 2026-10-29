@@ -29,8 +29,8 @@ export default function IgdPage() {
       <section
         id="hero-igd"
         className="relative w-full bg-tower-950 text-ivory overflow-hidden border-b-4 border-gold-500 shadow-xl"
-        style={{ backgroundColor: '#04231F' }}
       >
+
         {/* Ambient radial lighting */}
         <div
           className="absolute inset-0 pointer-events-none opacity-40"
@@ -70,7 +70,7 @@ export default function IgdPage() {
             {/* CTA 1: Emergency Call Center */}
             <a
               href={emergency.callCenterTel}
-              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-alert-600 text-white hover:bg-alert-600/90 active:scale-95 transition-all shadow-lg border border-alert-600 min-h-[56px] group"
+              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-alert-600 text-white hover:bg-alert-600/90 shadow-lg border border-alert-600 min-h-[56px]"
               aria-label={`Hubungi ${emergency.callCenterLabel} di nomor ${emergency.callCenterNumber}`}
             >
               <div className="space-y-0.5">
@@ -84,15 +84,15 @@ export default function IgdPage() {
                   Sambungan Langsung Komando Medis
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
-                <PhoneCall className="w-5 h-5 animate-pulse" />
+              <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-white shrink-0">
+                <PhoneCall className="w-5 h-5" />
               </div>
             </a>
 
             {/* CTA 2: Ambulance Dispatch */}
             <a
               href={emergency.ambulanceTel}
-              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-ivory text-tower-950 hover:bg-gold-100 active:scale-95 transition-all shadow-lg border-2 border-gold-400 min-h-[56px] group"
+              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-ivory text-tower-950 hover:bg-gold-100 shadow-lg border-2 border-gold-400 min-h-[56px]"
               aria-label={`Panggil ${emergency.ambulanceLabel} di nomor ${emergency.ambulanceNumber}`}
             >
               <div className="space-y-0.5">
@@ -106,7 +106,7 @@ export default function IgdPage() {
                   Armada Evakuasi Medevac Siaga
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-tower-100 flex items-center justify-center text-alert-600 shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-tower-100 flex items-center justify-center text-alert-600 shrink-0">
                 <Ambulance className="w-5 h-5" />
               </div>
             </a>
@@ -116,7 +116,7 @@ export default function IgdPage() {
               href={contact.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-tower-900 text-ivory hover:bg-tower-800 active:scale-95 transition-all shadow-md border border-gold-500/30 min-h-[56px] group"
+              className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-tower-900 text-ivory hover:bg-tower-800 shadow-md border border-gold-500/30 min-h-[56px]"
             >
               <div className="space-y-0.5">
                 <span className="block text-[10px] font-bold uppercase tracking-wider text-gold-300">
@@ -130,7 +130,7 @@ export default function IgdPage() {
                   Wonokromo, Surabaya (Akses Timur)
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-tower-800 flex items-center justify-center text-gold-400 shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-tower-800 flex items-center justify-center text-gold-400 shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
             </a>
@@ -328,7 +328,7 @@ export default function IgdPage() {
                 Alur Penanganan Terpadu {HOSPITAL_FACTS.buildings.tower.name} Lantai 2
               </h2>
               <p className="text-ink-soft text-sm leading-relaxed">
-                Keunggulan utama {HOSPITAL_FACTS.buildings.tower.name} RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
+                Karakteristik utama {HOSPITAL_FACTS.buildings.tower.name} RSIS A. Yani adalah pengintegrasian seluruh titik kritis pelayanan gawat darurat dalam satu lantai yang terhubung langsung. Pasien tidak perlu dipindahkan antar gedung di saat-saat paling genting.
               </p>
             </div>
 
@@ -343,7 +343,7 @@ export default function IgdPage() {
                 </div>
               </div>
               <p className="text-xs text-ink-soft leading-normal">
-                Waktu transfer menuju diagnostik radiologi terakreditasi berlangsung dalam &lt; 90 detik via koridor tertutup bertekanan steril.
+                Waktu transfer menuju instalasi diagnostik radiologi terpadu berlangsung dalam &lt; 90 detik via koridor tertutup bertekanan steril.
               </p>
             </div>
           </div>

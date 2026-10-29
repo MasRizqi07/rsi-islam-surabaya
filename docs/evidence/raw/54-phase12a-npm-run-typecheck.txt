@@ -1,0 +1,6 @@
+npm run typecheck
+
+> rsi-islam-sby@2.0.0 typecheck
+> tsc --noEmit
+
+EXIT CODE: 0

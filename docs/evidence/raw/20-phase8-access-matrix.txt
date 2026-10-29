@@ -1,0 +1,12 @@
+npx vitest run src/data/__tests__/access-matrix-phase8.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90mD:/MY CODE/ANTIGRAVITY/01-production/rsi-islam-sby[39m
+
+ [32m✓[39m src/data/__tests__/access-matrix-phase8.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 961[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m16 passed[39m[22m[90m (16)[39m
+[2m   Start at [22m 18:05:27
+[2m   Duration [22m 1.77s[2m (tests 60%, import 38%, transform 2%)[22m
+
+EXIT CODE: 0

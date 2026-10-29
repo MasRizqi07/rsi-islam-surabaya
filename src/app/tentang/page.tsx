@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { HOSPITAL_FACTS } from '@/data/facts';
+import Image from 'next/image';
+import { HOSPITAL_FACTS, SERVICE_YEARS } from '@/data/facts';
 import { HISTORY_TIMELINE } from '@/data/history';
 import { TimelineDecadeClient } from '@/components/tentang/TimelineDecadeClient';
 import {
@@ -7,14 +8,14 @@ import {
   Award,
   HeartHandshake,
   ShieldCheck,
-  Sparkles,
   Stethoscope,
   Star,
+  Camera,
 } from 'lucide-react';
 
 export const metadata = {
-  title: `Tentang Kami · Sejarah 51 Tahun & Nilai Filosofis · ${HOSPITAL_FACTS.name}`,
-  description: `Sejarah pengabdian 51 tahun ${HOSPITAL_FACTS.name} sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.`,
+  title: `Tentang Kami · Sejarah ${SERVICE_YEARS} Tahun & Nilai Filosofis · ${HOSPITAL_FACTS.name}`,
+  description: `Sejarah pengabdian ${SERVICE_YEARS} tahun ${HOSPITAL_FACTS.name} sejak 1975 di bawah naungan YARSIS, rekam jejak akreditasi Paripurna, dan peresmian ${HOSPITAL_FACTS.buildings.tower.name} 13 Lantai.`,
   robots: { index: false, follow: false },
 };
 
@@ -22,33 +23,63 @@ export default function TentangPage() {
   return (
     <div className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative rounded-3xl bg-tower-950 text-ivory p-8 sm:p-14 overflow-hidden border border-gold-500/30 shadow-2xl">
-        <div
-          className="absolute inset-0 opacity-25 pointer-events-none"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 80% 20%, rgba(201, 162, 74, 0.4) 0%, transparent 60%), radial-gradient(circle at 10% 80%, rgba(15, 107, 97, 0.4) 0%, transparent 60%)',
-          }}
-        />
+      {/* 1. HERO SECTION DENGAN FOTO ASLI GEDUNG */}
+      <section className="relative rounded-3xl bg-tower-950 text-ivory p-6 sm:p-12 overflow-hidden border border-gold-500/30 shadow-2xl">
+        {/* Latar Belakang Foto Asli Atmosferik */}
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
+          <Image
+            src="/assets/rsi-ayani.jpg"
+            alt=""
+            fill
+            className="object-cover object-center opacity-20 mix-blend-luminosity filter brightness-75 contrast-125"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/95 to-tower-950/80" />
+          <div className="absolute inset-0 bg-khatam-pattern opacity-15" />
+        </div>
         
-        <div className="relative z-10 max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-900 border border-gold-500/30 text-gold-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5 text-gold-400" aria-hidden="true" />
-            <span>Sejarah & Nilai Pengabdian YARSIS Sejak 1975</span>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-tower-900/90 border border-gold-500/30 text-gold-300 text-xs font-semibold backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-gold-400" aria-hidden="true" />
+              <span>Sejarah & Nilai Pengabdian YARSIS Sejak 1975</span>
+            </div>
+
+            <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight tracking-tight">
+              {SERVICE_YEARS} Tahun Merawat Insan, <br />
+              <span className="text-gold-300 italic font-semibold">Menebar Nilai Islam.</span>
+            </h1>
+
+            <p className="text-tower-100 text-sm sm:text-base leading-relaxed">
+              Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan {HOSPITAL_FACTS.foundation}, {HOSPITAL_FACTS.name} tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
+            </p>
+
+            <div className="p-4 rounded-2xl bg-tower-900/80 border border-gold-500/30 text-xs sm:text-sm text-gold-300 italic">
+              &ldquo;{HOSPITAL_FACTS.motto}&rdquo;
+            </div>
           </div>
 
-          <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-ivory leading-tight tracking-tight">
-            51 Tahun Merawat Insan, <br />
-            <span className="text-gold-300 italic font-semibold">Menebar Nilai Islam.</span>
-          </h1>
-
-          <p className="text-tower-100 text-sm sm:text-base leading-relaxed">
-            Didirikan pada 25 Maret {HOSPITAL_FACTS.foundedYear} oleh para tokoh ulama dan cendekiawan {HOSPITAL_FACTS.foundation}, {HOSPITAL_FACTS.name} tumbuh dari fasilitas 20 tempat tidur pertama menjadi rumah sakit rujukan modern dengan {HOSPITAL_FACTS.buildings.tower.name} 13 Lantai yang mengintegrasikan kecanggihan medis dengan kehangatan islami.
-          </p>
-
-          <div className="p-4 rounded-2xl bg-tower-900/80 border border-gold-500/30 text-xs sm:text-sm text-gold-300 italic">
-            &ldquo;{HOSPITAL_FACTS.motto}&rdquo;
+          {/* KARTU FOTO DOKUMENTASI GEDUNG RS */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-2xl overflow-hidden border-2 border-gold-500/40 shadow-xl group">
+              <div className="relative w-full h-64 sm:h-72">
+                <Image
+                  src="/assets/rsi-ayani.jpg"
+                  alt={`Fasad Gedung Asli ${HOSPITAL_FACTS.name}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-tower-950/90 via-transparent to-black/20" />
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tower-950/90 border border-gold-400 text-[10px] font-bold text-gold-300">
+                  <Camera className="w-3 h-3 text-gold-400" />
+                  <span>Dokumentasi Fasad Gedung</span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-tower-950/85 border border-gold-500/30 text-[11px] text-ivory/90">
+                  <span className="font-bold text-gold-300 block mb-0.5">Kompleks {HOSPITAL_FACTS.name}</span>
+                  <span>{HOSPITAL_FACTS.contact.address}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -58,7 +89,7 @@ export default function TentangPage() {
         <h2 id="facts-strip-heading" className="sr-only">Statistik Utama Rumah Sakit</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.foundedYear}
             </span>
@@ -66,11 +97,11 @@ export default function TentangPage() {
               Tahun Berdiri
             </span>
             <p className="text-[11px] text-ink-soft">
-              51 tahun mengabdi bagi kesehatan masyarakat Jawa Timur.
+              {SERVICE_YEARS} tahun mengabdi bagi kesehatan masyarakat Jawa Timur.
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               13 Lantai
             </span>
@@ -82,7 +113,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.bedCapacity}
             </span>
@@ -94,7 +125,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.medicalStaffLabel}
             </span>
@@ -106,7 +137,7 @@ export default function TentangPage() {
             </p>
           </div>
 
-          <div className="col-span-2 md:col-span-1 bg-white rounded-2xl p-5 border border-tower-100 shadow-xs space-y-1">
+          <div className="col-span-2 md:col-span-1 bg-white rounded-2xl p-5 border border-tower-100 shadow-xs card-lift space-y-1">
             <span className="font-display font-bold text-3xl text-tower-900">
               {HOSPITAL_FACTS.hospitalClass}
             </span>
@@ -132,7 +163,7 @@ export default function TentangPage() {
               Rekam Jejak Akreditasi Paripurna Historis
             </h2>
             <p className="text-ink-soft text-sm leading-relaxed">
-              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten mempertahankan pengakuan mutu tertinggi dari lembaga independen nasional.
+              Sebagai komitmen terhadap keselamatan pasien dan tata kelola klinis, {HOSPITAL_FACTS.name} secara konsisten meraih {HOSPITAL_FACTS.accreditationHistory} dari lembaga independen nasional.
             </p>
           </div>
 
@@ -146,11 +177,11 @@ export default function TentangPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Medallion 1: 2016 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -182,11 +213,11 @@ export default function TentangPage() {
           </div>
 
           {/* Medallion 2: 2019 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -218,11 +249,11 @@ export default function TentangPage() {
           </div>
 
           {/* Medallion 3: 2022 */}
-          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-all">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-tower-100 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-6 group hover:shadow-md transition-[border-color,box-shadow] duration-150">
             <div className="h-1.5 -mx-8 -mt-8 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-500" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-gold-100 flex items-center justify-center text-gold-700 group-hover:scale-105 transition-transform duration-150">
                   <Award className="w-6 h-6" />
                 </div>
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-tower-50 text-tower-900">
@@ -341,7 +372,7 @@ export default function TentangPage() {
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           <Link
             href="/tower"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 text-tower-950 font-bold text-sm shadow-md transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-300 text-tower-950 font-bold text-sm shadow-md transition-[color,background-color,box-shadow] duration-150"
           >
             <Building2 className="w-4 h-4" />
             <span>Tower Directory</span>

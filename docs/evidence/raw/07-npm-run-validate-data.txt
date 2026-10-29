@@ -1,0 +1,27 @@
+npm run validate:data
+
+> rsi-islam-sby@2.0.0 validate:data
+> tsx scripts/validate-data.mjs
+
+=== DATA INTEGRITY & ZOD SCHEMA VALIDATION ===
+
+--- 1. Validasi 20 Poliklinik Spesialis ---
+[PASS] Jumlah poliklinik tepat 20 (Ditemukan: 20)
+[PASS] Seluruh 20 ID poliklinik unik.
+
+--- 2. Validasi Fixture Dokter Fiktif (Lampiran D) ---
+[PASS] Minimal 24 dokter fiktif (Ditemukan: 24)
+[PASS] Mencakup >= 14 spesialisasi berbeda (Ditemukan: 17)
+
+--- 3. Validasi 8 Layanan Unggulan Terverifikasi ---
+[PASS] Minimal 8 layanan unggulan (Ditemukan: 8)
+
+--- 4. Validasi Denah Gedung & Aturan Lantai K4 ---
+[PASS] Gedung Tower tepat 13 lantai (Ditemukan: 13)
+[PASS] Gedung Graha tepat 6 level (Ground + 5) (Ditemukan: 6)
+
+--- 5. Validasi Status Kamar (BedStatus) ---
+[PASS] Komponen BedStatus memuat minimal 5 unit
+
+[SUCCESS] 100% data fixture lolos skema Zod dan referential integrity!
+EXIT CODE: 0
