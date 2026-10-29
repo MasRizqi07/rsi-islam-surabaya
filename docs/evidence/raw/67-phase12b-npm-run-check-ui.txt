@@ -1,0 +1,15 @@
+npm run check:ui
+
+> rsi-islam-sby@2.0.0 check:ui
+> node scripts/check-ui-rules.mjs
+
+=== Memeriksa Kepatuhan Aturan UI & Motion Fase 12 ===
+[OK] Seluruh aturan UI terpenuhi:
+  - Bebas transition: all & transition-all
+  - Bebas animasi layout properties (width, height, dsb)
+  - Seluruh durasi animasi <= 500ms
+  - Bebas hardcoded hex di komponen & halaman
+  - Bebas class animasi di rute darurat /igd
+  - Seluruh <img> dan <Image> memiliki atribut alt
+  - Seluruh <button> memiliki nama aksesibel (teks atau aria-label)
+EXIT CODE: 0
