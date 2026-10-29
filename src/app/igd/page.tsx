@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { HOSPITAL_FACTS } from '@/data/facts';
 import {
   PhoneCall,
@@ -31,16 +30,6 @@ export default function IgdPage() {
         id="hero-igd"
         className="relative w-full bg-tower-950 text-ivory overflow-hidden border-b-4 border-gold-500 shadow-xl"
       >
-        {/* Fasad Asli Gedung Latar Atmosferik */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20 overflow-hidden">
-          <Image
-            src="/assets/rsi-ayani.jpg"
-            alt=""
-            fill
-            className="object-cover object-center mix-blend-luminosity brightness-75 contrast-125"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/90 to-tower-950/80" />
-        </div>
 
         {/* Ambient radial lighting */}
         <div

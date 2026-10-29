@@ -15,15 +15,6 @@ export default function TowerPage() {
       
       {/* HEADER UTAMA HALAMAN DENGAN FOTO ASLI GEDUNG */}
       <div className="bg-gradient-to-r from-tower-950 via-tower-900 to-tower-950 rounded-3xl p-6 sm:p-8 border border-gold-500/30 text-ivory shadow-xl relative overflow-hidden">
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20">
-          <Image
-            src="/assets/rsi-ayani.jpg"
-            alt=""
-            fill
-            className="object-cover mix-blend-luminosity brightness-75"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/80 to-transparent" />
-        </div>
 
         <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8 space-y-3">

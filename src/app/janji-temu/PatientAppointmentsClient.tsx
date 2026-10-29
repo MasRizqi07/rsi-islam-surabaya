@@ -56,7 +56,7 @@ interface SessionUser {
 export function PatientAppointmentsClient() {
   const [currentUser, setCurrentUser] = useState<SessionUser | null>(null);
   const [appointments, setAppointments] = useState<AppointmentItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<'ALL' | 'BOOKED' | 'COMPLETED' | 'CANCELLED'>('ALL');
   const [cancelModalApt, setCancelModalApt] = useState<AppointmentItem | null>(null);

@@ -9,27 +9,23 @@ import { Header } from '@/components/shell/Header';
 import { Footer } from '@/components/shell/Footer';
 
 const playfair = localFont({
-  src: [
-    {
-      path: './fonts/PlayfairDisplay-VariableFont_wght.woff2',
-      style: 'normal',
-    },
-    {
-      path: './fonts/PlayfairDisplay-Italic-VariableFont_wght.woff2',
-      style: 'italic',
-    },
-  ],
+  src: './fonts/PlayfairDisplay-VariableFont_wght.woff2',
   variable: '--font-playfair',
   display: 'swap',
+  preload: true,
+  fallback: ['Georgia', 'serif'],
 });
 
 const plusJakarta = localFont({
   src: './fonts/PlusJakartaSans-VariableFont_wght.woff2',
   variable: '--font-jakarta',
   display: 'swap',
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: `${HOSPITAL_FACTS.name} · Konsep "Hijau Tower"`,
   description: `Studi kasus portofolio independen redesign website ${HOSPITAL_FACTS.name}. Presisi medis berpadu warisan arsitektur islami modern.`,
   icons: {

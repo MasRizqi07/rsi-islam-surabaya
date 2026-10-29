@@ -41,6 +41,7 @@ export function Header() {
                 height={44}
                 className="w-full h-full object-cover"
                 priority
+                unoptimized
               />
             </div>
 
@@ -67,6 +68,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   className={`px-3.5 py-2 rounded-md text-sm font-semibold transition-colors ${
                     isActive
                       ? 'bg-tower-100 text-tower-900'
@@ -83,6 +85,7 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/janji-temu"
+              prefetch={false}
               className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-lg bg-tower-800 hover:bg-tower-700 text-ivory font-semibold text-sm shadow-md hover:shadow-lg transition-colors duration-150 focus:ring-2 focus:ring-tower-700 focus:ring-offset-2"
             >
               <Calendar className="w-4 h-4 mr-2" aria-hidden="true" />
@@ -122,6 +125,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={false}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-3 px-3 py-3 rounded-lg text-base font-semibold min-h-[44px] ${
                     isActive
@@ -137,7 +141,8 @@ export function Header() {
             
             <div className="pt-4 border-t border-tower-100">
               <Link
-                href="/janji-temu"
+              href="/janji-temu"
+              prefetch={false}
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-center w-full min-h-[44px] px-4 py-3 rounded-lg bg-tower-800 text-ivory font-bold text-center shadow-md active:bg-tower-900"
               >

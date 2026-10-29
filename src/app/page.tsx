@@ -33,23 +33,9 @@ export default function HomePage() {
       >
         {/* FOTO ASLI GEDUNG RS ISLAM SURABAYA SEBAGAI LATAR HERO ATMOSFERIK */}
         <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <Image
-            src="/assets/rsi-ayani.jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center opacity-30 mix-blend-luminosity scale-105 filter brightness-75 contrast-125"
-          />
-          {/* Overlay Gradien Hijau Tower & Vignette untuk Menjaga Kontras Teks */}
-          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-950/90 to-tower-900/85" />
-          <div className="absolute inset-0 bg-gradient-to-t from-tower-950 via-transparent to-tower-950/80" />
-          <div className="absolute inset-0 bg-khatam-pattern opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-tower-950 via-tower-900 to-tower-950" />
+          <div className="absolute inset-0 bg-khatam-pattern opacity-25" />
         </div>
-        
-        {/* Glow Lembut Emas Menggunakan Radial Gradient */}
-        <div aria-hidden="true" className="absolute top-0 right-1/4 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(201, 162, 74, 0.15) 0%, transparent 70%)' }} />
-        <div aria-hidden="true" className="absolute bottom-0 left-10 w-96 h-96 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(15, 107, 97, 0.25) 0%, transparent 70%)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

@@ -20,6 +20,10 @@ const nextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
+  },
   async headers() {
     const securityHeaders = [
       {

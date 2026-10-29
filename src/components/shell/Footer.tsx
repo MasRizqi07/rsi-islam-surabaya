@@ -41,27 +41,27 @@ export function Footer() {
             </h3>
             <ul className="space-y-1 text-sm">
               <li>
-                <Link href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/igd" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Layanan Gawat Darurat & Triase 24 Jam
                 </Link>
               </li>
               <li>
-                <Link href="/dokter" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/dokter" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Direktori & Jadwal Dokter
                 </Link>
               </li>
               <li>
-                <Link href="/tower" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/tower" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Tower Directory (Denah Gedung)
                 </Link>
               </li>
               <li>
-                <Link href="/layanan" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/layanan" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Katalog Layanan & Penunjang
                 </Link>
               </li>
               <li>
-                <Link href="/daftar" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
+                <Link prefetch={false} href="/daftar" className="py-1.5 inline-block hover:text-gold-300 transition-colors">
                   Pendaftaran Pasien Online (Demo)
                 </Link>
               </li>
