@@ -1,0 +1,23 @@
+node scripts/lighthouse-table.mjs docs/evidence/v12/final
+### TABEL HASIL AUDIT LIGHTHOUSE MOBILE LAB (MEDIAN 5 RUN)
+Sumber Data: 25 JSON Mentah di `docs/evidence/v3/p0b/lighthouse/`
+Profil: Default Mobile (Emulasi 4x CPU Slowdown, Jaringan Standar Seluler)
+
+| Rute Halaman | Path | Perf (≥90) | A11y (≥95) | Best Practices (≥95) | LCP (≤2.5s) | TBT (≤200ms) | CLS (≤0.1) | Status Evaluasi |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Beranda** | `/` | **100** | **100** | **100** | **0.91s** | **66ms** | **0.000** | **PASS** |
+| **IGD Darurat** | `/igd` | **100** | **100** | **100** | **0.91s** | **63ms** | **0.000** | **PASS** |
+| **Direktori Dokter** | `/dokter` | **100** | **100** | **100** | **0.91s** | **67ms** | **0.000** | **PASS** |
+| **Tower Directory** | `/tower` | **100** | **99** | **100** | **0.91s** | **64ms** | **0.000** | **PASS** |
+| **Pendaftaran Online** | `/daftar` | **100** | **100** | **100** | **0.91s** | **63ms** | **0.000** | **PASS** |
+| **Daftar Layanan** | `/layanan` | **100** | **100** | **100** | **0.91s** | **62ms** | **0.000** | **PASS** |
+| **Autentikasi / Login** | `/login` | **100** | **98** | **100** | **0.91s** | **68ms** | **0.000** | **PASS** |
+| **Booking Janji Temu** | `/janji-temu` | **100** | **100** | **96** | **0.91s** | **60ms** | **0.000** | **PASS** |
+
+**Ringkasan Status Evaluasi Berdasarkan Median Absolut:**
+- Total Rute Diuji: 8
+- Rute Lolos Target Penuh: 8
+- Rute Gagal Target Teknis: 0
+
+**Rincian Kegagalan Target Per Rute (Tanpa Manipulasi):**
+EXIT CODE: 0

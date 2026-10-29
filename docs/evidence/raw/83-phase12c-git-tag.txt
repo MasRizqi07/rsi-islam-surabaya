@@ -1,0 +1,14 @@
+git tag -n --list phase*
+phase-0-4       Phase 0 to 4 baseline implementation
+phase-10        Fase 10: Admin appointments management, bed status live updates, audit logs trail, dan db:reset-demo
+phase-11        Fase 11: Hardening security headers, rate limiting (S10), verifikasi S1-S11, README tabel CLAIM -> EVIDENCE, dan audit akhir
+phase-11-1      Fase 11.1: Perbaikan keamanan kritis S-1 sampai S-6 dan bukti audit closeout
+phase-12a       Fase 12A: Fondasi token, kepatuhan konten, dan aturan UI
+phase-12b       Fase 12B: Master UI/UX Implementation
+phase-12c       Fase 12C: Performance Tuning & Zero-Regression Target Verification
+phase-5         Phase 5 secondary routes and service details (hasil audit: lihat Fase 5.1)
+phase-6         Phase 6 multi-viewport responsiveness and visual audit
+phase-7         Fase 7: skema database, seed fixture v2 idempoten, runtime DB reading, ADR ORM/Auth
+phase-8         Fase 8: Better Auth, RBAC 100% access matrix, audit log privacy, login demo
+phase-9         Fase 9: Pembuatan janji temu, constraint DB, idempotensi replay/conflict, pembatalan mandiri, dan portal janji temu
+EXIT CODE: 0
